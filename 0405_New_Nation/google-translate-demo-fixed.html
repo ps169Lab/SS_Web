@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Translate Demo (Fixed)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .instructions {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        /* Hide "Powered by Google Translate" text */
+        .skiptranslate span {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Translate Element -->
+    <div id="google_translate_element"></div>
+
+    <!-- Google Translate Script - USING HTTPS EXPLICITLY -->
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <h1>Google Translate Demo (Fixed)</h1>
+    <p>This page demonstrates the Google Translate widget working correctly with the "Powered by Google Translate" text hidden.</p>
+
+    <div class="instructions">
+        <h2>CSS to Hide "Powered by Google Translate" Text</h2>
+        <p>The following CSS rule has been added to hide the "Powered by Google Translate" text:</p>
+        
+        <pre><code>.skiptranslate span {
+    display: none !important;
+}</code></pre>
+        
+        <p>This CSS rule targets the span element within elements with the class "skiptranslate", which is the class used by the Google Translate widget.</p>
+        
+        <h2>Implementation in Your Project</h2>
+        <p>I've added this CSS rule to both:</p>
+        <ul>
+            <li>0405_New_Nation/styles.css</li>
+            <li>Web_Template/styles.css</li>
+        </ul>
+        
+        <p>This will hide the "Powered by Google Translate" text in all pages that use these stylesheets.</p>
+    </div>
+</body>
+</html>

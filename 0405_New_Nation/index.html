@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Nation Web - Grade 4 History</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="google_translate_element"></div>
+
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
+
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                WELCOME TO NEW NATION WEB
+            </h1>
+            
+            <p class="subtitle">
+                Exploring America's Early History for Grade 4 Students
+            </p>
+            
+            <h2>ABOUT THIS WEBSITE</h2>
+            <p>
+                Welcome to New Nation Web! This website contains information about the early history of the United States and New York State. You'll learn about how our government was formed, important historical events, and how our government works today.
+            </p>
+            
+            <h2>TOPICS YOU CAN EXPLORE</h2>
+            <p>
+                Click on any of the links in the navigation bar to explore these interesting topics:
+            </p>
+            
+            <ul>
+                <li><strong>How the Government Works</strong> - Learn about the three branches of the U.S. government and how they work together.</li>
+                <li><strong>The Drafting of the Constitution</strong> - Discover how and why the U.S. Constitution was created.</li>
+                <li><strong>The Bill of Rights</strong> - Explore the first ten amendments to the Constitution and why they're important.</li>
+                <li><strong>The Role of New York in the New Nation</strong> - Find out how New York helped shape the early United States.</li>
+                <li><strong>The Peter Zenger Trial</strong> - Learn about an important court case that helped establish freedom of the press.</li>
+                <li><strong>New York State Government</strong> - Understand how New York State's government is organized.</li>
+                <li><strong>New York City Government</strong> - Discover how the government of New York City works.</li>
+                <li><strong>How Laws are Made in New York</strong> - Follow the journey of how an idea becomes a law in New York State.</li>
+            </ul>
+            
+            <h2>START EXPLORING!</h2>
+            <p>
+                Choose any topic from the navigation menu at the top of the page to begin your journey through American and New York history. Each page includes interesting facts, important vocabulary words, and images to help you understand these important topics.
+            </p>
+            
+            <p>
+                Happy learning!
+            </p>
+            
+            <img src="images/placeholder.jpg" alt="American Flag">
+        </article>
+    </main>
+</body>
+</html>

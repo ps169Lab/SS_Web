@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Search and Downloader</title>
+    <style>
+        /* Toggle Switch Styles */
+        .mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+        
+        input:checked + .slider {
+            background-color: #72c8f4;
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px #72c8f4;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .slider.round {
+            border-radius: 24px;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        
+        .mode-label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .info-icon {
+            color: #72c8f4;
+            cursor: pointer;
+            font-style: normal;
+        }
+        
+        .tooltip-text {
+            visibility: hidden;
+            width: 250px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+            font-weight: normal;
+        }
+        
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        body {
+            font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+            line-height: 130%;
+            font-weight: 200;
+            letter-spacing: 0.2px;
+            font-size: 1em;
+            margin-top: 0;
+            background-color: #e7f7ff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: -20px -20px 20px -20px;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], 
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 16px;
+            background-color: #72c8f4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #5ab0e0;
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .search-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .image-item {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            border: none;
+            margin: 0;
+        }
+
+        .image-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .image-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .image-item .checkbox {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            z-index: 10;
+        }
+
+        .download-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            border-left: 4px solid #72c8f4;
+        }
+
+        .status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+
+        .loading:after {
+            content: "...";
+            animation: dots 1.5s steps(5, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: "."; }
+            40% { content: ".."; }
+            60%, 100% { content: "..."; }
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .pagination button {
+            padding: 5px 10px;
+        }
+
+        .select-all-container {
+            margin-bottom: 10px;
+        }
+
+        #folder-path {
+            margin-top: 5px;
+            font-style: italic;
+            color: #666;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 95%;
+                margin: 10px auto;
+            }
+
+            .search-results {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .image-item img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="google_translate_element"></div>
+
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
+
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <div class="container">
+        <div class="header">
+            <div class="title">Image Search and Downloader</div>
+            <div class="mode-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="cors-safe-mode">
+                    <span class="slider round"></span>
+                </label>
+                <span class="mode-label">CORS-safe Mode</span>
+                <span class="tooltip">
+                    <i class="info-icon">ⓘ</i>
+                    <span class="tooltip-text">When enabled, searches only Wikimedia Commons for images that can be downloaded without CORS issues</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="api-key">Google Custom Search API Key: <span style="color: green;">(Pre-filled)</span></label>
+            <input type="password" id="api-key" placeholder="Enter your API key" readonly>
+            <div style="margin-top: 5px;">
+                <input type="checkbox" id="remember-api-key" checked>
+                <label for="remember-api-key" style="display: inline; font-weight: normal;">Remember Search Engine ID</label>
+                <button id="clear-api-key" style="margin-left: 10px; padding: 3px 8px; font-size: 12px;">Clear Saved ID</button>
+            </div>
+            <div style="margin-top: 5px; font-size: 12px; color: #666;">
+                Your API key has been pre-filled for convenience.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="cx-id">Google Custom Search Engine ID: <span style="color: green;">(Pre-filled)</span></label>
+            <input type="text" id="cx-id" value="e75106d422830429d" readonly>
+            <div style="margin-top: 5px; font-size: 12px; color: #666;">
+                Your Search Engine ID has been pre-filled for convenience.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="search-query">Search Query:</label>
+            <input type="text" id="search-query" placeholder="Enter search terms">
+        </div>
+
+        <div class="form-group">
+            <label for="image-size">Minimum Image Size:</label>
+            <select id="image-size" class="form-control">
+                <option value="">Any size</option>
+                <option value="xlarge" selected>Medium-Large (at least 1024x1024)</option>
+                <option value="xxlarge">Large (at least 2048x2048)</option>
+                <option value="large:custom">Medium (800x800 to 1000x1000)</option>
+                <option value="large">Small-Medium (up to 1024x1024)</option>
+                <option value="medium">Small (up to 640x640)</option>
+                <option value="small">Very Small (up to 300x300)</option>
+                <option value="icon">Tiny (up to 128x128)</option>
+            </select>
+            <div style="margin-top: 5px; font-size: 12px; color: #666;">
+                <strong>Note on size filtering:</strong> Due to API limitations, only the top two options truly filter for minimum sizes.
+                The "Medium-Large" option is selected by default to ensure good quality images. The "Medium (800x800 to 1000x1000)" option
+                uses client-side filtering to identify images within that specific size range.
+            </div>
+        </div>
+        </div>
+
+        <div class="form-group">
+            <label for="download-folder">Download Folder:</label>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="text" id="download-folder" placeholder="Select a folder for downloads" readonly style="flex-grow: 1;">
+                <button id="select-folder-btn" style="flex-shrink: 0;">Select Folder</button>
+            </div>
+            <div id="folder-path" style="margin-top: 5px; font-size: 12px; color: #666;">
+                <span id="folder-status">No folder selected. Files will be saved to your default downloads folder.</span>
+            </div>
+        </div>
+
+        <button id="search-btn">Search Images</button>
+
+        <div id="loading" class="loading">Searching for images</div>
+
+        <div id="status" class="status" style="display: none;"></div>
+
+        <div class="select-all-container" style="display: none;">
+            <input type="checkbox" id="select-all">
+            <label for="select-all">Select All Images</label>
+            <button id="deselect-all-btn" style="margin-left: 10px; padding: 3px 8px; font-size: 12px;">Deselect All</button>
+        </div>
+
+        <div id="search-results" class="search-results"></div>
+
+        <div id="pagination" class="pagination" style="display: none;">
+            <button id="prev-page" disabled>Previous</button>
+            <span id="page-info">Page 1</span>
+            <button id="next-page">Next</button>
+        </div>
+
+        <div id="download-section" class="download-section" style="display: none;">
+            <button id="download-btn">Download Selected Images</button>
+            <div id="download-status"></div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const apiKeyInput = document.getElementById('api-key');
+        const rememberApiKeyCheckbox = document.getElementById('remember-api-key');
+        const clearApiKeyBtn = document.getElementById('clear-api-key');
+        const cxIdInput = document.getElementById('cx-id');
+        const searchQueryInput = document.getElementById('search-query');
+        const imageSizeSelect = document.getElementById('image-size');
+        const downloadFolderInput = document.getElementById('download-folder');
+        const selectFolderBtn = document.getElementById('select-folder-btn');
+        const folderStatusSpan = document.getElementById('folder-status');
+        const searchBtn = document.getElementById('search-btn');
+        const loadingDiv = document.getElementById('loading');
+        const statusDiv = document.getElementById('status');
+        const searchResultsDiv = document.getElementById('search-results');
+        const paginationDiv = document.getElementById('pagination');
+        const prevPageBtn = document.getElementById('prev-page');
+        const nextPageBtn = document.getElementById('next-page');
+        const pageInfoSpan = document.getElementById('page-info');
+        const downloadSectionDiv = document.getElementById('download-section');
+        const downloadBtn = document.getElementById('download-btn');
+        const downloadStatusDiv = document.getElementById('download-status');
+        const selectAllCheckbox = document.getElementById('select-all');
+        const deselectAllBtn = document.getElementById('deselect-all-btn');
+        const selectAllContainer = document.querySelector('.select-all-container');
+        const corsSafeModeToggle = document.getElementById('cors-safe-mode');
+
+        // State variables
+        let currentPage = 1;
+        let selectedFolderHandle = null;
+        let totalResults = 0;
+        let searchResults = [];
+        let selectedImages = new Set();
+
+        // Check if localStorage is available
+        const isLocalStorageAvailable = (function() {
+            try {
+                const test = 'test';
+                localStorage.setItem(test, test);
+                localStorage.removeItem(test);
+                return true;
+            } catch (e) {
+                return false;
+            }
+        })();
+        
+        // Pre-fill API key
+        apiKeyInput.value = 'AIzaSyChfc0FewKaspxTRhD2Lvpeq_Llq9PS31g';
+        
+        // Check URL parameters for CORS-safe mode
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+        
+        // Enable CORS-safe mode if specified in URL
+        if (getUrlParameter('cors-safe') === 'true') {
+            corsSafeModeToggle.checked = true;
+        }
+        
+        // Load saved CX ID from localStorage if available
+        if (isLocalStorageAvailable) {
+            loadSavedCredentials();
+        }
+        
+        // Add event listener for the select folder button
+        selectFolderBtn.addEventListener('click', selectDownloadFolder);
+        
+        // Function to select download folder
+        async function selectDownloadFolder() {
+            try {
+                // Check if the File System Access API is supported
+                if (!('showDirectoryPicker' in window)) {
+                    showStatus('Your browser does not support the File System Access API. Please use Chrome, Edge, or another compatible browser.', 'error');
+                    return;
+                }
+                
+                // Show the directory picker
+                selectedFolderHandle = await window.showDirectoryPicker({
+                    id: 'image-downloads',
+                    mode: 'readwrite',
+                    startIn: 'downloads'
+                });
+                
+                // Update the UI
+                downloadFolderInput.value = selectedFolderHandle.name;
+                folderStatusSpan.textContent = `Files will be saved to: ${selectedFolderHandle.name}`;
+                
+                showStatus('Download folder selected successfully.', 'success');
+            } catch (error) {
+                // User cancelled the picker or another error occurred
+                if (error.name !== 'AbortError') {
+                    console.error('Error selecting folder:', error);
+                    showStatus(`Error selecting folder: ${error.message}`, 'error');
+                }
+            }
+        }
+        
+        // Load saved credentials from localStorage
+        function loadSavedCredentials() {
+            // We don't need to load credentials since both API key and Search Engine ID are pre-filled
+            // This function is kept for compatibility
+            console.log('Credentials are pre-filled, no need to load from localStorage');
+        }
+        
+        // Save credentials to localStorage
+        function saveCredentials() {
+            // We don't need to save credentials since both API key and Search Engine ID are pre-filled
+            // This function is kept for compatibility
+            console.log('Credentials are pre-filled, no need to save to localStorage');
+        }
+        
+        // Clear saved credentials
+        function clearSavedCredentials() {
+            // We don't need to clear credentials since both API key and Search Engine ID are pre-filled
+            // Just show a message to the user
+            showStatus('The Search Engine ID is pre-filled and cannot be cleared.', 'success');
+        }
+
+        // Event listeners
+        searchBtn.addEventListener('click', performSearch);
+        prevPageBtn.addEventListener('click', () => navigateToPage(currentPage - 1));
+        nextPageBtn.addEventListener('click', () => navigateToPage(currentPage + 1));
+        downloadBtn.addEventListener('click', downloadSelectedImages);
+        selectAllCheckbox.addEventListener('change', toggleSelectAll);
+        deselectAllBtn.addEventListener('click', deselectAllImages);
+        clearApiKeyBtn.addEventListener('click', clearSavedCredentials);
+
+        // Perform search
+        async function performSearch() {
+            const query = searchQueryInput.value.trim();
+            const isCorsSafeMode = corsSafeModeToggle.checked;
+
+            if (!query) {
+                showStatus('Please enter a search query.', 'error');
+                return;
+            }
+
+            if (!isCorsSafeMode) {
+                // Regular Google Search mode
+                const apiKey = apiKeyInput.value.trim();
+                const cxId = cxIdInput.value.trim();
+
+                // Both API key and Search Engine ID are pre-filled, so this check should always pass
+                if (!apiKey || !cxId) {
+                    showStatus('Please ensure the API key and Search Engine ID are not empty.', 'error');
+                    return;
+                }
+            }
+
+            // Reset state
+            currentPage = 1;
+            searchResults = [];
+            selectedImages.clear();
+            selectAllCheckbox.checked = false;
+
+            // Show loading
+            loadingDiv.style.display = 'block';
+            searchResultsDiv.innerHTML = '';
+            statusDiv.style.display = 'none';
+            paginationDiv.style.display = 'none';
+            downloadSectionDiv.style.display = 'none';
+            selectAllContainer.style.display = 'none';
+
+            try {
+                // Save credentials if "Remember API Key" is checked and localStorage is available
+                saveCredentials();
+                
+                let results;
+                if (isCorsSafeMode) {
+                    // Use CORS-safe sources
+                    results = await searchCorsSafeImages(query, currentPage);
+                } else {
+                    // Use Google Custom Search API
+                    const apiKey = apiKeyInput.value.trim();
+                    const cxId = cxIdInput.value.trim();
+                    results = await searchImages(apiKey, cxId, query, currentPage);
+                }
+                
+                displayResults(results);
+            } catch (error) {
+                showStatus(`Error: ${error.message || 'An unknown error occurred'}`, 'error');
+                loadingDiv.style.display = 'none';
+            }
+        }
+
+        // Search images using Google Custom Search API
+        async function searchImages(apiKey, cxId, query, page) {
+            // Calculate the start indices for two consecutive pages of 10 results each
+            const firstPageStartIndex = (page - 1) * 20 + 1;
+            const secondPageStartIndex = firstPageStartIndex + 10;
+            
+            let imageSize = imageSizeSelect.value;
+            let isCustomSize = false;
+            
+            // Check if this is our custom size option
+            if (imageSize.includes(':custom')) {
+                isCustomSize = true;
+                // Extract the base size parameter (e.g., "large" from "large:custom")
+                imageSize = imageSize.split(':')[0];
+            }
+            
+            // Build the base URL with optional image size parameter
+            let baseUrl = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cxId}&q=${encodeURIComponent(query)}&searchType=image`;
+            
+            // Add image size parameter if selected
+            if (imageSize) {
+                baseUrl += `&imgSize=${imageSize}`;
+                
+                // Add high quality parameter for larger images
+                if (imageSize === 'xlarge' || imageSize === 'xxlarge' || isCustomSize) {
+                    // Adding "high quality" to the query to help find better images
+                    baseUrl = baseUrl.replace(`q=${encodeURIComponent(query)}`, `q=${encodeURIComponent(query + " high quality")}`);
+                }
+            }
+
+            try {
+                // Make two API calls to get 20 results (2 pages of 10 results each)
+                const firstPageUrl = `${baseUrl}&start=${firstPageStartIndex}`;
+                const firstPageResponse = await fetch(firstPageUrl);
+                
+                if (!firstPageResponse.ok) {
+                    let errorMessage = 'Failed to fetch search results';
+                    
+                    try {
+                        const errorData = await firstPageResponse.json();
+                        if (errorData.error) {
+                            // Handle specific Google API error codes
+                            if (errorData.error.code === 400) {
+                                errorMessage = 'Invalid request. Please check your API key and Search Engine ID.';
+                            } else if (errorData.error.code === 403) {
+                                errorMessage = 'API key not authorized. Your API key may be invalid or have reached its quota limit.';
+                            } else if (errorData.error.status === 'INVALID_ARGUMENT') {
+                                errorMessage = 'Invalid API key or Search Engine ID. Please check your credentials.';
+                            } else {
+                                errorMessage = errorData.error.message || errorMessage;
+                            }
+                        }
+                    } catch (jsonError) {
+                        // If we can't parse the error as JSON, just use the status text
+                        errorMessage = firstPageResponse.statusText || errorMessage;
+                    }
+                    
+                    throw new Error(errorMessage);
+                }
+
+                const firstPageData = await firstPageResponse.json();
+                
+                // Check if there are enough results to fetch a second page
+                if (firstPageData.searchInformation.totalResults <= 10) {
+                    return firstPageData; // Return just the first page if that's all we have
+                }
+                
+                // Fetch the second page
+                const secondPageUrl = `${baseUrl}&start=${secondPageStartIndex}`;
+                const secondPageResponse = await fetch(secondPageUrl);
+                
+                if (!secondPageResponse.ok) {
+                    // If second page fails, just return the first page
+                    return firstPageData;
+                }
+                
+                const secondPageData = await secondPageResponse.json();
+                
+                // Combine the results from both pages
+                const combinedData = {
+                    ...firstPageData,
+                    items: [...(firstPageData.items || []), ...(secondPageData.items || [])]
+                };
+                
+                return combinedData;
+            } catch (error) {
+                // Handle network errors
+                if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+                    throw new Error('Network error. Please check your internet connection.');
+                }
+                throw error;
+            }
+        }
+
+        // Display search results
+        function displayResults(data) {
+            loadingDiv.style.display = 'none';
+
+            if (!data.items || data.items.length === 0) {
+                showStatus('No images found for your search query.', 'error');
+                return;
+            }
+
+            // Check if we're using the custom size option
+            const isCustomSize = imageSizeSelect.value === 'large:custom';
+            
+            // Update state
+            searchResults = data.items;
+            totalResults = data.searchInformation.totalResults;
+            
+            // If using CORS-safe mode, show a badge on the images
+            const isCorsSafeMode = corsSafeModeToggle.checked;
+
+            // Clear previous results
+            searchResultsDiv.innerHTML = '';
+
+            // Display images
+            searchResults.forEach((item, index) => {
+                const imageItem = document.createElement('div');
+                imageItem.className = 'image-item';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'checkbox';
+                checkbox.dataset.index = index;
+                checkbox.addEventListener('change', toggleImageSelection);
+
+                const img = document.createElement('img');
+                img.src = item.link;
+                img.alt = item.title;
+                img.loading = 'lazy';
+                img.dataset.index = index;
+                
+                // If using custom size, check image dimensions when loaded
+                if (isCustomSize) {
+                    img.style.opacity = '0.5'; // Start with lower opacity
+                    img.onload = function() {
+                        // Check if image dimensions are between 800x800 and 1000x1000
+                        if (isImageInSizeRange(this)) {
+                            this.style.opacity = '1'; // Full opacity for images in range
+                            this.dataset.inRange = 'true';
+                        } else {
+                            this.style.opacity = '0.4'; // Keep lower opacity for images outside range
+                            this.dataset.inRange = 'false';
+                            
+                            // Add size indicator
+                            const sizeBadge = document.createElement('div');
+                            sizeBadge.className = 'size-badge';
+                            sizeBadge.textContent = `${this.naturalWidth}x${this.naturalHeight}`;
+                            sizeBadge.style.position = 'absolute';
+                            sizeBadge.style.bottom = '40px';
+                            sizeBadge.style.right = '10px';
+                            sizeBadge.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                            sizeBadge.style.color = 'white';
+                            sizeBadge.style.padding = '2px 6px';
+                            sizeBadge.style.borderRadius = '4px';
+                            sizeBadge.style.fontSize = '10px';
+                            this.parentNode.appendChild(sizeBadge);
+                        }
+                    };
+                }
+                
+                img.onerror = () => {
+                    img.src = 'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22200%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20200%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A10pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1%22%3E%3Crect%20width%3D%22200%22%20height%3D%22200%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2274.4296875%22%20y%3D%22104.5%22%3EImage%20Error%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E';
+                };
+
+                const overlay = document.createElement('div');
+                overlay.className = 'overlay';
+                overlay.textContent = item.title;
+                
+                // Add source badge for CORS-safe mode
+                if (isCorsSafeMode && item.source) {
+                    const sourceBadge = document.createElement('div');
+                    sourceBadge.className = 'source-badge';
+                    sourceBadge.textContent = 'Wikimedia';
+                    sourceBadge.style.position = 'absolute';
+                    sourceBadge.style.top = '10px';
+                    sourceBadge.style.left = '10px';
+                    sourceBadge.style.backgroundColor = '#36c';
+                    sourceBadge.style.color = 'white';
+                    sourceBadge.style.padding = '2px 6px';
+                    sourceBadge.style.borderRadius = '4px';
+                    sourceBadge.style.fontSize = '10px';
+                    sourceBadge.style.fontWeight = 'bold';
+                    imageItem.appendChild(sourceBadge);
+                }
+
+                imageItem.appendChild(checkbox);
+                imageItem.appendChild(img);
+                imageItem.appendChild(overlay);
+                searchResultsDiv.appendChild(imageItem);
+            });
+
+            // Update pagination
+            updatePagination();
+
+            // Show download section and select all
+            downloadSectionDiv.style.display = 'block';
+            selectAllContainer.style.display = 'block';
+        }
+        
+        // Check if image dimensions are between 800x800 and 1000x1000
+        function isImageInSizeRange(img) {
+            const minSize = 800;
+            const maxSize = 1000;
+            
+            // Check if both width and height are within range
+            return (
+                img.naturalWidth >= minSize &&
+                img.naturalWidth <= maxSize &&
+                img.naturalHeight >= minSize &&
+                img.naturalHeight <= maxSize
+            );
+        }
+
+        // Update pagination controls
+        function updatePagination() {
+            // Since we're showing 20 results per page but the API returns 10 per request,
+            // we need to adjust the pagination calculation
+            const totalPages = Math.ceil(totalResults / 20);
+            
+            pageInfoSpan.textContent = `Page ${currentPage} of ${totalPages}`;
+            prevPageBtn.disabled = currentPage <= 1;
+            // Google API limit is 100 results, which means 5 pages of 20 results
+            nextPageBtn.disabled = currentPage >= totalPages || currentPage * 20 >= 100;
+
+            paginationDiv.style.display = 'flex';
+        }
+
+        // Navigate to a specific page
+        async function navigateToPage(page) {
+            if (page < 1 || page > Math.ceil(totalResults / 20) || page * 20 > 100) return; // Google API limit: 100 results
+
+            currentPage = page;
+            loadingDiv.style.display = 'block';
+            searchResultsDiv.innerHTML = '';
+            statusDiv.style.display = 'none';
+            
+            try {
+                const query = searchQueryInput.value.trim();
+                const isCorsSafeMode = corsSafeModeToggle.checked;
+                
+                let results;
+                if (isCorsSafeMode) {
+                    // Use CORS-safe sources
+                    results = await searchCorsSafeImages(query, currentPage);
+                } else {
+                    // Use Google Custom Search API
+                    const apiKey = apiKeyInput.value.trim();
+                    const cxId = cxIdInput.value.trim();
+                    results = await searchImages(apiKey, cxId, query, currentPage);
+                }
+                
+                displayResults(results);
+            } catch (error) {
+                showStatus(`Error: ${error.message || 'An unknown error occurred'}`, 'error');
+                loadingDiv.style.display = 'none';
+            }
+        }
+
+        // Toggle image selection
+        function toggleImageSelection(e) {
+            const index = parseInt(e.target.dataset.index);
+            const isCustomSize = imageSizeSelect.value === 'large:custom';
+            
+            // If using custom size, check if the image is in the size range
+            if (isCustomSize) {
+                const img = document.querySelector(`img[data-index="${index}"]`);
+                if (img && img.dataset.inRange === 'false') {
+                    // Prevent selecting images outside the size range
+                    e.target.checked = false;
+                    showStatus('This image does not meet the 800x800 to 1000x1000 size criteria.', 'error');
+                    return;
+                }
+            }
+            
+            if (e.target.checked) {
+                selectedImages.add(index);
+            } else {
+                selectedImages.delete(index);
+            }
+            
+            // Update select all checkbox
+            const totalSelectableImages = isCustomSize ?
+                Array.from(document.querySelectorAll('img[data-inRange="true"]')).length :
+                searchResults.length;
+            
+            selectAllCheckbox.checked = selectedImages.size === totalSelectableImages;
+            
+            // Update download button text
+            updateDownloadButtonText();
+        }
+
+        // Toggle select all images
+        function toggleSelectAll(e) {
+            const checkboxes = document.querySelectorAll('.checkbox');
+            const isCustomSize = imageSizeSelect.value === 'large:custom';
+            
+            if (e.target.checked) {
+                checkboxes.forEach((checkbox, index) => {
+                    // If using custom size, only select images in the size range
+                    if (isCustomSize) {
+                        const img = document.querySelector(`img[data-index="${index}"]`);
+                        if (img && img.dataset.inRange === 'false') {
+                            checkbox.checked = false;
+                            return;
+                        }
+                    }
+                    
+                    checkbox.checked = true;
+                    selectedImages.add(index);
+                });
+            } else {
+                checkboxes.forEach((checkbox, index) => {
+                    checkbox.checked = false;
+                    selectedImages.delete(index);
+                });
+            }
+            
+            // Update download button text
+            updateDownloadButtonText();
+        }
+        
+        // Deselect all images
+        function deselectAllImages() {
+            const checkboxes = document.querySelectorAll('.checkbox');
+            
+            // Uncheck all checkboxes
+            checkboxes.forEach((checkbox, index) => {
+                checkbox.checked = false;
+                selectedImages.delete(index);
+            });
+            
+            // Ensure the select all checkbox is unchecked
+            selectAllCheckbox.checked = false;
+            
+            // Update download button text
+            updateDownloadButtonText();
+        }
+
+        // Update download button text
+        function updateDownloadButtonText() {
+            downloadBtn.textContent = `Download Selected Images (${selectedImages.size})`;
+            downloadBtn.disabled = selectedImages.size === 0;
+        }
+
+        // Download selected images
+        async function downloadSelectedImages() {
+            if (selectedImages.size === 0) {
+                showStatus('Please select at least one image to download.', 'error');
+                return;
+            }
+// Check if a folder has been selected
+const folderName = selectedFolderHandle ? selectedFolderHandle.name : 'default downloads folder';
+
+downloadStatusDiv.innerHTML = `<p>Preparing to download ${selectedImages.size} images to: ${folderName}</p>`;
+            
+            // Create an array of selected images
+            const imagesToDownload = Array.from(selectedImages).map(index => {
+                return {
+                    url: searchResults[index].link,
+                    title: searchResults[index].title,
+                    index: index
+                };
+            });
+
+            try {
+                
+                // Download each image
+                let successCount = 0;
+                let failCount = 0;
+                
+                for (let i = 0; i < imagesToDownload.length; i++) {
+                    const image = imagesToDownload[i];
+                    downloadStatusDiv.innerHTML += `<p>Downloading image ${i+1} of ${imagesToDownload.length}...</p>`;
+                    
+                    try {
+                        await downloadImage(image.url, generateFilename(image.title, i));
+                        successCount++;
+                        
+                        // Update checkbox to show success
+                        const checkbox = document.querySelector(`.checkbox[data-index="${image.index}"]`);
+                        if (checkbox) {
+                            checkbox.parentElement.style.border = '2px solid #4CAF50';
+                        }
+                    } catch (error) {
+                        failCount++;
+                        console.error(`Download error for ${image.title}:`, error);
+                        
+                        // Only add the error message if it wasn't already added by the downloadImage function
+                        if (!downloadStatusDiv.innerHTML.includes('CORS restrictions')) {
+                            downloadStatusDiv.innerHTML += `<p style="color: #721c24;">Failed to download: ${image.title}</p>`;
+                        }
+                        
+                        // Update checkbox to show failure
+                        const checkbox = document.querySelector(`.checkbox[data-index="${image.index}"]`);
+                        if (checkbox) {
+                            checkbox.parentElement.style.border = '2px solid #dc3545';
+                        }
+                    }
+                }
+                
+                // Show final status
+                downloadStatusDiv.innerHTML += `<p>Download complete: ${successCount} successful, ${failCount} failed</p>`;
+                
+                if (successCount > 0) {
+                    downloadStatusDiv.innerHTML += `<p>Images saved to: ${folderName}</p>`;
+                }
+                
+                if (failCount > 0) {
+                    downloadStatusDiv.innerHTML += `
+                        <p style="margin-top: 10px; font-weight: bold;">Troubleshooting:</p>
+                        <p>Some images couldn't be downloaded automatically due to CORS restrictions. You can:</p>
+                        <ol>
+                            <li>Click on any "Open image in new tab" links above</li>
+                            <li>Right-click on the image in the new tab</li>
+                            <li>Select "Save Image As..." to download manually</li>
+                        </ol>
+                    `;
+                }
+            } catch (error) {
+                downloadStatusDiv.innerHTML = `<p style="color: #721c24;">Error: ${error.message}</p>`;
+            }
+        }
+
+
+        // Download an image
+        async function downloadImage(url, filename) {
+            try {
+                // Try different methods to download the image
+                try {
+                    // Method 1: Direct download with CORS proxy
+                    const corsProxyUrl = `https://corsproxy.io/?${encodeURIComponent(url)}`;
+                    console.log(`Trying to download via CORS proxy: ${corsProxyUrl}`);
+                    
+                    const response = await fetch(corsProxyUrl);
+                    if (!response.ok) throw new Error('Failed to fetch image via CORS proxy');
+                    
+                    const blob = await response.blob();
+                    await saveImageToDevice(blob, filename);
+                    return Promise.resolve();
+                } catch (corsProxyError) {
+                    console.error("CORS proxy method failed:", corsProxyError);
+                    
+                    // Method 2: Try using an img element to load the image
+                    console.log("Trying alternative download method...");
+                    return new Promise((resolve, reject) => {
+                        const img = new Image();
+                        img.crossOrigin = "anonymous";
+                        img.onload = function() {
+                            try {
+                                const canvas = document.createElement("canvas");
+                                canvas.width = img.width;
+                                canvas.height = img.height;
+                                
+                                const ctx = canvas.getContext("2d");
+                                ctx.drawImage(img, 0, 0);
+                                
+                                canvas.toBlob(async (blob) => {
+                                    try {
+                                        await saveImageToDevice(blob, filename);
+                                        resolve();
+                                    } catch (saveError) {
+                                        reject(saveError);
+                                    }
+                                }, "image/jpeg", 0.95);
+                            } catch (canvasError) {
+                                reject(canvasError);
+                            }
+                        };
+                        
+                        img.onerror = function() {
+                            // If all methods fail, create a fallback message
+                            const errorMessage = "CORS restrictions prevented automatic download. Right-click the image and select 'Save Image As...' to download it manually.";
+                            downloadStatusDiv.innerHTML += `<p style="color: #ff8c00;">${errorMessage}</p>`;
+                            
+                            // Create a link to open the image in a new tab
+                            const openLink = document.createElement('a');
+                            openLink.href = url;
+                            openLink.target = '_blank';
+                            openLink.textContent = 'Open image in new tab';
+                            openLink.style.color = '#0066cc';
+                            openLink.style.textDecoration = 'underline';
+                            openLink.style.cursor = 'pointer';
+                            openLink.style.marginLeft = '10px';
+                            
+                            downloadStatusDiv.lastChild.appendChild(document.createElement('br'));
+                            downloadStatusDiv.lastChild.appendChild(openLink);
+                            
+                            reject(new Error("CORS restrictions prevented download"));
+                        };
+                        
+                        // Set the source last to prevent race conditions
+                        img.src = url;
+                    });
+                }
+            } catch (error) {
+                console.error("All download methods failed:", error);
+                return Promise.reject(error);
+            }
+        }
+        
+        // Helper function to save blob to device
+        async function saveImageToDevice(blob, filename) {
+            try {
+                // If a folder has been selected, use the File System Access API
+                if (selectedFolderHandle) {
+                    try {
+                        // Get a file handle
+                        const fileHandle = await selectedFolderHandle.getFileHandle(filename, { create: true });
+                        
+                        // Create a writable stream
+                        const writable = await fileHandle.createWritable();
+                        
+                        // Write the blob to the file
+                        await writable.write(blob);
+                        
+                        // Close the file
+                        await writable.close();
+                        
+                        console.log(`File saved to selected folder: ${filename}`);
+                    } catch (error) {
+                        console.error('Error saving to selected folder:', error);
+                        // Fall back to default download method
+                        await defaultDownload(blob, filename);
+                    }
+                } else {
+                    // Use default download method if no folder selected
+                    await defaultDownload(blob, filename);
+                }
+                
+                // Simulate a delay to prevent too many downloads at once
+                await new Promise(resolve => setTimeout(resolve, 500));
+            } catch (error) {
+                console.error('Error in saveImageToDevice:', error);
+                throw error;
+            }
+        }
+        
+        // Default download method using anchor element
+        async function defaultDownload(blob, filename) {
+            // Create a download link
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = filename;
+            
+            // Trigger download
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            // Clean up
+            URL.revokeObjectURL(a.href);
+        }
+
+        // Generate a filename for the image
+        function generateFilename(title, index) {
+            // Remove invalid characters from title
+            const sanitizedTitle = title.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+            
+            // Truncate if too long
+            const truncatedTitle = sanitizedTitle.substring(0, 30);
+            
+            // Add index and timestamp to ensure uniqueness
+            const timestamp = Date.now();
+            return `${truncatedTitle}_${index}_${timestamp}.jpg`;
+        }
+
+        // Show status message
+        function showStatus(message, type) {
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+            statusDiv.style.display = 'block';
+        }
+
+        // Check if the browser supports the required APIs
+        function checkBrowserSupport() {
+            if (!('fetch' in window)) {
+                showStatus('Your browser does not support the Fetch API. Please use a modern browser.', 'error');
+                searchBtn.disabled = true;
+            }
+        }
+
+        // Initialize
+        checkBrowserSupport();
+        
+        // Search images using CORS-safe sources (Wikimedia Commons only)
+        async function searchCorsSafeImages(query, page) {
+            const startIndex = (page - 1) * 20;
+            const limit = 20;
+            
+            // Wikimedia Commons API endpoint
+            const wikimediaUrl = `https://commons.wikimedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&srnamespace=6&format=json&origin=*&srlimit=${limit}&sroffset=${startIndex}`;
+            
+            try {
+                // Fetch search results from Wikimedia Commons
+                const response = await fetch(wikimediaUrl);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch search results from Wikimedia Commons');
+                }
+                
+                const data = await response.json();
+                
+                if (!data.query || !data.query.search || data.query.search.length === 0) {
+                    return { items: [], searchInformation: { totalResults: 0 } };
+                }
+                
+                // Process search results
+                const items = await Promise.all(data.query.search.map(async (item) => {
+                    // Get file details
+                    const fileTitle = item.title;
+                    const fileDetailsUrl = `https://commons.wikimedia.org/w/api.php?action=query&titles=${encodeURIComponent(fileTitle)}&prop=imageinfo&iiprop=url|size|mime&format=json&origin=*`;
+                    
+                    try {
+                        const fileResponse = await fetch(fileDetailsUrl);
+                        const fileData = await fileResponse.json();
+                        
+                        // Extract file information
+                        const pages = fileData.query.pages;
+                        const pageId = Object.keys(pages)[0];
+                        const imageInfo = pages[pageId].imageinfo ? pages[pageId].imageinfo[0] : null;
+                        
+                        if (!imageInfo) {
+                            return null;
+                        }
+                        
+                        // Create item in the format expected by displayResults
+                        return {
+                            title: fileTitle.replace('File:', ''),
+                            link: imageInfo.url,
+                            image: {
+                                contextLink: `https://commons.wikimedia.org/wiki/${encodeURIComponent(fileTitle)}`,
+                                width: imageInfo.width,
+                                height: imageInfo.height
+                            },
+                            source: 'wikimedia'
+                        };
+                    } catch (error) {
+                        console.error(`Error fetching details for ${fileTitle}:`, error);
+                        return null;
+                    }
+                }));
+                
+                // Filter out null items (failed fetches)
+                const validItems = items.filter(item => item !== null);
+                
+                // Return in a format compatible with displayResults
+                return {
+                    items: validItems,
+                    searchInformation: {
+                        totalResults: data.query.searchinfo.totalhits
+                    }
+                };
+            } catch (error) {
+                console.error('Error searching Wikimedia Commons:', error);
+                throw error;
+            }
+        }
+    </script>
+</body>
+</html>

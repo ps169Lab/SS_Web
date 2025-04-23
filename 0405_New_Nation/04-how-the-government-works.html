@@ -1,0 +1,100 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How the Government Works</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="google_translate_element"></div>
+
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
+
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h2>VOCABULARY</h2><h1 class="section-title"><p style="font-size: medium; font-weight: 400;"><strong>Constitution:</strong> The set of basic rules and principles that describes how our government works.</p><p style="font-size: medium; font-weight: 400;"><strong>Branch:</strong> One of the three main parts of the government, each with different powers and responsibilities.</p><p style="font-size: medium; font-weight: 400;"><strong>Congress:</strong> The legislative branch of the U.S. government, made up of the Senate and House of Representatives.</p><p style="font-size: medium; font-weight: 400;"><strong>Veto:</strong> When the President rejects a law passed by Congress.</p><p style="font-size: medium; font-weight: 400;"><strong>Checks and balances:</strong> A system that gives each branch of government the power to limit the actions of the other branches.</p></h1><h1 class="section-title">
+                HOW THE GOVERNMENT WORKS
+            </h1>
+            
+            <!-- Introduction -->
+            <h2>INTRODUCTION</h2>
+            <p>
+                The United States government is like a team where different people have different jobs. Our government has three main parts, called "branches." Each branch has its own special job to do. This system was created by the Constitution, which is like a rulebook for our country.</p><p><img src="https://cdn.hswstatic.com/gif/three-branches.jpg" alt="Image" style="max-width: 100%;" /><br /></p><h2>THE THREE BRANCHES OF GOVERNMENT</h2>
+            
+            <!-- Legislative Branch -->
+            <h3>THE LEGISLATIVE BRANCH: THE LAWMAKERS</h3>
+            <p>
+                The Legislative Branch is like the rule-makers of our country. They meet in a building called the Capitol in Washington, D.C.
+            </p>
+            <p>
+                This branch includes:
+            </p>
+            <ul>
+                <li>The Senate (100 members - 2 from each state)</li>
+                <li>The House of Representatives (435 members - more from states with more people)</li>
+            </ul>
+            <p>
+                Together, they are called Congress. <b>Their main job is to make laws for our country.</b> When someone wants to make a law, they propose a 'bill' (an idea for a law). the Senate makes 1 version and the House makes another and then they work together to agree on a final version that has the best of both the Senate and the House's ideas in it. They also <b>decide how to spend the country's money</b> and can check the work of the President.</p><p><img src="https://www.pewresearch.org/wp-content/uploads/2019/01/FT_19.01.23_CongressProductivity_feature.jpg" alt="Image" style="max-width: 100%;" /><br /></p><!-- Executive Branch -->
+            <h3>THE EXECUTIVE BRANCH: THE RULE ENFORCERS</h3>
+            <p>
+                The Executive Branch makes sure people follow the laws. The President is the leader of this branch.
+            </p>
+            <p>
+                This branch includes:
+            </p>
+            <ul>
+                <li>The President</li>
+                <li>The Vice President</li>
+                <li>Cabinet members who help the President</li>
+            </ul>
+            <p>
+                The President's job is to lead the country and the army. The President also works with leaders from other countries. </p><p>When Congress makes a new law, they send it to the President. The President can sign it to make it official or veto it if they think it's a bad idea.</p><p><img src="https://www.nhclasses.org/uploads/1/1/8/4/118409200/6-sseb_orig.jpg" alt="Image" style="max-width: 100%;" /><br /></p><!-- Judicial Branch -->
+            <h3>THE JUDICIAL BRANCH: THE JUDGES</h3>
+            <p>
+                The Judicial Branch decides if laws follow the rules in the Constitution. The Supreme Court is the highest court in our country.
+            </p>
+            <p>
+                This branch includes:
+            </p>
+            <ul>
+                <li>The Supreme Court (9 judges called Justices)</li>
+                <li>Other federal courts across the country</li>
+            </ul>
+            <p>
+                These judges help solve disagreements about laws. They make sure that laws are fair and follow the Constitution. If someone doesn't like a law they bring it to the courts and the judges decide if it fits in with what the Constitution says or if it doesn't. </p><p><img src="https://thehill.com/wp-content/uploads/sites/2/2018/01/justices.jpg?w=1280" alt="Image" style="max-width: 100%;" /></p>
+            <h3>Working Together: Checks and Balances</h3><p>
+                Each branch has the power to check the other branches to make sure no one gets too powerful. This is called "checks and balances." Here are some examples:
+            </p>
+            <ul>
+                <li>The President can veto (say no to) laws from Congress</li>
+                <li>Congress can override the President's veto if enough members vote for it</li>
+                <li>The Supreme Court can decide if laws are allowed by the Constitution</li>
+                <li>Congress must approve the President's choices for important jobs</li>
+            </ul>
+            <p>
+                This system helps make sure our government is fair and that everyone follows the rules in the Constitution.</p><p><img src="https://cdn.kastatic.org/ka-perseus-images/7ab8dc376edee8a1836bafdb0ba477ef226175d7.png" alt="Image" style="max-width: 100%;" /><br /></p>
+            <br /></article>
+    </main>
+
+</body></html>

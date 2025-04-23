@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Zodiac - Exploring China</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="01-Chinese-Zodiac.html">Chinese Zodiac</a></li>
+        </ul>
+    </div>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+    <main style="padding-top: 30px;">
+        <article>
+            <h1 class="section-title">Chinese Zodiac</h1>
+            <p>The <b>Chinese zodiac</b> is a special way that people in China and other countries keep track of years. It works in a cycle that repeats every <b>twelve years</b>. Each year in the cycle is named after an <b>animal</b>. The animals, in order, are: <b>Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, and Pig</b>.</p>
+            <p><img src="https://www.jmbricklayer.com/wp-content/uploads/2024/12/Chinese-Zodiac-Signs.webp" alt="Image" style="max-width: 100%;" /></p>
+            <p>People believe that the animal for the year you are born can tell you about your <b>personality</b> and your <b>future</b>. For example, someone born in the Year of the Dragon might be thought of as brave and strong. The Chinese zodiac is important in Chinese culture. It helps people think about what kind of person they are and how they get along with others. Sometimes, people even use the zodiac to help decide if two people would be good friends or get married.</p>
+            <p><img src="https://www.silkmandarin.cn/uploads/image/20220321/5-facts-that-you-must-know-about-new-year-of-the-rat.webp" alt="Image" style="max-width: 100%;" /></p>
+            <p>The zodiac is also a big part of stories and traditions. There are many legends about how the animals were chosen. One famous story is about the <b>Jade Emperor</b> who held a race for the animals to decide their order. The zodiac has been around for a very long time, since the <b>Han Dynasty</b> in China.</p>
+            <p><img src="https://athomestorefairfield.com/cdn/shop/files/O2_2048x.jpg?v=1705694206" alt="Image" style="max-width: 100%;" /></p>
+            <p>Other countries in Asia, like Vietnam and Korea, also use the zodiac, but sometimes they have different animals. The Chinese zodiac is a fun and interesting way to learn about time, animals, and culture!</p>
+            <p><img src="https://cdn.shopify.com/s/files/1/0593/6598/2388/files/14.jpg?v=1655188235" alt="Image" style="max-width: 100%;" /></p>
+        </article>
+    </main>
+</body>
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            console.log("googleTranslateElementInit called");
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</html>

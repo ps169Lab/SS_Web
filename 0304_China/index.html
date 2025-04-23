@@ -1,0 +1,62 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exploring China - Grade 4</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="01-Chinese-Zodiac.html">Chinese Zodiac</a></li>
+        </ul>
+    </div>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+    <main style="padding-top: 30px;">
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                WELCOME TO EXPLORING CHINA!
+            </h1>
+            
+            <p class="subtitle">
+                Discovering Chinese Culture and History for Grade 4 Students
+            </p>
+            
+            <h2>ABOUT THIS WEBSITE</h2>
+            <p>
+                Welcome to Exploring China! This website contains information about Chinese culture and history. You'll learn about the Chinese Zodiac, important historical events, and more.</p><ul>
+            </ul>
+            
+            <h2>START EXPLORING!</h2>
+            <p>
+                Choose any topic from the navigation menu at the top of the page to begin your journey through American and New York history. Each page includes interesting facts, important vocabulary words, and images to help you understand these important topics.
+            </p>
+            
+            <p>
+                Happy learning!</p></article>
+    </main>
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            console.log("googleTranslateElementInit called");
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+</body></html>

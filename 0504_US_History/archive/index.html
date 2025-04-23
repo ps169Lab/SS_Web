@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 5 US History</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .topic-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .topic-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .topic-card p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .topic-card a {
+            display: inline-block;
+            background-color: #f6fbff;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #ddd;
+        }
+        
+        .topic-card a:hover {
+            background-color: #d6eeff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-title">
+            <h1>Navigation</h1>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="01 American History, a Summary.html">01: American History, a Summary</a></li>
+            <li><a href="02 The causes of the American Revolution.html">02: The Causes of the American Revolution</a></li>
+            <li><a href="03 Major events in the American Revolution.html">03: Major Events in the American Revolution</a></li>
+            <li><a href="04 Westward Expansion and Manifest Destiny.html">04: Westward Expansion and Manifest Destiny</a></li>
+            <li><a href="05 The Impact of the Railroads.html">05: The Impact of the Railroads</a></li>
+            <li><a href="06 The Civil War.html">06: The Civil War</a></li>
+            <li><a href="07 The Reconstruction Era.html">07: The Reconstruction Era</a></li>
+        </ul>
+    </nav>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">
+                Grade 5 US History
+            </h1>
+            
+            <p class="subtitle">
+                Exploring American History from the Revolution to Reconstruction
+            </p>
+        
+            <p>
+                Welcome to our Grade 5 US History website! Here you'll find information about important events and periods in early American history, from the American Revolution to the Reconstruction Era after the Civil War. Each page focuses on a specific topic and is designed to help you understand the key events and ideas that shaped our nation.
+            </p>
+            
+            <p>
+                Click on any of the topics below to learn more about that part of American history. You can also use the navigation menu on the left to move between different topics.
+            </p>
+            
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <h3>01: American History, a Summary</h3>
+                    <p>An overview of the changes in the United States between the American Revolution and the Civil War, including territorial expansion, technological changes, and population movement.</p>
+                    <a href="01 American History, a Summary.html">Read More</a>
+                </div>
+                
+                <div class="topic-card">
+                    <h3>02: The Causes of the American Revolution</h3>
+                    <p>Learn about the taxes imposed on the American colonies after the French and Indian War and how they led to the American Revolution.</p>
+                    <a href="02 The causes of the American Revolution.html">Read More</a>
+                </div>
+                
+                <div class="topic-card">
+                    <h3>03: Major Events in the American Revolution</h3>
+                    <p>Discover the role of militias in the Revolution, how French support helped the Patriots, and the decisive Battle of Yorktown.</p>
+                    <a href="03 Major events in the American Revolution.html">Read More</a>
+                </div>
+                
+                <div class="topic-card">
+                    <h3>04: Westward Expansion and Manifest Destiny</h3>
+                    <p>Explore the concept of Manifest Destiny and how it drove American expansion westward through the Louisiana Purchase, Texas annexation, and more.</p>
+                    <a href="04 Westward Expansion and Manifest Destiny.html">Read More</a>
+                </div>
+                
+                <div class="topic-card">
+                    <h3>05: The Impact of the Railroads</h3>
+                    <p>Learn about the crucial role railroads played in westward expansion, the major railroad companies, and their impact on Native Americans.</p>
+                    <a href="05 The Impact of the Railroads.html">Read More</a>
+                </div>
+                
+                <div class="topic-card">
+                    <h3>06: The Civil War</h3>
+                    <p>Understand the causes of the Civil War, the debate over federal vs. state governments, key battles, and Abraham Lincoln's role.</p>
+                    <a href="06 The Civil War.html">Read More</a>
+                </div>
+                
+                <div class="topic-card">
+                    <h3>07: The Reconstruction Era</h3>
+                    <p>Learn about the policies imposed on the Southern states after the Civil War during the Reconstruction Era.</p>
+                    <a href="07 The Reconstruction Era.html">Read More</a>
+                </div>
+            </div>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            console.log("googleTranslateElementInit called");
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

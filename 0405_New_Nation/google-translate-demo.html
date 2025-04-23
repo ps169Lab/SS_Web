@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Translate Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .instructions {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Translate Element -->
+    <div id="google_translate_element"></div>
+
+    <!-- Google Translate Script - USING HTTPS EXPLICITLY -->
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <h1>Google Translate Demo</h1>
+    <p>This page demonstrates the Google Translate widget working correctly. If you can see a language selection dropdown above, the widget is working!</p>
+
+    <div class="instructions">
+        <h2>Why the widget wasn't appearing on your other pages</h2>
+        <p>The Google Translate widget wasn't appearing on your other HTML pages because of how the script was being loaded:</p>
+        
+        <p><strong>Original code (not working with file:// protocol):</strong></p>
+        <code>&lt;script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"&gt;&lt;/script&gt;</code>
+        
+        <p><strong>Fixed code (works with file:// protocol):</strong></p>
+        <code>&lt;script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"&gt;&lt;/script&gt;</code>
+        
+        <p>The difference is that the original code uses a protocol-relative URL (starting with //), which doesn't work when opening HTML files directly from your file system.</p>
+        
+        <h2>How to fix your HTML files</h2>
+        <p>To fix this issue, you need to update all your HTML files to use the HTTPS protocol explicitly in the Google Translate script tag:</p>
+        
+        <ol>
+            <li>Open each HTML file</li>
+            <li>Find the line: <code>&lt;script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"&gt;&lt;/script&gt;</code></li>
+            <li>Change it to: <code>&lt;script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"&gt;&lt;/script&gt;</code></li>
+            <li>Save the file</li>
+        </ol>
+        
+        <h2>Alternative Solution: Use a Local Web Server</h2>
+        <p>Another solution is to use a local web server to serve your HTML files instead of opening them directly from the file system. This would allow the protocol-relative URLs to work correctly.</p>
+    </div>
+</body>
+</html>
