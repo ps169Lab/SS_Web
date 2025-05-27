@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abolitionist Journalists and Educators</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Abolitionist Journalists and Educators
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Heroes Who Used Words and Teaching to Fight Slavery
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Abolitionist</strong> - person who wanted to end slavery</li>
+                <li><strong>Journalist</strong> - person who writes for newspapers</li>
+                <li><strong>Orator</strong> - skilled public speaker</li>
+                <li><strong>Agitate</strong> - to work actively for change</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Samuel Cornish: Minister and Newspaper Pioneer
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Samuel Cornish was born in Delaware in 1795 to free parents. He moved to New York City and became a minister, starting the first Black Presbyterian Church in the city. But Samuel knew that preaching alone was not enough to fight slavery.
+            </p>
+            
+            <p>
+                In 1827, Samuel helped start Freedom's Journal, the very first newspaper written by and for Black Americans. This newspaper was important because it let Black people tell their own stories instead of having white newspapers speak for them. Samuel used his newspaper to fight against slavery and share news that mattered to the Black community.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Frederick Douglass: From Slave to Famous Speaker
+            </h2>
+            
+            <p>
+                Frederick Douglass was born into slavery in Maryland around 1818. His birth name was Frederick Bailey, but he changed it after he escaped to freedom in 1838. Frederick taught himself to read and write, which was against the law for enslaved people.
+            </p>
+
+            <p>
+                After escaping, Frederick became one of the most powerful speakers against slavery. He traveled all over the North giving speeches about what life was really like for enslaved people. Some people didn't believe he had really been a slave because he spoke so well, so he wrote a book about his life to prove it.
+            </p>
+
+            <p>
+                Frederick also started his own newspaper called the North Star. He believed that Black Americans had to speak up for themselves to win their freedom. His famous advice was simple but powerful: "Agitate! Agitate! Agitate!"
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                William Lloyd Garrison: White Ally in the Fight
+            </h3>
+            
+            <p>
+                William Lloyd Garrison was a white journalist who became one of the strongest voices against slavery. In 1831, he started a newspaper called The Liberator that he published every week for 34 years until slavery ended.
+            </p>
+
+            <p>
+                Garrison helped start the American Anti-Slavery Society, which brought together both Black and white people to fight slavery. He worked closely with Frederick Douglass and other Black leaders, though they sometimes disagreed about the best ways to end slavery.
+            </p>
+            
+            <!-- Additional content paragraphs -->
+            <h2>
+                Charles Reason: Educator and Poet
+            </h2>
+            
+            <p>
+                Charles Reason was born in New York City in 1818. He was very smart and learned to speak several languages. Charles used his education to help other Black people by writing for newspapers and leading community organizations.
+            </p>
+            
+            <p>
+                Charles wrote poems about freedom and worked as a teacher. When New York City schools were finally opened to Black students, he became a principal. He believed that education was one of the most important tools for fighting inequality.
+            </p>
+
+            <h2>
+                Albro Lyons: Underground Railroad Helper
+            </h2>
+
+            <p>
+                Albro Lyons ran a boarding house for sailors in New York City, but it was also a secret stop on the Underground Railroad. He and his wife Mary helped enslaved people who were escaping to freedom by giving them a safe place to stay.
+            </p>
+
+            <p>
+                Albro was also a member of the New York African Society for Mutual Relief, which helped Black people in the community support each other during difficult times.
+            </p>
+
+            <h2>
+                The Power of Words and Education
+            </h2>
+
+            <p>
+                These brave men showed that words and education could be powerful weapons against slavery. They used newspapers, speeches, and schools to change people's minds and fight for freedom. Their work proved that different groups of people did not have equal rights, but that people could work together to bring about change and create a better world for everyone.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

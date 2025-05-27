@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New York Rights Movement</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">New York Rights Movement</h1>
+            <p class="subtitle">Learning About the Fight for Freedom and Equality in New York State</p>
+            
+            <h2>Welcome to Our Learning Journey</h2>
+            <p>
+                In this website, you will learn about brave people who fought for freedom and equal rights in New York State during the 1800s. You will discover how different groups of people did not have equal rights and freedoms, but how they worked together to bring about change.
+            </p>
+            
+            <h2>What You Will Learn About</h2>
+            <ul>
+                <li><strong>Slavery in New York:</strong> What life was like for enslaved people and how slavery ended in our state</li>
+                <li><strong>Heroes of Freedom:</strong> Brave people like Harriet Tubman who helped others escape slavery</li>
+                <li><strong>Women's Rights:</strong> How women fought for the right to vote and be treated equally</li>
+                <li><strong>Working Together:</strong> How different groups joined forces to create a more fair society</li>
+            </ul>
+            
+            <h2>Important Themes to Remember</h2>
+            <p>
+                As you read through these stories, remember these big ideas:
+            </p>
+            <ul>
+                <li>Different groups of people did not have equal rights and freedoms</li>
+                <li>People worked to bring about change</li>
+                <li>The struggle for rights and freedoms was one factor in the division of the United States that resulted in the Civil War</li>
+            </ul>
+            
+            <h2>How to Use This Website</h2>
+            <p>
+                Click on the links in the menu above to read about different topics. Each page has vocabulary words to help you understand important terms. Take your time reading each story and think about how these events connect to each other.
+            </p>
+            
+            <p>
+                These stories happened long ago, but they teach us important lessons about fairness, courage, and working together to make the world a better place for everyone.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

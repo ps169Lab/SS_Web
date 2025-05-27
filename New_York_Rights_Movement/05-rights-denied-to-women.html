@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rights Denied to Women</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Rights Denied to Women
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Understanding What Life Was Like for Women in the 1800s
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Coverture</strong> - law that said married women belonged to their husbands</li>
+                <li><strong>Property</strong> - things that people own, like land or money</li>
+                <li><strong>Contract</strong> - written agreement between people</li>
+                <li><strong>Suffrage</strong> - the right to vote</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Life for Women After the Revolution
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                After the American Revolution, the new United States promised freedom and equality for all people. But in the 1800s, women in New York State and across the country did not have the same rights as men. The law treated women very differently, especially after they got married.
+            </p>
+            
+            <p>
+                Women could not vote in elections, serve on juries, or sign important papers called contracts. They were not allowed to inherit property when family members died. Most jobs were closed to women, and when they could work, they earned about half the money that men earned for doing the same job.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                The Law of Coverture
+            </h2>
+            
+            <p>
+                The biggest problem for women was a law called "coverture." This law came from England and said that when a woman got married, her legal existence was "suspended." This meant that in the eyes of the law, a married woman almost disappeared as a person.
+            </p>
+
+            <p>
+                Under coverture, married women had to give all their money, property, and even their wages to their husbands. They could not make legal decisions or sign contracts. Husbands had complete control over their wives' lives, and the law said this was normal and right.
+            </p>
+
+            <p>
+                The law was so unfair that in 1862, a judge in North Carolina refused to give a woman a divorce even though her husband had beaten her with a whip. The judge said the law gave husbands the right to use force to make their wives "behave and know their place."
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Limited Education and Work
+            </h3>
+            
+            <p>
+                Women were not allowed to attend most colleges or universities. This meant they could not become doctors, lawyers, or other professionals. The few jobs available to women were mostly as servants, teachers, or factory workers.
+            </p>
+
+            <p>
+                Society believed that women should only speak in private or to other women. It was considered shocking and improper for a woman to give a speech to an audience that included men.
+            </p>
+            
+            <!-- Additional content paragraphs -->
+            <h2>
+                Small Steps Toward Change
+            </h2>
+            
+            <p>
+                Some states began to pass laws to help women keep their property. In 1848, New York passed the Married Women's Property Act, which allowed women to keep property they brought into marriage or received while married. But even with this law, women still could not keep the money they earned from working.
+            </p>
+            
+            <p>
+                These small changes were important, but they were not enough. Women still lacked most basic rights that men took for granted. Even by the late 1800s, not a single state allowed married women to keep their own earnings within the family.
+            </p>
+
+            <h2>
+                Why Change Was Needed
+            </h2>
+
+            <p>
+                The unfair treatment of women went against the basic American ideas of freedom and equality. If the United States truly believed that "all people are created equal," then women deserved the same rights as men.
+            </p>
+
+            <p>
+                Many women began to realize that they needed to work together to change these unfair laws. They saw that different groups of people did not have equal rights and freedoms, but they also believed that people could work to bring about change. This understanding would soon lead to the beginning of the women's rights movement in places like Seneca Falls, New York.
+            </p>
+
+            <p>
+                The struggle for women's rights was connected to other fights for freedom happening at the same time, including the fight to end slavery. Both movements showed that creating a truly equal society would take time, courage, and the hard work of many dedicated people.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

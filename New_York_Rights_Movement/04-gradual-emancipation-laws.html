@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradual Emancipation Laws</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Gradual Emancipation Laws
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                How New York Slowly Ended Slavery
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Gradual</strong> - happening slowly over time</li>
+                <li><strong>Emancipation</strong> - the act of freeing enslaved people</li>
+                <li><strong>Indentured servant</strong> - person who works for a set number of years</li>
+                <li><strong>Constitution</strong> - the main laws of our country</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                The Problem After the Revolution
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                After the American Revolution ended in 1783, the new United States had to decide what to do about slavery. The founders wrote the Constitution, but they could not agree on whether slavery should be allowed or banned everywhere.
+            </p>
+            
+            <p>
+                Some states, especially in the South, had many enslaved people working on large farms called plantations. These states did not want to give up slavery because they thought their farms would fail without free workers. Northern states like New York had fewer enslaved people, but many families and businesses still depended on their work.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                New York's Gradual Solution
+            </h2>
+            
+            <p>
+                In 1799, New York passed a law called the "Act for the gradual abolition of slavery." This law was different from simply freeing all enslaved people at once. Instead, it created a plan to end slavery slowly over many years.
+            </p>
+
+            <p>
+                The law said that children born to enslaved mothers after July 4, 1799, would eventually be free. But these children still had to work as indentured servants for many years first. Boys had to work until they were 28 years old, and girls had to work until they were 25 years old.
+            </p>
+
+            <p>
+                People who were already enslaved before 1799 were changed from slaves to indentured servants. This meant they could not be sold to new owners, but they still had to work without pay for their current owners.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Why Did It Take So Long?
+            </h3>
+            
+            <p>
+                New York chose gradual emancipation because many white people were worried about what would happen if all enslaved people were freed at once. Some feared that freed people would not have jobs or places to live. Others worried that plantation owners would lose too much money too quickly.
+            </p>
+
+            <p>
+                The gradual plan was meant to give everyone time to adjust to the changes. But it also meant that many people had to wait much longer for their freedom than they deserved.
+            </p>
+            
+            <!-- Additional content paragraphs -->
+            <h2>
+                Freedom Finally Comes
+            </h2>
+            
+            <p>
+                The last people who had to serve as indentured servants under the 1799 law were finally freed on July 4, 1827. This was exactly 28 years after the law was passed. On that day, slavery officially ended in New York State.
+            </p>
+            
+            <p>
+                New York was one of the last Northern states to end slavery completely. Even after 1827, some census records still showed a few enslaved people in the state, but by 1840, no enslaved people appeared in New York's official count.
+            </p>
+
+            <h2>
+                Lessons from Gradual Emancipation
+            </h2>
+
+            <p>
+                The gradual emancipation laws in New York show us how difficult it can be to change unfair systems. While these laws were an important step toward freedom, they also meant that many people had to wait much longer than they should have for their basic rights.
+            </p>
+
+            <p>
+                The story reminds us that different groups of people did not have equal rights and freedoms, even after the American Revolution. But it also shows that people worked to bring about change, even when that change happened slowly. The struggle for rights and freedoms was one factor that would later lead to the Civil War, when the whole country finally had to decide whether slavery would continue or end forever.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

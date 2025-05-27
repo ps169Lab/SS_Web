@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Underground Railroad: Harriet Tubman</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Underground Railroad: Harriet Tubman
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                The Brave Woman Who Led People to Freedom
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Underground Railroad</strong> - secret network that helped enslaved people escape</li>
+                <li><strong>Conductor</strong> - person who guided escaping slaves to safety</li>
+                <li><strong>Moses</strong> - nickname for Harriet Tubman</li>
+                <li><strong>Fugitive</strong> - person running away from danger</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Who Was Harriet Tubman?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Harriet Tubman was born around 1822 in Maryland as an enslaved person named Araminta Ross. As a child, she suffered a serious head injury that caused her to have visions throughout her life. She believed these visions were messages from God telling her to help others.
+            </p>
+            
+            <p>
+                In 1849, Harriet escaped from slavery and made her way to freedom in the North. But instead of staying safe, she decided to go back and help others escape too. This dangerous work would make her one of the most famous heroes in American history.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                The Underground Railroad
+            </h2>
+            
+            <p>
+                The Underground Railroad was not actually a railroad with trains and tracks. It was a secret network of people who helped enslaved people escape to freedom. These brave helpers were called "conductors," and the safe houses where people could hide were called "stations."
+            </p>
+
+            <p>
+                The Underground Railroad was very dangerous work. If conductors were caught helping enslaved people escape, they could be arrested and put in jail. The escaping people faced even worse punishments if they were captured.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Harriet Becomes "Moses"
+            </h3>
+            
+            <p>
+                Harriet Tubman became the most famous conductor on the Underground Railroad. She made about 13 dangerous trips back to Maryland to lead enslaved people to freedom. She personally rescued around 70 people and gave instructions to 50 or 60 more who then escaped on their own.
+            </p>
+
+            <p>
+                People called her "Moses" because, like the biblical Moses who led his people out of slavery in Egypt, Harriet led her people out of slavery in the South. She was proud to say, "I never ran my train off the track and I never lost a passenger."
+            </p>
+            
+            <!-- Additional content paragraphs -->
+            <h2>
+                Harriet's Brave Methods
+            </h2>
+            
+            <p>
+                Harriet was very clever about how she helped people escape. She usually traveled at night when it was dark and harder for slave catchers to see them. She knew the land well and could find safe paths through forests and swamps.
+            </p>
+            
+            <p>
+                When the Fugitive Slave Act was passed in 1850, it became even more dangerous to help escaping slaves. This law said that even in free states, people had to return escaped slaves to their owners. Because of this law, Harriet started leading people all the way to Canada, where they would be truly safe.
+            </p>
+
+            <h2>
+                More Than Just the Underground Railroad
+            </h2>
+
+            <p>
+                During the Civil War, Harriet served as a nurse, scout, and spy for the Union Army. She even helped plan a raid that freed over 750 enslaved people in one day. After the war, she continued fighting for equal rights and became a strong supporter of women's right to vote.
+            </p>
+
+            <p>
+                Harriet Tubman showed incredible courage in her fight for freedom. She once said, "There was one of two things I had a right to, liberty or death; if I could not have one, I would have the other." Her bravery helped many people find freedom and showed that one person can make a huge difference in the fight for what is right.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

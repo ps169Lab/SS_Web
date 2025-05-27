@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suffrage Leaders</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Suffrage Leaders
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                The Brave Women Who Fought for the Right to Vote
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Suffrage</strong> - the right to vote in elections</li>
+                <li><strong>Convention</strong> - large meeting to discuss important topics</li>
+                <li><strong>Amendment</strong> - change made to the Constitution</li>
+                <li><strong>Equality</strong> - treating all people fairly and the same</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Elizabeth Cady Stanton: The Organizer
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Elizabeth Cady Stanton was born in 1815 in Johnstown, New York. She grew up in a family involved in politics and learned early that women were treated unfairly by the law. When she married Henry Stanton in 1840, she insisted on removing the word "obey" from her wedding vows because she believed wives should be equal partners, not servants.
+            </p>
+            
+            <p>
+                Elizabeth became the main organizer of the famous Seneca Falls Convention in 1848, the first meeting in America focused entirely on women's rights. She wrote the Declaration of Sentiments, which declared that "all men and women are created equal." Her demand that women should have the right to vote was so shocking that even some of her supporters thought it was too extreme.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Susan B. Anthony: The Tireless Fighter
+            </h2>
+            
+            <p>
+                Susan B. Anthony was born in 1820 in Massachusetts to a Quaker family that believed in equality for all people. She met Elizabeth Cady Stanton in 1851, and they became lifelong friends and partners in the fight for women's rights.
+            </p>
+
+            <p>
+                Susan was an amazing organizer who traveled all over the country giving speeches and collecting signatures on petitions. She and Elizabeth started a newspaper called The Revolution to spread their ideas. Susan was so dedicated to the cause that she never married, choosing instead to spend her whole life fighting for women's rights.
+            </p>
+
+            <p>
+                During the Civil War, Susan and Elizabeth organized the Women's Loyal National League, which collected almost 400,000 signatures asking Congress to end slavery. This showed that women could organize powerful political movements even though they couldn't vote.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Amelia Bloomer: Fashion and Freedom
+            </h3>
+            
+            <p>
+                Amelia Bloomer was born in 1818 in New York. She became famous for promoting a new style of dress for women that included pants instead of long, heavy skirts. These "bloomers" were more practical and allowed women to move around more easily.
+            </p>
+
+            <p>
+                Amelia also published a newspaper called The Lily that focused on women's issues. In 1851, she introduced Elizabeth Cady Stanton and Susan B. Anthony to each other, starting their famous partnership. She later moved to Iowa, where she continued to lead suffrage campaigns.
+            </p>
+            
+            <!-- Additional content paragraphs -->
+            <h2>
+                Matilda Joslyn Gage: The Radical Thinker
+            </h2>
+            
+            <p>
+                Matilda Joslyn Gage was born in 1826 and became one of the most radical women's rights activists. She gave her first public speech at the 1852 National Women's Rights Convention when she was just 26 years old.
+            </p>
+            
+            <p>
+                Matilda worked with Elizabeth Cady Stanton and Susan B. Anthony to write a six-volume history of the women's suffrage movement. She believed that women deserved complete equality with men in all areas of life, not just the right to vote.
+            </p>
+
+            <h2>
+                Lucretia Mott: The Wise Leader
+            </h2>
+
+            <p>
+                Lucretia Mott was born in 1793 and was already a well-known speaker and activist when the women's rights movement began. As a Quaker minister, she was used to speaking in public, which was unusual for women at that time.
+            </p>
+
+            <p>
+                Lucretia was one of the five women who organized the Seneca Falls Convention. She was called "the moving spirit of the occasion" and was the main speaker at the convention. Many people respected her wisdom and experience, and she helped guide the early women's rights movement.
+            </p>
+
+            <h2>
+                Working Together for Change
+            </h2>
+
+            <p>
+                These brave women showed that when people work together, they can create powerful movements for change. They faced criticism, ridicule, and sometimes even violence, but they never gave up their fight for equality.
+            </p>
+
+            <p>
+                Their work proved that different groups of people did not have equal rights and freedoms, but that people could work to bring about change. The struggle for women's rights was connected to other fights for freedom, including the movement to end slavery. Together, these movements helped create a more equal society for everyone.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

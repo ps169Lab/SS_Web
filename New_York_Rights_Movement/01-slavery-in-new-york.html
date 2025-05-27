@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life as a Slave in New York</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Life as a Slave in New York
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Understanding What Life Was Like for Enslaved People in New York State
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Enslaved</strong> - forced to work without pay</li>
+                <li><strong>Plantation</strong> - large farm where crops were grown</li>
+                <li><strong>Freedom</strong> - the right to make your own choices</li>
+                <li><strong>Emancipation</strong> - the act of setting someone free</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Slavery Comes to New York
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Long before New York became the state we know today, slavery was part of daily life. The Dutch brought the first enslaved Africans to New Amsterdam (now New York City) in 1626. When the English took control in the 1660s, they continued bringing enslaved people to work in the colony.
+            </p>
+            
+            <p>
+                By 1703, almost half of all families in New York City owned enslaved people. This made New York City the second-largest slave-owning city in all the American colonies, after Charleston, South Carolina.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Daily Life for Enslaved People
+            </h2>
+            
+            <p>
+                Enslaved people in New York worked many different jobs. They worked as farmers growing crops, builders constructing houses, and servants in homes. Some worked in skilled trades like carpentry or blacksmithing. Others worked loading and unloading ships at the busy New York harbor.
+            </p>
+
+            <p>
+                Under Dutch rule, enslaved families were usually kept together, and they could join churches and get married. But when the English took control, life became much harder. New laws said enslaved people could not travel, trade, or buy things without permission from their owners.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Where Enslaved People Lived
+            </h3>
+            
+            <p>
+                Enslaved people lived in small, cramped spaces in their owners' homes. They might sleep in back rooms, cellars, attics, or tiny rooms called garrets. These spaces were often cold in winter and hot in summer.
+            </p>
+            
+            <!-- Additional content paragraphs -->
+            <h2>
+                Fighting for Freedom
+            </h2>
+            
+            <p>
+                Even though life was very difficult, enslaved people never stopped hoping for freedom. Some tried to escape to find better lives. Others found small ways to resist the unfair treatment they received every day.
+            </p>
+            
+            <p>
+                In 1712, a group of enslaved New Yorkers fought back against their treatment. While this rebellion was not successful, it showed that enslaved people would never stop wanting their freedom.
+            </p>
+
+            <h2>
+                The Path to Freedom
+            </h2>
+
+            <p>
+                After the American Revolution, New York slowly began to end slavery. In 1799, the state passed a law saying that children born to enslaved mothers would eventually be free, but they had to work for many years first. Finally, in 1827, slavery officially ended in New York State.
+            </p>
+
+            <p>
+                The story of slavery in New York reminds us that different groups of people did not always have equal rights and freedoms. But it also shows us that people worked hard to bring about change and create a more fair society for everyone.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

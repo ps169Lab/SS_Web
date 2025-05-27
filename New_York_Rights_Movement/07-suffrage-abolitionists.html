@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suffrage + Abolitionists</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Suffrage + Abolitionists
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Women Who Fought for Both Voting Rights and Freedom from Slavery
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Intersectional</strong> - fighting for multiple causes at the same time</li>
+                <li><strong>Abolitionist</strong> - person who wanted to end slavery</li>
+                <li><strong>Discrimination</strong> - unfair treatment based on race or gender</li>
+                <li><strong>Justice</strong> - fairness and equal treatment for all</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Sojourner Truth: A Voice for All People
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Sojourner Truth was born into slavery and experienced firsthand what it meant to be denied basic human rights. After gaining her freedom, she dedicated her life to fighting for equality for both African Americans and women. She understood that the struggles for racial equality and women's rights were connected.
+            </p>
+            
+            <p>
+                At the 1851 Ohio Women's Rights Convention, Sojourner Truth gave her most famous speech. When some men argued that women were too weak to deserve equal rights, she stood up and said, "Ain't I a Woman?" She pointed out that she had worked as hard as any man, had borne children, and had suffered greatly, yet she was still denied basic rights because she was both Black and a woman.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Fighting Two Battles at Once
+            </h2>
+            
+            <p>
+                Sojourner Truth believed that fighting for women's rights was important "not only for women, but all the men on the face of the earth, for they were the mother of them." She saw that creating a fair society meant fighting against all types of unfair treatment, whether based on race or gender.
+            </p>
+
+            <p>
+                She worked with the Underground Railroad to help enslaved people escape to freedom. At the same time, she spoke at women's rights conventions and argued that women deserved the right to vote and own property. She showed that the same people who believed in ending slavery should also believe in equal rights for women.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Lucretia Mott: Connecting the Movements
+            </h3>
+            
+            <p>
+                Lucretia Mott was a Quaker minister who believed that all people were equal in God's eyes. This belief led her to fight against both slavery and the unfair treatment of women. She was already a well-known abolitionist when she helped organize the Seneca Falls Convention in 1848.
+            </p>
+
+            <p>
+                Lucretia attended the World Anti-Slavery Convention in London in 1840 with Elizabeth Cady Stanton. When the convention refused to let women participate fully, both women realized that they needed to fight for women's rights as well as the rights of enslaved people.
+            </p>
+            
+            <!-- Additional content paragraphs -->
+            <h2>
+                Matilda Joslyn Gage: The Radical Voice
+            </h2>
+            
+            <p>
+                Matilda Joslyn Gage was one of the most radical activists of her time. She believed that women and African Americans faced similar types of discrimination and should work together to fight for their rights. She argued that both groups were denied basic human dignity by unfair laws.
+            </p>
+            
+            <p>
+                Matilda worked with Elizabeth Cady Stanton and Susan B. Anthony to document the history of the women's suffrage movement. She made sure that the contributions of African American women and the connections between the anti-slavery and women's rights movements were not forgotten.
+            </p>
+
+            <h2>
+                Challenges and Disagreements
+            </h2>
+
+            <p>
+                Even though many women fought for both causes, there were sometimes disagreements about which fight was more important. After the Civil War, when Congress proposed the Fifteenth Amendment to give Black men the right to vote, some white women's rights leaders were upset that women were still left out.
+            </p>
+
+            <p>
+                Some activists like Elizabeth Cady Stanton and Susan B. Anthony opposed the Fifteenth Amendment because it didn't include women. But others, like Sojourner Truth and Lucretia Mott, supported it because they believed that any step toward equality was important, even if it wasn't perfect.
+            </p>
+
+            <h2>
+                The Power of Working Together
+            </h2>
+
+            <p>
+                The women who fought for both suffrage and abolition showed that different struggles for justice are often connected. They understood that creating a truly equal society meant fighting against all types of unfair treatment.
+            </p>
+
+            <p>
+                These brave women proved that different groups of people did not have equal rights and freedoms, but that people could work to bring about change. Their example teaches us that when people work together across different groups, they can create powerful movements that make the world more fair for everyone. The struggle for rights and freedoms that they began would continue for many years and eventually help lead to important changes like the end of slavery and women gaining the right to vote.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
