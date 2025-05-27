@@ -101,43 +101,43 @@ main {
 }
 
 .nav-links li:nth-child(1) {
-  background-color: #8B4513; /* Saddle Brown - representing the earth and foundation */
+  background-color: #F8B195; /* No Way Rosé */
 }
 
 .nav-links li:nth-child(2) {
-  background-color: #2F4F4F; /* Dark Slate Gray - representing strength and determination */
+  background-color: #F67280; /* Momo Peach */
 }
 
 .nav-links li:nth-child(3) {
-  background-color: #B8860B; /* Dark Goldenrod - representing enlightenment and education */
+  background-color: #C06C84; /* Briar Rose */
 }
 
 .nav-links li:nth-child(4) {
-  background-color: #483D8B; /* Dark Slate Blue - representing dignity and law */
+  background-color: #6C5B7B; /* Princely Violet */
 }
 
 .nav-links li:nth-child(5) {
-  background-color: #8B008B; /* Dark Magenta - representing courage and women's rights */
+  background-color: #355C7D; /* Matisse */
 }
 
 .nav-links li:nth-child(6) {
-  background-color: #CD853F; /* Peru - representing perseverance and leadership */
+  background-color: #F8B195; /* No Way Rosé - cycling back */
 }
 
 .nav-links li:nth-child(7) {
-  background-color: #556B2F; /* Dark Olive Green - representing unity and growth */
+  background-color: #F67280; /* Momo Peach - cycling back */
 }
 
 .nav-links li:nth-child(8) {
-  background-color: #A0522D; /* Sienna - representing heritage and tradition */
+  background-color: #C06C84; /* Briar Rose - cycling back */
 }
 
 .nav-links li:nth-child(9) {
-  background-color: #4682B4; /* Steel Blue - representing hope and progress */
+  background-color: #6C5B7B; /* Princely Violet - cycling back */
 }
 
 .nav-links li:nth-child(10) {
-  background-color: #6B8E23; /* Olive Drab - representing resilience */
+  background-color: #355C7D; /* Matisse - cycling back */
 }
 
 .nav-links a {
