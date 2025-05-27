@@ -101,7 +101,7 @@ main {
 }
 
 .nav-links li:nth-child(1) {
-  background-color: #F8B195; /* No Way Rosé */
+  background-color: #FF946A; /* No Way Rosé */
 }
 
 .nav-links li:nth-child(2) {
@@ -121,7 +121,7 @@ main {
 }
 
 .nav-links li:nth-child(6) {
-  background-color: #F8B195; /* No Way Rosé - cycling back */
+  background-color: #FF946A; /* No Way Rosé - cycling back */
 }
 
 .nav-links li:nth-child(7) {
