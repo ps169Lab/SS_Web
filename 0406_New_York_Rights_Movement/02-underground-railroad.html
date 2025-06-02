@@ -1,0 +1,99 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Underground Railroad</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                The Underground Railroad
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                A Secret Network of Freedom
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Underground Railroad</strong> - secret network that helped enslaved people escape</li>
+                <li><strong>Conductor</strong> - person who guided escaping slaves to safety</li>
+                <li><strong>Station</strong> - safe house where people could hide</li>
+                <li><strong>Fugitive</strong> - person running away from danger</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                What Was the Underground Railroad?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                The Underground Railroad was not actually a railroad with trains and tracks. It was a secret network of people who helped enslaved people escape to freedom. These brave helpers were called "conductors," and the safe houses where people could hide were called "stations."
+            </p><p><img src="https://res.cloudinary.com/aenetworks/image/upload/c_fill,ar_2,w_3840,h_1920,g_auto/dpr_auto/f_auto/q_auto:eco/v1/underground-railroad-gettyimages-645161544?_a=BAVAZGDX0" alt="Image" style="max-width: 100%;" /><br /></p>
+
+            <p>
+                The Underground Railroad was very dangerous work. If conductors were caught helping enslaved people escape, they could be arrested and put in jail. The escaping people faced even worse punishments if they were captured.
+            </p><p><img src="https://iiseagrant.org/wp-content/uploads/2021/02/1100x642-Great-Lakes-Underground-Railroad-map-2-01-1100x642.png" alt="Image" style="max-width: 100%;" /><br /></p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                How the Underground Railroad Worked
+            </h2>
+            
+            <p>
+                The Underground Railroad used special words to keep their work secret. They called the routes "lines," the stopping places "stations," the people who helped "conductors," and the escaping slaves "passengers" or "cargo." This way, if someone overheard them talking, it would sound like they were discussing a real railroad.
+            </p>
+            
+            <p>
+                Most travel happened at night to avoid being seen. Conductors would guide small groups of people from one safe house to the next. The journey north could take weeks or even months, depending on how far they had to travel and how many safe places they could find along the way.
+            </p>
+
+            <h2>Freedom Quilts - The Underground Railroad's Secret Code</h2>
+            <p>During the time of slavery, it was illegal to teach an enslaved person how to read or write. But that didn't mean that enslaved people weren't smart. They used their intelligence to create a secret code to help each other on the Underground Railroad. They would sew patterns into quilts called "Freedom Quilts". If someone who wasn't in on the code saw the quilt, they would just think it was a regular blanket. But people traveling the underground railroad knew how to read the codes, and they used them to help them escape.</p>
+            <div><img src="https://trc-leiden.nl/trc-needles/media/k2/items/cache/e957ef539752eb4135feefc10395f43e_XL.jpg" alt="Image" style="max-width: 100%;" /><br /></div>
+
+            <h2>
+                The Fugitive Slave Act Makes Things Harder
+            </h2>
+
+            <p>
+                In 1850, the government passed the Fugitive Slave Act. This law said that even in free states, people had to return escaped slaves to their owners. This made the Underground Railroad's work even more dangerous. Because of this law, many conductors started leading people all the way to Canada, where they would be truly safe from being captured and returned to slavery.
+            </p>
+
+            <p>
+                The Underground Railroad showed how ordinary people could work together to fight against injustice. Even though it was dangerous and illegal, thousands of people chose to help because they believed that all people deserved to be free. Their courage and determination helped many enslaved people find the freedom they deserved.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body></html>
