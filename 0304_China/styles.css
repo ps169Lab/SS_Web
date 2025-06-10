@@ -263,6 +263,12 @@ img {
   }
 }
 
+@media print {
+    .navbar {
+        display: none;
+    }
+}
+
 
 /* Links */
 a {

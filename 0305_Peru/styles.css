@@ -54,6 +54,13 @@ main {
     flex-direction: column;
   }
 }
+
+@media print {
+    .navbar {
+        display: none;
+    }
+}
+
 .navbar-title {
   background-color: #b0e0e6; /* Powder Blue */
   padding: 1.5rem 1rem;

@@ -26,6 +26,12 @@ main {
   }
 }
 
+@media print {
+    .navbar {
+        display: none;
+    }
+}
+
 /* Navigation */
 .navbar {
   position: fixed;
