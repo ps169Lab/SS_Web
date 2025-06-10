@@ -267,6 +267,10 @@ img {
     .navbar {
         display: none;
     }
+    
+    .section-title h1 {
+        margin-top: 0.8em;
+    }
 }
 
 
