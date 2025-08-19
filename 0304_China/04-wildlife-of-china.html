@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildlife of China</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Wildlife:</strong> Animals that live in nature without people taking care of them</li>
+                <li><strong>Endangered:</strong> When there are very few of an animal left in the world</li>
+                <li><strong>Habitat:</strong> The place where an animal lives and finds food</li>
+                <li><strong>Bamboo:</strong> A tall plant that looks like a tree but is really a type of grass</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                Wildlife of China
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Amazing Animals That Live in China
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                The Giant Panda - China's Most Famous Animal
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                The giant panda is China's most famous animal! These big, fluffy bears are black and white and love to eat bamboo. Pandas spend most of their day eating because they need to eat a lot of bamboo to get enough energy. Baby pandas are called cubs and they are very tiny when they are born - about the size of a mouse!
+            </p>
+            
+            <p>
+                Giant pandas only live in the wild in China. They live in the mountains where lots of bamboo grows. There are not very many pandas left in the world, so China works very hard to protect them. There are special places called panda reserves where pandas can live safely.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="Giant panda eating bamboo in Chinese forest">
+            
+            <!-- Additional section heading -->
+            <h2>
+                Other Amazing Animals in China
+            </h2>
+            
+            <p>
+                China has many other interesting animals too! The South China tiger is a beautiful big cat, but there are very few left. The golden monkey has bright orange fur and lives high up in the mountains. The Chinese alligator lives in rivers and is much smaller than alligators in other countries.
+            </p>
+
+            <p>
+                In the cold northern parts of China, you can find snow leopards. These big cats have thick fur to keep them warm and big paws that work like snowshoes. They are very good at jumping and climbing on rocky mountains.
+            </p>
+
+            <h2>
+                Birds and Other Wildlife
+            </h2>
+            
+            <p>
+                China has many beautiful birds too! The red-crowned crane is a tall, elegant bird that people in China think brings good luck. These cranes can fly very high and far when they move to warmer places in winter.
+            </p>
+
+            <p>
+                In China's rivers and lakes, you can find the Chinese sturgeon, a very old type of fish. Some of these fish can live for over 100 years! There are also many colorful butterflies and interesting insects that live in China's forests.
+            </p>
+
+            <h2>
+                Protecting China's Animals
+            </h2>
+
+            <p>
+                Many of China's animals need protection because there are not many of them left. People in China are working hard to save these animals by creating safe places for them to live and making laws to protect them. They also teach children about why it's important to take care of wildlife. When we protect animals and their homes, we help make sure these amazing creatures will be around for children in the future to see and learn about.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geography of New York State</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Geography:</strong> The study of places and how people use the land</li>
+                <li><strong>Landforms:</strong> Natural shapes of the land like mountains and valleys</li>
+                <li><strong>Borders:</strong> Lines that separate one place from another</li>
+                <li><strong>Region:</strong> An area with similar features or characteristics</li>
+                <li><strong>Natural resources:</strong> Things from nature that people use</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                Geography of New York State
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Learning About New York's Location and Physical Features
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                Where is New York State Located?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                New York State is located in the northeastern part of the United States. It borders several other states and even touches another country! To the north, New York shares a border with Canada. To the east, it borders Vermont, Massachusetts, and Connecticut. Pennsylvania and New Jersey are to the south, and Lake Ontario and Lake Erie form part of the western border.
+            </p>
+            
+            <p>
+                New York State is the fourth largest state in the country by population, which means lots of people choose to live here. The state covers about 54,000 square miles, making it the 27th largest state by size. From the Atlantic Ocean in the southeast to the Great Lakes in the northwest, New York has many different types of geography.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="Map of New York State showing its location and borders">
+            
+            <!-- Additional section heading -->
+            <h2>
+                Major Physical Features
+            </h2>
+            
+            <p>
+                New York State has many different landforms that make it special. The Adirondack Mountains in the north are home to beautiful forests and lakes. The Appalachian Mountains run through the southern part of the state. The Hudson River flows from north to south, connecting Albany to New York City and eventually reaching the Atlantic Ocean.
+            </p>
+
+            <p>
+                The state also has two of the Great Lakes - Lake Ontario and Lake Erie - along its western border. These massive lakes are so big they look like oceans! The famous Niagara Falls, where water crashes down 167 feet, is located where the Niagara River connects these two lakes.
+            </p>
+
+            <h2>
+                Climate and Natural Resources
+            </h2>
+            
+            <p>
+                New York State has a temperate climate, which means it has four distinct seasons. Winters can be cold and snowy, especially in the northern and western parts of the state. Summers are generally warm and pleasant. This climate is perfect for growing many different crops and supporting diverse wildlife.
+            </p>
+
+            <p>
+                The state is rich in natural resources. Forests cover about 60% of New York, providing timber and homes for wildlife. The fertile soil in many areas is excellent for farming. The state also has mineral resources like salt, which is mined in several locations. The abundant water from rivers, lakes, and streams provides drinking water and helps generate electricity through hydroelectric power plants.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

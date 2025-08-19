@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildlife of New York State</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Native:</strong> Originally from a particular place</li>
+                <li><strong>Adaptation:</strong> A special feature that helps an animal or plant survive</li>
+                <li><strong>Ecosystem:</strong> All the living and non-living things in an area</li>
+                <li><strong>Habitat:</strong> The natural home where an animal or plant lives</li>
+                <li><strong>Migration:</strong> Moving from one place to another with the seasons</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                Wildlife of New York State
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Native Plants and Animals and How They Survive
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                Native Animals of New York State
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                New York State is home to many different native animals that have lived here for thousands of years. Large mammals include white-tailed deer, black bears, and moose in the northern regions. White-tailed deer are the most common large mammal in New York and can be found throughout the state. Black bears live mainly in the Adirondack and Catskill Mountains, where they have plenty of forest habitat.
+            </p>
+            
+            <p>
+                Smaller mammals native to New York include raccoons, squirrels, chipmunks, beavers, and porcupines. Beavers are especially important because they build dams that create wetland habitats for many other animals. New York also has many native birds, including the Eastern Bluebird (the state bird), wild turkeys, bald eagles, and various species of hawks and owls.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="Native animals of New York State in their natural habitats">
+            
+            <!-- Additional section heading -->
+            <h2>
+                Native Plants of New York State
+            </h2>
+            
+            <p>
+                New York's forests are filled with native trees that have adapted to the state's climate and soil conditions. Deciduous trees like sugar maple, red oak, American beech, and yellow birch are common throughout the state. These trees lose their leaves in fall, which helps them survive cold winters by conserving energy and water.
+            </p>
+
+            <p>
+                Evergreen trees native to New York include Eastern white pine, red spruce, and balsam fir. These trees keep their needles year-round and are especially common in the cooler northern regions. Native wildflowers include trilliums, wild columbine, and bloodroot, which bloom in spring before the tree leaves block out the sunlight.
+            </p>
+
+            <h2>
+                How Animals and Plants Adapt to New York's Climate
+            </h2>
+            
+            <p>
+                New York's animals and plants have developed special adaptations to survive the state's four-season climate. Many animals grow thicker fur coats in winter to stay warm. Some animals, like woodchucks and bats, hibernate during the coldest months by sleeping in dens or caves. Other animals, like many birds, migrate south to warmer places during winter and return in spring.
+            </p>
+
+            <p>
+                Animals also change their behavior with the seasons. Squirrels and chipmunks collect and store nuts and seeds in fall to have food during winter. Bears eat extra food in fall to build up fat that will keep them alive during their long winter sleep. Some animals, like snowshoe hares, even change color - they turn white in winter to blend in with the snow and brown in summer to hide among the forest plants.
+            </p>
+
+            <h2>
+                Unique Ecosystems in New York
+            </h2>
+
+            <p>
+                New York State has several unique ecosystems that support different types of wildlife. The Adirondack Mountains contain some of the last remaining old-growth forests in the eastern United States, providing habitat for animals like lynx and martens. The wetlands around the Great Lakes are important stopping points for migrating birds. Long Island's coastal areas provide nesting sites for sea birds and feeding areas for fish and marine mammals. Each ecosystem has plants and animals that are specially adapted to live in those particular conditions.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

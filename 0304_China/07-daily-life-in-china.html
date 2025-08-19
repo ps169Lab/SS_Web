@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Life in China</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Tradition:</strong> Something people have done the same way for a long time</li>
+                <li><strong>Chopsticks:</strong> Two thin sticks used to pick up food</li>
+                <li><strong>Family:</strong> Parents, children, grandparents, and relatives</li>
+                <li><strong>Respect:</strong> Being kind and polite to others</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                Daily Life in China
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                How People Live and Work in China Today
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                Family Life in China
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Family is very important in China. Chinese families often include not just parents and children, but also grandparents, aunts, uncles, and cousins. Many families live close together so they can help take care of each other. Children are taught to respect their elders and listen to their parents and grandparents.
+            </p>
+            
+            <p>
+                In Chinese families, older people are very respected. Grandparents often help take care of children while parents work. Children learn important lessons from their grandparents about Chinese traditions and history. Families like to spend time together, especially during holidays and special celebrations.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="Chinese family eating dinner together with chopsticks">
+            
+            <!-- Additional section heading -->
+            <h2>
+                Food and Eating in China
+            </h2>
+            
+            <p>
+                Chinese people eat very different foods than many Americans do. Rice is the most important food in China - people eat it almost every day! They also eat lots of vegetables, fish, chicken, and pork. Chinese people use chopsticks instead of forks and spoons to eat their food.
+            </p>
+
+            <p>
+                Families in China often eat meals together around a big table. They share many different dishes, and everyone takes a little bit of each food. Some popular Chinese foods include dumplings (little pockets of dough with meat or vegetables inside), noodles, and stir-fried vegetables.
+            </p>
+
+            <h2>
+                School and Learning
+            </h2>
+            
+            <p>
+                Chinese children work very hard in school. School is very important in China, and children spend many hours each day studying. They learn to read and write Chinese characters, which are very different from English letters. Learning to write Chinese is hard because there are thousands of different characters to remember!
+            </p>
+
+            <p>
+                Many Chinese children also learn English in school. They study math, science, and history just like American children do. After regular school, many children go to extra classes to learn music, art, or sports. Parents want their children to do well in school so they can have good jobs when they grow up.
+            </p>
+
+            <h2>
+                Work and Cities
+            </h2>
+
+            <p>
+                Many people in China live in big, busy cities with tall buildings and lots of cars. People work in offices, factories, stores, and restaurants. Some people in China still live in the countryside where they grow food like rice, vegetables, and fruits. Chinese cities are very crowded because so many people live there. People often ride bicycles, take buses, or use fast trains to get around. Life in China today mixes old traditions with new, modern ways of living.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

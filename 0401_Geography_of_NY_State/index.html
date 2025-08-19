@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geography of New York State - Grade 4 Social Studies</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                WELCOME TO NEW YORK STATE GEOGRAPHY
+            </h1>
+            
+            <p class="subtitle">
+                Exploring the Empire State for Grade 4 Students
+            </p>
+            
+            <h2>ABOUT THIS WEBSITE</h2>
+            <p>
+                Welcome to New York State Geography! This website contains information about the amazing state of New York. You'll learn about New York's geography, government, economy, and special places. New York is called the "Empire State" because of its wealth and importance in American history.
+            </p>
+            
+            <h2>TOPICS YOU CAN EXPLORE</h2>
+            <p>
+                Click on any of the links in the navigation bar to explore these interesting topics about New York State:
+            </p>
+            
+            <ul>
+                <li><strong>Geography of New York State</strong> - Learn about New York's location, borders, and physical features.</li>
+                <li><strong>Themes of New York State</strong> - Discover the big ideas that make New York special, like diversity and innovation.</li>
+                <li><strong>Wealth of New York State</strong> - Explore how New York creates jobs and prosperity through different industries.</li>
+                <li><strong>Political Features of New York State</strong> - Understand how New York's government is organized and works.</li>
+                <li><strong>Special Places in New York State</strong> - Visit famous landmarks like the Statue of Liberty and Niagara Falls.</li>
+                <li><strong>New York City</strong> - Learn about America's largest city and its five boroughs.</li>
+                <li><strong>Erie Canal</strong> - Discover the amazing waterway that changed New York and America.</li>
+            </ul>
+            
+            <h2>WHAT MAKES NEW YORK STATE SPECIAL?</h2>
+            <p>
+                New York State is special because it has been a gateway to America for millions of immigrants. It's home to one of the world's greatest cities, amazing natural wonders, and important historical sites. New York has played a key role in American business, culture, and politics. From the bustling streets of New York City to the peaceful beauty of the Adirondack Mountains, New York offers incredible diversity.
+            </p>
+            
+            <h2>WHY STUDY NEW YORK STATE GEOGRAPHY?</h2>
+            <p>
+                Learning about New York State geography helps us understand how location, natural resources, and human activities work together to create communities. New York's story shows us how geography affects where people live, how they make a living, and how they connect with the rest of the world. Understanding New York helps us understand America.
+            </p>
+            
+            <h2>START EXPLORING!</h2>
+            <p>
+                Choose any topic from the navigation menu to begin your journey through New York State. Each page includes interesting facts, important vocabulary words, and information to help you understand this amazing state.
+            </p>
+            
+            <p>
+                Enjoy learning about the Empire State!
+            </p>
+            
+            <img src="images/placeholder.jpg" alt="Beautiful view of New York State showing cities, mountains, and waterways">
+        </article>
+    </main>
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            console.log("googleTranslateElementInit called");
+            new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

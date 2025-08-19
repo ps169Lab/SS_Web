@@ -1,52 +1,79 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exploring China - Grade 4</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>China Web - Grade 3 Social Studies</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
 <body>
-    <div class="navbar">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <ul class="menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="01-Chinese-Zodiac.html">Chinese Zodiac</a></li>
-        </ul>
-    </div>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
     <script>
         function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            menu.classList.toggle('active');
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
         }
     </script>
-    <main style="padding-top: 30px;">
+    <main>
         <article>
             <!-- Page title -->
             <h1 class="section-title">
-                WELCOME TO EXPLORING CHINA!
+                WELCOME TO CHINA WEB
             </h1>
             
             <p class="subtitle">
-                Discovering Chinese Culture and History for Grade 4 Students
+                Exploring China for Grade 3 Students
             </p>
             
             <h2>ABOUT THIS WEBSITE</h2>
             <p>
-                Welcome to Exploring China! This website contains information about Chinese culture and history. You'll learn about the Chinese Zodiac, important historical events, and more.</p><ul>
+                Welcome to China Web! This website contains information about the amazing country of China. You'll learn about China's geography, animals, culture, and history. China is a fascinating country with over one billion people and thousands of years of history.
+            </p>
+            
+            <h2>TOPICS YOU CAN EXPLORE</h2>
+            <p>
+                Click on any of the links in the navigation bar to explore these interesting topics about China:
+            </p>
+            
+            <ul>
+                <li><strong>Geography of China</strong> - Learn about where China is located and how big it is.</li>
+                <li><strong>Climate of China</strong> - Discover what the weather is like in different parts of China.</li>
+                <li><strong>Landforms of China</strong> - Explore China's mountains, rivers, and deserts.</li>
+                <li><strong>Wildlife of China</strong> - Meet amazing animals like giant pandas that live in China.</li>
+                <li><strong>Great Places in China</strong> - Visit the Great Wall and the Forbidden City.</li>
+                <li><strong>Daily Life in China</strong> - Learn how people live, work, and go to school in China.</li>
+                <li><strong>Art of China</strong> - Discover beautiful Chinese paintings, pottery, and crafts.</li>
+                <li><strong>Music of China</strong> - Listen to traditional Chinese instruments and songs.</li>
+                <li><strong>Religions of China</strong> - Learn about different beliefs and ways of thinking in China.</li>
+                <li><strong>Chinese Mythology</strong> - Read exciting stories about dragons and magical creatures.</li>
+                <li><strong>History of China</strong> - Travel back in time to learn about ancient and modern China.</li>
             </ul>
+            
+            <h2>WHAT MAKES CHINA SPECIAL?</h2>
+            <p>
+                China is special because it has the most people of any country in the world. It has amazing inventions like paper, gunpowder, and the compass. China has beautiful art, delicious food, and incredible places like the Great Wall. Chinese people have rich traditions that go back thousands of years.
+            </p>
             
             <h2>START EXPLORING!</h2>
             <p>
-                Choose any topic from the navigation menu at the top of the page to begin your journey through American and New York history. Each page includes interesting facts, important vocabulary words, and images to help you understand these important topics.
+                Choose any topic from the navigation menu to begin your journey through China. Each page includes interesting facts, important vocabulary words, and images to help you understand this amazing country.
             </p>
             
             <p>
-                Happy learning!</p></article>
+                Have fun learning about China!
+            </p>
+            
+            <img src="images/placeholder.jpg" alt="Beautiful view of China showing mountains, buildings, and culture">
+        </article>
     </main>
     <!-- Google Translate Widget -->
     <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
@@ -57,6 +84,5 @@
         }
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
-</body></html>
+</body>
+</html>

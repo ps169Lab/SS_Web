@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Places in China - Chinese Wall</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Wall:</strong> A tall structure built to protect or separate areas</li>
+                <li><strong>Ancient:</strong> Very, very old from long ago</li>
+                <li><strong>Emperor:</strong> A ruler of a large country or empire</li>
+                <li><strong>Defense:</strong> Protection from enemies or danger</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                The Great Wall of China
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                The Amazing Wall That Stretches Across China
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                What is the Great Wall?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                The Great Wall of China is one of the most amazing things ever built by people! It is a very long wall that goes across northern China. The wall is so long that if you could stretch it out in a straight line, it would go around the whole Earth more than once! People from all over the world come to see this incredible wall.
+            </p>
+            
+            <p>
+                The Great Wall is not just one wall - it's actually many walls that were connected together over hundreds of years. Some parts of the wall are very old, and some parts are newer. The wall goes up and down mountains, across deserts, and through forests.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="The Great Wall of China winding through mountains">
+            
+            <!-- Additional section heading -->
+            <h2>
+                Why Was the Wall Built?
+            </h2>
+            
+            <p>
+                Long ago, Chinese emperors built the Great Wall to protect their country from enemies who might attack from the north. The wall was like a giant fence that made it hard for enemy armies to get into China. Soldiers would stand on top of the wall and watch for danger.
+            </p>
+
+            <p>
+                The wall also had special towers where soldiers could live and store weapons. If enemies were coming, soldiers could light fires or use drums to send messages quickly along the wall to warn other soldiers far away.
+            </p>
+
+            <h2>
+                How Was the Wall Built?
+            </h2>
+            
+            <p>
+                Building the Great Wall was very hard work that took many, many years. Millions of people worked on the wall, including soldiers, farmers, and prisoners. They used stones, bricks, and earth to build it. In some places, they even used rice to help stick the bricks together!
+            </p>
+
+            <p>
+                The workers had to carry heavy stones up steep mountains and work in very hot and cold weather. Building the wall was dangerous work, and many people died while working on it. This makes the Great Wall not just amazing, but also very sad to think about.
+            </p>
+
+            <h2>
+                The Great Wall Today
+            </h2>
+
+            <p>
+                Today, the Great Wall is one of the most famous places in the world. Millions of people visit it every year to walk on it and take pictures. Some parts of the wall are in good shape, but other parts are old and crumbling. China works hard to take care of the wall so that people in the future can still see this amazing piece of history. The Great Wall shows us how people long ago could work together to build something truly incredible.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

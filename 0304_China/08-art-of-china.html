@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art of China</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Calligraphy:</strong> Beautiful writing that looks like art</li>
+                <li><strong>Porcelain:</strong> A special kind of smooth, white pottery</li>
+                <li><strong>Silk:</strong> A soft, shiny cloth made by silkworms</li>
+                <li><strong>Brush:</strong> A tool with soft hairs used for painting</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                Art of China
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Beautiful Chinese Art and Crafts
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                Chinese Painting and Calligraphy
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Chinese artists have been making beautiful paintings for thousands of years! They use special brushes and ink to paint on paper or silk. Chinese paintings often show mountains, rivers, flowers, and birds. The artists try to capture the feeling and spirit of nature, not just what things look like.
+            </p>
+            
+            <p>
+                Chinese people also practice calligraphy, which is the art of beautiful writing. Instead of using regular letters like we do, Chinese writing uses thousands of different characters. Each character is like a little picture that means a word or idea. Writing these characters beautifully is considered a very important art form in China.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="Traditional Chinese painting showing mountains and rivers">
+            
+            <!-- Additional section heading -->
+            <h2>
+                Pottery and Porcelain
+            </h2>
+            
+            <p>
+                China is famous all over the world for making beautiful pottery and porcelain. Porcelain is a special kind of pottery that is very smooth, white, and delicate. It's so famous that people sometimes call all dishes "china" because China was the first place to make this special pottery!
+            </p>
+
+            <p>
+                Chinese artists paint beautiful designs on their pottery. They might paint flowers, dragons, or scenes from nature. Some Chinese pottery is thousands of years old and is kept in museums because it is so valuable and beautiful. Making porcelain takes great skill and lots of practice.
+            </p>
+
+            <h2>
+                Silk and Textiles
+            </h2>
+            
+            <p>
+                China was the first place in the world to make silk cloth. Silk comes from silkworms, which are tiny creatures that spin cocoons made of silk thread. Chinese people learned how to take this thread and weave it into beautiful, soft cloth.
+            </p>
+
+            <p>
+                For many years, China kept the secret of how to make silk. People from other countries wanted to buy Chinese silk because it was so beautiful and soft. Chinese artists decorate silk with colorful designs of flowers, birds, and dragons. Today, people still wear clothes made from Chinese silk.
+            </p>
+
+            <h2>
+                Paper Cutting and Crafts
+            </h2>
+
+            <p>
+                Chinese people also make beautiful art by cutting designs out of paper. This is called paper cutting, and it takes very steady hands and lots of practice. Artists use small scissors to cut out pictures of animals, flowers, and people from red paper. These paper cuts are often used to decorate homes during holidays and celebrations. Chinese art shows us how creative and skilled Chinese artists have been for thousands of years, and their beautiful work is still admired all around the world today.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

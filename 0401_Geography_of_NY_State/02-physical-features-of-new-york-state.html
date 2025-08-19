@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physical Features of New York State</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Biome:</strong> A large area with similar climate, plants, and animals</li>
+                <li><strong>Landform:</strong> A natural feature of the Earth's surface</li>
+                <li><strong>Mountain range:</strong> A group of mountains connected together</li>
+                <li><strong>Plateau:</strong> A high, flat area of land</li>
+                <li><strong>Valley:</strong> Low land between hills or mountains</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                Physical Features of New York State
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Exploring New York's Major Landforms and Natural Features
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                What are the Biomes in New York?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                New York State has several different biomes, which are large areas with similar climate, plants, and animals. The most common biome in New York is the temperate deciduous forest. This biome covers most of the state and is filled with trees that lose their leaves in the fall, like maple, oak, and birch trees. These forests are home to deer, bears, squirrels, and many types of birds.
+            </p>
+            
+            <p>
+                In the northern parts of New York, especially in the Adirondack Mountains, there are areas of boreal forest, also called taiga. This biome has evergreen trees like pine, spruce, and fir that keep their needles all year long. The climate here is colder, and animals like moose, lynx, and snowshoe hares live in these forests.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="Different biomes and landforms across New York State">
+            
+            <!-- Additional section heading -->
+            <h2>
+                Major Physical Features and Landforms
+            </h2>
+            
+            <p>
+                New York State has many different types of landforms that make it geographically diverse. The Appalachian Mountains run through the southern and eastern parts of the state. Within this mountain system, New York has several important ranges, including the Catskill Mountains in the southeast and the Adirondack Mountains in the northeast.
+            </p>
+
+            <p>
+                The Adirondack Mountains are actually very old and are part of the Canadian Shield. These mountains contain the highest peak in New York State, Mount Marcy, which rises 5,344 feet above sea level. The region has over 3,000 lakes and ponds, making it a beautiful wilderness area.
+            </p>
+
+            <h2>
+                Rivers, Lakes, and Water Features
+            </h2>
+            
+            <p>
+                New York State has many important water features. The Hudson River flows north to south through eastern New York, starting in the Adirondack Mountains and ending at New York Harbor. The Mohawk River is another major river that flows east to west and connects with the Hudson River near Albany.
+            </p>
+
+            <p>
+                New York is bordered by two of the Great Lakes: Lake Ontario in the north and Lake Erie in the west. These massive freshwater lakes are so large they look like oceans. The famous Niagara Falls is located where the Niagara River connects Lake Erie to Lake Ontario. The Finger Lakes region in central New York contains eleven long, narrow lakes that were carved by glaciers thousands of years ago.
+            </p>
+
+            <h2>
+                Plains and Lowlands
+            </h2>
+
+            <p>
+                Not all of New York is mountainous. The state also has important plains and lowland areas. The Great Lakes Plain stretches along the shores of Lake Ontario and Lake Erie. This area has fertile soil that is excellent for farming. Long Island is a large island that extends east from New York City into the Atlantic Ocean. It was formed by glacial deposits and has relatively flat terrain with beaches along its southern shore.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

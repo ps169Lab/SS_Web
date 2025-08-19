@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Places in New York State</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Landmark:</strong> An important or famous place that people recognize</li>
+                <li><strong>Monument:</strong> A structure built to remember someone or something important</li>
+                <li><strong>National Park:</strong> A special area protected by the government for everyone to enjoy</li>
+                <li><strong>Historic:</strong> Something important from the past</li>
+                <li><strong>Symbol:</strong> Something that represents an idea or place</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                Special Places in New York State
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Famous Landmarks and Important Historical Sites
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                The Statue of Liberty and Ellis Island
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                The Statue of Liberty is probably New York's most famous landmark. This giant statue stands on Liberty Island in New York Harbor and has welcomed people to America for over 130 years. The statue was a gift from France to celebrate America's independence and freedom. Lady Liberty holds a torch high in the air and a tablet with the date of American independence.
+            </p>
+            
+            <p>
+                Nearby Ellis Island was the gateway to America for millions of immigrants between 1892 and 1954. People from all over the world came through Ellis Island hoping to start new lives in America. Today, both the Statue of Liberty and Ellis Island are museums where visitors can learn about immigration and the American dream.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="Statue of Liberty and Ellis Island in New York Harbor">
+            
+            <!-- Additional section heading -->
+            <h2>
+                Niagara Falls
+            </h2>
+            
+            <p>
+                Niagara Falls is one of the most spectacular natural wonders in North America. Located on the border between New York and Canada, these massive waterfalls are made up of three separate falls: the American Falls, Bridal Veil Falls, and the famous Horseshoe Falls. Every minute, millions of gallons of water crash down 167 feet, creating a thunderous roar and beautiful mist.
+            </p>
+
+            <p>
+                Niagara Falls has been attracting visitors for hundreds of years. Native American tribes considered the falls sacred, and early European explorers were amazed by their power and beauty. Today, Niagara Falls State Park is America's oldest state park, and millions of people visit each year to witness this incredible natural spectacle.
+            </p>
+
+            <h2>
+                The Adirondack Park
+            </h2>
+            
+            <p>
+                The Adirondack Park in northern New York is the largest protected area in the lower 48 states. This huge park covers six million acres and contains mountains, forests, lakes, and rivers. The park is home to many different animals, including black bears, moose, and loons. It's a perfect place for hiking, camping, fishing, and enjoying nature.
+            </p>
+
+            <p>
+                What makes the Adirondack Park special is that it's both public and private land working together. Some areas are completely wild, while others have small towns and communities. The park was created in 1892 to protect this beautiful wilderness "forever wild" so that future generations can enjoy it.
+            </p>
+
+            <h2>
+                Historic Sites and Cultural Landmarks
+            </h2>
+
+            <p>
+                New York State has many other special places that tell the story of American history. The Baseball Hall of Fame in Cooperstown celebrates America's favorite pastime. Saratoga Springs is famous for its horse racing and historic battles from the Revolutionary War. The Women's Rights National Historical Park in Seneca Falls marks where the fight for women's equality began. Each of these places helps us understand different parts of New York's rich history and culture, making them treasures worth visiting and protecting.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

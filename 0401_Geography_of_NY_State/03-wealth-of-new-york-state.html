@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth of New York State</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Economy:</strong> How people make and spend money in a place</li>
+                <li><strong>Industry:</strong> Businesses that make products or provide services</li>
+                <li><strong>Agriculture:</strong> Growing crops and raising animals for food</li>
+                <li><strong>Manufacturing:</strong> Making products in factories</li>
+                <li><strong>Tourism:</strong> People visiting places for fun or learning</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                Wealth of New York State
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                How New York Creates Jobs and Prosperity
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                A Strong and Diverse Economy
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                New York State has one of the strongest economies in the United States. The state creates wealth through many different types of businesses and industries. From the financial centers of Wall Street to the farms in rural areas, New York provides jobs and opportunities for millions of people.
+            </p>
+            
+            <p>
+                What makes New York's economy special is its diversity. Unlike some places that depend on just one type of business, New York has many different industries. This means that if one industry has problems, others can help keep the economy strong. The state produces everything from apples and milk to computer software and Broadway shows.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="New York's diverse economy showing farms, factories, and offices">
+            
+            <!-- Additional section heading -->
+            <h2>
+                Agriculture and Natural Resources
+            </h2>
+            
+            <p>
+                New York State is a major agricultural producer. The state's fertile soil and favorable climate make it perfect for growing many different crops. New York is famous for its apples, producing more varieties than any other state. The state also produces large amounts of milk, making it one of the top dairy states in the country.
+            </p>
+
+            <p>
+                Other important agricultural products include grapes for wine, corn, soybeans, and vegetables. The Finger Lakes region is known for its vineyards and wineries. Long Island grows potatoes and other vegetables. The state's forests provide timber for construction and paper products, while its waters support fishing industries.
+            </p>
+
+            <h2>
+                Manufacturing and Technology
+            </h2>
+            
+            <p>
+                New York has a long history of manufacturing. Factories in the state produce machinery, electronics, clothing, food products, and chemicals. The state is also becoming a leader in high-tech industries. Companies in New York develop computer software, medical devices, and clean energy technologies.
+            </p>
+
+            <p>
+                Many major corporations have their headquarters in New York, especially in New York City. These companies employ thousands of people and bring money into the state. The presence of world-class universities also helps attract technology companies and research facilities.
+            </p>
+
+            <h2>
+                Services and Tourism
+            </h2>
+
+            <p>
+                A large part of New York's wealth comes from service industries. These include banking, insurance, healthcare, education, and entertainment. Wall Street in New York City is one of the world's most important financial centers. The state is also home to world-famous attractions like Niagara Falls, the Statue of Liberty, and Broadway theaters. Tourism brings billions of dollars to the state each year as millions of visitors come to see these amazing places and experience New York's culture, food, and entertainment.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

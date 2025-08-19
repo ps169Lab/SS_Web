@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History of China Part 1</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Ancient:</strong> Very, very old from thousands of years ago</li>
+                <li><strong>Civilization:</strong> A group of people with cities, writing, and government</li>
+                <li><strong>Invention:</strong> Something new that someone creates for the first time</li>
+                <li><strong>Dynasty:</strong> A family of rulers who rule for many years</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                History of China Part 1
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Ancient China and Amazing Inventions
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                Ancient China Begins
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                China has one of the oldest civilizations in the world! People have been living in China for thousands and thousands of years. Ancient Chinese people built the first cities along big rivers where they could grow food and have water to drink. They learned how to farm rice and other crops, which helped many people live together in one place.
+            </p>
+            
+            <p>
+                Long ago, China was ruled by different families called dynasties. Each dynasty was like a family of kings and queens who passed the power to rule from parents to children. Some dynasties ruled for hundreds of years! The rulers were called emperors, and people believed they were chosen by heaven to lead China.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="Ancient Chinese city with traditional buildings and people">
+            
+            <!-- Additional section heading -->
+            <h2>
+                Amazing Chinese Inventions
+            </h2>
+            
+            <p>
+                Ancient Chinese people invented many things that we still use today! They invented paper, which made it much easier to write and keep records. Before paper, people had to write on heavy stone or expensive silk. The Chinese also invented gunpowder, which was first used for fireworks but later used in weapons.
+            </p>
+
+            <p>
+                Another important Chinese invention was the compass. A compass is a tool that always points north, which helps people know which direction they are going. This made it much safer for people to travel long distances and explore new places. Chinese people also invented printing, which made it possible to make many copies of books quickly.
+            </p>
+
+            <h2>
+                The Silk Road
+            </h2>
+            
+            <p>
+                Ancient China was connected to other countries through special trade routes called the Silk Road. This wasn't just one road, but many paths that went across deserts and mountains. Chinese people traded their beautiful silk, tea, and porcelain for gold, silver, and other goods from faraway places.
+            </p>
+
+            <p>
+                The Silk Road was very important because it helped different countries learn about each other. Ideas, inventions, and stories traveled along these roads just like the goods that people bought and sold. This helped China learn about other cultures and share their own amazing discoveries with the world.
+            </p>
+
+            <h2>
+                Why Ancient China Was Special
+            </h2>
+
+            <p>
+                Ancient China was special because the people there created so many important things that changed the world. They built beautiful cities, created amazing art, and invented things that made life better for everyone. The ancient Chinese also developed a system of writing that is still used today. Their discoveries in medicine, science, and technology were far ahead of their time and helped make China one of the most advanced civilizations in the ancient world.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

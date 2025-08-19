@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Political Features of New York State</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Government:</strong> The people and system that make laws and run a place</li>
+                <li><strong>Capital:</strong> The city where the government of a state or country meets</li>
+                <li><strong>County:</strong> A part of a state with its own local government</li>
+                <li><strong>Legislature:</strong> The group of people who make laws</li>
+                <li><strong>Governor:</strong> The leader of a state government</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                Political Features of New York State
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                How New York State is Organized and Governed
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                New York State Government
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                New York State has its own government that makes laws and provides services for all the people who live in the state. The state government is located in Albany, which is the capital city of New York. Albany was chosen as the capital because it is centrally located and sits along the Hudson River, making it easy for people from all parts of the state to reach.
+            </p>
+            
+            <p>
+                Like the federal government, New York State government has three branches. The executive branch is led by the governor, who is elected by the people every four years. The legislative branch, called the New York State Legislature, makes the laws. It has two parts: the Assembly and the Senate. The judicial branch includes the courts that interpret laws and make sure justice is served.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="New York State Capitol building in Albany">
+            
+            <!-- Additional section heading -->
+            <h2>
+                Counties and Local Government
+            </h2>
+            
+            <p>
+                New York State is divided into 62 counties. Each county has its own local government that takes care of local issues like roads, parks, and public safety. Some of the largest counties include Kings County (which is Brooklyn), Queens County, New York County (Manhattan), and Erie County (which includes Buffalo).
+            </p>
+
+            <p>
+                Within counties, there are cities, towns, and villages that also have their own local governments. New York City is special because it is made up of five counties, called boroughs: Manhattan, Brooklyn, Queens, the Bronx, and Staten Island. Each level of government - state, county, and local - has different responsibilities for serving the people.
+            </p>
+
+            <h2>
+                Important Political Landmarks
+            </h2>
+            
+            <p>
+                New York State has many important political landmarks. The State Capitol building in Albany is where the governor works and the legislature meets. This beautiful building was completed in 1899 and took over 30 years to build. It features amazing architecture and artwork that represents New York's history and values.
+            </p>
+
+            <p>
+                New York City is home to many important political sites as well. City Hall is where the mayor and city council work. Federal Hall, where George Washington was inaugurated as the first president, is now a museum. The United Nations headquarters is also located in New York City, making it an important center for international politics and diplomacy.
+            </p>
+
+            <h2>
+                New York's Role in National Politics
+            </h2>
+
+            <p>
+                New York State plays a very important role in national politics. Because it has such a large population, New York sends many representatives to Congress in Washington, D.C. The state has 27 members in the House of Representatives and 2 senators. New York has also been home to many important political leaders, including four U.S. presidents: Martin Van Buren, Millard Fillmore, Theodore Roosevelt, and Franklin D. Roosevelt. The state continues to be influential in shaping national policies and decisions.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

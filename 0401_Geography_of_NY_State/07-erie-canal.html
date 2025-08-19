@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erie Canal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Canal:</strong> A man-made waterway for boats to travel through</li>
+                <li><strong>Lock:</strong> A section of canal that raises or lowers boats to different water levels</li>
+                <li><strong>Engineering:</strong> Using science and math to build things</li>
+                <li><strong>Commerce:</strong> The buying and selling of goods</li>
+                <li><strong>Transportation:</strong> Moving people and goods from one place to another</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                Erie Canal
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                The Amazing Waterway That Changed New York
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                Building the "Eighth Wonder of the World"
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                The Erie Canal was one of the greatest engineering achievements in American history. Built between 1817 and 1825, this 363-mile waterway connected the Great Lakes to the Atlantic Ocean by linking Lake Erie to the Hudson River. When it was completed, people called it the "Eighth Wonder of the World" because no one had ever built anything like it before in America.
+            </p>
+            
+            <p>
+                Building the canal was incredibly difficult work. Thousands of workers, including many Irish immigrants, dug the canal by hand using shovels, picks, and wheelbarrows. They had to cut through forests, drain swamps, and blast through solid rock. The project took eight years to complete and cost over $7 million, which was an enormous amount of money at that time.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="Erie Canal with boats and locks showing how it worked">
+            
+            <!-- Additional section heading -->
+            <h2>
+                How the Canal Worked
+            </h2>
+            
+            <p>
+                The Erie Canal was 40 feet wide and 4 feet deep, just big enough for canal boats to travel through. The most amazing part of the canal was its system of 83 locks. These locks were like water elevators that lifted boats up and down as the land changed elevation. The canal had to rise 568 feet from the Hudson River to Lake Erie, so these locks were essential.
+            </p>
+
+            <p>
+                Canal boats were pulled by horses or mules that walked along a towpath beside the canal. The boats moved slowly, about 4 miles per hour, but they could carry much more cargo than wagons on roads. A single canal boat could carry as much as several dozen horse-drawn wagons, making it much cheaper to transport goods.
+            </p>
+
+            <h2>
+                Impact on New York and America
+            </h2>
+            
+            <p>
+                The Erie Canal completely changed New York State and the entire country. Before the canal, it was very expensive and difficult to move goods from the western parts of America to the eastern cities. The canal made it much cheaper and faster to transport wheat, corn, and other products from the Midwest to New York City and then to other parts of the world.
+            </p>
+
+            <p>
+                New York City became the most important port in America because of the canal. Cities along the canal route, like Rochester, Syracuse, and Buffalo, grew rapidly as trade increased. The canal helped make New York State wealthy and powerful. It also encouraged westward expansion as more people could easily travel to and settle in the western territories.
+            </p>
+
+            <h2>
+                The Canal Today
+            </h2>
+
+            <p>
+                Although railroads eventually replaced the Erie Canal for most transportation, parts of the canal system are still used today. The New York State Canal System now includes the Erie Canal and three other canals, and it's used mainly for recreation. People enjoy boating, fishing, and biking along the canal trails. Many historic sites along the canal help visitors learn about this amazing achievement that helped build modern America.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

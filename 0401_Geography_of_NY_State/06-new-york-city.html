@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New York City</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Borough:</strong> One of the five main parts that make up New York City</li>
+                <li><strong>Skyscraper:</strong> A very tall building with many floors</li>
+                <li><strong>Metropolitan:</strong> Having to do with a large city and surrounding areas</li>
+                <li><strong>Port:</strong> A place where ships load and unload goods</li>
+                <li><strong>Cultural:</strong> Related to arts, music, theater, and other creative activities</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                New York City
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                America's Largest City and Global Center
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                The Five Boroughs
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                New York City is the largest city in the United States, with over 8 million people living there. What makes New York City unique is that it's actually made up of five separate boroughs, each with its own character and history. Manhattan is the most famous borough, known for its tall skyscrapers and busy streets. Brooklyn is the most populated borough, with over 2.5 million residents.
+            </p>
+            
+            <p>
+                Queens is the most diverse borough, where people from all over the world have made their homes. The Bronx is known for Yankee Stadium and the Bronx Zoo. Staten Island is the most suburban of the five boroughs, with more parks and single-family homes. Together, these five boroughs create one of the world's greatest cities.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="New York City skyline showing tall buildings and bridges">
+            
+            <!-- Additional section heading -->
+            <h2>
+                A Center of Business and Finance
+            </h2>
+            
+            <p>
+                New York City is one of the world's most important business centers. Wall Street in Manhattan is home to the New York Stock Exchange, where people buy and sell shares of companies. Many of the world's largest banks and financial companies have their headquarters in New York City. This makes the city a global center for finance and business.
+            </p>
+
+            <p>
+                The city is also a major port, where ships from around the world bring goods to America. New York's location at the mouth of the Hudson River and its excellent natural harbor made it perfect for trade. Today, the city continues to be an important gateway for international commerce and business.
+            </p>
+
+            <h2>
+                Culture and Entertainment
+            </h2>
+            
+            <p>
+                New York City is famous around the world for its culture and entertainment. Broadway theaters present some of the best plays and musicals in the world. The city has world-class museums like the Metropolitan Museum of Art and the Museum of Natural History. Central Park provides a green oasis in the middle of Manhattan where people can relax and enjoy nature.
+            </p>
+
+            <p>
+                The city is also known for its food, with restaurants serving cuisine from every country in the world. From hot dogs and pizza to fancy restaurants, New York has something for every taste. The city's neighborhoods each have their own unique character, from the artistic Greenwich Village to the bustling Times Square.
+            </p>
+
+            <h2>
+                Transportation and Getting Around
+            </h2>
+
+            <p>
+                New York City has one of the best public transportation systems in America. The subway system has 472 stations and runs 24 hours a day, helping millions of people get around the city. Yellow taxi cabs are famous symbols of New York, along with the city's many bridges and tunnels that connect the boroughs. Many people also walk or ride bicycles to get around. This excellent transportation system helps make New York City work as a home and workplace for so many people from all over the world.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

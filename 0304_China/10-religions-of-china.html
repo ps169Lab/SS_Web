@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Religions of China</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Religion:</strong> What people believe about life and how to be good</li>
+                <li><strong>Temple:</strong> A special building where people go to pray</li>
+                <li><strong>Wisdom:</strong> Being smart and knowing what is right</li>
+                <li><strong>Peace:</strong> Being calm and not fighting</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                Religions of China
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Different Ways Chinese People Think About Life
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                Buddhism in China
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Buddhism is one of the most important religions in China. Buddhists believe in being kind to all living things and trying to find peace and happiness. They think that if you are good to others, good things will happen to you too. Buddhist temples in China are beautiful places with golden statues and colorful decorations.
+            </p>
+            
+            <p>
+                Many Chinese Buddhists visit temples to pray and think quietly. They might light incense, which makes sweet-smelling smoke, or leave flowers and food as gifts. Buddhist monks are special people who spend their whole lives learning about Buddhism and helping others. They wear orange or gray robes and often have shaved heads.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="Beautiful Buddhist temple in China with golden statues">
+            
+            <!-- Additional section heading -->
+            <h2>
+                Confucianism and Good Behavior
+            </h2>
+            
+            <p>
+                Confucianism comes from the teachings of a wise man named Confucius who lived in China long ago. He taught people how to be good to their families and friends. Confucius said that children should respect their parents, students should listen to their teachers, and everyone should be honest and kind.
+            </p>
+
+            <p>
+                Confucianism is not exactly like other religions because it focuses more on how to behave well than on praying to gods. It teaches that if everyone is respectful and works hard, society will be peaceful and happy. Many Chinese families still follow Confucius's teachings about being good to each other.
+            </p>
+
+            <h2>
+                Taoism and Nature
+            </h2>
+            
+            <p>
+                Taoism is another important way of thinking in China. Taoists believe that people should live in harmony with nature and not try to fight against it. They think that everything in the world is connected and that people should be gentle and peaceful, like water flowing in a river.
+            </p>
+
+            <p>
+                Taoists often practice special exercises called tai chi, where they move their bodies slowly and smoothly. They believe this helps them stay healthy and calm. Taoist temples are often built in beautiful natural places like mountains or near rivers, where people can feel close to nature.
+            </p>
+
+            <h2>
+                How Religions Mix Together
+            </h2>
+
+            <p>
+                What makes China special is that many people follow ideas from different religions at the same time. A Chinese person might visit a Buddhist temple, follow Confucian ideas about respecting their parents, and also practice Taoist exercises. They don't see this as confusing - instead, they take the best ideas from each way of thinking to help them live good lives. This mixing of different beliefs has been part of Chinese culture for thousands of years.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

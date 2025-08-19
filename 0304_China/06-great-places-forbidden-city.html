@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Places in China - Forbidden City</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Palace:</strong> A very large, fancy house where kings or emperors live</li>
+                <li><strong>Forbidden:</strong> Not allowed; something you cannot do</li>
+                <li><strong>Courtyard:</strong> An open space surrounded by buildings</li>
+                <li><strong>Dynasty:</strong> A family of rulers who rule for many years</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                The Forbidden City
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                The Amazing Palace Where Chinese Emperors Lived
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                What is the Forbidden City?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                The Forbidden City is a huge palace in Beijing, China's capital city. It got its name because for hundreds of years, regular people were not allowed to go inside - it was "forbidden" to them! Only the emperor, his family, and the people who worked for him could enter this special place.
+            </p>
+            
+            <p>
+                The Forbidden City is like a city inside a city. It has 980 buildings and over 8,000 rooms! The whole place is surrounded by tall walls and a water-filled ditch called a moat. This made it very safe and private for the emperor and his family.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="The beautiful buildings and courtyards of the Forbidden City">
+            
+            <!-- Additional section heading -->
+            <h2>
+                Who Lived in the Forbidden City?
+            </h2>
+            
+            <p>
+                For almost 500 years, Chinese emperors and their families lived in the Forbidden City. Twenty-four different emperors called this place home! The emperor was the most important person in all of China, and people believed he was chosen by heaven to rule the country.
+            </p>
+
+            <p>
+                Besides the emperor and his family, thousands of other people lived and worked in the Forbidden City. There were servants, guards, cooks, doctors, and teachers. Some people spent their whole lives inside the walls and never left!
+            </p>
+
+            <h2>
+                Beautiful Buildings and Colors
+            </h2>
+            
+            <p>
+                The buildings in the Forbidden City are some of the most beautiful in the world. They have bright red walls and golden yellow roofs. In China, red means good luck and happiness, while yellow was the emperor's special color. The roofs curve upward at the edges, which is a special style of Chinese building.
+            </p>
+
+            <p>
+                The Forbidden City has many courtyards - open spaces surrounded by buildings. Some courtyards are huge and can hold thousands of people, while others are small and quiet. Beautiful gardens with flowers, trees, and ponds make the palace even more lovely.
+            </p>
+
+            <h2>
+                The Forbidden City Today
+            </h2>
+
+            <p>
+                Today, the Forbidden City is no longer forbidden! It is now called the Palace Museum, and millions of people from around the world visit it every year. Visitors can walk through the same rooms where emperors once lived and see beautiful art, furniture, and treasures from long ago. The Forbidden City helps us learn about China's amazing history and shows us how emperors lived hundreds of years ago. It is one of the most important historical places in the world.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
