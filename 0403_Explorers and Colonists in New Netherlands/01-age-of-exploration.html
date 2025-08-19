@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reasons for the Age of Exploration</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Reasons for the Age of Exploration
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Why Europeans Began Exploring the World in the 1400s and 1500s
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Exploration</strong> - traveling to discover new places and routes</li>
+                <li><strong>Trade routes</strong> - paths used by merchants to buy and sell goods</li>
+                <li><strong>Spices</strong> - special seasonings from Asia like pepper and cinnamon</li>
+                <li><strong>Northwest Passage</strong> - a hoped-for water route to Asia through North America</li>
+                <li><strong>Colonies</strong> - settlements established by one country in another land</li>
+            </ul>
+        
+            <!-- Main Focus Section -->
+            <h2>The Search for Spices and Riches</h2>
+            
+            <p>
+                In the 1400s and 1500s, Europeans had many reasons to explore new lands across the oceans. The biggest reason was to find new ways to get valuable things like spices, silk, and gold that came from Asia. These items were very expensive because they had to travel long, dangerous land routes to reach Europe.
+            </p>
+
+            
+            
+            <p>
+                Spices like pepper, cinnamon, and nutmeg were worth more than gold in Europe. They made food taste better and helped preserve meat. But getting these spices from Asia was very difficult and costly. A pound of black pepper was worth more than a pound of silver! European merchants dreamed of finding a sea route to Asia that would make them rich.
+            </p>
+
+            <h2>Spreading Christianity</h2>
+            
+            <p>
+                Europeans also wanted to spread Christianity to new places. They believed it was their duty to teach their religion to people in other lands. Kings and queens supported explorers because they wanted to find new Christian converts and compete with Muslim rulers who controlled many trade routes.
+            </p>
+
+            
+
+            <h2>Competition Between Countries</h2>
+            
+            <p>
+                European countries like Spain, Portugal, France, England, and the Netherlands competed fiercely with each other. Each country wanted to find new lands first and become the most powerful. Portugal led early exploration by sailing around Africa, while Spain tried sailing west across the Atlantic Ocean.
+            </p>
+
+            
+
+            <h2>New Technology Made Exploration Possible</h2>
+            
+            <p>
+                Europeans developed better ships, maps, and navigation tools. The compass helped sailors know which direction they were going, even when they couldn't see land. The astrolabe helped them find their position using the stars. New ships called caravels were fast and could handle long ocean voyages.
+            </p>
+
+            
+
+            <h2>How This Led to the Discovery of New York</h2>
+
+            <p>
+                All of these motivations - the search for spices, the desire to spread Christianity, competition between nations, and new technology - combined to launch the Age of Exploration. When explorers like Henry Hudson sailed west looking for a route to Asia, they instead found the Hudson River and the land that would become New York State. Their brave voyages changed the world forever.
+            </p>
+
+            
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

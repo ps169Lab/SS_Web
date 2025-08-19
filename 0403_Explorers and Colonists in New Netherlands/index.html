@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>European Exploration of New York</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                European Exploration of New York
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Discover How Europeans Found and Settled New York
+            </p>
+        
+            <!-- Introduction Section -->
+            <h2>Welcome to Our Exploration Journey!</h2>
+            
+            <p>
+                Long before New York became the busy state we know today, brave explorers from Europe sailed across dangerous oceans to discover new lands. This website will take you on an exciting journey to learn about these explorers and how they changed the history of New York forever.
+            </p>
+            
+            <p>
+                You'll discover why Europeans wanted to explore, what life was like on their ships, and how they built the first settlements in what would become New York State. Get ready to travel back in time over 400 years!
+            </p>
+
+            <h2>What You'll Learn</h2>
+            
+            <p>
+                In this collection of articles, you'll explore seven important topics about European exploration of New York:
+            </p>
+            
+            <ul>
+                <li><strong>Reasons for the Age of Exploration</strong> - Why did Europeans want to explore new lands?</li>
+                <li><strong>Life on a Ship</strong> - What was it like to sail across the ocean for months?</li>
+                <li><strong>Major Explorers</strong> - Meet the brave men who discovered New York</li>
+                <li><strong>Trading Posts and Missions</strong> - How Europeans set up business and spread religion</li>
+                <li><strong>The Dutch West India Company</strong> - The business that built New Netherlands</li>
+                <li><strong>Slavery in the New Colony</strong> - A sad but important part of colonial history</li>
+                <li><strong>Everyday Life in New Amsterdam</strong> - What was daily life like in early New York City?</li>
+            </ul>
+
+            <h2>How to Use This Website</h2>
+            
+            <p>
+                Use the colorful navigation menu on the left (or at the top on phones and tablets) to explore each topic. Each page has vocabulary words to help you understand important terms, and the articles are written especially for students like you.
+            </p>
+            
+            <p>
+                You can also use the Google Translate button in the bottom right corner to read these articles in different languages if that helps you learn better.
+            </p>
+
+            <h2>Ready to Explore?</h2>
+            
+            <p>
+                Click on "01: Reasons for the Age of Exploration" in the menu to begin your journey back in time. You'll learn amazing facts about brave explorers, dangerous sea voyages, and the founding of New York!
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

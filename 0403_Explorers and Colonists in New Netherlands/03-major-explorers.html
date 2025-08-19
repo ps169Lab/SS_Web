@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Major Explorers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Major Explorers
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                The Brave Men Who Discovered New York
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Navigator</strong> - a person who finds the way on ships</li>
+                <li><strong>Harbor</strong> - a safe place for ships near land</li>
+                <li><strong>Expedition</strong> - a journey to explore new places</li>
+                <li><strong>Territory</strong> - land claimed by a country</li>
+                <li><strong>Estuary</strong> - where a river meets the ocean</li>
+            </ul>
+        
+            <!-- Main Focus Section -->
+            <h2>Giovanni da Verrazzano (1524)</h2>
+            
+            <p>
+                Verrazzano was an Italian explorer sailing for France. In 1524, he became the first European to sail into New York Harbor. He saw Manhattan Island and described it as "a very agreeable place" with friendly Native Americans. He sailed through what we now call the Verrazzano-Narrows Bridge area, which is named after him.
+            </p>
+
+            
+
+            <h2>Henry Hudson (1609)</h2>
+            
+            <p>
+                Hudson was an English explorer working for the Dutch East India Company. He sailed his ship, the Half Moon, up the river that now bears his name - the Hudson River. He traveled all the way to where Albany is today, about 150 miles north of New York City. Hudson was looking for the Northwest Passage to Asia, but instead he found the river that would become the main highway for Dutch trade.
+            </p>
+
+            
+
+            <p>
+                Hudson's reports about fur trading opportunities made the Dutch very interested in settling in New York. His detailed descriptions of the river and the friendly Native Americans convinced the Dutch that this would be a perfect place for a colony.
+            </p>
+
+            <h2>Samuel de Champlain (1609)</h2>
+            
+            <p>
+                Champlain was a French explorer who came to New York from the north in the same year as Hudson. He discovered the beautiful lake that is named after him - Lake Champlain. This lake forms part of the border between New York and Vermont. Champlain's explorations helped France claim northern New York and led to years of competition between the French and Dutch for control of the region.
+            </p>
+
+            
+
+            <h2>Adriaen Block (1613-1614)</h2>
+
+            <p>
+                Block was a Dutch navigator who extensively mapped the region after Hudson's voyage. He was the first European to navigate the East River and explore Long Island Sound. Block created the first detailed map of southern New York and the surrounding areas. Block Island, located off the coast of Rhode Island, is named after him.
+            </p>
+
+            
+
+            <h2>Why These Explorers Matter</h2>
+            
+            <p>
+                These four brave explorers put New York on the map of the world. Verrazzano showed that New York Harbor existed. Hudson proved that the river was a gateway to the interior of North America. Champlain established French claims to northern New York. Block provided the detailed maps that future settlers would need.
+            </p>
+
+            <p>
+                Their discoveries led to the founding of New Amsterdam (now New York City) and other settlements. Without their brave voyages, New York might have remained unknown to Europeans for many more years. Each explorer contributed something important to our understanding of this region that would become one of America's most important states.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

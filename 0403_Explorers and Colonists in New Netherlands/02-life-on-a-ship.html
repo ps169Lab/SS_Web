@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life on a Ship</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Life on a Ship
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                The Dangerous and Difficult Journey Across the Atlantic Ocean
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Caravel</strong> - a small, fast sailing ship used for exploration</li>
+                <li><strong>Crew</strong> - all the sailors who work on a ship</li>
+                <li><strong>Navigation</strong> - finding your way across the ocean using tools and stars</li>
+                <li><strong>Provisions</strong> - food and supplies needed for the journey</li>
+                <li><strong>Scurvy</strong> - a deadly disease caused by lack of vitamin C</li>
+            </ul>
+        
+            <!-- Main Focus Section -->
+            <h2>The Ships That Crossed the Ocean</h2>
+            
+            <p>
+                When Henry Hudson sailed to New York in 1609, he traveled on a ship called the Half Moon. This ship was only about 80 feet long - smaller than a modern school bus! Yet Hudson and his crew of about 20 men had to live on this tiny wooden vessel for months as they crossed the dangerous Atlantic Ocean.
+            </p>
+
+            
+            
+            <p>
+                The Half Moon was built for speed, not comfort. Every inch of space was used for storing food, water, weapons, and trading goods rather than making life comfortable for the crew. Sailors slept wherever they could find space - some in hammocks, others on hard wooden decks.
+            </p>
+
+            <h2>What Did Sailors Eat and Drink?</h2>
+
+            <p>
+                Food on exploration ships was basic and often disgusting. The main food was hardtack - rock-hard biscuits made of flour and water that could last for months without spoiling. These biscuits were so hard that sailors had to soak them in water to make them soft enough to chew, and they were usually full of worms.
+            </p>
+
+            
+
+            <p>
+                Other foods included salted pork or beef (which was often rotten), dried peas and beans, and cheese. Fresh food spoiled quickly, so sailors rarely ate fruits or vegetables during long voyages. This lack of fresh food caused a deadly disease called scurvy, which made sailors' teeth fall out and their gums bleed. Many sailors died from scurvy before reaching their destination.
+            </p>
+
+            <h2>Dangers at Sea</h2>
+            
+            <p>
+                Ocean voyages in the 1600s were extremely dangerous. Storms could sink ships or blow them hundreds of miles off course. Pirates attacked ships to steal their cargo and supplies. Fire was perhaps the most feared danger of all - with wooden ships and open flames for cooking, fires could spread quickly and meant certain death for everyone aboard.
+            </p>
+
+            
+
+            <h2>Finding the Way Across the Ocean</h2>
+            
+            <p>
+                Finding their way across the vast ocean was one of the most difficult challenges facing explorers. They used simple tools like the magnetic compass, which pointed toward north, and the astrolabe, which helped determine their position by measuring the height of the sun or stars above the horizon.
+            </p>
+
+            
+
+            <p>
+                Maps in Hudson's time were often wrong or showed imaginary islands. Getting lost at sea usually meant death for the entire crew, so navigation was the most important skill any explorer could have. Despite all these dangers and hardships, brave sailors continued to volunteer for exploration voyages, making it possible for Europeans to discover and eventually settle in places like New York.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

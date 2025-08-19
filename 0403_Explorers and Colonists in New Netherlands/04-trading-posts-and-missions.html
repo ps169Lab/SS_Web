@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Posts and Missions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Trading Posts and Missions
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                How Europeans Set Up Business and Spread Religion
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Trading post</strong> - a place where people buy and sell goods</li>
+                <li><strong>Mission</strong> - a place where people teach religion</li>
+                <li><strong>Fur trade</strong> - buying and selling animal furs</li>
+                <li><strong>Fort</strong> - a strong building for protection</li>
+                <li><strong>Missionary</strong> - a person who teaches religion</li>
+            </ul>
+        
+            <!-- Main Focus Section -->
+            <h2>Dutch Trading Posts in New Netherlands</h2>
+            
+            <p>
+                The Dutch built trading posts along rivers where they could easily transport goods. Fort Nassau, built in 1614 near Albany, was the first Dutch trading post in New York. Later, they built the bigger Fort Orange in the same area. These forts had thick walls for protection and warehouses to store valuable beaver furs.
+            </p>
+
+            
+            
+            <p>
+                Trading posts were like early shopping centers. Dutch traders brought European goods like metal tools, cloth, blankets, and guns. Native Americans brought beaver furs, which were very valuable in Europe for making hats. Both groups benefited from this trade, and it became the foundation of the Dutch economy in New York.
+            </p>
+
+            <h2>How Trading Posts Worked</h2>
+
+            <p>
+                The Dutch chose locations carefully for their trading posts. They built them where rivers met, making it easy to transport goods by boat. Fort Orange controlled trade routes into the interior via the Mohawk River valley, while New Amsterdam controlled the harbor and river mouth.
+            </p>
+
+            
+
+            <p>
+                The Iroquois nations became crucial partners in the fur trade. They were skilled hunters and knew the best places to find beavers. The Dutch provided them with European goods they wanted, especially metal tools and weapons that made hunting and farming easier.
+            </p>
+
+            <h2>French Religious Missions</h2>
+            
+            <p>
+                French missionaries, especially Jesuit priests, built missions in northern and western New York. These missions had churches, schools, and homes for the missionaries. The goal was to convert Native Americans to Christianity and teach them European ways of life.
+            </p>
+
+            
+
+            <p>
+                Missions were often dangerous places. Some missionaries, like Isaac Jogues, were captured or killed by Native Americans who didn't want to change their religion. Despite the dangers, missionaries created detailed maps and wrote important records about Native American life that help us understand history today.
+            </p>
+
+            <h2>Impact on Native Americans</h2>
+
+            <p>
+                Both trading posts and missions changed Native American life forever. Trade brought new tools and weapons but also created dependence on European goods. Some Native Americans moved closer to trading posts to be near the trade. Missions introduced new religious ideas but often tried to destroy traditional Native cultures.
+            </p>
+
+            
+
+            <p>
+                The fur trade also led to conflicts between different Native American groups as they competed for the best hunting grounds and trading relationships with Europeans. These changes had lasting effects on all Native peoples in New York and helped shape the region's development for centuries to come.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

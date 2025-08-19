@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The British Takeover</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                The British Takeover of New Amsterdam
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                How the British Conquered the Dutch Colony Without Firing a Shot
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Surrender</strong> - to give up without fighting</li>
+                <li><strong>Fleet</strong> - a group of ships sailing together</li>
+                <li><strong>Conquest</strong> - taking control of a place by force</li>
+                <li><strong>Ultimatum</strong> - a final demand before taking action</li>
+            </ul>
+        
+            <!-- Main Focus Section -->
+            <h2>Why the British Wanted New Netherlands</h2>
+            
+            <p>
+                The British had colonies north and south of New Netherlands, but the Dutch colony sat right in the middle. This made it difficult for British colonies to trade and communicate with each other. King Charles II was also jealous of the profitable Dutch fur trade and the busy port of New Amsterdam. In 1664, he gave his brother James, the Duke of York, all the Dutch territory - even though the Dutch still controlled it!
+            </p>
+
+            <h2>The British Fleet Arrives</h2>
+            
+            <p>
+                The Duke of York sent Colonel Richard Nicolls with four warships and 300 soldiers to capture New Netherlands. On August 26, 1664, the British ships sailed into New York Harbor. The sight of armed warships shocked the Dutch colonists. Nicolls demanded that Peter Stuyvesant surrender New Amsterdam immediately.
+            </p>
+
+            <p>
+                Stuyvesant wanted to fight, but the Dutch fort was old and crumbling, with only 150 soldiers and broken cannons. More importantly, the colonists refused to support a war that would destroy their businesses and homes.
+            </p>
+
+            <h2>The Peaceful Surrender</h2>
+
+            <p>
+                For two weeks, Stuyvesant tried to organize a defense, but the colonists held meetings and demanded peaceful surrender. The British offered generous terms: Dutch colonists could keep their property, continue their businesses, practice their religion freely, and keep some local laws. These promises convinced colonists that British rule might be better than Stuyvesant's harsh leadership.
+            </p>
+
+            <p>
+                On September 8, 1664, Stuyvesant officially surrendered New Netherlands to the British. The Dutch flag was lowered, the British flag was raised, and New Amsterdam was renamed New York in honor of the Duke of York. This peaceful conquest gave the British control of the entire Atlantic coast and changed American history forever.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

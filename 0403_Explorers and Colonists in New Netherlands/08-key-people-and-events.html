@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key People and Events</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Key People and Events in New Netherlands
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Important Leaders and Events That Shaped the Dutch Colony
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Colony</strong> - a place controlled by another country</li>
+                <li><strong>Director-General</strong> - the main leader of New Netherlands</li>
+                <li><strong>Trading Post</strong> - a place where people buy and sell goods</li>
+                <li><strong>Patroon</strong> - a wealthy Dutch landowner who brought settlers to America</li>
+            </ul>
+        
+            <!-- Main Focus Section -->
+            <h2>Peter Stuyvesant - The Iron-Willed Leader</h2>
+            
+            <p>
+                Peter Stuyvesant was the most famous leader of New Netherlands, ruling from 1647 to 1664. Known as "Old Silver Leg" because of his wooden leg with silver bands, Stuyvesant was strict but made many improvements to New Amsterdam. He built the first hospital, fire department, and postal service, and paved streets with cobblestones.
+            </p>
+            
+            <p>
+                Though colonists often disliked his harsh rules, Stuyvesant transformed New Amsterdam into a proper city. He built a protective wall where Wall Street is today and established schools and markets that helped the colony grow.
+            </p>
+
+            <h2>Peter Minuit and the Purchase of Manhattan</h2>
+            
+            <p>
+                Peter Minuit made history in 1626 when he purchased Manhattan Island from the Lenape Native Americans for goods worth about 60 Dutch guilders (around $1,000 today). These included metal tools, cloth, and beads that the Native Americans valued highly. Minuit founded New Amsterdam on Manhattan's southern tip because of its excellent harbor.
+            </p>
+
+            <h2>Native American Leaders and Relationships</h2>
+            
+            <p>
+                Chief Oratam of the Hackensack tribe maintained peaceful relationships with Dutch settlers, establishing trading partnerships that benefited both groups. However, conflicts like the Kieft War (1643-1645) also occurred over land use and cultural misunderstandings, showing that relationships were sometimes difficult.
+            </p>
+
+            <h2>Major Events That Shaped the Colony</h2>
+
+            <p>
+                Key events included the arrival of the first Dutch families in 1624, the establishment of Fort Orange (Albany) as a fur trading post, and the introduction of the patroon system in 1629. By the 1650s, New Amsterdam had become remarkably diverse, with people speaking over 15 different languages. This diversity and Dutch tolerance for different religions made the colony unique and laid the foundation for New York's future as a melting pot of cultures.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

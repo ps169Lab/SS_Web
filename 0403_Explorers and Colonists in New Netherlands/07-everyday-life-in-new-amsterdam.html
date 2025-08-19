@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Everyday Life in New Amsterdam</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Everyday Life in New Amsterdam
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                What Was It Like to Live in Early New York City?
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Merchant</strong> - a person who buys and sells goods</li>
+                <li><strong>Artisan</strong> - a skilled worker who makes things by hand</li>
+                <li><strong>Market</strong> - a place where people buy and sell goods</li>
+                <li><strong>Diverse</strong> - having many different types of people</li>
+                <li><strong>Apprentice</strong> - someone learning a trade or skill</li>
+            </ul>
+        
+            <!-- Main Focus Section -->
+            <h2>A Busy, Diverse Colonial Town</h2>
+            
+            <p>
+                New Amsterdam was a bustling town at the tip of Manhattan Island where people from many different countries lived and worked together. An average day in New Amsterdam was filled with the sounds of different languages, the smell of cooking food, and the busy activity of trade and commerce. By 1664, about 1,500 people lived there.
+            </p>
+
+            
+            
+            <p>
+                The town was much more diverse than other European colonies. Dutch, English, French, German, Jewish, and African people all lived in the same small area. You could hear at least 18 different languages spoken on the streets of New Amsterdam. This diversity made it a unique and interesting place to live.
+            </p>
+
+            <h2>A Typical Day for a Family</h2>
+            
+            <p>
+                Families woke up early when the sun rose. Children helped with chores like feeding chickens, carrying water from wells, and sweeping floors. Women cooked meals, made clothes, and took care of the house. Men worked as blacksmiths, carpenters, bakers, or traders. Everyone worked hard because there were no machines to make life easier.
+            </p>
+
+            
+
+            <p>
+                Houses were small and made of wood, brick, or stone. Most families lived in just one or two rooms. They cooked over open fires and used candles for light after dark. In winter, families gathered around the fireplace for warmth, and in summer, they opened windows and doors to catch cool breezes from the harbor.
+            </p>
+
+            <h2>Work and Trade</h2>
+            
+            <p>
+                The harbor was always busy with ships bringing goods from Europe and taking furs back across the ocean. Market days were exciting times when farmers brought vegetables, bakers sold fresh bread, and merchants displayed goods from around the world. The smell of fresh bread mixed with the salty air from the harbor.
+            </p>
+
+            
+
+            <p>
+                Children often worked as apprentices, learning trades from skilled craftsmen. A boy might learn to be a carpenter by working with a master carpenter for several years. Girls learned household skills like cooking, sewing, and managing a home by helping their mothers and other women in the community.
+            </p>
+
+            <h2>Fun and Community Life</h2>
+            
+            <p>
+                Despite the hard work, people found time for fun. They celebrated holidays like New Year's Day with special foods and visiting friends. Dutch families enjoyed ice skating in winter when the ponds froze. Children played simple games with hoops, balls, and wooden toys.
+            </p>
+
+            
+
+            <p>
+                People attended church services on Sundays and gathered for community events. The diverse community meant people shared different traditions, foods, and customs. You might taste Dutch pancakes, German sausages, or Jewish challah bread all in the same neighborhood.
+            </p>
+
+            <h2>Challenges of Colonial Life</h2>
+
+            <p>
+                Life in New Amsterdam wasn't always easy. There were no hospitals, so people relied on home remedies when they got sick. Fires were a constant danger with wooden buildings and open flames. The streets were muddy and filled with garbage, and there was no running water or indoor bathrooms.
+            </p>
+
+            
+
+            <p>
+                Despite these challenges, New Amsterdam offered opportunities that people couldn't find in Europe. The diverse community, busy trade, and chance for a better life made it an exciting place to live. This early New York City would grow to become one of the most important cities in the world.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Differences Between Dutch and British Rule</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Differences Between Dutch and British Rule
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                How Life Changed When the British Took Control of New York
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Religious tolerance</strong> - accepting people who practice different religions</li>
+                <li><strong>Representative government</strong> - a system where people elect leaders</li>
+                <li><strong>Assembly</strong> - a group of elected representatives who make laws</li>
+                <li><strong>Autocratic</strong> - ruled by one person with complete power</li>
+            </ul>
+        
+            <!-- Main Focus Section -->
+            <h2>Dutch Rule: A Business Colony</h2>
+            
+            <p>
+                Under Dutch rule, New Amsterdam was run like a business by the Dutch West India Company. The Director-General, like Peter Stuyvesant, had almost complete power and made all important decisions without asking colonists. However, the Dutch were remarkably tolerant, welcoming people from many countries and religions. By 1664, people spoke over 15 different languages in the colony.
+            </p>
+            
+            <p>
+                The Dutch economy focused on fur trading with Native Americans rather than farming. They created the patroon system, where wealthy investors received large land grants if they brought settlers. This created huge estates along the Hudson River, but most colonists worked for wealthy landowners rather than owning their own farms.
+            </p>
+
+            <h2>British Rule: More Political Freedom</h2>
+            
+            <p>
+                When the British took control in 1664, they gradually introduced a different government system. While British governors still had significant power, colonists eventually gained more say in how they were governed. In 1683, the British established the New York General Assembly, where elected representatives could make some laws and decisions.
+            </p>
+
+            <p>
+                The British encouraged more farming and individual land ownership than the Dutch had. They broke up some large patroon estates and sold land to individual families, creating more opportunities for colonists to own farms and businesses.
+            </p>
+
+            <h2>Changes in Daily Life</h2>
+
+            <p>
+                Under British rule, English gradually became the main language for government and business, though Dutch continued in many homes for generations. British laws slowly replaced Dutch laws, but many Dutch customs continued. The British kept the Dutch tradition of religious tolerance, which remained one of New York's most important characteristics.
+            </p>
+
+            <p>
+                The biggest difference was in government: the Dutch system was autocratic with one powerful leader, while the British system gradually gave colonists more voice through elected representatives. This change toward representative government helped prepare New Yorkers for the American Revolution. Both Dutch and British rule maintained New York's reputation as a diverse place where different cultures and religions could flourish together.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
