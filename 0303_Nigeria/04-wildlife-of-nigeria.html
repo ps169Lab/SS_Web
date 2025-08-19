@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildlife of Nigeria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Wildlife of Nigeria
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Discovering the Amazing Animals and Plants That Call Nigeria Home
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Ecosystem</strong> - a community of plants and animals living together</li>
+                <li><strong>Adaptation</strong> - special features that help animals survive</li>
+                <li><strong>Habitat</strong> - the natural home where an animal lives</li>
+                <li><strong>Species</strong> - a group of similar animals or plants</li>
+                <li><strong>Conservation</strong> - protecting animals and their homes</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Nigeria's Diverse Animal Kingdom
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Nigeria is home to an incredible variety of wildlife that has adapted to live in the country's different climates and ecosystems. From the thick rainforests in the south to the dry savannas in the north, each region supports different types of animals that have special features to help them survive in their unique environments.
+            </p>
+            
+            <p>
+                The animals and plants in Nigeria have traits that match their natural environment and help them survive the country's unique climate and ecosystem. In the rainforests, animals have developed ways to live in the trees and deal with lots of rain. In the drier northern areas, animals have learned to find water and stay cool during hot weather.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Forest Animals
+            </h2>
+            
+            <p>
+                Nigeria's rainforests are home to many fascinating animals. Chimpanzees swing through the trees and use tools to find food, showing how smart they are. Forest elephants, which are smaller than savanna elephants, help create paths through the thick forest and spread seeds when they eat fruit.
+            </p>
+
+            <p>
+                Colorful birds like parrots and hornbills live in the forest canopy, eating fruits and nuts. Leopards prowl through the forest at night, hunting for smaller animals. Many different types of monkeys, including the red-capped mangabey and the drill, make their homes in Nigeria's forests.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Savanna Wildlife
+            </h3>
+            
+            <p>
+                In Nigeria's grasslands and savannas, different animals have adapted to life in more open spaces. Antelopes like the kob and the hartebeest graze on grass and can run very fast to escape predators. Warthogs use their strong snouts to dig for roots and insects in the ground.
+            </p>
+            
+            <p>
+                Large birds like ostriches and secretary birds live in the savanna, where they can see predators coming from far away. Hyenas and wild dogs hunt in packs, working together to catch their prey. During the wet season, many animals have babies because there is more food and water available.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                River and Wetland Animals
+            </h2>
+            
+            <p>
+                Nigeria's rivers and wetlands support many animals that need water to survive. Hippos spend most of their day in the water to keep cool and come out at night to eat grass. Crocodiles lie still in the water, waiting to catch fish, birds, or animals that come to drink.
+            </p>
+            
+            <p>
+                Many different types of fish live in Nigeria's rivers, including catfish and tilapia that people catch for food. Water birds like herons, egrets, and kingfishers wade in shallow water to catch fish and frogs. Manatees, which are large, gentle water mammals, swim in some of Nigeria's coastal waters.
+            </p>
+
+            <h2>
+                Plant Life and Ecosystems
+            </h2>
+
+            <p>
+                Nigeria's plants are just as diverse as its animals. In the rainforest, tall trees create a canopy that blocks most sunlight from reaching the ground. Smaller plants have adapted to grow in the shade, while vines climb up trees to reach the light.
+            </p>
+
+            <p>
+                In the savanna, grasses grow quickly during the wet season and can survive the dry season by storing water in their roots. Baobab trees have thick trunks that store water, helping them survive long dry periods. Acacia trees have thorns to protect themselves from animals that want to eat their leaves.
+            </p>
+
+            <h2>
+                Protecting Nigeria's Wildlife
+            </h2>
+
+            <p>
+                Many of Nigeria's animals face challenges as forests are cut down and cities grow larger. The government and conservation groups work to protect important habitats by creating national parks and reserves where animals can live safely.
+            </p>
+
+            <p>
+                People in Nigeria are learning about the importance of protecting wildlife and their habitats. When animals and plants are protected, they can continue to play their important roles in Nigeria's ecosystems, helping to keep the natural environment healthy and balanced for future generations.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

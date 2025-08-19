@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardinal Directions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Cardinal Directions
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Learning North, South, East, and West to Navigate Our World
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Cardinal Directions</strong> - the four main directions: north, south, east, west</li>
+                <li><strong>Compass</strong> - a tool that shows which way is north</li>
+                <li><strong>Navigate</strong> - to find your way from one place to another</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                What Are Cardinal Directions?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Cardinal directions are the four main directions that help us find our way around: north, south, east, and west. These directions are like invisible roads in the sky that people all over the world use to describe where things are located.
+            </p>
+            
+            <p>
+                Think of cardinal directions as your personal navigation system. Just like how you might tell a friend to "turn left at the red house," cardinal directions help us give directions that work anywhere in the world. No matter where you are, north is always north!
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                The Four Cardinal Directions
+            </h2>
+            
+            <p>
+                North is the direction toward the North Pole, the very top of our planet Earth. South points toward the South Pole at the bottom of Earth. East is the direction where the sun rises each morning. West is where the sun sets each evening.
+            </p>
+
+            <p>
+                A helpful way to remember the cardinal directions is to think of them as forming a cross. If you point one arm north and the other south, then east will be to your right and west will be to your left. This creates a perfect cross shape with you in the middle.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Using Cardinal Directions in Daily Life
+            </h3>
+            
+            <p>
+                We use cardinal directions every day, even when we don't realize it. When someone says "the store is on the north side of town," they're using cardinal directions. Weather reports tell us that storms are moving from the west or that cold air is coming from the north.
+            </p>
+            
+            <p>
+                Cardinal directions help us understand where we live compared to other places. If you live in New York, you know that Canada is to the north and Florida is to the south. The Atlantic Ocean is to the east, and California is far to the west.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                Tools That Help Us Find Directions
+            </h2>
+            
+            <p>
+                A compass is a special tool that always points north. It has a magnetic needle that spins around until it finds north, no matter where you are. Once you know which way is north, you can figure out all the other directions too.
+            </p>
+            
+            <p>
+                Many maps have a compass rose, which is a symbol that shows all four cardinal directions. The compass rose helps us understand which way is which when we're looking at a map. Most maps are made so that north is at the top of the page.
+            </p>
+
+            <h2>
+                Why Cardinal Directions Matter
+            </h2>
+
+            <p>
+                Cardinal directions are important because they give us a common language for describing locations. When a pilot flies an airplane, they use cardinal directions to know which way to go. When ships sail across the ocean, they use these directions to reach their destination safely.
+            </p>
+
+            <p>
+                Learning cardinal directions helps us become better at understanding our world. We can describe where places are located, give better directions to others, and understand weather patterns and news reports. Cardinal directions are like a secret code that helps us make sense of the world around us.
+            </p>
+
+            <h2>
+                Fun Ways to Remember Directions
+            </h2>
+
+            <p>
+                Many people use the phrase "Never Eat Soggy Waffles" to remember the order of cardinal directions going clockwise: North, East, South, West. You can also remember that the sun rises in the east and sets in the west, which helps you figure out the other directions.
+            </p>
+
+            <p>
+                Once you learn cardinal directions, you'll start noticing them everywhere. Street signs, maps, and even video games use these directions. Understanding north, south, east, and west opens up a whole new way of seeing and describing our amazing world.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

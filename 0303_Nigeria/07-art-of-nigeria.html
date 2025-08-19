@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art of Nigeria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Art of Nigeria
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Exploring Nigeria's Rich Artistic Traditions and Creative Expression
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Bronze</strong> - a metal made from copper and tin used for sculptures</li>
+                <li><strong>Terra-cotta</strong> - clay that has been baked hard</li>
+                <li><strong>Sculpture</strong> - art made by carving or shaping materials</li>
+                <li><strong>Textile</strong> - cloth or fabric made by weaving</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Traditional Nigerian Art Forms
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Nigerian artists have been creating beautiful art for thousands of years using materials from their natural environment. They make sculptures from bronze, wood, and clay, create colorful textiles from cotton and other fibers, and design intricate jewelry and decorative objects that tell stories about Nigerian culture and beliefs.
+            </p>
+            
+            <p>
+                Nigerian art is deeply connected to the natural resources available in different parts of the country. Artists use materials like wood from forests, clay from riverbanks, metals from the earth, and plant fibers to create their masterpieces. Each region of Nigeria has developed its own unique artistic style based on local materials and cultural traditions.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Bronze Castings and Metal Work
+            </h2>
+            
+            <p>
+                Nigerian artists are famous around the world for their bronze sculptures, especially those made in the ancient city of Benin. These bronze plaques and sculptures show kings, warriors, animals, and important ceremonies. The artists heat bronze until it melts, then pour it into molds to create detailed sculptures.
+            </p>
+
+            <p>
+                The bronze artists of Nigeria developed special techniques over many centuries. They create sculptures that are so detailed you can see the patterns on clothing, the expressions on faces, and even the texture of animal fur. These bronze artworks are now displayed in museums around the world.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Wood Carvings and Sculptures
+            </h3>
+            
+            <p>
+                Nigerian wood carvers create masks, statues, and decorative objects from the many types of trees that grow in Nigeria's forests. Different ethnic groups have their own styles of wood carving. Some make masks for ceremonies and dances, while others carve figures that represent ancestors or spirits.
+            </p>
+            
+            <p>
+                The Yoruba people are especially known for their wooden sculptures of twins, called Ibeji figures. The Igbo people create colorful wooden masks with bold patterns. These wood carvings are not just decorations - they play important roles in religious ceremonies and cultural celebrations.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                Textiles and Cloth Making
+            </h2>
+            
+            <p>
+                Nigerian textile artists create beautiful fabrics using traditional weaving and dyeing techniques. Adire cloth is made by the Yoruba people using indigo dye to create blue and white patterns. Kente-style cloth is woven in colorful strips that are sewn together to make clothing and ceremonial garments.
+            </p>
+            
+            <p>
+                The process of making traditional Nigerian textiles takes great skill and patience. Artists grow cotton, spin it into thread, weave it into cloth, and then dye it using plants and minerals. The patterns and colors often have special meanings and tell stories about the weaver's family or community.
+            </p>
+
+            <h2>
+                Terra-cotta and Clay Art
+            </h2>
+
+            <p>
+                Nigerian artists have been working with clay for over 2,000 years. The Nok culture created some of the oldest known sculptures in Africa using terra-cotta clay. These sculptures show people and animals with detailed faces and expressions that help us learn about ancient Nigerian life.
+            </p>
+
+            <p>
+                Today, Nigerian potters still use clay to make both practical items like water pots and cooking vessels, and artistic sculptures. The clay is shaped by hand, decorated with patterns, and then fired in kilns to make it hard and durable. Many of these clay artworks are used in daily life as well as for special ceremonies.
+            </p>
+
+            <h2>
+                Art in Modern Nigeria</h2>
+
+            <p>
+                Modern Nigerian artists continue to use traditional techniques while also experimenting with new materials and ideas. They create paintings, sculptures, and textiles that combine ancient Nigerian artistic traditions with contemporary themes and styles, keeping Nigerian art alive and growing for future generations.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music of Nigeria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Music of Nigeria
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Discovering the Rich Musical Traditions and Instruments of Nigeria
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Rhythm</strong> - the beat or pattern in music</li>
+                <li><strong>Percussion</strong> - instruments you hit to make sound</li>
+                <li><strong>Traditional</strong> - music passed down through families</li>
+                <li><strong>Ceremony</strong> - a special event or celebration</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Traditional Nigerian Music
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Music is a very important part of Nigerian culture and daily life. Nigerian people use music to celebrate special occasions, tell stories, communicate with each other, and express their feelings. Different regions of Nigeria have their own unique musical styles and instruments that reflect their natural environment and cultural traditions.
+            </p>
+            
+            <p>
+                Traditional Nigerian music often features strong rhythms and percussion instruments made from natural materials found in the environment. Musicians use drums made from animal skins, rattles made from gourds, and flutes carved from wood or bamboo.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Musical Instruments from Nature
+            </h2>
+            
+            <p>
+                Nigerian musicians create their instruments using materials from their natural environment. Drums are made by stretching animal skins over wooden frames. The talking drum, called "dundun," can be squeezed to change its pitch and sound like human speech. This allows drummers to send messages across long distances.
+            </p>
+
+            <p>
+                Other instruments include the "shekere," which is a gourd covered with beads that makes a rattling sound when shaken. Wooden flutes and whistles are carved from local trees. Metal bells and gongs are made by skilled craftspeople and add bright, ringing sounds to the music.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Music for Different Occasions
+            </h3>
+            
+            <p>
+                Nigerian music plays different roles in people's lives. Work songs help people keep rhythm while farming or doing other jobs together. Lullabies help mothers put their babies to sleep. Dance music brings communities together for celebrations and festivals.
+            </p>
+            
+            <p>
+                Religious and ceremonial music is used during important life events like weddings, naming ceremonies for new babies, and harvest festivals. Each type of music has its own special rhythms, instruments, and songs that everyone in the community knows.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                How Music Brings People Together
+            </h2>
+            
+            <p>
+                In Nigerian communities, music is often a group activity where everyone participates. People clap their hands, stomp their feet, sing along, and dance together. Children learn traditional songs and rhythms from their parents and grandparents, keeping the musical traditions alive.
+            </p>
+            
+            <p>
+                Music also helps preserve Nigerian history and culture. Many traditional songs tell stories about important events, teach moral lessons, or share knowledge about the natural world. Through music, Nigerian people pass down their wisdom and values to younger generations.
+            </p>
+
+            <h2>
+                Modern Nigerian Music
+            </h2>
+
+            <p>
+                Today, Nigerian musicians combine traditional music with modern styles to create new forms of music that are popular around the world. They still use traditional rhythms and instruments, but they also add modern instruments like guitars and keyboards to create exciting new sounds.
+            </p>
+
+            <p>
+                Nigerian music shows how people can honor their cultural traditions while also creating something new and modern. The strong rhythms and beautiful melodies of Nigerian music continue to bring joy and unity to people both in Nigeria and around the world.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

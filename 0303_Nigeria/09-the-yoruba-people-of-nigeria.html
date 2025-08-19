@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Yoruba People of Nigeria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                The Yoruba People of Nigeria
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Learning About One of Nigeria's Largest Cultural Groups
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Ethnic Group</strong> - people who share the same culture and traditions</li>
+                <li><strong>Ancestors</strong> - family members who lived long ago</li>
+                <li><strong>Tradition</strong> - customs passed down through families</li>
+                <li><strong>Community</strong> - a group of people living together</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Who Are the Yoruba People?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                The Yoruba people are one of the largest ethnic groups in Nigeria, with over 40 million people who share similar cultural practices and traditions. Most Yoruba people live in southwestern Nigeria, where the environment and natural resources have helped shape their way of life for hundreds of years.
+            </p>
+            
+            <p>
+                The Yoruba people have developed their culture based on the natural resources available in their environment. They live in an area with forests, rivers, and fertile soil that is perfect for farming and creating beautiful art and crafts.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Yoruba Culture and Traditions
+            </h2>
+            
+            <p>
+                Yoruba culture is rich with traditions that connect people to their ancestors and their natural environment. The Yoruba people are famous for their beautiful art, including wood carvings, bronze sculptures, and colorful textiles. They create these artworks using materials from their forest environment.
+            </p>
+
+            <p>
+                Music and dance are very important in Yoruba culture. They use drums, bells, and other instruments made from natural materials to create rhythmic music for ceremonies and celebrations. The talking drum is especially important because it can sound like human speech and is used to communicate messages.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Yoruba Cities and Towns
+            </h3>
+            
+            <p>
+                The Yoruba people have built many important cities in southwestern Nigeria. Lagos, which is Nigeria's largest city, has a large Yoruba population. Other important Yoruba cities include Ibadan, Abeokuta, and Ile-Ife, which is considered the spiritual home of the Yoruba people.
+            </p>
+            
+            <p>
+                These cities developed in areas with good natural resources like rivers for water and transportation, forests for building materials, and fertile land for farming. The location of these cities shows how the Yoruba people used their environment wisely.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                Yoruba Language and Stories
+            </h2>
+            
+            <p>
+                The Yoruba people speak the Yoruba language, which is one of the three main languages in Nigeria. They have a rich tradition of storytelling, with many folktales that teach important lessons about life, nature, and how to treat other people with respect.
+            </p>
+            
+            <p>
+                Many Yoruba stories feature animals and natural elements like rivers, forests, and mountains. These stories help children learn about their environment and understand the importance of taking care of the natural world around them.
+            </p>
+
+            <h2>
+                Yoruba Contributions to Nigeria
+            </h2>
+
+            <p>
+                The Yoruba people have made many important contributions to Nigerian culture. Their art, music, and literature are enjoyed throughout Nigeria and around the world. Many famous Nigerian artists, musicians, and writers come from Yoruba communities.
+            </p>
+
+            <p>
+                The Yoruba people also play important roles in Nigerian business, education, and government. Their cultural practices and traditions help make Nigeria a diverse and interesting country where many different groups of people live together and share their unique ways of life.
+            </p>
+
+            <h2>
+                Living in Harmony with Nature
+            </h2>
+
+            <p>
+                Traditional Yoruba culture teaches people to respect and live in harmony with their natural environment. Many Yoruba traditions and beliefs are connected to natural elements like rivers, trees, and animals, showing how important the environment is to their way of life.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

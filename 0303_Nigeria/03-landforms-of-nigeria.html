@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landforms of Nigeria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Landforms of Nigeria
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Exploring Nigeria's Rivers, Plateaus, and Geographic Features
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Plateau</strong> - a flat area of land that is higher than the land around it</li>
+                <li><strong>Delta</strong> - land formed where a river meets the ocean</li>
+                <li><strong>Grassland</strong> - large areas covered mostly with grass</li>
+                <li><strong>Confluence</strong> - the place where two rivers meet</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Nigeria's Major Rivers
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Nigeria is home to two of Africa's most important rivers: the Niger River and the Benue River. The Niger River is the third-longest river in Africa and flows through the western part of Nigeria. The Benue River flows from the east and meets the Niger River in the middle of the country at a place called the confluence.
+            </p>
+            
+            <p>
+                These rivers are very important to Nigeria because they provide water for drinking, farming, and transportation. People use boats to travel along the rivers, and the rivers help bring rich soil to the land, making it good for growing crops like rice and yams.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                The Niger Delta
+            </h2>
+            
+            <p>
+                Where the Niger River meets the Atlantic Ocean in southern Nigeria, it forms the Niger Delta. A delta is a special landform that looks like a triangle, created when a river drops soil and sand as it flows into the ocean. The Niger Delta is one of the largest deltas in the world.
+            </p>
+
+            <p>
+                The Niger Delta has many small rivers and streams that branch out like fingers. This area has rich soil and is covered with mangrove forests and wetlands. The delta is also important because it contains oil, which is one of Nigeria's most valuable natural resources.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Plateaus and Highlands
+            </h3>
+            
+            <p>
+                Nigeria has several plateaus, which are flat areas of land that sit higher than the surrounding areas. The Jos Plateau in central Nigeria is one of the most famous. This plateau is cooler than the rest of Nigeria because it is higher up, and it has rich soil that is good for farming.
+            </p>
+            
+            <p>
+                In the eastern part of Nigeria, there are highlands and hills that are part of the Cameroon Highlands. These areas have some of Nigeria's highest elevations and receive more rainfall than the flatter areas of the country.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                Rural and Urban Areas
+            </h2>
+            
+            <p>
+                Nigeria's landforms have helped shape where people live and work. In rural areas, people often live near rivers where they can farm and fish. The fertile land around rivers and in deltas is perfect for growing crops that feed millions of people.
+            </p>
+            
+            <p>
+                Urban areas and big cities in Nigeria are often built near important landforms. Lagos, Nigeria's largest city, is built near the coast and lagoons. Abuja, the capital city, is located on a plateau in the center of the country, making it easy to reach from all parts of Nigeria.
+            </p>
+
+            <h2>
+                How Landforms Shape Nigeria's History
+            </h2>
+
+            <p>
+                Nigeria's rivers and landforms have played an important role in the country's history and cultural development. The rivers served as highways for trade and communication between different groups of people. The fertile land created by rivers and deltas allowed large populations to develop and thrive.
+            </p>
+
+            <p>
+                Different landforms also helped create Nigeria's diverse cultures. People living in the forested delta regions developed different ways of life than those living on the dry northern plateaus. These geographic differences helped make Nigeria the culturally rich and diverse country it is today.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

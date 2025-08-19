@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Life in Nigeria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Daily Life in Nigeria
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Discovering How People Live, Work, and Play in Nigeria
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Culture</strong> - the way of life of a group of people</li>
+                <li><strong>Community</strong> - a group of people living in the same area</li>
+                <li><strong>Tradition</strong> - customs passed down through families</li>
+                <li><strong>Language</strong> - the words people use to communicate</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Family Life in Nigeria
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Family is very important in Nigerian culture. Many Nigerian families are large, with grandparents, parents, children, aunts, uncles, and cousins all living close to each other or in the same compound. Children learn from their elders and help with family responsibilities from a young age.
+            </p>
+            
+            <p>
+                Nigerian families often eat meals together, sharing food from common dishes. Breakfast might include bread, eggs, or porridge. Lunch and dinner often feature rice, yams, or cassava served with stews made from vegetables, meat, or fish. Families gather to share stories and discuss their day during meal times.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Work and Jobs
+            </h2>
+            
+            <p>
+                People in Nigeria have many different types of jobs. In rural areas, many people are farmers who grow crops like yams, cassava, rice, and cocoa. Some people raise cattle, goats, or chickens. Fishermen work along the rivers and coast, catching fish to sell at local markets.
+            </p>
+
+            <p>
+                In cities, people work in offices, schools, hospitals, and factories. Some people are teachers, doctors, engineers, or business owners. Many Nigerians work as traders, buying and selling goods in busy markets. Others are craftspeople who make beautiful pottery, textiles, or wood carvings.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                School and Education
+            </h3>
+            
+            <p>
+                Nigerian children go to school to learn reading, writing, mathematics, and other subjects. Many schools teach in English, but children also learn in their local languages at home. Students wear uniforms and often walk to school with their friends and siblings.
+            </p>
+            
+            <p>
+                After school, children help their families with chores like fetching water, helping in the garden, or caring for younger siblings. They also have time to play games with friends, such as football (which Americans call soccer), hide and seek, or traditional games passed down through generations.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                Food and Cooking
+            </h2>
+            
+            <p>
+                Nigerian cuisine varies by region, but some foods are popular throughout the country. Jollof rice is a favorite dish made with rice, tomatoes, and spices. Pounded yam is served with various soups and stews. Suya is grilled meat seasoned with spicy peanut powder that people enjoy as a snack.
+            </p>
+            
+            <p>
+                Many families cook over wood fires or charcoal stoves. Women and older children often do the cooking, preparing meals that can feed the whole extended family. Markets are colorful, busy places where people buy fresh vegetables, fruits, meat, and fish for their daily meals.
+            </p>
+
+            <h2>
+                Languages and Communication
+            </h2>
+
+            <p>
+                Nigeria has over 500 different languages! The three main languages are Hausa, Yoruba, and Igbo, but English is the official language used in schools and government. Most Nigerians speak at least two or three languages - their local language at home, English at school, and maybe another local language to communicate with neighbors.
+            </p>
+
+            <p>
+                People in Nigeria express themselves through storytelling, music, and dance. Elders tell traditional stories that teach important lessons. Families celebrate special occasions with singing, dancing, and drumming that can last late into the night, bringing the whole community together in joy and celebration.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

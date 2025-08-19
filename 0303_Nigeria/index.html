@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring Nigeria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Exploring Nigeria
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Discovering the Geography, Culture, and People of West Africa's Most Populous Country
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                Welcome to Nigeria!
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Nigeria is an amazing country located in West Africa with over 200 million people, making it the most populated country on the entire African continent. In this section, you'll learn about Nigeria's diverse geography, rich culture, incredible wildlife, and the daily lives of Nigerian people.
+            </p>
+            
+            <p>
+                As you explore these lessons, you'll discover how Nigeria's location, climate, and natural resources have shaped the way people live, work, and create art. You'll learn about the country's unique animals, traditional architecture, and the many different cultures that make Nigeria such a fascinating place to study.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                What You'll Learn About Nigeria
+            </h2>
+            
+            <p>
+                This Nigeria unit covers seven important topics that will help you understand this remarkable West African nation:
+            </p>
+
+            <ul>
+                <li><strong>Geography of Nigeria</strong> - Discover where Nigeria is located and its important geographic features</li>
+                <li><strong>Climate of Nigeria</strong> - Learn about Nigeria's tropical climate and environmental regions</li>
+                <li><strong>Landforms of Nigeria</strong> - Explore Nigeria's rivers, plateaus, and the famous Niger Delta</li>
+                <li><strong>Wildlife of Nigeria</strong> - Meet the amazing animals and plants that call Nigeria home</li>
+                <li><strong>Houses and Mbari Homes</strong> - See how Nigerians build homes using local materials and traditions</li>
+                <li><strong>Daily Life in Nigeria</strong> - Experience how Nigerian families live, work, and celebrate</li>
+                <li><strong>Art of Nigeria</strong> - Discover Nigeria's beautiful bronze sculptures, textiles, and wood carvings</li>
+            </ul>
+            
+            <!-- Additional content paragraphs -->
+            <h2>
+                Why Study Nigeria?
+            </h2>
+            
+            <p>
+                Learning about Nigeria helps us understand how geography affects the way people live. Nigeria's location near the equator gives it a warm climate all year long. Its rivers provide water for farming and transportation. Its forests provide materials for building and art-making.
+            </p>
+            
+            <p>
+                Nigeria is also important because it shows us how people from many different ethnic groups can live together in one country. Nigeria has over 500 different languages and many different cultural traditions, all sharing the same land and working together to build their nation.
+            </p>
+
+            <h2>
+                Connecting Geography and Culture
+            </h2>
+
+            <p>
+                As you read through these lessons, you'll see how Nigeria's natural resources and climate have influenced its people's culture. The clay from riverbanks becomes beautiful pottery. The forests provide wood for sculptures and building materials. The warm climate affects the types of houses people build and the clothes they wear.
+            </p>
+
+            <p>
+                Each lesson will help you understand how the people of Nigeria have used their natural environment to create a rich and diverse culture. From the bronze artists of Benin to the textile weavers of the north, Nigerians have always found creative ways to use the resources around them.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

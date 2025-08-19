@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Geography</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Introduction to Geography
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Exploring Our World Through Maps, Directions, and Places
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                Welcome to Geography!
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Geography is the exciting study of places and the people who live in them. In this section, you'll learn about the tools and ideas that help us understand our amazing world. From your own neighborhood to faraway continents, geography helps us explore and make sense of all the places on Earth.
+            </p>
+            
+            <p>
+                As you read through these lessons, you'll discover how geographers use special tools like maps and compasses to study our planet. You'll learn about the basic building blocks of geography that help us describe any place in the world.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                What You'll Learn
+            </h2>
+            
+            <p>
+                In this geography unit, you'll explore four important topics that will give you the foundation for understanding our world:
+            </p>
+
+            <ul>
+                <li><strong>What is Geography?</strong> - Discover what geography means and how it helps us learn about places and people</li>
+                <li><strong>What is a Map Key?</strong> - Learn how to read the secret code that makes maps useful</li>
+                <li><strong>Cardinal Directions</strong> - Master the four main directions that help us navigate anywhere</li>
+                <li><strong>The 7 Continents</strong> - Explore the seven large land areas that make up our planet</li>
+            </ul>
+            
+            <!-- Additional content paragraphs -->
+            <h2>
+                Why Geography Matters
+            </h2>
+            
+            <p>
+                Geography is all around us in our daily lives. When you give directions to your house, you're using geography. When you watch the weather forecast, you're learning about geography. When you hear about events happening in other countries, geography helps you understand where those places are.
+            </p>
+            
+            <p>
+                By learning geography, you'll become better at understanding news, planning trips, reading maps, and appreciating the incredible diversity of our world. Geography opens up a whole new way of seeing and exploring the amazing planet we call home.
+            </p>
+
+            <h2>
+                Get Ready to Explore!
+            </h2>
+
+            <p>
+                Each lesson in this unit will teach you important geographic tools and concepts. You'll learn vocabulary words that geographers use, discover how different places are connected, and understand why location matters in our world.
+            </p>
+
+            <p>
+                Geography is like being a detective who asks questions about places: Where is it? What is it like there? How do people live there? Why is it located there? As you work through these lessons, you'll develop the skills to answer these questions about any place on Earth.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

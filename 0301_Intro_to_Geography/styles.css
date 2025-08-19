@@ -149,26 +149,6 @@ main {
   background-color: #b5ead7; /* Light seafoam */
 }
 
-.nav-links li:nth-child(11) {
-  background-color: #ffd1dc; /* Light pink */
-}
-
-.nav-links li:nth-child(12) {
-  background-color: #e6e6fa; /* Light lavender */
-}
-
-.nav-links li:nth-child(13) {
-  background-color: #f0e68c; /* Light khaki */
-}
-
-.nav-links li:nth-child(14) {
-  background-color: #dda0dd; /* Light plum */
-}
-
-.nav-links li:nth-child(15) {
-  background-color: #98fb98; /* Light pale green */
-}
-
 .nav-links a {
   color: #333;
   text-decoration: none;

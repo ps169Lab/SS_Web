@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History of Nigeria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                History of Nigeria
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Learning About Nigeria's Past and Present
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Ancient</strong> - very old, from long ago</li>
+                <li><strong>Independence</strong> - freedom to govern yourself</li>
+                <li><strong>Colony</strong> - a place controlled by another country</li>
+                <li><strong>Culture</strong> - the way people live and their traditions</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Ancient Nigerian Civilizations
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Nigeria has a very long and rich history that goes back thousands of years. Ancient Nigerian people created some of Africa's earliest civilizations, building great cities and creating beautiful art using the natural resources available in their environment, such as clay, bronze, and iron.
+            </p>
+            
+            <p>
+                The Nok culture, which existed over 2,000 years ago, was one of the first groups in Africa to learn how to work with iron. They also created amazing clay sculptures that show us what life was like in ancient Nigeria. These early people used their environment wisely to build successful communities.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Great Nigerian Kingdoms
+            </h2>
+            
+            <p>
+                Over the centuries, many powerful kingdoms developed in different parts of Nigeria. The Kingdom of Benin in the south became famous for its bronze artwork and strong government. The Hausa city-states in the north became important centers for trade across the Sahara Desert.
+            </p>
+
+            <p>
+                These kingdoms succeeded because their leaders understood how to use their natural environment. Kingdoms near rivers controlled water transportation and trade. Those in forested areas became skilled at working with wood and other forest products. Northern kingdoms used their location to become middlemen in long-distance trade.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                European Contact and Colonial Period
+            </h3>
+            
+            <p>
+                In the 1400s and 1500s, European traders began arriving on Nigeria's coast. At first, they traded goods like textiles and metal tools for local products like palm oil, ivory, and crafts. Unfortunately, this period also included the terrible slave trade that harmed many African communities.
+            </p>
+            
+            <p>
+                In the late 1800s, Britain took control of the area that is now Nigeria and made it a colony. The British changed many things about how people lived, but Nigerian cultures and traditions remained strong throughout this difficult period.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                Independence and Modern Nigeria
+            </h2>
+            
+            <p>
+                On October 1, 1960, Nigeria gained its independence from Britain and became a free country. This was a very important day for all Nigerian people, who could finally govern themselves and make their own decisions about their future.
+            </p>
+            
+            <p>
+                Since independence, Nigeria has worked to build a modern nation while preserving its many different cultures and traditions. The country has faced challenges, but it has also achieved many successes in education, technology, and bringing its diverse people together.
+            </p>
+
+            <h2>
+                Nigeria's Rich Cultural Heritage
+            </h2>
+
+            <p>
+                Throughout its long history, Nigeria has been home to many different ethnic groups, each with their own languages, traditions, and ways of life. This diversity has made Nigeria a very rich and interesting country with over 500 different languages and countless cultural traditions.
+            </p>
+
+            <p>
+                Nigerian people have always been skilled at adapting to their environment and creating successful communities. From ancient iron workers to modern engineers, Nigerians have used their creativity and knowledge to build a better future while honoring their past.
+            </p>
+
+            <h2>
+                Learning from History</h2>
+
+            <p>
+                Nigeria's history teaches us important lessons about how people can work together despite their differences, how communities can adapt to challenges, and how cultural traditions can survive and thrive even during difficult times.
+            </p>
+
+            <p>
+                Today, Nigeria is Africa's most populous country and one of its most important nations. By learning about Nigeria's history, we can better understand how the past shapes the present and how people can build strong communities using the resources and opportunities available in their environment.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

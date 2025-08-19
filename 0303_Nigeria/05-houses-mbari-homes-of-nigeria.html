@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Houses and Mbari Homes of Nigeria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Houses and Mbari Homes of Nigeria
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Exploring Traditional and Modern Nigerian Architecture
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Mbari</strong> - traditional decorated houses built by the Igbo people</li>
+                <li><strong>Architecture</strong> - the design and style of buildings</li>
+                <li><strong>Traditional</strong> - ways of building passed down through families</li>
+                <li><strong>Materials</strong> - things used to build houses like wood and clay</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Different Types of Nigerian Homes
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                People in Nigeria live in many different kinds of homes that reflect the natural resources available in their environment. In different parts of the country, people use local materials like clay, wood, palm leaves, and stone to build houses that work well in Nigeria's climate.
+            </p>
+            
+            <p>
+                The way houses are built in Nigeria depends on the climate and natural resources of each area. In the hot, dry north, people build thick walls that keep houses cool. In the rainy south, people build houses with steep roofs so water runs off quickly, and they often raise houses on stilts to avoid flooding.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Traditional Building Materials
+            </h2>
+            
+            <p>
+                Nigerian builders have always used materials from their natural environment. In areas with lots of trees, people build wooden houses and use palm leaves for roofing. In areas with good clay soil, people make mud bricks that dry hard in the sun and create cool, comfortable homes.
+            </p>
+
+            <p>
+                Grass and reeds from wetland areas are woven together to make walls and roofs. Stone is used in mountainous areas where it is easy to find. These natural materials are not only free and available locally, but they also work well in Nigeria's hot climate.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                What are Mbari Homes?
+            </h3>
+            
+            <p>
+                Mbari homes are special traditional houses built by the Igbo people in southeastern Nigeria. These are not regular houses where people live every day. Instead, they are sacred buildings decorated with colorful sculptures and paintings that tell stories about Igbo culture and beliefs.
+            </p>
+            
+            <p>
+                Mbari houses are built as gifts to honor important spirits and gods. The walls are covered with clay sculptures of people, animals, and mythical creatures. These sculptures are painted in bright colors like red, blue, yellow, and white, making the Mbari houses look like outdoor art galleries.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                How Homes Reflect the Environment
+            </h2>
+            
+            <p>
+                Nigerian homes show how people adapt to their natural environment. In the desert-like northern areas, houses have small windows and thick walls to keep out heat and sand. Courtyards in the center of houses provide shade and cool air for families to gather.
+            </p>
+            
+            <p>
+                In the humid southern regions, houses are built to let air flow through easily. Large windows and open spaces help keep homes cool and dry. Many houses are built on stilts to protect them from flooding during the rainy season and to allow air to circulate underneath.
+            </p>
+
+            <h2>
+                Modern Nigerian Architecture
+            </h2>
+
+            <p>
+                Today, many Nigerians live in modern houses and apartment buildings in cities, but they still use some traditional ideas. Modern Nigerian architects often combine traditional building methods with new materials like concrete and metal roofing to create homes that are both modern and connected to Nigerian culture.
+            </p>
+
+            <p>
+                Even in modern Nigerian cities, you can see how traditional building ideas influence new construction. Buildings are designed to stay cool in hot weather, and many modern homes still include courtyards and large windows that help with air circulation, just like traditional Nigerian houses.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

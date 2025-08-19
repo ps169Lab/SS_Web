@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hausa People of Nigeria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                The Hausa People of Nigeria
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Exploring the Culture and Traditions of Northern Nigeria's Largest Group
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Nomadic</strong> - people who move from place to place</li>
+                <li><strong>Trade</strong> - buying and selling goods</li>
+                <li><strong>Merchant</strong> - a person who buys and sells things</li>
+                <li><strong>Caravan</strong> - a group traveling together across long distances</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Who Are the Hausa People?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                The Hausa people are one of Nigeria's largest ethnic groups, with most living in northern Nigeria where the environment is drier and more like a savanna. The Hausa people have adapted their way of life to match their natural environment, which has less rainfall and more open grasslands than southern Nigeria.
+            </p>
+            
+            <p>
+                For hundreds of years, the Hausa people have been skilled traders and merchants. Their location in northern Nigeria, close to the Sahara Desert, made them important middlemen in trade between North Africa and the rest of West Africa. They used the natural resources of their environment to build a successful trading culture.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Hausa Culture and Environment
+            </h2>
+            
+            <p>
+                The Hausa people live in an environment with less water and fewer trees than southern Nigeria, so they have developed cultural practices that work well in this drier climate. They are skilled at raising cattle, goats, and sheep that can survive in areas with less grass and water.
+            </p>
+
+            <p>
+                Hausa architecture reflects their environment too. They build houses with thick mud walls that stay cool during hot days and warm during cool nights. Many Hausa buildings have flat roofs and small windows to keep out the heat and dust from the dry northern winds.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Hausa Language and Trade
+            </h3>
+            
+            <p>
+                The Hausa language is spoken by more people in West Africa than any other local language. This happened because Hausa traders traveled to many different places, and their language became the common language for trade across the region.
+            </p>
+            
+            <p>
+                Hausa merchants created trade routes that connected different parts of Africa. They traded goods like leather, textiles, and agricultural products. Their success in trade came from understanding how to use the natural resources of their environment and how to travel safely across long distances.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                Traditional Hausa Occupations
+            </h2>
+            
+            <p>
+                Many Hausa people work as farmers, growing crops like millet, sorghum, and peanuts that can survive in their drier climate. Others are skilled craftspeople who make leather goods, textiles, and metalwork using materials available in their environment.
+            </p>
+            
+            <p>
+                Some Hausa people are still nomadic herders who move their cattle, goats, and sheep to find the best grazing areas. This way of life shows how people can adapt to an environment where water and grass are not always available in the same place.
+            </p>
+
+            <h2>
+                Hausa Cities and Communities
+            </h2>
+
+            <p>
+                Important Hausa cities like Kano, Kaduna, and Zaria developed as trading centers where merchants could rest, trade goods, and resupply for long journeys. These cities were built near water sources and along important trade routes.
+            </p>
+
+            <p>
+                The location of Hausa cities shows how geography affects where people choose to live. These cities grew in places where the natural environment provided what people needed: water, good soil for farming, and connections to trade routes that brought prosperity to the community.
+            </p>
+
+            <h2>
+                Hausa Contributions to Nigeria
+            </h2>
+
+            <p>
+                The Hausa people have contributed greatly to Nigerian culture through their language, which is spoken throughout northern Nigeria and beyond. Their trading skills and business knowledge have helped connect Nigeria to other parts of Africa and the world.
+            </p>
+
+            <p>
+                Today, Hausa culture continues to show how people can successfully adapt to their natural environment while maintaining their traditions and contributing to their country's diversity and strength.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

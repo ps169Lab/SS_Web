@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate of Nigeria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Climate of Nigeria
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Understanding Nigeria's Weather Patterns and Environmental Regions
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Climate</strong> - the usual weather in a place over many years</li>
+                <li><strong>Tropical</strong> - hot and humid weather near the equator</li>
+                <li><strong>Savanna</strong> - grassland with scattered trees</li>
+                <li><strong>Rainforest</strong> - thick forest with lots of rain</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Nigeria's Tropical Climate
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Nigeria has a tropical climate, which means it is warm and humid throughout the year. Because Nigeria is located close to the equator, it receives direct sunlight most of the time, making temperatures stay high. The average temperature in Nigeria ranges from 70 to 90 degrees Fahrenheit all year long.
+            </p>
+            
+            <p>
+                Unlike many countries that have four seasons, Nigeria has only two main seasons: the wet season and the dry season. The wet season brings heavy rains from April to October, while the dry season lasts from November to March with very little rainfall.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Different Climate Zones
+            </h2>
+            
+            <p>
+                Nigeria is a large country, so different parts have slightly different climates. The southern part of Nigeria, near the Atlantic Ocean, is very humid and receives the most rainfall. This area has thick rainforests because of all the moisture in the air.
+            </p>
+
+            <p>
+                As you travel north in Nigeria, the climate becomes drier. The middle part of the country has a savanna climate with grasslands and scattered trees. The northern part of Nigeria is the driest, with less rain and more desert-like conditions.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Environmental Regions
+            </h3>
+            
+            <p>
+                The coastal wetlands in southern Nigeria stay wet and swampy most of the year. These areas are home to mangrove trees that can live in salty water. The tropical rainforests nearby receive over 100 inches of rain each year, creating thick, green forests.
+            </p>
+            
+            <p>
+                The savanna region in central Nigeria has tall grasses and scattered trees. During the wet season, this area becomes very green, but during the dry season, the grass turns brown and many trees lose their leaves to save water.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                How Climate Affects Daily Life
+            </h2>
+            
+            <p>
+                Nigeria's climate has a big impact on how people live their daily lives. During the wet season, heavy rains can make travel difficult and sometimes cause flooding. Farmers plant their crops at the beginning of the wet season so plants can get plenty of water to grow.
+            </p>
+            
+            <p>
+                During the dry season, people must be more careful about conserving water. The hot, dry weather can make it uncomfortable to be outside during the middle of the day, so many people rest during the hottest hours and are more active in the morning and evening when it's cooler.
+            </p>
+
+            <h2>
+                Climate and Air Masses
+            </h2>
+
+            <p>
+                Nigeria's climate is influenced by different air masses that move across the country. Warm, moist air comes from the Atlantic Ocean in the south, bringing humidity and rain. Dry, dusty air comes from the Sahara Desert in the north, especially during the dry season when harmattan winds blow dust across the country.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

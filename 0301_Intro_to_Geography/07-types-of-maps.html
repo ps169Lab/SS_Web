@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Types of Maps</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Types of Maps
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Discovering the Many Different Kinds of Maps and How They Help Us
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Physical Map</strong> - shows natural features like mountains and rivers</li>
+                <li><strong>Political Map</strong> - shows countries, states, and cities</li>
+                <li><strong>Weather Map</strong> - shows weather patterns and conditions</li>
+                <li><strong>Population Map</strong> - shows how many people live in different areas</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Why Do We Need Different Types of Maps?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Just like we use different tools for different jobs, we use different types of maps to learn about different things. A hammer is great for building, but you wouldn't use it to eat soup! In the same way, different maps are designed to show us specific information about our world.
+            </p>
+            
+            <p>
+                Each type of map is like a special lens that helps us see one particular aspect of our planet clearly. Some maps show us the shape of the land, others show us where people live, and still others help us understand the weather.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Physical Maps - The Shape of Our World
+            </h2>
+            
+            <p>
+                Physical maps show us the natural features of Earth. They use different colors to show mountains, valleys, rivers, lakes, and oceans. Mountains might be shown in brown or green, while water is usually blue. These maps help us understand what the land actually looks like.
+            </p>
+
+            <p>
+                When you look at a physical map, you can see where the highest mountains are, where the longest rivers flow, and where the biggest deserts spread across the land. This helps us understand why people might choose to live in some places but not others.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Political Maps - Countries and Cities
+            </h3>
+            
+            <p>
+                Political maps show us the boundaries that people have created. They display countries, states, cities, and towns. These maps use lines to show where one country ends and another begins, even though you can't see these lines if you were flying over Earth in an airplane.
+            </p>
+            
+            <p>
+                Political maps help us understand how people have organized themselves around the world. They show us capital cities, major towns, and help us learn about different governments and nations.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                Special Purpose Maps
+            </h2>
+            
+            <p>
+                Weather maps show us patterns of rain, snow, sunshine, and storms. You see these maps on TV weather reports. They use symbols and colors to show where it's hot or cold, where storms are moving, and what the weather will be like in different places.
+            </p>
+            
+            <p>
+                Population maps show us where lots of people live and where very few people live. They might use dots or different colors to show crowded cities versus empty wilderness areas. These maps help us understand how people are spread around our planet.
+            </p>
+
+            <h2>
+                How Different Maps Help Us Learn
+            </h2>
+
+            <p>
+                Road maps help drivers find their way from one place to another. Treasure maps in stories show where pirates buried their gold. Even maps of shopping malls help people find the stores they want to visit. Each type of map is designed for a specific purpose.
+            </p>
+
+            <p>
+                By using different types of maps together, we can learn amazing things about our world. We might use a physical map to see where mountains are, then use a population map to see that fewer people live in those mountainous areas. This helps us understand how geography affects where people choose to live.
+            </p>
+
+            <h2>
+                Maps in Our Daily Lives
+            </h2>
+
+            <p>
+                We encounter many different types of maps every day. The GPS in your family's car uses road maps to give directions. Weather apps on phones use weather maps to tell us if we need an umbrella. Even video games often have maps to help players navigate through different levels.
+            </p>
+
+            <p>
+                Understanding different types of maps makes us better at reading and using all kinds of information about our world. Each map type is like a different window that lets us see and understand something special about the amazing planet we call home.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mythology of Nigeria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Mythology of Nigeria
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Discovering the Ancient Stories and Legends of Nigerian Culture
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Mythology</strong> - traditional stories about gods and heroes</li>
+                <li><strong>Legend</strong> - a story from long ago that may be true</li>
+                <li><strong>Folklore</strong> - traditional stories passed down through families</li>
+                <li><strong>Moral</strong> - a lesson about right and wrong</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                What is Nigerian Mythology?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Nigerian mythology includes thousands of traditional stories that have been passed down through families for many generations. These stories often feature animals, spirits, and heroes who live in the same natural environment as the Nigerian people, including forests, rivers, and savannas.
+            </p>
+            
+            <p>
+                Many Nigerian myths and legends are connected to the natural world around them. Stories might explain why certain animals behave the way they do, how rivers and mountains were formed, or why the seasons change. These stories help people understand their environment and their place in the natural world.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Stories About Animals and Nature
+            </h2>
+            
+            <p>
+                Nigerian folklore includes many stories about animals that live in Nigeria's forests and grasslands. The tortoise is a popular character in many stories, often portrayed as clever but sometimes too tricky for his own good. These animal stories teach children important lessons about being honest, kind, and wise.
+            </p>
+
+            <p>
+                Other stories explain natural phenomena that people see in their environment. Some myths tell how the first humans learned to use fire, why certain trees are sacred, or how rivers got their names. These stories connect people to the land and help them understand the natural world around them.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Myths About Creation and Origins
+            </h3>
+            
+            <p>
+                Different Nigerian cultures have their own creation stories that explain how the world began and how people came to live in their particular environment. Some stories tell about powerful spirits who shaped the land, created the rivers, and decided where different groups of people would live.
+            </p>
+            
+            <p>
+                These creation myths often feature elements from the Nigerian landscape, such as the great rivers, ancient forests, and important mountains. The stories help explain why certain places are considered special or sacred by different communities.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                Teaching Through Stories
+            </h2>
+            
+            <p>
+                Nigerian myths and legends are not just entertainment - they are important ways of teaching children about their culture, values, and environment. Many stories have morals that teach lessons about treating others with respect, being honest, working hard, and taking care of the natural world.
+            </p>
+            
+            <p>
+                Elders tell these stories to help children understand their place in their community and their relationship with the environment. The stories often show what happens when people are greedy, lazy, or disrespectful to nature, teaching important lessons about how to live a good life.
+            </p>
+
+            <h2>
+                Different Cultures, Different Stories
+            </h2>
+
+            <p>
+                Because Nigeria has many different ethnic groups, there are many different mythological traditions. The Yoruba people have stories about their gods and spirits, the Hausa people have their own legends, and the Igbo people have different myths that reflect their particular environment and way of life.
+            </p>
+
+            <p>
+                Even though the stories are different, many Nigerian myths share similar themes about the importance of community, respect for elders, and living in harmony with the natural environment. These shared values help bring different groups of people together.
+            </p>
+
+            <h2>
+                Keeping Stories Alive</h2>
+
+            <p>
+                Today, Nigerian families continue to tell traditional stories to their children, keeping these important cultural traditions alive. Some stories are now written down in books, but many are still shared the traditional way - by grandparents and parents telling them out loud to gather children around them.
+            </p>
+
+            <p>
+                These ancient stories remain important because they help Nigerian children understand their cultural heritage and learn valuable lessons about life, nature, and how to be good members of their community.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

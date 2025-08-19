@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geography of China</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Continent:</strong> A very large area of land</li>
+                <li><strong>Border:</strong> The line where one country ends and another begins</li>
+                <li><strong>Population:</strong> The number of people living in a place</li>
+                <li><strong>Capital:</strong> The most important city in a country</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                Geography of China
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Learning About China's Location and Size
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                Where is China?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                China is a huge country in Asia. Asia is the biggest continent in the world. China is so big that it touches many other countries. It has borders with 14 different countries! Some of these countries are Russia, India, and North Korea.
+            </p>
+            
+            <p>
+                China is on the eastern side of Asia. On one side of China is the Pacific Ocean. This big ocean has lots of water and many islands. The ocean gives China a very long coastline where people can fish and swim.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="Map showing China's location in Asia">
+            
+            <!-- Additional section heading -->
+            <h2>
+                How Big is China?
+            </h2>
+            
+            <p>
+                China is the third biggest country in the whole world! Only Russia and Canada are bigger than China. China is so big that it would take many days to drive from one side to the other side. The country has many different types of land, from mountains to deserts to rivers.
+            </p>
+
+            <h2>
+                China's People and Cities
+            </h2>
+            
+            <p>
+                More people live in China than in any other country in the world. Over one billion people call China their home! That's more than three times as many people as live in the United States. The capital city of China is called <span class="chinese-text">Beijing</span> (BAY-jing). This is where the government of China works.
+            </p>
+
+            <p>
+                China has many big cities where millions of people live. The biggest city is called <span class="chinese-text">Shanghai</span> (SHANG-hi). Other important cities include <span class="chinese-text">Guangzhou</span> and <span class="chinese-text">Shenzhen</span>. These cities have tall buildings, busy streets, and lots of people.
+            </p>
+
+            <h2>
+                Why Geography Matters
+            </h2>
+
+            <p>
+                China's location and size make it very important in the world. Because it is so big and has so many people, China can make many things that other countries need. The long coastline helps China trade with other countries across the ocean. China's geography has helped it become one of the most important countries in the world today.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

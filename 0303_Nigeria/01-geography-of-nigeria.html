@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geography of Nigeria</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Geography of Nigeria
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Discovering the Location and Geographic Features of Nigeria
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Continent</strong> - a large area of land</li>
+                <li><strong>Hemisphere</strong> - half of the Earth</li>
+                <li><strong>Border</strong> - the line where one country ends and another begins</li>
+                <li><strong>Coast</strong> - land next to the ocean</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Where is Nigeria Located?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Nigeria is a country located in West Africa, which is part of the continent of Africa. If you look at a map of the world, you can find Nigeria in the Northern Hemisphere and the Eastern Hemisphere. Nigeria is positioned right above the equator, which means it has a warm climate all year long.
+            </p>
+            
+            <p>
+                Nigeria is bordered by several other African countries. To the north, Nigeria shares borders with Niger and Chad. To the east, it borders Cameroon. To the west, Nigeria is next to Benin. The southern part of Nigeria faces the Atlantic Ocean, giving the country a long coastline.
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                Nigeria's Size and Shape
+            </h2>
+            
+            <p>
+                Nigeria is one of the largest countries in Africa. It covers an area that is more than twice the size of California! The country has a shape that is somewhat rectangular, stretching from the Atlantic Ocean in the south all the way north toward the Sahara Desert.
+            </p>
+
+            <p>
+                The southern part of Nigeria is where most people live because it is closer to the ocean and has more water. As you travel north in Nigeria, the land becomes drier and there are fewer trees and rivers.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Important Geographic Features
+            </h3>
+            
+            <p>
+                Nigeria has many important geographic features that make it special. The country has two major rivers - the Niger River and the Benue River - that meet in the middle of the country. These rivers provide water for drinking, farming, and transportation.
+            </p>
+            
+            <p>
+                Along Nigeria's coast, there are beautiful beaches and important ports where ships can dock. The coastal area also has mangrove forests, which are special trees that can grow in salty water near the ocean.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                Why Location Matters
+            </h2>
+            
+            <p>
+                Nigeria's location in West Africa makes it very important for trade and communication with other African countries. Because Nigeria has a long coastline on the Atlantic Ocean, ships from Europe and the Americas can easily reach Nigerian ports.
+            </p>
+            
+            <p>
+                The geographic features of Nigeria, including its rivers, coastline, and position near the equator, help explain why over 200 million people live there, making it the most populated country in all of Africa. Nigeria's geography provides the natural resources and climate that allow so many people to make their homes there.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

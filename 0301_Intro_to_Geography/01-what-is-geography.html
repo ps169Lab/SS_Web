@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is Geography?</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                What is Geography?
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Learning About Our World and How We Study It
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Geography</strong> - the study of places and people</li>
+                <li><strong>Location</strong> - where something is found</li>
+                <li><strong>Map</strong> - a drawing that shows places</li>
+                <li><strong>Globe</strong> - a round model of Earth</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                What Does Geography Mean?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Geography is the study of places and the people who live in them. When we study geography, we learn about different locations around the world and how people live in those places. Geography helps us understand where things are and why they are there.
+            </p>
+            
+            <p>
+                Think about your own neighborhood. Geography helps us understand where your house is located, what the land looks like around you, and how people in your area live and work. Geography is like being a detective who asks questions about places!
+            </p>
+            
+            <!-- Additional section heading -->
+            <h2>
+                How Geography Helps Us
+            </h2>
+            
+            <p>
+                Geography gives us special tools to learn about our world. Maps show us where places are located. A globe is like a tiny model of our whole planet Earth. These tools help us see places that are far away from us.
+            </p>
+
+            <p>
+                When we use maps and globes, we can find cities, countries, oceans, and mountains. We can see how far apart different places are from each other. This helps us understand our world better.
+            </p>
+            
+            <!-- Subsection heading -->
+            <h3>
+                Geography in Our Daily Lives
+            </h3>
+            
+            <p>
+                We use geography every single day, even when we don't realize it! When you give someone directions to your house, you're using geography. When you look at the weather forecast to see if it will rain, you're learning about geography too.
+            </p>
+            
+            <p>
+                Geography helps us understand why some places are hot and others are cold, why some places have lots of trees and others have deserts, and why people in different places eat different foods and live in different types of houses.
+            </p>
+
+            <!-- Additional content paragraphs -->
+            <h2>
+                Becoming Better Learners
+            </h2>
+            
+            <p>
+                When we study geography, we become better at asking questions and finding answers. We learn to look carefully at the world around us. We start to notice things like what the land looks like, how people travel from place to place, and what makes each place special and unique.
+            </p>
+            
+            <p>
+                Geography teaches us that every place in the world has something interesting to discover. From the busy streets of New York City to quiet farms in the countryside, each location has its own story to tell. By studying geography, we become explorers of our amazing world!
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

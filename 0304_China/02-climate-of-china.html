@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate of China</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Vocabulary List -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Climate:</strong> The usual weather in a place over a long time</li>
+                <li><strong>Temperature:</strong> How hot or cold something is</li>
+                <li><strong>Monsoon:</strong> A wind that brings lots of rain</li>
+                <li><strong>Season:</strong> A time of year with certain weather</li>
+            </ul>
+
+            <!-- Page title -->
+            <h1 class="section-title">
+                Climate of China
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Understanding China's Weather and Seasons
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                China Has Many Different Climates
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                China is so big that different parts of the country have very different weather! In the north, winters are very cold with lots of snow. In the south, it stays warm most of the year. This happens because China stretches from very cold places in the north to warm tropical places in the south.
+            </p>
+            
+            <p>
+                The northern part of China can get as cold as Alaska in winter. People there need to wear heavy coats and warm clothes. But in southern China, people can wear light clothes almost all year long because it stays warm.
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="images/placeholder.jpg" alt="Different seasons in China showing snow in north and warm weather in south">
+            
+            <!-- Additional section heading -->
+            <h2>
+                The Four Seasons in China
+            </h2>
+            
+            <p>
+                Most of China has four seasons just like many places in the United States. Spring brings warm weather and flowers. Summer is hot and often rainy. Fall has cooler weather and beautiful colored leaves. Winter brings cold weather and sometimes snow.
+            </p>
+
+            <p>
+                The seasons are different in different parts of China. In Beijing, the capital city, winter can be very cold with temperatures below freezing. But in cities like <span class="chinese-text">Guangzhou</span> in the south, winter feels more like a cool spring day.
+            </p>
+
+            <h2>
+                Rain and Monsoons
+            </h2>
+            
+            <p>
+                China gets most of its rain during the summer months. This rain comes from special winds called monsoons. These winds blow from the ocean and bring lots of water to help plants grow. The rain is very important for growing rice and other crops that people in China eat.
+            </p>
+
+            <p>
+                Some parts of China get much more rain than others. The southeastern parts of China can get very wet during summer, while the northwestern parts stay quite dry all year long. This is why different parts of China grow different kinds of plants and food.
+            </p>
+
+            <h2>
+                How Climate Affects People's Lives
+            </h2>
+
+            <p>
+                The climate in China affects how people live every day. In cold northern cities, people heat their homes in winter and wear warm clothes. In hot southern areas, people use fans and air conditioning to stay cool. Farmers plant different crops depending on whether their area is hot or cold, wet or dry. The climate also affects what kinds of houses people build and what foods they like to eat.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
