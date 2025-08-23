@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wildlife of New York State</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Wildlife of New York State
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Discovering the Amazing Plants and Animals That Call New York Home
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Adaptation</strong> - special features that help animals survive in their environment</li>
+                <li><strong>Native</strong> - plants and animals that naturally belong in a place</li>
+                <li><strong>Habitat</strong> - the natural home where plants and animals live</li>
+                <li><strong>Ecosystem</strong> - all the living and non-living things in an area working together</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                New York's Diverse Wildlife
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                New York State boasts a remarkably diverse array of native plant and animal life, shaped by its varied geography and climate. The state's landscape ranges from mountainous regions to extensive lowlands and a significant coastline, creating many different habitats for plants and animals to live.
+            </p>
+
+            <p>
+                New York State is home to approximately 92 mammal species, 376 bird species, and 71 amphibian and reptile species. What plant and animal life is native to New York? What traits and characteristics do they have that help them survive and adapt to New York State's unique climate and biome ecosystem?
+            </p>
+
+            <h2>Amazing Animal Adaptations</h2>
+            
+            <h3>The American Beaver</h3>
+            <p>
+                The official state animal is the American Beaver. These large, semi-aquatic rodents are known as "environmental engineers" and can grow 3-3.5 feet long and weigh 30-50 pounds. Their luxurious and water-repellent fur helps them survive in freshwater bodies where they build lodges and dams. They were once almost wiped out due to overhunting but are now common, making them symbols of industriousness.
+            </p>
+
+            <h3>Black Bears</h3>
+            <p>
+                A robust population of Black Bears (6,000 to 8,000 individuals) exists in the Adirondacks, Catskills, and central and western parts of the state, thriving in mature forests. These large mammals have adapted to New York's climate by building up fat reserves for winter hibernation.
+            </p>
+
+            <h3>Moose</h3>
+            <p>
+                The Moose is one of the largest animals in New York, found in the northeastern Adirondack Mountains. An adult male can measure up to 10 feet in length, stand 6 feet tall at the shoulders, and weigh over 1,000 pounds. Their large size and diet of leaves and aquatic vegetation in warmer months, switching to twigs in fall and winter, help them adapt to the cold, forested environments.
+            </p>
+
+            <h2>Birds and Their Special Traits</h2>
+
+            <h3>Eastern Bluebird</h3>
+            <p>
+                The official state bird is the Eastern Bluebird. This bird is known for its melodic song and the male's beautiful blue plumage. People often build nesting boxes to help them compete for nesting space against other birds like starlings and sparrows.
+            </p>
+
+            <h3>Spruce Grouse</h3>
+            <p>
+                Northern forest specialists found in the Adirondacks include the Spruce Grouse, nicknamed the "fool hen" because its camouflage in spruce forests makes it less wary of humans, allowing people to approach closely before it flies away. This camouflage adaptation helps protect it from predators.
+            </p>
+
+            <h2>Fish Adaptations</h2>
+
+            <h3>Brook Trout</h3>
+            <p>
+                The official state freshwater fish is the Brook Trout. This speckled, dark green or brown fish can weigh up to 15 pounds and grow to almost 3 feet long, thriving in the cold, clear streams, ponds, and lakes of the Adirondacks. Their coloring helps them blend in with rocky stream bottoms.
+            </p>
+
+            <h3>Atlantic Tomcod</h3>
+            <p>
+                The Atlantic Tomcod in the Hudson River have developed a genetic mutation that provides resistance to the toxic effects of PCBs, with 99% of the river's tomcods having this mutated form. This shows how animals can adapt to changes in their environment over time.
+            </p>
+
+            <h2>Plant Life and Adaptations</h2>
+
+            <p>
+                New York State is home to over 2,000 species of plants, many of which are native. The official state tree is the Sugar Maple, which has adapted to New York's climate by changing colors in fall and losing its leaves in winter to conserve energy.
+            </p>
+
+            <p>
+                Some plants, like Pitcher Plants, are characteristic of bog habitats, showcasing adaptations to nutrient-poor, waterlogged environments. These plants have adapted by catching and digesting insects to get the nutrients they need.
+            </p>
+
+            <h2>How Animals Survive Winter</h2>
+
+            <p>
+                Many New York animals have special adaptations for surviving the cold winters. The Shorttail Weasel (also known as the ermine) is notable for its coat turning white during winter, providing camouflage in snowy conditions. Bears hibernate through the winter, while many birds migrate south to warmer places.
+            </p>
+
+            <p>
+                New York's commitment to land preservation, exemplified by Adirondack Park and Catskill Park, aims to protect these diverse ecosystems and the species that inhabit them, ensuring that future generations can enjoy the state's amazing wildlife.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

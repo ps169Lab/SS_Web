@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is a Map Key?</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                What is a Map Key?
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Understanding How to Read Maps Using Symbols
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Map Key</strong> - a box that explains what symbols on a map mean</li>
+                <li><strong>Symbol</strong> - a picture that stands for something else</li>
+                <li><strong>Legend</strong> - another name for a map key</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                What is a Map Key?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                A map key is an essential tool for understanding and interpreting maps. A map key is a little box of information typically found at the bottom of a map. It functions much like a door key, as it unlocks all the information on the map so you can read and understand it.
+            </p>
+
+            <p>
+                The primary purpose of a map key is to explain what the various lines and symbols on the map mean. A symbol is a picture that stands for or represents something else on the map.
+            </p>
+
+            <h2>What Does a Map Key Look Like?</h2>
+            
+            <p>
+                A map key is presented as a box, often labeled simply "key". Inside this box, you'll find a list of symbols or small pictures, each with a corresponding word or explanation beside it, indicating what that symbol represents.
+            </p>
+
+            <h2>Examples of Map Symbols</h2>
+
+            <p>
+                Examples of symbols you might find in a map key include:
+            </p>
+
+            <ul>
+                <li>Mounds of dirt representing mountains</li>
+                <li>Trees symbolizing forests</li>
+                <li>A small house image to denote a group of houses</li>
+                <li>A wavy line or blue area for water bodies like lakes or rivers</li>
+                <li>Dots of varying sizes to indicate cities, with a star sometimes used for important cities like a capital city</li>
+            </ul>
+
+            <p>
+                On specialized maps, such as a zoo map, symbols can represent specific facilities like accessible routes, restrooms, picnic areas, information booths, or first aid stations. Other general map keys might show symbols for woodlands, moor lands, contour lines, roads, viewpoints, castles, churches, or water fowl.
+            </p>
+
+            <h2>What is a Map Key Used For?</h2>
+
+            <p>
+                The main use of a map key is to help you understand a map. Without it, it would be very difficult, if not impossible, to comprehend the information conveyed by the map's visuals. When you encounter a symbol on a map, you refer to the map key to find that symbol and read its corresponding meaning.
+            </p>
+
+            <p>
+                This allows you to identify natural features like mountains and rivers, locate human-made structures such as buildings or roads, understand different types of areas like parks or woodlands, and find important locations or services when planning a trip or exploring a new place.
+            </p>
+
+            <p>
+                Essentially, the map key is the decoder for the visual language of the map, making it possible to read and navigate the world around us.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

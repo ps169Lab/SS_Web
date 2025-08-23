@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Geography</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Introduction to Geography
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Exploring Our Amazing Planet Earth
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                Welcome to Geography!
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Welcome to your journey of discovering our amazing planet Earth! Geography is like being a detective, finding clues about our world and uncovering its secrets. In this section, you'll learn about the tools and concepts that help us understand where we are and how our world works.
+            </p>
+
+            <h2>What You'll Learn</h2>
+            
+            <p>
+                In this geography unit, you'll explore seven important topics that will give you the tools to understand our world:
+            </p>
+
+            <ul>
+                <li><strong>What is Geography?</strong> - Discover what geography is and why it's important</li>
+                <li><strong>What is a Map Key?</strong> - Learn how to read and understand maps using symbols</li>
+                <li><strong>Cardinal Directions</strong> - Master North, South, East, and West to navigate anywhere</li>
+                <li><strong>The 7 Continents</strong> - Explore the large land areas that make up our planet</li>
+                <li><strong>Hemispheres</strong> - Understand how Earth is divided into different halves</li>
+                <li><strong>Latitude and Longitude</strong> - Use invisible lines to find any place on Earth</li>
+                <li><strong>Types of Maps</strong> - Learn about different kinds of maps and what they show us</li>
+            </ul>
+
+            <h2>Your Geography Adventure Begins</h2>
+
+            <p>
+                Each lesson will help you become a better explorer of our world. You'll learn to use maps, understand directions, and discover amazing places on our planet. By the end of this unit, you'll have the skills to navigate and understand the geography of any place on Earth!
+            </p>
+
+            <p>
+                Click on any lesson in the navigation menu to begin your geography adventure. Start with "What is Geography?" to learn the basics, then work your way through each topic to build your geography skills.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is Geography?</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                What is Geography?
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Learning About Our Amazing Planet Earth
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Geography</strong> - the study of Earth and how people live on it</li>
+                <li><strong>Environment</strong> - the natural world around us</li>
+                <li><strong>Continent</strong> - a very large area of land</li>
+                <li><strong>Culture</strong> - the way people live, eat, and celebrate</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Geography is Like Being a Detective
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Geography is an engaging field that helps us understand our planet and how we interact with it. It's like being a detective, finding clues about the Earth, or having a superpower to uncover the world's secrets. The term "geography" itself comes from Greek words meaning "to draw, describe, or write about the earth".
+            </p>
+
+            <h2>How Geography Helps Us</h2>
+            
+            <p>
+                Studying geography informs us about our planet and the world we live in. It helps us learn about different places like continents, countries, oceans, rivers, deserts, and mountains. Geography explains why weather changes and what makes each place unique.
+            </p>
+
+            <p>
+                Geography also teaches us about the diverse ways people around the world eat, dress, and play. We learn about different languages, traditions, and challenges people face globally. It examines natural environments, landforms, and how the Earth is always changing through processes like volcanoes, earthquakes, and shifting landscapes.
+            </p>
+
+            <h2>Tools that Help Geographers</h2>
+
+            <p>
+                Geographers are like detectives who discover all about our planet and how we live on it. They use various tools to explore and understand the world. Maps are drawings that show where things are in the world, like a picture from high above. There are different kinds of maps including physical maps that show natural features like mountains and rivers, and political maps that show the boundaries of countries and cities.
+            </p>
+
+            <p>
+                Other important tools include globes, which are round models of the Earth, and compasses that help us find our way by always pointing North. GPS uses satellites in space to help us find out where we are and get from one place to another without getting lost.
+            </p>
+
+            <h2>The Five Themes of Geography</h2>
+
+            <p>
+                Geography is organized around five big ideas that help us understand our planet:
+            </p>
+
+            <ul>
+                <li><strong>Location:</strong> Where something is on Earth</li>
+                <li><strong>Place:</strong> What a location is like, including its features and people</li>
+                <li><strong>Human-Environment Interaction:</strong> How people change the world around them</li>
+                <li><strong>Movement:</strong> How people, things, and ideas travel from place to place</li>
+                <li><strong>Region:</strong> An area that has something in common, like climate or language</li>
+            </ul>
+
+            <p>
+                By engaging with these concepts and tools, anyone can become an expert navigator and gain a deeper appreciation for our world's wonders. Geography helps us become more knowledgeable about the world and its workings, which helps us address issues like pollution, natural disasters, and conflicts.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

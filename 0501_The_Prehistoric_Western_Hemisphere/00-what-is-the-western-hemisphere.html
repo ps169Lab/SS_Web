@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is the Western Hemisphere?</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                What is the Western Hemisphere?
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Understanding Our Part of the World
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Hemisphere</strong> - half of the Earth</li>
+                <li><strong>Continent</strong> - a very large area of land</li>
+                <li><strong>Americas</strong> - another name for North and South America together</li>
+                <li><strong>New World</strong> - what Europeans called the Americas when they first discovered them</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                What is the Western Hemisphere?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                The Western Hemisphere is defined as the part of the Earth that primarily encompasses North America and South America. It also includes surrounding waters and is sometimes considered to be bounded by longitudes 20°W and 160°E.
+            </p>
+
+            <p>
+                The Western Hemisphere is also commonly referred to as the Americas or the New World. The name "America" itself was first recorded in 1507 on a map by German cartographer Martin Waldseemüller, referring initially to South America, and later extended to both continents.
+            </p>
+
+            <h2>What Makes Up the Western Hemisphere</h2>
+            
+            <p>
+                The Western Hemisphere comprises the totality of North America and South America. When viewed as a single continent, it is referred to as "the continent of America". North America occupies the northern portion of this landmass.
+            </p>
+
+            <p>
+                It makes up most of the land in Earth's Western Hemisphere. Its vast north-to-south extent, approximately 14,000 km (8,700 mi), leads to significant variations in climate and ecology, ranging from Arctic tundra to tropical rainforests.
+            </p>
+
+            <h2>How the Western Hemisphere Formed</h2>
+
+            <p>
+                The Western Hemisphere has an amazing geological history. From the Late Paleozoic to Early Mesozoic eras, North America was joined with other modern continents as part of the supercontinent Pangaea. When Pangaea began to rift around 200 million years ago, North America became part of Laurasia before separating from Eurasia during the mid-Cretaceous period.
+            </p>
+
+            <p>
+                South America and Africa were connected as part of Gondwana, which was part of Pangaea. Gondwana later separated into multiple continents, including South America and Africa. South America then separated from Antarctica around 35 million years ago.
+            </p>
+
+            <h2>The Ice Ages and Early People</h2>
+
+            <p>
+                During glacial periods, such as the Wisconsin glaciation (50,000–17,000 years ago), falling sea levels exposed the Beringia land bridge, connecting Siberia to northwest North America (Alaska). This land bridge was largely unglaciated due to low snowfall and supported a cold, dry mammoth steppe environment, serving as an ecological refugium for plants and animals.
+            </p>
+
+            <p>
+                The Western Hemisphere was home to notable fauna such as bison, black bear, jaguar, cougar, and various megafauna like mammoths and mastodons. The first humans in the Americas adapted to their environment as well as changed it through their interactions with their environment and the development of unique cultures.
+            </p>
+
+            <h2>Why This Matters</h2>
+
+            <p>
+                Understanding the Western Hemisphere helps us learn about how our continents formed, how early people came to live here, and how they adapted to different environments. The story of the Western Hemisphere is the story of how the Americas became home to many different cultures and peoples over thousands of years.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

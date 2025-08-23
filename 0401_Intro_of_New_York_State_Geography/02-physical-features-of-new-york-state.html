@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physical Features of New York State</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Physical Features of New York State
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Exploring New York's Major Biomes and Landforms
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Landform</strong> - a natural feature of Earth's surface like mountains or valleys</li>
+                <li><strong>Biome</strong> - a large area with similar climate, plants, and animals</li>
+                <li><strong>Glacier</strong> - a huge sheet of ice that moves slowly over land</li>
+                <li><strong>Estuary</strong> - where a river meets the ocean and mixes fresh and salt water</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                How New York's Landforms Were Made
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                New York State exhibits a remarkable and varied landscape, characterized by diverse mountains, forests, valleys, lakes, and ocean coastlines. This geographical diversity is a direct result of significant geological events and glacial activity over millions of years.
+            </p>
+
+            <p>
+                The landscape was profoundly shaped by the movement of glaciers during the late Pleistocene era, which began receding from the region approximately 18,000 years ago. This glacial activity left behind distinctive landforms such as the Hudson River valley, the Finger Lakes, and Niagara Falls.
+            </p>
+
+            <h2>Major Mountain Ranges</h2>
+            
+            <p>
+                New York can be broadly divided into two principal regions: the Highlands and the Lowlands. The Highlands feature several significant mountain ranges:
+            </p>
+
+            <h3>Adirondack Mountains</h3>
+            <p>
+                Located in northeastern New York, this region contains Mount Marcy, which is New York's highest point at 5,344 feet above sea level. The Adirondack Park is larger than any U.S. National Park in the contiguous United States, surpassing Yellowstone, Everglades, Glacier, and Grand Canyon national parks combined in size. The Adirondacks are generally described as wild, rugged, and rocky.
+            </p>
+
+            <h3>Catskill Mountains</h3>
+            <p>
+                The Catskills are characterized by older, rounded peaks and winding valleys formed by glacial action. The Catskill Park, established in 1885, is a 700,000-acre forest preserve legally protected as "forever wild," meaning its land cannot be sold or leased. The Catskills are characterized by fast-moving streams, rivers, and peaks with winding valleys.
+            </p>
+
+            <h2>Important Rivers and Water Bodies</h2>
+
+            <h3>Hudson River</h3>
+            <p>
+                The Hudson River flows primarily north to south through eastern New York. It begins near Lake Tear of the Clouds in the Adirondack Mountains. The lower half of the Hudson is a tidal estuary, where the flow direction changes with the tides as far north as Troy. The Hudson forms an extraordinary natural harbor at New York Bay.
+            </p>
+
+            <h3>The Finger Lakes</h3>
+            <p>
+                Located between Rochester and Syracuse, this region is named for its 11 deep, narrow, north-south trending lakes that resemble fingers. These lakes were gouged out by receding glaciers during the last ice age, leaving numerous scenic gorges and waterfalls like Watkins Glen, Taughannock Falls, and Ithaca Falls.
+            </p>
+
+            <h3>Great Lakes</h3>
+            <p>
+                New York borders Lake Erie to the west and Lake Ontario to the northwest. The Niagara River connects Lake Erie to Lake Ontario and is famously home to Niagara Falls, a major tourist attraction formed by glacial melt.
+            </p>
+
+            <h2>Lowland Areas</h2>
+
+            <p>
+                New York also encompasses significant lowland areas including the Atlantic Coastal Plains, which include Long Island and the islands that make up four of New York City's five boroughs. The Erie-Ontario Lowlands surround the Great Lakes within New York, and Western New York near Buffalo is notably flat as it was historically the bed of a glacial lake.
+            </p>
+
+            <h2>How Landforms Affect Life</h2>
+
+            <p>
+                These diverse physical features create different biomes and climates across New York State. The mountains receive more snow and have cooler temperatures, while the coastal areas are warmer. The many lakes and rivers provide water for people, plants, and animals, and the flat areas are good for farming. The varied landscape makes New York State home to many different types of plants and animals.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to New York State Geography</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Introduction to New York State Geography
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Discovering the Empire State's Diverse Landscapes and Communities
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                Welcome to New York State!
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Welcome to your exploration of New York State! Often called the "Empire State," New York is much more than just the famous city that shares its name. New York State has a diverse geography that represents and examines the climate and biomes found throughout our region and the world.
+            </p>
+
+            <h2>What You'll Discover</h2>
+            
+            <p>
+                In this unit, you'll explore five important aspects of New York State geography that will help you understand what makes this state so special:
+            </p>
+
+            <ul>
+                <li><strong>Geography of New York State</strong> - Learn about New York's location in the world and what makes it special</li>
+                <li><strong>Physical Features of New York State</strong> - Discover the major landforms, mountains, rivers, and lakes that shape our state</li>
+                <li><strong>Wildlife of New York State</strong> - Explore the amazing plants and animals that have adapted to live in New York's diverse environments</li>
+                <li><strong>Political Features of New York State</strong> - Understand how the state is organized into counties and cities, and how natural resources affect where people live</li>
+                <li><strong>New York City</strong> - Learn about America's largest city and discover what makes each of its five boroughs unique</li>
+            </ul>
+
+            <h2>New York's Amazing Diversity</h2>
+
+            <p>
+                While many people think of New York as just a big, busy city, the truth is that most of New York State is made up of mountains, forests, valleys, lakes, and farmland. From the towering peaks of the Adirondack Mountains to the sandy beaches of Long Island, from the rushing waters of Niagara Falls to the bustling streets of New York City, our state offers incredible variety.
+            </p>
+
+            <p>
+                New York State is the only state that borders both the Great Lakes and the Atlantic Ocean, giving it unique advantages for trade, transportation, and recreation. This special location has helped make New York one of the most important states in America.
+            </p>
+
+            <h2>Your Geographic Journey Begins</h2>
+
+            <p>
+                Each lesson will help you understand how geography affects the way people, plants, and animals live in different parts of New York State. You'll learn about the forces that shaped our landscape, the amazing creatures that call New York home, and how people have organized communities across our diverse state.
+            </p>
+
+            <p>
+                Click on any lesson in the navigation menu to begin your journey through New York State geography. Start with "Geography of New York State" to learn about our state's special location, then explore each topic to build your understanding of the Empire State!
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

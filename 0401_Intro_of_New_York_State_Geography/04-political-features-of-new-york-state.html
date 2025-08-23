@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Political Features of New York State</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Political Features of New York State
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Understanding How New York State is Organized
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>County</strong> - a large area within a state with its own local government</li>
+                <li><strong>Capital</strong> - the city where the state government is located</li>
+                <li><strong>Population</strong> - the number of people living in a place</li>
+                <li><strong>Metropolitan area</strong> - a large city and the smaller cities around it</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                How New York State is Divided
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                New York State is divided into counties, some of which have cities. Albany is the capital of New York state. New York City is the biggest city, not only in the state but also in the world. Natural resources and landforms affect the state's population distribution and influence its political organization.
+            </p>
+
+            <p>
+                New York State is divided into 62 counties. Beyond New York City's five counties, each county is further subdivided into towns and cities, which are incorporated under state law. Towns can also contain incorporated villages or unincorporated hamlets. Additionally, the state has 10 Indian reservations.
+            </p>
+
+            <h2>Albany - The State Capital</h2>
+            
+            <p>
+                Albany is the capital city of New York State. It is located on the west bank of the Hudson River, approximately 10 miles south of where the Hudson meets the Mohawk River. Albany holds the distinction of being the oldest city in New York and serves as the county seat of Albany County.
+            </p>
+
+            <p>
+                The city was officially chartered in 1686 under English rule and became the state capital in 1797, after the state legislature frequently moved the capital between Albany, Kingston, Poughkeepsie, and New York City. Albany's population was 99,224 at the 2020 census. The city is considered the economic and cultural core of New York State's Capital District.
+            </p>
+
+            <h2>Major Cities and Population</h2>
+
+            <p>
+                New York State contains 62 administrative divisions termed cities. The largest and most populous city in the United States, New York City, is located in New York State. New York City is home to more than two-fifths (over 40%) of the state's population.
+            </p>
+
+            <p>
+                Other major metropolitan areas in New York State include Buffalo, Rochester, the Capital District (Albany, Schenectady, and Troy), Poughkeepsie, Syracuse, Utica, and Binghamton. The most populous town in New York State is Hempstead, which, if it were a city, would be the second-largest in the state with over 700,000 residents.
+            </p>
+
+            <h2>Population Distribution</h2>
+
+            <p>
+                New York is the fourth-most populous state in the United States, with nearly 20 million residents. Despite its large land area, New York's population is highly urbanized, with 92% of residents living in an urban area, predominantly within the New York City metropolitan area.
+            </p>
+
+            <p>
+                The distinction between "Upstate" and "Downstate" New York is informal and often debated, but generally, Downstate includes New York City, Long Island, and the lower Hudson Valley, while Upstate refers to the rest of the state. Upstate New York covers a larger geographic area but has a significantly lower population density than Downstate.
+            </p>
+
+            <h2>How Geography Affects Politics</h2>
+
+            <p>
+                Natural resources and landforms greatly affect how people live and where they choose to settle in New York State. The Hudson River valley provided an excellent transportation route, which is why Albany became the capital and why many cities developed along the river.
+            </p>
+
+            <p>
+                The Great Lakes region in western New York, near Buffalo, became important for shipping and trade. The flat land near the lakes was good for farming and building cities. The mountainous areas like the Adirondacks and Catskills have fewer people because the land is harder to farm and build on, but they are important for tourism and natural resources.
+            </p>
+
+            <h2>The New York Metropolitan Area</h2>
+
+            <p>
+                The New York metropolitan area, also known as the Tri-State area, is the largest metropolitan economy in the world, with a gross metropolitan product of over US$2.6 trillion. It is also the largest metropolitan area globally by urban landmass, covering 4,669.0 square miles.
+            </p>
+
+            <p>
+                This vast region includes New York City, much of Downstate New York (Long Island and the mid- and lower Hudson Valley), and suburbs in northern and central New Jersey. The term "Tri-State area" specifically refers to the larger urbanized area of Downstate New York, northern New Jersey, and western Connecticut.
+            </p>
+
+            <p>
+                Understanding how New York State is politically organized helps us see how geography, natural resources, and population work together to shape how people live and govern themselves in different parts of the state.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

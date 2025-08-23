@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Types of Maps</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Types of Maps
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Different Maps Show Us Different Things About Our World
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Physical Map</strong> - shows natural features like mountains and rivers</li>
+                <li><strong>Political Map</strong> - shows boundaries of countries and states</li>
+                <li><strong>Population</strong> - the number of people living in a place</li>
+                <li><strong>Climate</strong> - the usual weather patterns in an area</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                What are Maps?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Maps are fundamental tools in geography that help us understand our world. A map is essentially a drawing that shows us where things are in the world. Maps can represent various scales, from a drawing of your school or city to the entire world. They are like a picture from high above, as if seen by birds flying in the sky.
+            </p>
+
+            <p>
+                Maps are crucial because they help us comprehend locations and remember what places look like. Different kinds of maps highlight specific features and provide unique insights into the world.
+            </p>
+
+            <h2>Physical Maps</h2>
+            
+            <p>
+                Physical maps are designed to show the natural features of the Earth, such as mountains, rivers, and lakes. They are useful because they help us understand the geography of a place. When you look at a physical map, you can see where the tallest mountains are, where rivers flow, and where deserts and forests are located.
+            </p>
+
+            <h2>Political Maps</h2>
+
+            <p>
+                Political maps illustrate the boundaries of countries, states, and cities. Their usefulness lies in helping us know where one country or state ends and another begins. These maps show us the borders that people have created to organize the world into different nations and regions.
+            </p>
+
+            <h2>Population Maps</h2>
+
+            <p>
+                Population maps display how many people live in different areas. They help us understand where people live and give us an idea of how crowded or empty a place might be. These maps can show us which cities have the most people and which areas have very few people living there.
+            </p>
+
+            <h2>Climate Maps</h2>
+
+            <p>
+                Climate maps indicate the different climate zones of the world. They are beneficial because they help us know what kind of weather to expect in various parts of the world. These maps can show us where it's hot and dry, where it's cold and snowy, or where it rains a lot.
+            </p>
+
+            <h2>How Maps Help Us</h2>
+
+            <p>
+                Maps, along with globes and compasses, enable us to imagine exploring new places. They are essential tools for geographers, who are like detectives discovering information about our planet and how we live on it. Maps are like a "big picture book" that helps us see where things are and understand how the world works.
+            </p>
+
+            <p>
+                Maps are also used in our daily lives for navigation, such as when using a GPS on a cell phone to find out where we are and how to get from one place to another without getting lost. Additionally, maps can show us cities, mountains, and rivers, and even cultural aspects like how many people live in different places.
+            </p>
+
+            <p>
+                They are helpful when driving, giving directions, and generally learning about the world. Each type of map gives us different information, and together they help us understand the complete picture of our amazing planet Earth.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 7 Continents</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                The 7 Continents
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Exploring the Large Land Areas of Our Planet
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Continent</strong> - a very large area of land</li>
+                <li><strong>Population</strong> - the number of people living in a place</li>
+                <li><strong>Climate</strong> - the usual weather in a place</li>
+                <li><strong>Hemisphere</strong> - half of the Earth</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                What is a Continent?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                A continent is defined as a very large area of land. On a globe, continents are among the easiest features to identify. Our planet Earth is divided into seven continents. They are larger than individual countries and contain various types of land and water.
+            </p>
+
+            <p>
+                The seven continents, listed from largest to smallest, are: Asia, Africa, North America, South America, Antarctica, Europe, and Australia. It is worth noting that some people consider Europe and Asia to be a single continent called Eurasia.
+            </p>
+
+            <h2>What Makes Each Continent Special?</h2>
+            
+            <p>
+                Each continent possesses unique characteristics in terms of climate, landscapes, and populations. Geographers are like detectives who discover information about these "cool places on Earth".
+            </p>
+
+            <h3>Asia</h3>
+            <p>
+                Asia is the largest continent, covering one-third of all the land on Earth. It is home to a significant portion of the world's population, specifically two-thirds, residing in 48 countries. Asia includes China and India, which hold the top two spots for being the most populous countries globally. It features the world's highest mountain, the Himalayas, and the highest plateau, the Tibetan Plateau. It is surrounded by the Pacific Ocean, the Indian Ocean, and the Arctic Ocean.
+            </p>
+
+            <h3>Africa</h3>
+            <p>
+                Africa is the second largest continent, located between the Atlantic and Indian Oceans. It comprises 54 different countries, which is more than any other continent. Africa is home to the world's longest river, the Nile, in the east, and the world's largest desert, the Sahara, in the northern part. It is known for its great variety of plants and animals, including many wild animals like lions, elephants, zebras, and rhinos. It tends to be very warm.
+            </p>
+
+            <h3>North America</h3>
+            <p>
+                North America is the world's third largest continent. It borders the Arctic Ocean to the north, the Atlantic Ocean to the east, the Caribbean Sea to the south, and the North Pacific Ocean to the west. It is composed of 23 different countries, including the USA, Canada, Mexico, and the Caribbean islands. North America features natural wonders such as Yellowstone National Park and the Grand Canyon. The human-made Panama Canal separates it from South America.
+            </p>
+
+            <h3>South America</h3>
+            <p>
+                South America is the world's fourth largest continent. It is bordered by the Pacific Ocean to the west and the Atlantic Ocean to the north and east. North America and the Caribbean Sea are to its northwest. It consists of 12 sovereign states, some of which are famous for their soccer teams, like Brazil, Colombia, and Argentina. South America is home to the Amazon River rainforest, the world's driest desert (Atacama), and the world's longest mountain range (the Andes). It features unique animals such as capybara, llamas, and anacondas.
+            </p>
+
+            <h3>Antarctica</h3>
+            <p>
+                Antarctica is the fifth largest continent, located at the South Pole and is almost entirely covered in ice. It experiences extremely cold temperatures, which can drop below minus 80 degrees Celsius. Despite the cold, it is home to various species such as seals and sea birds. No permanent human settlements exist, though scientists visit for study. The ice here makes the region even colder by reflecting the sun's light and heat back into space. It is an icy continent with very little plant and animal life.
+            </p>
+
+            <h3>Europe</h3>
+            <p>
+                Europe is the second smallest continent. It has nearly 51 independent countries with diverse ethnic groups and languages. Its western coast borders the Atlantic Ocean, and it is separated from Africa by the Mediterranean Sea in the south. The European part of Russia is larger than any other country in Europe. Vatican City is the smallest country not only in Europe but also in the world. It lies across the Atlantic Ocean from North America and is known for its many old castles and stories about knights.
+            </p>
+
+            <h3>Australia</h3>
+            <p>
+                Australia is unique as it is both a country and a continent. When New Zealand, New Guinea, and other islands are included, it is also referred to as Australasia or Oceania. It lies between the Indian Ocean to the west and the Pacific Ocean to the east. Famous landmarks include the Opera House in Sydney, the Great Barrier Reef in Queensland, and the Great Ocean Road in Victoria. It is the only continent occupied by a single country.
+            </p>
+
+            <p>
+                Understanding continents helps us learn about our planet and the world we live in.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

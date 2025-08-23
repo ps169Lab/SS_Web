@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life on Pangea</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Life on Pangea
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Discovering What Life Was Like on the Supercontinent
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Panthalassa</strong> - the giant ocean that surrounded Pangaea</li>
+                <li><strong>Megafauna</strong> - very large animals</li>
+                <li><strong>Fossils</strong> - remains of ancient plants and animals preserved in rock</li>
+                <li><strong>Triassic Period</strong> - the time when Pangaea began to split apart</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                What Was Life Like on Pangaea?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Life on Pangaea was amazing and very different from today! What kind of life existed on Pangaea? What did the landscape look like? Around this huge supercontinent was a giant ocean called Panthalassa, and the land itself was home to incredible plants and animals.
+            </p>
+
+            <h2>Life in the Giant Ocean</h2>
+            
+            <p>
+                In the ocean called Panthalassa, there were cool creatures like ammonites with their swirly shells, squishy mollusks, and spiky sea urchins. You could also find giant sea reptiles, like ichthyosaurs (who looked a bit like dolphins!) and plesiosaurs with their long necks and flippers, swimming in Panthalassa.
+            </p>
+
+            <h2>Animals on Land</h2>
+
+            <p>
+                On the land of Pangaea, especially near water bodies, you would see animals like frogs, salamanders, crocodiles, turtles, and snakes. Look up in the sky, and you might spot pterosaurs, which were flying reptiles that soared through the ancient skies.
+            </p>
+
+            <p>
+                The Triassic Period, which was when Pangaea began to split apart, was a very exciting time for new life. Many older animals and plants had disappeared, but the ones that survived started to spread out and change. This is when the first tiny mammals and the very first dinosaurs started to appear and grow. Dinosaurs would eventually become the dominant land animals during this time.
+            </p>
+
+            <h2>Plant Life on Pangaea</h2>
+
+            <p>
+                The ground was covered with many different plants, including soft mosses, ferns, and tall trees like conifers and ginkgos. There were also lots of smaller creatures too, like spiders, scorpions, millipedes, centipedes, and even grasshoppers living among these plants.
+            </p>
+
+            <h2>Climate and Weather</h2>
+
+            <p>
+                The climate on Pangaea was quite varied due to its enormous size. The middle parts of the supercontinent, far from the ocean, were often very dry and cool, almost like a huge desert, with big differences between hot and cold temperatures.
+            </p>
+
+            <p>
+                But some areas, especially near the equator, experienced wet, swampy conditions because of giant monsoon rains. These monsoons brought tropical, moisture-filled air from the surrounding seas. Because all the land was together, it also meant that animals and plants that liked dry weather could spread easily across the land.
+            </p>
+
+            <h2>The Landscape</h2>
+
+            <p>
+                Imagine a huge, C-shaped landmass stretching almost from the top of the Earth to the bottom. Running right through the middle of Pangaea were enormous mountains called the Central Pangaean Mountains. Think of them like the tallest mountains we have today, but even longer! These big mountains actually made a huge difference to the weather across the supercontinent.
+            </p>
+
+            <p>
+                Because the mountains blocked a lot of the rain, the middle parts of Pangaea were very, very dry and cool, like a huge desert. Closer to the edges, where the land met the giant ocean, the climate was much wetter and some areas were like big, lush swamps.
+            </p>
+
+            <p>
+                It was a truly unique landscape, very different from the world we know today, before the big puzzle pieces started drifting apart and the first humans in the Americas would eventually adapt to their environment and develop unique cultures.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

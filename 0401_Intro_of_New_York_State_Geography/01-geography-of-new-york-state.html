@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geography of New York State</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Geography of New York State
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Discovering What Makes New York State Special
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Geography</strong> - the study of Earth's land, water, and climate</li>
+                <li><strong>Diverse</strong> - having many different types or kinds</li>
+                <li><strong>Climate</strong> - the usual weather patterns in a place</li>
+                <li><strong>Hemisphere</strong> - half of the Earth</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Where is New York State?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                New York State is located in the northeastern part of the United States. It is on the continent of North America, in the northwestern hemisphere of Earth. New York State is often called "New York State" to distinguish it from New York City, which is just one part of the state.
+            </p>
+
+            <p>
+                New York's location in the world determines its climate in many important ways. The state touches the Atlantic Ocean to the southeast, where its lowest point is at sea level. The Atlantic Ocean is a main attraction for visitors to Long Island. New York also borders two of the Great Lakes: Lake Erie to the west and Lake Ontario to the northwest.
+            </p>
+
+            <h2>What Makes New York State Special</h2>
+            
+            <p>
+                New York State has a diverse geography to represent and examine the climate and biomes in New York and in the world. While many people think of New York as a bustling, busy urban area, the majority of the state is quite pastoral, with mountains, forests, valleys, lakes, and oceans.
+            </p>
+
+            <p>
+                New York State is distinguished by its remarkable geographical diversity. It is the only U.S. state to border both the Great Lakes and the Atlantic Ocean. The state borders six other U.S. states, Canada, two of the Great Lakes, and the Atlantic Ocean, making it very connected to the rest of North America.
+            </p>
+
+            <h2>New York's Diverse Landscapes</h2>
+
+            <p>
+                Contrary to its urban image, the majority of New York State is pastoral, characterized by mountains, forests, valleys, lakes, and oceans, creating a wide range of landscapes and microclimates. The state is home to prominent mountain ranges, including the Catskills and the Adirondacks.
+            </p>
+
+            <p>
+                The Adirondack Park is larger than any U.S. National Park in the contiguous United States. New York is renowned for its many lakes, including the distinctive Finger Lakes, which were formed by glaciers and are often described as looking like "the imprint of His hand" according to Native American legend.
+            </p>
+
+            <h2>Climate and Weather</h2>
+
+            <p>
+                The state generally has a humid continental climate, but New York City and Long Island experience a warmer humid subtropical climate. Buffalo receives more snow than Anchorage, Alaska, a phenomenon known as "lake effect" snow, which results from cold air passing over the relatively warmer waters of Lake Erie.
+            </p>
+
+            <p>
+                Fall is a particularly popular season for tourism, drawing visitors for "leaf peeping" due to the comfortable temperatures and vibrant autumn foliage. The diverse climate helps create the state's amazing variety of plants and animals.
+            </p>
+
+            <h2>Why Geography Matters</h2>
+
+            <p>
+                Understanding New York State's geography helps us learn about how location affects climate, what kinds of plants and animals can live in different places, and how people have used the land throughout history. New York's diverse geography has made it an important place for trade, transportation, and settlement for hundreds of years.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

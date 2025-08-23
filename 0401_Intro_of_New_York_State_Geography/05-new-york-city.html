@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New York City</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                New York City
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Exploring America's Largest City and Its Five Boroughs
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Borough</strong> - one of the five main parts that make up New York City</li>
+                <li><strong>Metropolitan</strong> - relating to a large city and its surrounding areas</li>
+                <li><strong>Diverse</strong> - having many different types of people and cultures</li>
+                <li><strong>Economy</strong> - the system of money, jobs, and business in a place</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                What Makes New York City Special?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                New York City, often characterized as the "city that never sleeps," is a fast-paced, vibrant, and attraction-filled global hub. It is frequently described as the capital of the world, an epicenter of culture, finance, entertainment, and media, and the most economically powerful city globally.
+            </p>
+
+            <p>
+                New York City is the largest city by population in the United States, with an estimated population of 8,335,897 people. It accounts for more than two-fifths (over 40%) of New York State's total population. With a land area of approximately 305 square miles, it is the most densely populated major city in the U.S.
+            </p>
+
+            <h2>The Five Boroughs</h2>
+            
+            <p>
+                New York City is unique because it comprises five boroughs, each of which is also a county of New York State. What makes each of the 5 boroughs unique? What are some important landmarks in each borough?
+            </p>
+
+            <h3>Manhattan</h3>
+            <p>
+                Manhattan is considered the geographical, cultural, and economic core of the entire metropolitan area. It is home to many famous landmarks including Times Square, which is iconified as the "Crossroads of the World" and is one of the world's most visited tourist attractions. Central Park is a major urban green space, and Midtown Manhattan is recognized as the world's largest central business district.
+            </p>
+
+            <h3>Brooklyn</h3>
+            <p>
+                Brooklyn is located on Long Island and is one of the most populous boroughs. It has a rich cultural history and many diverse neighborhoods. Brooklyn is known for its bridges, parks, and vibrant arts scene.
+            </p>
+
+            <h3>Queens</h3>
+            <p>
+                Queens is particularly notable as home to the state's largest Asian American population and is considered the most ethnically diverse urban area globally. Up to 800 languages are spoken in New York City, with many of them represented in Queens, establishing it as one of the world's most linguistically diverse places.
+            </p>
+
+            <h3>The Bronx</h3>
+            <p>
+                The Bronx is the northernmost borough and is known for its parks, including the famous Bronx Zoo and the New York Botanical Garden. It has a rich cultural heritage and is considered the birthplace of hip-hop music.
+            </p>
+
+            <h3>Staten Island</h3>
+            <p>
+                Staten Island is the most suburban of the five boroughs and offers views of the Statue of Liberty. It is connected to the other boroughs by the Verrazzano-Narrows Bridge and the Staten Island Ferry.
+            </p>
+
+            <h2>Important Landmarks and Attractions</h2>
+
+            <p>
+                New York City is home to many world-famous landmarks. The Statue of Liberty National Monument, including Ellis Island, is a global symbol of the United States and its ideals of democracy and freedom, dedicated in New York Harbor on October 28, 1886.
+            </p>
+
+            <p>
+                The city hosts the headquarters of the United Nations in Midtown Manhattan since 1952, making it a significant center for international diplomacy. The Metropolitan Museum of Art is one of the largest and most visited museums in the world.
+            </p>
+
+            <h2>A City of Many Cultures</h2>
+
+            <p>
+                The city is highly diverse, hosting the largest foreign-born population of any metropolitan region in the world, with over 26.7% of its residents born outside the United States. New York City boasts the highest total Asian population of any U.S. city proper, and nearly three million Latino Americans, making it the largest Hispanic population of any city outside Latin America and Spain.
+            </p>
+
+            <h2>Economic Powerhouse</h2>
+
+            <p>
+                The New York City metropolitan region boasts the largest economy in the world, with a gross metropolitan product of over US$2.16 trillion in 2022. If it were an independent nation, it would rank as the eighth-largest economy globally. The city is a premier global center for trading and is the principal commercial banking center of the United States.
+            </p>
+
+            <p>
+                Four of New York City's five boroughs—Manhattan Island, Staten Island, and Brooklyn and Queens—are situated on islands at the mouth of the Hudson River. This unique geography, combined with its diverse population and economic power, makes New York City one of the most important cities in the world.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

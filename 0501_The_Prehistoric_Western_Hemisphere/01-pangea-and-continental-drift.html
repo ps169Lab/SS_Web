@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pangea and Continental Drift</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Pangea and Continental Drift
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                How Earth's Giant Land Puzzle Came Apart
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Pangaea</strong> - the supercontinent that existed 250 million years ago</li>
+                <li><strong>Continental Drift</strong> - the slow movement of continents over millions of years</li>
+                <li><strong>Tectonic Plates</strong> - huge, slowly moving rock slabs that make up Earth's surface</li>
+                <li><strong>Supercontinent</strong> - when all continents are joined together as one giant landmass</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                What is Pangaea?
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Imagine our Earth is like a giant, ever-changing puzzle! A super, super long time ago, all the big land pieces, which we call continents, were stuck together in one huge, single supercontinent called Pangaea. What is Pangaea? What is Continental Drift? How do scientists know Pangaea existed?
+            </p>
+
+            <p>
+                Pangaea was shaped a bit like a giant letter C and stretched from the North Pole all the way down to the South Pole. It existed around 250 million years ago. But this giant land puzzle didn't stay together!
+            </p>
+
+            <h2>How Continental Drift Works</h2>
+            
+            <p>
+                Slowly, slowly, over many, many millions of years, these enormous land pieces started to drift apart. This slow movement is what scientists call continental drift. It happened because the Earth's outside layer is made of huge, slowly moving rock slabs called tectonic plates. Think of them like rafts floating on a very thick, gooey liquid deep inside the Earth!
+            </p>
+
+            <p>
+                Around 200 million years ago, Pangaea began to crack and split into two big pieces: Laurasia was the northern part, and Gondwana was the southern part.
+            </p>
+
+            <h2>How the Western Hemisphere Formed</h2>
+
+            <p>
+                South America was originally part of Gondwana. It slowly broke off and started to drift away to become its own island-continent around 135 million years ago. North America was part of Laurasia. After Pangaea first split, North America later separated from Eurasia (which is where Europe and Asia are today) during the mid-Cretaceous period.
+            </p>
+
+            <p>
+                For a very long time, North America and South America were separate landmasses with a big ocean gap between them. But then, something amazing happened! About 15 million years ago, big underwater movements caused volcanoes to erupt, and these volcanoes started forming islands where Central America is today.
+            </p>
+
+            <h2>The Great American Connection</h2>
+
+            <p>
+                Over time, more land was created by these volcanoes, and eroded dirt and rocks from both North and South America filled in the spaces between the islands. Finally, around three million years ago, North America and South America became connected by a narrow strip of land called the Isthmus of Panama.
+            </p>
+
+            <p>
+                This was like building a bridge between the two big continents! Once they were connected, many animals and plants could walk or spread between the two continents, in an event called the "Great American Interchange".
+            </p>
+
+            <h2>How Scientists Know This Happened</h2>
+
+            <p>
+                Scientists know about this amazing journey by studying clues like fossils. When they find the same kinds of fossils on continents that are now very far apart, like a small reptile called Mesosaurus whose fossils are only in South America and southern Africa, it tells us those lands must have been connected long ago. Since this little creature couldn't swim across a whole ocean, it's strong evidence that these lands were once together.
+            </p>
+
+            <p>
+                So, the continents of the Western Hemisphere formed from one supercontinent, slowly drifted apart, and then reconnected much later, all thanks to the incredible, slow-motion dance of Earth's land puzzle pieces!
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

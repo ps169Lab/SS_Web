@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Prehistoric Western Hemisphere</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                The Prehistoric Western Hemisphere
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Journey Back in Time to Discover the First Americans
+            </p>
+        
+            <!-- Section heading -->
+            <h2>
+                Welcome to Prehistoric Times!
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Welcome to an amazing journey back in time! Long before there were cities, countries, or even written history, the Western Hemisphere was home to incredible adventures. This is the story of how our continents formed, what life was like millions of years ago, and how the very first people came to live in the Americas.
+            </p>
+
+            <h2>What You'll Discover</h2>
+            
+            <p>
+                In this unit, you'll explore six fascinating topics that will help you understand how the first humans in the Americas adapted to their environment as well as changed it through their interactions with their environment and the development of unique cultures:
+            </p>
+
+            <ul>
+                <li><strong>What is the Western Hemisphere?</strong> - Learn about our part of the world and what makes it special</li>
+                <li><strong>Pangea and Continental Drift</strong> - Discover how Earth's giant land puzzle came apart over millions of years</li>
+                <li><strong>Life on Pangea</strong> - Explore what amazing plants and animals lived on the supercontinent</li>
+                <li><strong>The Bering Land Bridge</strong> - Find out how people first came to the Americas during the Ice Age</li>
+                <li><strong>Fossil Evidence of the Clovis People</strong> - Learn how scientists study ancient artifacts to understand early Americans</li>
+                <li><strong>The First People to Inhabit the United States</strong> - Understand how early Americans lived, what they ate, and how they survived</li>
+            </ul>
+
+            <h2>An Amazing Story of Survival and Adaptation</h2>
+
+            <p>
+                The story of the prehistoric Western Hemisphere is really a story about survival, adaptation, and incredible journeys. Imagine walking across a land bridge from Asia to North America, following giant mammoths and other huge animals that no longer exist today!
+            </p>
+
+            <p>
+                These early people were amazing survivors who learned to live in completely new environments. They developed new tools, found new foods, and created new ways of life that would eventually become the foundation for all the Native American cultures that followed.
+            </p>
+
+            <h2>Your Time Travel Adventure Begins</h2>
+
+            <p>
+                Each lesson will take you further back in time and help you understand how our world came to be the way it is today. You'll learn about continental drift, Ice Age animals, ancient tools, and the incredible journey of the first Americans.
+            </p>
+
+            <p>
+                Click on any lesson in the navigation menu to begin your prehistoric adventure. Start with "What is the Western Hemisphere?" to learn about our part of the world, then travel back through time to discover the amazing story of the first people in the Americas!
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
