@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tribes of the Different Regions of the Western Hemisphere</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                The Tribes of the Different Regions of the Western Hemisphere
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                How Native Americans Adapted to Different Environments
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Biome:</strong> A large area with similar climate and plants</li>
+                <li><strong>Adapt:</strong> To change to fit your environment</li>
+                <li><strong>Hunter-gatherers:</strong> People who hunt animals and gather plants for food</li>
+                <li><strong>Agriculture:</strong> Growing crops for food</li>
+                <li><strong>Nomadic:</strong> Moving from place to place</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                Native Americans Lived Everywhere
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Long before Europeans came to America, Native American tribes lived all across the Western Hemisphere. The Western Hemisphere includes North America, Central America, and South America. These first people arrived thousands of years ago by walking across a land bridge from Asia to Alaska.
+            </p>
+
+            <p>
+                Native Americans lived in many different places with different climates and land features. Some lived in cold, icy places in the north. Others lived in hot deserts in the southwest. Some made their homes in thick forests, while others lived on wide, grassy plains. Each group had to learn how to live in their special environment.
+            </p>
+            
+            <!-- Section heading -->
+            <h2>
+                How They Adapted to Different Places
+            </h2>
+            
+            <p>
+                Native American tribes were very smart about using what nature gave them. They learned to adapt, which means they changed the way they lived to fit their environment. If they lived where it was very cold, they learned to make warm clothes and shelters. If they lived in the desert, they found ways to get water and grow food in dry places.
+            </p>
+
+            <p>
+                At first, most Native Americans were hunter-gatherers. This means they hunted wild animals for meat and gathered wild plants, nuts, and berries for food. They moved around a lot to find food. Over time, many groups learned how to grow their own food through agriculture. When they could grow their own crops, they could stay in one place and build permanent villages.
+            </p>
+            
+            <!-- Section heading -->
+            <h2>
+                The Five Main Regions
+            </h2>
+            
+            <p>
+                Native Americans lived in five main types of environments in the Western Hemisphere. Each region had its own challenges and gifts from nature.
+            </p>
+
+            <!-- Subsection heading -->
+            <h3>
+                Arctic Region
+            </h3>
+            
+            <p>
+                In the far north, where it was very cold and icy, lived tribes like the Inuit and Aleut people. They hunted seals, whales, and caribou. They built igloos from snow and wore thick fur clothing to stay warm.
+            </p>
+
+            <!-- Subsection heading -->
+            <h3>
+                Forest Region
+            </h3>
+            
+            <p>
+                In the eastern part of North America, thick forests covered the land. Tribes like the Iroquois and Cherokee lived here. They built homes from wood and bark. They grew corn, beans, and squash together, which they called the "Three Sisters."
+            </p>
+
+            <!-- Subsection heading -->
+            <h3>
+                Plains Region
+            </h3>
+            
+            <p>
+                In the middle of North America were huge, flat grasslands called the Great Plains. Tribes like the Lakota and Cheyenne lived here. They followed huge herds of buffalo and lived in tipis that they could move easily.
+            </p>
+
+            <!-- Subsection heading -->
+            <h3>
+                Desert Region
+            </h3>
+            
+            <p>
+                In the hot, dry southwest, tribes like the Hopi and Navajo learned to live with very little water. They grew special crops that didn't need much water and built homes from adobe clay.
+            </p>
+
+            <!-- Subsection heading -->
+            <h3>
+                Rainforest Region
+            </h3>
+            
+            <p>
+                In Central and South America, some tribes lived in thick rainforests. The Olmec people were among the first to build great cities and develop writing systems in these tropical areas.
+            </p>
+
+            <!-- Section heading -->
+            <h2>
+                What They All Had in Common
+            </h2>
+            
+            <p>
+                Even though Native American tribes lived in very different places, they shared some important things. They all had deep respect for nature and the land. They all told stories to teach their children about their history and beliefs. They all used natural materials like wood, stone, and animal skins to make tools and clothing. Most importantly, they all found ways to live successfully in their environments for thousands of years.
+            </p>
+
+            <p>
+                These Native American tribes showed amazing creativity and intelligence. They proved that people can adapt and thrive anywhere on Earth when they work together and respect the natural world around them.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

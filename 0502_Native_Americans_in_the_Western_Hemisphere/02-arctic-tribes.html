@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arctic Tribes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                Arctic Tribes
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                Living in the Land of Ice and Snow
+            </p>
+
+            <!-- Vocabulary Section -->
+            <h2>Vocabulary Words</h2>
+            <ul>
+                <li><strong>Igloo:</strong> A house made of snow blocks</li>
+                <li><strong>Caribou:</strong> Large deer that live in cold places</li>
+                <li><strong>Blubber:</strong> Fat from sea animals used for food and fuel</li>
+                <li><strong>Kayak:</strong> A small boat made from animal skins</li>
+            </ul>
+        
+            <!-- Section heading -->
+            <h2>
+                The Coldest Place on Earth
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                Imagine living where it is winter all year long! The Arctic is the coldest region in the Western Hemisphere. It covers the far northern parts of Alaska, Canada, and Greenland. Here, temperatures can drop far below freezing, and the ground stays frozen most of the year. Snow and ice cover the land for many months.
+            </p>
+
+            <p>
+                Even in this harsh, cold environment, Native American tribes found ways to survive and thrive. The main groups who lived in the Arctic were the Inuit, Aleut, and Yupik peoples. These amazing people learned to use everything the cold land and icy seas could give them.
+            </p>
+            
+            <!-- Section heading -->
+            <h2>
+                How They Found Food in the Ice
+            </h2>
+            
+            <p>
+                Arctic tribes could not grow crops because the ground was too cold and frozen. Instead, they became expert hunters and fishers. They had to be very skilled to find food in such a difficult place.
+            </p>
+
+            <p>
+                People who lived near the ocean hunted sea mammals like seals, walruses, and whales. Seals were especially important because they provided meat for food, oil for lamps, and skins for clothing and boats. The Inuit would wait patiently by holes in the ice where seals came up to breathe. When a seal appeared, they would quickly spear it.
+            </p>
+
+            <p>
+                Tribes who lived inland hunted caribou, which are large deer that travel in huge herds across the frozen land. They also hunted moose and caught fish through holes in the ice. Arctic people learned to preserve their food by drying it or storing it in the cold.
+            </p>
+            
+            <!-- Section heading -->
+            <h2>
+                Homes Built for the Cold
+            </h2>
+            
+            <p>
+                Arctic tribes built different types of homes depending on the season and their needs. In summer, they lived in tents made from animal skins stretched over wooden frames. These tents could be taken apart and moved when the tribe needed to follow the animals they hunted.
+            </p>
+
+            <p>
+                In winter, some groups built igloos, which are dome-shaped houses made entirely from blocks of snow. Even though they were made of snow, igloos were surprisingly warm inside. The body heat from the people living inside, along with oil lamps, could keep the temperature comfortable even when it was freezing cold outside.
+            </p>
+
+            <p>
+                Some Arctic people also built more permanent winter homes using stones, whale bones, and sod. These homes were built partly underground to stay warmer.
+            </p>
+            
+            <!-- Section heading -->
+            <h2>
+                Special Tools for Arctic Life
+            </h2>
+            
+            <p>
+                Living in the Arctic required special tools that could work in the cold and help people hunt on ice and water. Arctic tribes made kayaks, which are small, fast boats covered in waterproof seal skin. These boats were perfect for hunting seals and whales in icy waters.
+            </p>
+
+            <p>
+                They also made sleds pulled by teams of strong dogs. These sled dogs could travel across snow and ice much faster than people could walk. The dogs were not just helpers - they were important family members who helped Arctic people travel and hunt.
+            </p>
+
+            <p>
+                For hunting, they created special spears and harpoons with sharp points made from bone or stone. They also made ice fishing hooks and warm boots called mukluks from animal fur and leather.
+            </p>
+            
+            <!-- Section heading -->
+            <h2>
+                Staying Warm in Freezing Weather
+            </h2>
+            
+            <p>
+                Arctic tribes became experts at making warm clothing from animal furs and skins. They wore layers of clothing, with the fur touching their skin to trap warm air. They made parkas, pants, boots, and mittens all from animal materials.
+            </p>
+
+            <p>
+                Seal skin was especially useful because it was waterproof. They used it to make boots and outer clothing that would keep them dry when hunting near water or walking on wet ice.
+            </p>
+            
+            <!-- Section heading -->
+            <h2>
+                Arctic Culture and Beliefs
+            </h2>
+            
+            <p>
+                Arctic tribes had rich spiritual beliefs connected to the animals they hunted and the harsh environment around them. They created beautiful masks for ceremonies and celebrations. These masks often showed animals like seals, whales, or polar bears, which were important to their survival.
+            </p>
+
+            <p>
+                They told stories during the long, dark winter months to teach children about their history and how to survive in the Arctic. These stories were passed down from parents to children for thousands of years.
+            </p>
+
+            <p>
+                The Inuit also built inuksuk, which are stone sculptures that served as landmarks and messages for other travelers crossing the vast, white landscape.
+            </p>
+            
+            <!-- Section heading -->
+            <h2>
+                Masters of Survival
+            </h2>
+            
+            <p>
+                Arctic tribes showed incredible skill and intelligence in learning to live in one of Earth's most challenging environments. They proved that with creativity, cooperation, and deep knowledge of nature, people can survive and create rich cultures even in the coldest places on our planet. Their way of life teaches us about the importance of respecting and working with the natural world around us.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

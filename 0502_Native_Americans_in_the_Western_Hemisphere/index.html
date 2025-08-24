@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native Americans in the Western Hemisphere</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">Native Americans in the Western Hemisphere</h1>
+            <p class="subtitle">Exploring the Diverse Cultures of the First Americans</p>
+            
+            <h2>Welcome to Our Study of Native Americans</h2>
+            <p>
+                Long before Europeans arrived in the Americas, millions of Native Americans lived across the Western Hemisphere. These first peoples created amazing cultures and learned to live successfully in every type of environment - from the frozen Arctic to hot deserts, from thick forests to wide grasslands, and in tropical rainforests.
+            </p>
+            
+            <h2>What You Will Learn</h2>
+            <p>
+                In this unit, you will discover how different Native American tribes adapted to their environments and created unique ways of life. You will learn about their homes, food, tools, and beliefs. Most importantly, you will understand how these remarkable people showed creativity, intelligence, and respect for nature.
+            </p>
+            
+            <h2>The Topics We Will Explore</h2>
+            <ul>
+                <li><strong>The Tribes of Different Regions</strong> - An overview of how Native Americans spread across the Western Hemisphere</li>
+                <li><strong>Arctic Tribes</strong> - How people survived in the coldest places on Earth</li>
+                <li><strong>Forest Tribes</strong> - Life among the trees in the Eastern Woodlands</li>
+                <li><strong>Plains Tribes</strong> - Following the buffalo across the great grasslands</li>
+                <li><strong>Desert Tribes</strong> - Thriving in the hot, dry Southwest</li>
+                <li><strong>Rainforest Tribes</strong> - Building the first great civilizations in tropical lands</li>
+                <li><strong>Similarities and Differences</strong> - What all tribes shared and how they were unique</li>
+            </ul>
+            
+            <p>
+                Click on the links above to begin your journey of discovery about the amazing Native American peoples of the Western Hemisphere!
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
