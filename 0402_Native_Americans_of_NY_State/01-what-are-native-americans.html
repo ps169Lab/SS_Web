@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What are Native Americans?</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">
+                What are Native Americans?
+            </h1>
+            
+            <p class="subtitle">
+                Learning about the first people of New York State
+            </p>
+
+            <div class="vocabulary">
+                <h3>Vocabulary</h3>
+                <ul>
+                    <li><strong>Indigenous:</strong> The first people to live in a place</li>
+                    <li><strong>Iroquois:</strong> A group of Native American tribes in New York</li>
+                    <li><strong>Algonquian:</strong> Another group of Native American tribes</li>
+                    <li><strong>Confederacy:</strong> Groups working together as one</li>
+                </ul>
+            </div>
+        
+            <h2>The First People of New York</h2>
+            
+            <p>
+                Native Americans are the indigenous peoples of North America. This means they were the first people to live here, long before Europeans arrived. In what is now New York State, many different Native American groups made their homes for thousands of years.
+            </p>
+            
+            <p>
+                The region that became New York State was part of the Northeast Woodlands. This area had thick forests, rivers, lakes, and plenty of animals. It was perfect for Native Americans to build their communities and live off the land.
+            </p>
+
+            <h2>Two Main Groups in New York</h2>
+            
+            <p>
+                In New York State, there were two main groups of Native Americans: the Iroquois and the Algonquian peoples. Each group had its own languages, customs, and ways of living, but they both learned to use the natural resources around them.
+            </p>
+
+            <h3>The Iroquois (Haudenosaunee)</h3>
+            
+            <p>
+                The Iroquois called themselves the Haudenosaunee, which means "People of the Longhouse." They were made up of six different tribes: the Mohawk, Oneida, Onondaga, Cayuga, Seneca, and Tuscarora. These tribes joined together to form the Iroquois Confederacy, one of the first examples of different groups working together peacefully.
+            </p>
+
+            <h3>The Algonquian Peoples</h3>
+            
+            <p>
+                The Algonquian-speaking peoples included tribes like the Mahican, Wappinger, Montauk, and Lenape. These groups lived mainly in southeastern New York and along the Atlantic Coast. They moved with the seasons to find the best places to hunt, fish, and gather food.
+            </p>
+
+            <h2>Living with Nature</h2>
+            
+            <p>
+                Both the Iroquois and Algonquian peoples had a deep connection with nature. They believed that all living things - plants, animals, rivers, and forests - had spirits. This belief helped them take care of the environment and use only what they needed to survive.
+            </p>
+
+            <p>
+                Native Americans in New York were skilled at farming, hunting, and fishing. They grew crops like corn, beans, and squash, which they called the "Three Sisters." They also hunted deer, bear, and other animals, and caught fish from the many rivers and lakes.
+            </p>
+
+            <h2>A Rich Culture</h2>
+            
+            <p>
+                Native Americans had rich cultures with their own languages, stories, ceremonies, and traditions. They passed down their knowledge through storytelling, teaching children about their history, values, and how to live in harmony with nature. Their influence can still be seen in New York today in place names, foods, and traditions.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
