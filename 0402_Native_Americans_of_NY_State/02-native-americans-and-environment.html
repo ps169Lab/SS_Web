@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native Americans and the New York Environment</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">
+                Native Americans and the New York Environment
+            </h1>
+            
+            <p class="subtitle">
+                How the natural world shaped Native American life
+            </p>
+
+            <div class="vocabulary">
+                <h3>Vocabulary</h3>
+                <ul>
+                    <li><strong>Environment:</strong> The natural world around us</li>
+                    <li><strong>Resources:</strong> Things from nature that people use</li>
+                    <li><strong>Seasonal:</strong> Changes that happen with the seasons</li>
+                    <li><strong>Sustainable:</strong> Using resources without using them up</li>
+                </ul>
+            </div>
+        
+            <h2>Living in the Northeast Woodlands</h2>
+            
+            <p>
+                The Native Americans of New York State lived in an area called the Northeast Woodlands. This region had thick forests filled with oak, elm, birch, and maple trees. It also had many rivers, lakes, and streams, including the Great Lakes and Finger Lakes. The environment provided everything Native Americans needed to survive and thrive.
+            </p>
+            
+            <p>
+                The natural environment didn't just provide resources - it shaped how Native Americans lived, what they believed, and how they organized their communities. The abundance of wood, water, and wildlife made it possible for large groups of people to live together in permanent villages.
+            </p>
+
+            <h2>Using Natural Resources Wisely</h2>
+            
+            <h3>Building Materials from the Forest</h3>
+            
+            <p>
+                Trees were essential for Native American life. The Iroquois used wood frames and bark to build their famous longhouses - large buildings that could house many families. These longhouses could be over 100 feet long! Villages were often surrounded by wooden fences called palisades for protection.
+            </p>
+
+            <p>
+                Algonquian peoples built different types of homes depending on the season. In summer, they made portable wigwams from wood and bark. In winter, they built stronger longhouses to keep warm during the cold months.
+            </p>
+
+            <h3>Tools and Transportation</h3>
+            
+            <p>
+                Native Americans made tools from natural materials around them. They carved wooden bowls, spoons, and arrows. They used animal bones for needles and fishing hooks. The Algonquian peoples were especially famous for making birchbark canoes, which were perfect for traveling on New York's many rivers and lakes.
+            </p>
+
+            <h2>Following the Seasons</h2>
+            
+            <p>
+                New York's four seasons greatly influenced how Native Americans lived. Many Algonquian groups followed a seasonal pattern, moving to different places throughout the year to find the best food sources.
+            </p>
+
+            <p>
+                In spring, they moved to rivers and coasts to catch fish like salmon and sturgeon. Summer was time for gathering berries and nuts. In fall, they hunted deer and other animals in the forests. Winter meant staying in sheltered camps and relying on stored food.
+            </p>
+
+            <h3>The Three Sisters Agriculture</h3>
+            
+            <p>
+                The Iroquois were skilled farmers who grew corn, beans, and squash together. They called these crops the "Three Sisters" because they helped each other grow. The corn provided a pole for beans to climb, the beans added nutrients to the soil, and the squash leaves kept weeds away and held moisture in the ground.
+            </p>
+
+            <h2>Respecting Nature</h2>
+            
+            <p>
+                Native Americans believed that all parts of nature had spirits and deserved respect. This belief helped them use resources sustainably. They took only what they needed and made sure not to waste anything. When they hunted an animal, they used every part - meat for food, skins for clothing, and bones for tools.
+            </p>
+
+            <p>
+                Many Native American villages moved every 10-20 years to let the land rest and recover. This practice showed their understanding of how to live in harmony with the environment for many generations to come.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

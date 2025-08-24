@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native Americans of New York State</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">
+                Native Americans of New York State
+            </h1>
+            
+            <p class="subtitle">
+                Discovering the First People of the Empire State
+            </p>
+        
+            <h2>
+                Welcome to Native American History!
+            </h2>
+            
+            <p>
+                Long before European explorers arrived in America, Native American peoples had been living in what is now New York State for thousands of years. These indigenous peoples created rich cultures, built thriving communities, and developed sophisticated ways of living that were perfectly adapted to the Northeast Woodlands environment.
+            </p>
+
+            <h2>What You'll Discover</h2>
+            
+            <p>
+                In this unit, you'll explore six important aspects of Native American life in New York State that will help you understand these remarkable peoples and their lasting contributions:
+            </p>
+
+            <ul>
+                <li><strong>What are Native Americans?</strong> - Learn about the indigenous peoples of New York and the two main groups: the Iroquois and Algonquian peoples</li>
+                <li><strong>Native Americans and the Environment</strong> - Discover how the natural world shaped Native American life and how they used resources wisely</li>
+                <li><strong>Tribal Organization and Roles</strong> - Understand how Native American groups organized themselves, including the famous Iroquois Confederacy</li>
+                <li><strong>Daily Life of Native Americans</strong> - Explore how families lived, worked, and played in longhouses and villages</li>
+                <li><strong>Customs and Beliefs</strong> - Learn about the spiritual world, ceremonies, and traditions that guided Native American life</li>
+                <li><strong>Famous Native Americans</strong> - Meet important leaders like the Great Peacemaker and Hiawatha who founded the Iroquois Confederacy</li>
+            </ul>
+
+            <h2>The First New Yorkers</h2>
+
+            <p>
+                The Native Americans of New York State were not just one group, but many different tribes with their own languages, customs, and ways of life. The two main groups were the Iroquois (who called themselves the Haudenosaunee, meaning "People of the Longhouse") and the Algonquian-speaking peoples who lived along the coast and rivers.
+            </p>
+
+            <p>
+                These peoples were skilled farmers, hunters, and craftspeople. They created one of the world's first democratic governments, invented the sport of lacrosse, and developed sustainable ways of living that allowed them to thrive for thousands of years.
+            </p>
+
+            <h2>Learning from the Past</h2>
+
+            <p>
+                By studying Native American history, we can learn important lessons about cooperation, respect for nature, and living in harmony with our environment. The Iroquois Confederacy's Great Law of Peace even influenced the founding fathers when they created the United States Constitution.
+            </p>
+
+            <p>
+                Many Native American traditions, place names, foods, and ideas are still part of New York life today. From the Adirondack Mountains to the Mohawk River, from succotash to lacrosse, Native American culture continues to enrich our state.
+            </p>
+
+            <h2>Your Journey Begins</h2>
+
+            <p>
+                Each lesson will help you understand how Native Americans lived, what they believed, and how they organized their communities. You'll discover their amazing achievements and learn why their history is an important part of New York's story.
+            </p>
+
+            <p>
+                Click on any lesson in the navigation menu to begin your exploration of Native American life in New York State. Start with "What are Native Americans?" to learn about these remarkable peoples, then continue through each topic to build your understanding of the first New Yorkers!
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

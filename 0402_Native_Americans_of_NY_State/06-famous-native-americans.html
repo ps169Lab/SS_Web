@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Famous Native Americans</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">
+                Famous Native Americans
+            </h1>
+            
+            <p class="subtitle">
+                Important leaders and figures who shaped Native American history
+            </p>
+
+            <div class="vocabulary">
+                <h3>Vocabulary</h3>
+                <ul>
+                    <li><strong>Peacemaker:</strong> Someone who brings peace between groups</li>
+                    <li><strong>Prophet:</strong> A person who receives messages from spirits</li>
+                    <li><strong>Oratory:</strong> The skill of public speaking</li>
+                    <li><strong>Legend:</strong> A story passed down through generations</li>
+                </ul>
+            </div>
+        
+            <h2>The Founders of the Iroquois Confederacy</h2>
+            
+            <p>
+                Long before Europeans came to America, several important Native American leaders worked together to create peace among the warring tribes of New York. These leaders founded the Iroquois Confederacy, one of the first democratic governments in North America.
+            </p>
+
+            <h3>The Great Peacemaker (Deganawida)</h3>
+            
+            <p>
+                The Great Peacemaker was a prophet who had a vision of peace among all the tribes. His Mohawk name, Skén:nen rahá:wi, means "Two River Currents Flowing Together." According to legend, he traveled from village to village, spreading his message that tribes should stop fighting and work together.
+            </p>
+
+            <p>
+                One famous story tells how the Great Peacemaker proved his spiritual power to the Mohawk people. He climbed a tree high above Cohoes Falls and told warriors to chop it down. Everyone watched him disappear into the rushing water and thought he had died. But the next morning, they found him sitting by a campfire, completely unharmed. This miracle convinced the Mohawk to join his peace movement.
+            </p>
+
+            <h3>Hiawatha</h3>
+            
+            <p>
+                Hiawatha was an Onondaga leader known for his powerful speaking skills. He became the Great Peacemaker's most important helper in bringing the tribes together. Hiawatha is credited with inventing wampum belts, which were used to comfort chiefs and clan mothers who had lost family members in wars.
+            </p>
+
+            <p>
+                Working together, the Great Peacemaker and Hiawatha convinced five tribes - the Mohawk, Oneida, Onondaga, Cayuga, and Seneca - to join the Iroquois Confederacy and live in peace.
+            </p>
+
+            <h3>Jigonhsasee (The Mother of Nations)</h3>
+            
+            <p>
+                Jigonhsasee was the Great Peacemaker's first ally and is considered a co-founder of the Iroquois Confederacy. Her home served as a neutral meeting place where leaders from rival tribes could come together safely to discuss peace.
+            </p>
+
+            <p>
+                Her important role shows how Native American women had significant power and influence in their communities. She is especially remembered in the oral traditions passed down by Native American women.
+            </p>
+
+            <h3>Tadodaho</h3>
+            
+            <p>
+                Tadodaho was an Onondaga chief who initially opposed the Great Peacemaker's message of peace. According to legend, the Peacemaker helped heal Tadodaho's troubled mind and convinced him to join the peace movement. Tadodaho became the chief arbitrator of the Iroquois Confederacy.
+            </p>
+
+            <p>
+                Because the Onondaga lived in the center of Iroquois territory, they became known as the "Keepers of the Fire," and their land was considered the capital of the Iroquois League.
+            </p>
+
+            <h2>Mythical Figures</h2>
+            
+            <h3>Sky Woman</h3>
+            
+            <p>
+                Sky Woman is a central figure in Iroquois creation stories. According to legend, she fell from the Sky World through a hole in the clouds while pregnant. Animals in the water below worked together to catch her and place her on the back of a great turtle, which became the Earth.
+            </p>
+
+            <p>
+                Sky Woman's twin sons represent the balance between good and evil in the world. The Good Twin created the first people and gave them important gifts like tobacco and healing ceremonies. The Evil Twin created challenges and difficulties that people must overcome.
+            </p>
+
+            <h2>The Legacy of These Leaders</h2>
+            
+            <p>
+                These famous Native Americans created a system of government based on peace, cooperation, and respect for all people. The Great Law of Peace that guided the Iroquois Confederacy influenced the founding fathers when they created the United States Constitution.
+            </p>
+
+            <p>
+                The Iroquois Confederacy lasted for hundreds of years and showed that different groups could work together while keeping their own identities and traditions. This example of unity and democracy continues to inspire people today.
+            </p>
+
+            <h2>Remembering Their Contributions</h2>
+            
+            <p>
+                These Native American leaders made important contributions to American history and government. Their ideas about democracy, women's rights, and peaceful cooperation helped shape the values that America was built on.
+            </p>
+
+            <p>
+                Today, we can still learn from their wisdom about working together, respecting different viewpoints, and taking care of our environment for future generations.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

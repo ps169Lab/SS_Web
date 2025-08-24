@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tribal Organization and Roles</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">
+                Tribal Organization and Roles
+            </h1>
+            
+            <p class="subtitle">
+                How Native American groups organized themselves and shared responsibilities
+            </p>
+
+            <div class="vocabulary">
+                <h3>Vocabulary</h3>
+                <ul>
+                    <li><strong>Clan:</strong> A family group with the same ancestor</li>
+                    <li><strong>Sachem:</strong> A Native American chief or leader</li>
+                    <li><strong>Matrilineal:</strong> Family line passed through mothers</li>
+                    <li><strong>Council:</strong> A group that makes important decisions</li>
+                </ul>
+            </div>
+        
+            <h2>The Iroquois Confederacy</h2>
+            
+            <p>
+                The Iroquois created one of the most advanced forms of government in North America. Around 1570, five tribes - the Mohawk, Oneida, Onondaga, Cayuga, and Seneca - joined together to form the Iroquois Confederacy. Later, the Tuscarora tribe joined them, making it six nations working together.
+            </p>
+            
+            <p>
+                This union was created to bring peace among the tribes and help them work together. It was one of the first examples of different groups forming a democracy, where representatives from each tribe met in a Great Council to make important decisions about war, peace, and other major issues.
+            </p>
+
+            <h2>The Great Law of Peace</h2>
+            
+            <p>
+                The Iroquois government was guided by an oral constitution called the Great Law of Peace. This set of rules explained how chiefs should behave, how to solve disagreements, and how to maintain peace between the tribes. Some historians believe this system influenced the United States Constitution.
+            </p>
+
+            <h3>How the Government Worked</h3>
+            
+            <p>
+                Each of the six nations had its own elected chiefs called sachems. These chiefs attended the Iroquois council to make decisions for all the tribes together. At the same time, each nation kept its own leaders to handle local matters in their own territories.
+            </p>
+
+            <h2>The Power of Women</h2>
+            
+            <p>
+                Iroquois society was matrilineal, which means that family names and property passed down through the mother's side of the family. Women held great power in Iroquois society. The most important women were called Clan Mothers, and they had the special job of choosing the chiefs for their clans.
+            </p>
+
+            <p>
+                If a chief wasn't doing a good job, the Clan Mothers could remove him from power and choose someone new. This gave women an important voice in how their communities were governed.
+            </p>
+
+            <h2>Clans and Family Organization</h2>
+            
+            <p>
+                Both Iroquois and Algonquian peoples organized themselves into clans. Clans were like large extended families, and they were often named after animals such as Bear, Wolf, Turtle, Beaver, or Hawk. People from the same clan could not marry each other, so they had to find partners from different clans.
+            </p>
+
+            <p>
+                Each clan had its own responsibilities and roles within the tribe. Some clans might be responsible for certain ceremonies, while others took care of specific tasks like making tools or organizing hunts.
+            </p>
+
+            <h2>Algonquian Organization</h2>
+            
+            <p>
+                Algonquian peoples had a different way of organizing themselves. Their basic unit was the village, which usually had a few hundred people related through clan families. Unlike the Iroquois, Algonquian villages were often temporary and moved to follow food sources throughout the seasons.
+            </p>
+
+            <p>
+                Each Algonquian community had its own leader called an ogima or chief. These chiefs were chosen by tribal council members and were responsible for making decisions for their specific group. Each community was independent and made its own choices.
+            </p>
+
+            <h2>Special Roles in the Tribe</h2>
+            
+            <p>
+                Native American communities had many special roles beyond just chiefs and clan mothers. There were medicine men who healed the sick, storytellers who preserved tribal history, and skilled craftspeople who made important items like wampum belts, pottery, and baskets.
+            </p>
+
+            <p>
+                These different roles showed how Native American societies valued different skills and made sure everyone had an important job to do in keeping their communities strong and healthy.
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
