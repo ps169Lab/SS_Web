@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Article Template</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="reading-level-toggle.css">
     <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
 
 </head>
@@ -43,7 +44,8 @@
             
             <!-- Main content paragraphs -->
             <p>
-                <!-- Your paragraph content here -->
+                <span class="standard-reading"><!-- Your standard reading level content here --></span>
+                <span class="easy-reading"><!-- Your summary reading level content here --></span>
             </p>
             
             <!-- Image placeholder -->
@@ -68,13 +70,15 @@
             
             <!-- Additional content paragraphs -->
             <p>
-                <!-- Your paragraph content here -->
+                <span class="standard-reading"><!-- Your standard reading level content here --></span>
+                <span class="easy-reading"><!-- Your summary reading level content here --></span>
             </p>
             
             <!-- Paragraph with Chinese characters example -->
             <p>
-                <!-- Your paragraph content here -->
-                <!-- For Chinese characters use: <span class="chinese-text">中文</span> -->
+                <span class="standard-reading"><!-- Your standard reading level content here -->
+                <!-- For Chinese characters use: <span class="chinese-text">中文</span> --></span>
+                <span class="easy-reading"><!-- Your summary reading level content here --></span>
             </p>
         </article>
     </main>
@@ -87,5 +91,7 @@
         }
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <script src="reading-level-toggle.js"></script>
 </body>
 </html>

@@ -1,0 +1,81 @@
+/* Reading Level Toggle Styles */
+.reading-level-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    background: #fff;
+    border: 2px solid #355C7D;
+    border-radius: 8px;
+    padding: 8px 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    font-family: 'Spectral', Helvetica, sans-serif;
+}
+
+.reading-level-toggle label {
+    font-size: 0.9rem;
+    color: #333;
+    margin-right: 8px;
+    font-weight: 600;
+}
+
+.reading-level-toggle select {
+    background: #f6fbff;
+    border: 1px solid #355C7D;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.9rem;
+    color: #333;
+    cursor: pointer;
+    font-family: 'Spectral', Helvetica, sans-serif;
+}
+
+.reading-level-toggle select:focus {
+    outline: none;
+    border-color: #FF946A;
+    box-shadow: 0 0 0 2px rgba(255, 148, 106, 0.2);
+}
+
+/* Hide easy reading content by default */
+.easy-reading {
+    display: none;
+}
+
+/* When easy reading mode is active, hide standard and show easy */
+.easy-reading-mode .standard-reading {
+    display: none;
+}
+
+.easy-reading-mode .easy-reading {
+    display: block;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .reading-level-toggle {
+        top: 80px;
+        right: 10px;
+        padding: 6px 10px;
+    }
+    
+    .reading-level-toggle label {
+        font-size: 0.8rem;
+    }
+    
+    .reading-level-toggle select {
+        font-size: 0.8rem;
+        padding: 3px 6px;
+    }
+}
+
+/* Ensure toggle doesn't interfere with Google Translate */
+@media (max-width: 768px) {
+    .reading-level-toggle {
+        top: 80px;
+    }
+}
+
+/* Smooth transitions for content switching */
+.standard-reading, .easy-reading {
+    transition: opacity 0.3s ease-in-out;
+}
