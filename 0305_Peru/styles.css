@@ -56,11 +56,155 @@ main {
 }
 
 @media print {
-    .navbar {
-        display: none;
+    /* Hide navigation and interactive elements */
+    .navbar,
+    .menu-toggle,
+    .nav-links {
+        display: none !important;
     }
-     .section-title h1 {
+    
+    /* Reset main content positioning for print */
+    main {
+        margin-left: 0 !important;
+        padding-left: 20px !important;
+        padding-top: 0 !important;
+        width: 100% !important;
+        max-width: none !important;
+    }
+    
+    /* Optimize typography for print */
+    body {
+        font-size: 12pt !important;
+        line-height: 1.4 !important;
+        color: #000 !important;
+        background: white !important;
+    }
+    
+    /* Adjust headings for print */
+    h1 {
+        font-size: 18pt !important;
+        margin-top: 0.5em !important;
+        margin-bottom: 0.5em !important;
+        page-break-after: avoid;
+    }
+    
+    h2 {
+        font-size: 16pt !important;
+        margin-top: 0.8em !important;
+        margin-bottom: 0.4em !important;
+        page-break-after: avoid;
+    }
+    
+    h3 {
+        font-size: 14pt !important;
+        margin-top: 0.6em !important;
+        margin-bottom: 0.3em !important;
+        page-break-after: avoid;
+    }
+    
+    .section-title {
+        font-size: 18pt !important;
+        margin-top: 0.5em !important;
+        margin-bottom: 0.5em !important;
+        page-break-after: avoid;
+        border-bottom: 1pt solid #000 !important;
+    }
+    
+    .section-title h1 {
         margin-top: 0.8em;
+    }
+    
+    .subtitle {
+        font-size: 14pt !important;
+        margin-bottom: 0.8em !important;
+    }
+    
+    /* Optimize paragraphs and lists for print */
+    p {
+        font-size: 12pt !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0.8em !important;
+        orphans: 3;
+        widows: 3;
+    }
+    
+    ul, ol {
+        margin-bottom: 0.8em !important;
+        padding-left: 1.5em !important;
+    }
+    
+    li {
+        font-size: 12pt !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0.3em !important;
+    }
+    
+    /* Handle images for print */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+        page-break-inside: avoid;
+        margin: 1em auto !important;
+        background-color: transparent !important;
+        border-radius: 0 !important;
+    }
+    
+    .image-grid {
+        display: block !important;
+        margin: 1em 0 !important;
+    }
+    
+    .image-grid-item {
+        display: block !important;
+        margin-bottom: 1em !important;
+        page-break-inside: avoid;
+    }
+    
+    /* Optimize links for print */
+    a {
+        color: #000 !important;
+        text-decoration: underline !important;
+        border-bottom: none !important;
+    }
+    
+    /* Add URL after links for print */
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 10pt;
+        color: #666;
+    }
+    
+    /* Don't show URLs for internal links */
+    a[href^="#"]:after,
+    a[href^="/"]:after {
+        content: "";
+    }
+    
+    /* Page break controls */
+    .page-break-before {
+        page-break-before: always;
+    }
+    
+    .page-break-after {
+        page-break-after: always;
+    }
+    
+    .no-page-break {
+        page-break-inside: avoid;
+    }
+    
+    /* Hide elements that shouldn't print */
+    .no-print,
+    .skiptranslate {
+        display: none !important;
+    }
+    
+    /* Ensure good contrast for print */
+    * {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
     }
 }
 
