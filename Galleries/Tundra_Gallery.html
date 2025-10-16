@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tundra Gallery</title>
+    <title>Arctic Tundra Gallery</title>
     <style>
         * {
             margin: 0;
@@ -142,7 +142,7 @@
     </style>
 </head>
 <body>
-    <h1>Tundra Collection</h1>
+    <h1>Arctic Tundra Collection</h1>
     
     <div class="search-container">
         <input 
@@ -172,7 +172,7 @@
 
         for (let i = 1; i <= totalImages; i++) {
             const num = String(i).padStart(2, '0');
-            const imagePath = `images/Tundra-${num}.jpg`;
+            const imagePath = `images/Arctic Tundra-${num}.jpg`;
             
             const card = document.createElement('div');
             card.className = 'card';
@@ -181,7 +181,7 @@
             const img = document.createElement('img');
             img.className = 'card-image';
             img.src = imagePath;
-            img.alt = `Tundra ${num}`;
+            img.alt = `Arctic Tundra ${num}`;
             img.loading = 'lazy';
             
             const numberBadge = document.createElement('div');
