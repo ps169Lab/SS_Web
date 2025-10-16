@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eastern Woodlands Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: #666;
+        }
+
+        .search-hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            aspect-ratio: 2.5 / 3.5;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .card.hidden {
+            display: none;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .card-number {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 32px;
+            height: 32px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        .lightbox-close:hover {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Eastern Woodlands Collection</h1>
+    
+    <div class="search-container">
+        <input 
+            type="text" 
+            class="search-input" 
+            id="search-input" 
+            placeholder="Filter by card numbers (e.g., 1, 4, 12, 31)"
+        >
+        <div class="search-hint">Enter comma-separated numbers or leave blank to show all</div>
+    </div>
+    
+    <div class="gallery" id="gallery"></div>
+    
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Full size image">
+    </div>
+
+    <script>
+        const gallery = document.getElementById('gallery');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const searchInput = document.getElementById('search-input');
+        const totalImages = 58;
+        const cards = [];
+
+        for (let i = 1; i <= totalImages; i++) {
+            const num = String(i).padStart(2, '0');
+            const imagePath = `images/Tundra-${num}.jpg`;
+            
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.dataset.cardNumber = i;
+            
+            const img = document.createElement('img');
+            img.className = 'card-image';
+            img.src = imagePath;
+            img.alt = `Eastern Wood ${num}`;
+            img.loading = 'lazy';
+            
+            const numberBadge = document.createElement('div');
+            numberBadge.className = 'card-number';
+            numberBadge.textContent = i;
+            
+            card.appendChild(img);
+            card.appendChild(numberBadge);
+            
+            card.addEventListener('click', () => {
+                lightboxImg.src = imagePath;
+                lightbox.classList.add('active');
+            });
+            
+            gallery.appendChild(card);
+            cards.push(card);
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            const input = e.target.value.trim();
+            
+            if (input === '') {
+                cards.forEach(card => card.classList.remove('hidden'));
+                return;
+            }
+            
+            const numbers = input.split(',')
+                .map(n => parseInt(n.trim()))
+                .filter(n => !isNaN(n) && n >= 1 && n <= totalImages);
+            
+            cards.forEach(card => {
+                const cardNum = parseInt(card.dataset.cardNumber);
+                if (numbers.includes(cardNum)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
