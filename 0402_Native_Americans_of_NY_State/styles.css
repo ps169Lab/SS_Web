@@ -112,7 +112,7 @@ main {
     
     /* Handle images for print */
     img {
-        max-width: 100% !important;
+        max-width: 60% !important;
         height: auto !important;
         page-break-inside: avoid;
         margin: 1em auto !important;
