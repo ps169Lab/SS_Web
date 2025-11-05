@@ -114,8 +114,6 @@ main {
     img {
         max-width: 100% !important;
         max-height: 4in !important; /* Limit height to fit on letter-size page */
-        height: auto !important;
-        width: auto !important;
         page-break-inside: avoid;
         page-break-before: auto;
         page-break-after: auto;
