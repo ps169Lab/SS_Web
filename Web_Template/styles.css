@@ -110,14 +110,26 @@ main {
         margin-bottom: 0.3em !important;
     }
     
-    /* Handle images for print */
+    /* Handle images for print - IMPROVED */
     img {
-        max-width: 60% !important;
+        max-width: 100% !important;
+        max-height: 4in !important; /* Limit height to fit on letter-size page */
         height: auto !important;
+        width: auto !important;
         page-break-inside: avoid;
-        margin: 1em auto !important;
+        page-break-before: auto;
+        page-break-after: auto;
+        margin: 0.5em auto !important;
+        display: block !important;
+        object-fit: contain !important;
         background-color: transparent !important;
         border-radius: 0 !important;
+    }
+    
+    /* Ensure paragraphs containing images don't break awkwardly */
+    p:has(img) {
+        page-break-inside: avoid;
+        margin-bottom: 0.3em !important;
     }
     
     .image-grid {
@@ -166,7 +178,8 @@ main {
     
     /* Hide elements that shouldn't print */
     .no-print,
-    .skiptranslate {
+    .skiptranslate,
+    #google_translate_element {
         display: none !important;
     }
     
