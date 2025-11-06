@@ -113,7 +113,7 @@ main {
     /* Handle images for print - IMPROVED */
     img {
         max-width: 100% !important;
-        max-height: 1vh !important; /* Limit height to fit on letter-size page */
+        max-height: 45vh !important; /* Limit height to fit on letter-size page */
         height: auto;
         width: auto;
         page-break-inside: avoid;
