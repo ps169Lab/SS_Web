@@ -1,629 +1,649 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Manager - Teacher Tool</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Google Sans', Roboto, Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .header {
-            background-color: #1967d2;
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        
-        .header h1 {
-            font-size: 24px;
-            font-weight: 400;
-        }
-        
-        .instructions {
-            background-color: #e8f0fe;
-            border-left: 4px solid #1967d2;
-            padding: 16px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-        
-        .instructions h3 {
-            font-size: 16px;
-            margin-bottom: 8px;
-            color: #1967d2;
-        }
-        
-        .instructions ol {
-            margin-left: 20px;
-            color: #3c4043;
-        }
-        
-        .instructions li {
-            margin: 4px 0;
-            font-size: 14px;
-        }
-        
-        .file-upload-section {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .file-upload-section h2 {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 12px;
-            color: #3c4043;
-        }
-        
-        .file-input-wrapper {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-        
-        input[type="file"] {
-            padding: 10px;
-            border: 2px dashed #dadce0;
-            border-radius: 4px;
-            flex: 1;
-        }
-        
-        .post-creator {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-        
-        .post-creator-header {
-            padding: 20px;
-            border-bottom: 1px solid #dadce0;
-        }
-        
-        .post-creator-header h2 {
-            font-size: 18px;
-            font-weight: 500;
-            color: #3c4043;
-        }
-        
-        .grade-selector-section {
-            padding: 20px;
-            border-bottom: 1px solid #dadce0;
-            background-color: #f8f9fa;
-        }
-        
-        .grade-selector-section h3 {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 12px;
-            color: #3c4043;
-        }
-        
-        .grade-checkboxes {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        
-        .checkbox-label input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-        
-        .form-section {
-            padding: 20px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            font-size: 14px;
-            color: #5f6368;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        textarea {
-            width: 100%;
-            min-height: 120px;
-            padding: 12px;
-            border: 1px solid #dadce0;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 14px;
-            resize: vertical;
-        }
-        
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #dadce0;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 14px;
-        }
-        
-        textarea:focus, input[type="text"]:focus {
-            outline: none;
-            border-color: #1967d2;
-        }
-        
-        .helper-text {
-            font-size: 12px;
-            color: #5f6368;
-            margin-top: 4px;
-        }
-        
-        .button-group {
-            display: flex;
-            gap: 12px;
-            padding: 20px;
-            border-top: 1px solid #dadce0;
-        }
-        
-        button {
-            padding: 10px 24px;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        
-        .btn-primary {
-            background-color: #1967d2;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: #1557b0;
-        }
-        
-        .btn-secondary {
-            background-color: white;
-            color: #5f6368;
-            border: 1px solid #dadce0;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .btn-danger {
-            background-color: #d93025;
-            color: white;
-        }
-        
-        .btn-danger:hover {
-            background-color: #b71c1c;
-        }
-        
-        .btn-success {
-            background-color: #1e8e3e;
-            color: white;
-        }
-        
-        .btn-success:hover {
-            background-color: #188038;
-        }
-        
-        .existing-posts {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .existing-posts h2 {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 16px;
-            color: #3c4043;
-        }
-        
-        .post-item {
-            border: 1px solid #dadce0;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 12px;
-            border-left: 4px solid #1967d2;
-        }
-        
-        .post-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 8px;
-        }
-        
-        .post-item-date {
-            font-size: 13px;
-            color: #5f6368;
-        }
-        
-        .post-item-grades {
-            font-size: 12px;
-            background-color: #e8f0fe;
-            color: #1967d2;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-        
-        .post-item-content {
-            margin: 12px 0;
-            line-height: 1.5;
-            white-space: pre-wrap;
-        }
-        
-        .post-item-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 12px;
-        }
-        
-        .btn-small {
-            padding: 6px 12px;
-            font-size: 13px;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        .success-message {
-            background-color: #e6f4ea;
-            color: #137333;
-            padding: 12px 16px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            border-left: 4px solid #1e8e3e;
-        }
-        
-        .no-posts {
-            text-align: center;
-            color: #5f6368;
-            padding: 40px;
-            font-style: italic;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post Manager - Teacher Tool</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Google Sans', Roboto, Arial, sans-serif;
+      background-color: #f5f5f5;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background-color: #1967d2;
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    .instructions {
+      background-color: #e8f0fe;
+      border-left: 4px solid #1967d2;
+      padding: 16px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    .instructions h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #1967d2;
+    }
+
+    .instructions ol {
+      margin-left: 20px;
+      color: #3c4043;
+    }
+
+    .instructions li {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+
+    .file-upload-section {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .file-upload-section h2 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: #3c4043;
+    }
+
+    .file-input-wrapper {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      border: 2px dashed #dadce0;
+      border-radius: 4px;
+      flex: 1;
+    }
+
+    .post-creator {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .post-creator-header {
+      padding: 20px;
+      border-bottom: 1px solid #dadce0;
+    }
+
+    .post-creator-header h2 {
+      font-size: 18px;
+      font-weight: 500;
+      color: #3c4043;
+    }
+
+    .grade-selector-section {
+      padding: 20px;
+      border-bottom: 1px solid #dadce0;
+      background-color: #f8f9fa;
+    }
+
+    .grade-selector-section h3 {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: #3c4043;
+    }
+
+    .grade-checkboxes {
+      display: flex;
+      gap: 20px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .form-section {
+      padding: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      color: #5f6368;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 12px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 14px;
+      resize: vertical;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    textarea:focus,
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #1967d2;
+    }
+
+    .helper-text {
+      font-size: 12px;
+      color: #5f6368;
+      margin-top: 4px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 12px;
+      padding: 20px;
+      border-top: 1px solid #dadce0;
+    }
+
+    button {
+      padding: 10px 24px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-primary {
+      background-color: #1967d2;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #1557b0;
+    }
+
+    .btn-secondary {
+      background-color: white;
+      color: #5f6368;
+      border: 1px solid #dadce0;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f8f9fa;
+    }
+
+    .btn-danger {
+      background-color: #d93025;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background-color: #b71c1c;
+    }
+
+    .btn-success {
+      background-color: #1e8e3e;
+      color: white;
+    }
+
+    .btn-success:hover {
+      background-color: #188038;
+    }
+
+    .existing-posts {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .existing-posts h2 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      color: #3c4043;
+    }
+
+    .post-item {
+      border: 1px solid #dadce0;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+      border-left: 4px solid #1967d2;
+    }
+
+    .post-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 8px;
+    }
+
+    .post-item-date {
+      font-size: 13px;
+      color: #5f6368;
+    }
+
+    .post-item-grades {
+      font-size: 12px;
+      background-color: #e8f0fe;
+      color: #1967d2;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .post-item-content {
+      margin: 12px 0;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .post-item-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .btn-small {
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .success-message {
+      background-color: #e6f4ea;
+      color: #137333;
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      border-left: 4px solid #1e8e3e;
+    }
+
+    .no-posts {
+      text-align: center;
+      color: #5f6368;
+      padding: 40px;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>✏️ Classroom Post Manager</h1>
-        </div>
-        
-        <div class="instructions">
-            <h3>📝 How to use this tool:</h3>
-            <ol>
-                <li><strong>First time:</strong> Click "Start Fresh" to create a new posts.json file</li>
-                <li><strong>Load existing posts:</strong> Click "Choose File" and select your posts.json from your computer</li>
-                <li><strong>Add posts:</strong> Fill out the form below and click "Add Post"</li>
-                <li><strong>Manage posts:</strong> Edit or delete posts in the "Existing Posts" section</li>
-                <li><strong>Save:</strong> Click "Download posts.json" to save your changes</li>
-                <li><strong>Publish:</strong> Upload the downloaded posts.json file to your GitHub repository</li>
-            </ol>
-        </div>
-        
-        <div id="successMessage" class="success-message hidden"></div>
-        
-        <div class="file-upload-section">
-            <h2>Load Existing Posts</h2>
-            <div class="file-input-wrapper">
-                <input type="file" id="fileInput" accept=".json" onchange="loadJSON()">
-                <button class="btn-secondary" onclick="startFresh()">Start Fresh</button>
-            </div>
-        </div>
-        
-        <div class="post-creator">
-            <div class="post-creator-header">
-                <h2>Create New Post</h2>
-            </div>
-            
-            <div class="grade-selector-section">
-                <h3>Select Grade(s) for this announcement:</h3>
-                <div class="grade-checkboxes">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="grade3" value="3">
-                        Grade 3
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="grade4" value="4">
-                        Grade 4
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="grade5" value="5">
-                        Grade 5
-                    </label>
-                </div>
-            </div>
-            
-            <div class="form-section">
-                <div class="form-group">
-                    <label for="postText">Announcement Text</label>
-                    <textarea id="postText" placeholder="Type your announcement here..."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label for="imageUrl">Image URL (optional)</label>
-                    <input type="text" id="imageUrl" placeholder="https://example.com/image.jpg">
-                    <div class="helper-text">Paste the URL of an image you want to include</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="linkUrl">Link URL (optional)</label>
-                    <input type="text" id="linkUrl" placeholder="https://example.com">
-                    <div class="helper-text">Add a link for students to click</div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="linkText">Link Text (optional)</label>
-                    <input type="text" id="linkText" placeholder="Click here to learn more">
-                    <div class="helper-text">Text to display for the link</div>
-                </div>
-            </div>
-            
-            <div class="button-group">
-                <button class="btn-primary" onclick="addPost()">Add Post</button>
-                <button class="btn-secondary" onclick="clearForm()">Clear Form</button>
-            </div>
-        </div>
-        
-        <div class="existing-posts">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-                <h2>Existing Posts (<span id="postCount">0</span>)</h2>
-                <button class="btn-success" onclick="downloadJSON()">💾 Download posts.json</button>
-            </div>
-            <div id="postsList"></div>
-        </div>
+  <div class="container">
+    <div class="header">
+      <h1>✏️ Classroom Post Manager</h1>
     </div>
 
-    <script>
-        let posts = [];
-        let editingIndex = -1;
+    <div class="instructions">
+      <h3>📝 How to use this tool:</h3>
+      <ol>
+        <li><strong>First time:</strong> Click "Start Fresh" to create a new posts.json file</li>
+        <li><strong>Load existing posts:</strong> Click "Choose File" and select your posts.json from your computer</li>
+        <li><strong>Add posts:</strong> Fill out the form below and click "Add Post"</li>
+        <li><strong>Manage posts:</strong> Edit or delete posts in the "Existing Posts" section</li>
+        <li><strong>Save:</strong> Click "Download posts.json" to save your changes</li>
+        <li><strong>Publish:</strong> Upload the downloaded posts.json file to your GitHub repository</li>
+      </ol>
+    </div>
 
-        function startFresh() {
-            if (posts.length > 0) {
-                if (!confirm('This will clear all existing posts. Are you sure?')) {
-                    return;
-                }
-            }
-            posts = [];
-            displayPosts();
-            showSuccess('Started with a fresh posts file!');
+    <div id="successMessage" class="success-message hidden"></div>
+
+    <div class="file-upload-section">
+      <h2>Load Existing Posts</h2>
+      <div class="file-input-wrapper">
+        <input type="file" id="fileInput" accept=".json" onchange="loadJSON()" />
+        <button class="btn-secondary" onclick="startFresh()">Start Fresh</button>
+      </div>
+    </div>
+
+    <div class="post-creator">
+      <div class="post-creator-header">
+        <h2>Create New Post</h2>
+      </div>
+
+      <div class="grade-selector-section">
+        <h3>Select Grade(s) for this announcement:</h3>
+        <div class="grade-checkboxes">
+          <label class="checkbox-label">
+            <input type="checkbox" id="grade3" value="3" /> Grade 3
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="grade4" value="4" /> Grade 4
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="grade5" value="5" /> Grade 5
+          </label>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-group">
+          <label for="postText">Announcement Text</label>
+          <textarea id="postText" placeholder="Type your announcement here..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="imageUrl">Image URL (optional)</label>
+          <input type="text" id="imageUrl" placeholder="https://example.com/image.jpg" />
+          <div class="helper-text">Paste the URL of an image you want to include</div>
+        </div>
+
+        <div class="form-group">
+          <label for="linkUrl">Link URL (optional)</label>
+          <input type="text" id="linkUrl" placeholder="https://example.com" />
+          <div class="helper-text">Add a link for students to click</div>
+        </div>
+
+        <div class="form-group">
+          <label for="linkText">Link Text (optional)</label>
+          <input type="text" id="linkText" placeholder="Click here to learn more" />
+          <div class="helper-text">Text to display for the link</div>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button class="btn-primary" onclick="addPost()">Add Post</button>
+        <button class="btn-secondary" onclick="clearForm()">Clear Form</button>
+      </div>
+    </div>
+
+    <div class="existing-posts">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h2>Existing Posts (<span id="postCount">0</span>)</h2>
+        <button class="btn-success" onclick="downloadJSON()">💾 Download posts.json</button>
+      </div>
+      <div id="postsList"></div>
+    </div>
+  </div>
+
+  <script>
+    let posts = [];
+    let editingIndex = -1;
+
+    function saveToLocalStorage() {
+      localStorage.setItem("classroomPosts", JSON.stringify(posts));
+    }
+
+    function loadFromLocalStorage() {
+      const saved = localStorage.getItem("classroomPosts");
+      if (saved) {
+        try {
+          posts = JSON.parse(saved);
+          displayPosts();
+          showSuccess(`Loaded ${posts.length} post(s) from local storage.`);
+        } catch {
+          console.warn("Error reading local storage data.");
         }
+      }
+    }
 
-        function loadJSON() {
-            const file = document.getElementById('fileInput').files[0];
-            if (!file) return;
+    function startFresh() {
+      if (posts.length > 0 && !confirm("This will clear all existing posts. Are you sure?")) {
+        return;
+      }
+      posts = [];
+      displayPosts();
+      saveToLocalStorage();
+      showSuccess("Started with a fresh posts file!");
+    }
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    posts = data.posts || [];
-                    displayPosts();
-                    showSuccess(`Loaded ${posts.length} post(s) successfully!`);
-                } catch (error) {
-                    alert('Error reading JSON file. Please make sure it\'s a valid posts.json file.');
-                    console.error(error);
-                }
-            };
-            reader.readAsText(file);
+    function loadJSON() {
+      const file = document.getElementById("fileInput").files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          posts = data.posts || [];
+          displayPosts();
+          saveToLocalStorage();
+          showSuccess(`Loaded ${posts.length} post(s) successfully!`);
+        } catch (error) {
+          alert("Error reading JSON file. Please make sure it's valid.");
+          console.error(error);
         }
+      };
+      reader.readAsText(file);
+    }
 
-        function addPost() {
-            const grades = [];
-            if (document.getElementById('grade3').checked) grades.push(3);
-            if (document.getElementById('grade4').checked) grades.push(4);
-            if (document.getElementById('grade5').checked) grades.push(5);
-            
-            if (grades.length === 0) {
-                alert('Please select at least one grade!');
-                return;
-            }
-            
-            const text = document.getElementById('postText').value.trim();
-            if (!text) {
-                alert('Please enter some announcement text!');
-                return;
-            }
-            
-            const imageUrl = document.getElementById('imageUrl').value.trim();
-            const linkUrl = document.getElementById('linkUrl').value.trim();
-            const linkText = document.getElementById('linkText').value.trim();
-            
-            const now = new Date();
-            const dateString = now.toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-            }) + ' at ' + now.toLocaleTimeString('en-US', { 
-                hour: 'numeric', 
-                minute: '2-digit',
-                hour12: true 
-            });
-            
-            const post = {
-                id: Date.now(),
-                timestamp: now.getTime(),
-                dateString: dateString,
-                grades: grades,
-                text: text,
-                imageUrl: imageUrl || null,
-                linkUrl: linkUrl || null,
-                linkText: linkText || null
-            };
-            
-            if (editingIndex >= 0) {
-                posts[editingIndex] = post;
-                editingIndex = -1;
-                showSuccess('Post updated successfully!');
-            } else {
-                posts.unshift(post);
-                showSuccess('Post added successfully!');
-            }
-            
-            clearForm();
-            displayPosts();
-        }
+    function addPost() {
+      const grades = [];
+      if (document.getElementById("grade3").checked) grades.push(3);
+      if (document.getElementById("grade4").checked) grades.push(4);
+      if (document.getElementById("grade5").checked) grades.push(5);
 
-        function editPost(index) {
-            const post = posts[index];
-            editingIndex = index;
-            
-            document.getElementById('grade3').checked = post.grades.includes(3);
-            document.getElementById('grade4').checked = post.grades.includes(4);
-            document.getElementById('grade5').checked = post.grades.includes(5);
-            document.getElementById('postText').value = post.text;
-            document.getElementById('imageUrl').value = post.imageUrl || '';
-            document.getElementById('linkUrl').value = post.linkUrl || '';
-            document.getElementById('linkText').value = post.linkText || '';
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            showSuccess('Editing post - make your changes and click "Add Post" to save');
-        }
+      if (grades.length === 0) {
+        alert("Please select at least one grade!");
+        return;
+      }
 
-        function deletePost(index) {
-            if (confirm('Are you sure you want to delete this post?')) {
-                posts.splice(index, 1);
-                displayPosts();
-                showSuccess('Post deleted successfully!');
-            }
-        }
+      const text = document.getElementById("postText").value.trim();
+      if (!text) {
+        alert("Please enter some announcement text!");
+        return;
+      }
 
-        function displayPosts() {
-            const postsList = document.getElementById('postsList');
-            const postCount = document.getElementById('postCount');
-            
-            postCount.textContent = posts.length;
-            
-            if (posts.length === 0) {
-                postsList.innerHTML = '<div class="no-posts">No posts yet. Create your first post above!</div>';
-                return;
-            }
-            
-            postsList.innerHTML = '';
-            
-            posts.forEach((post, index) => {
-                const postEl = document.createElement('div');
-                postEl.className = 'post-item';
-                
-                const gradeLabels = post.grades.map(g => `Grade ${g}`).join(', ');
-                
-                let html = `
-                    <div class="post-item-header">
-                        <div class="post-item-date">${post.dateString}</div>
-                        <div class="post-item-grades">${gradeLabels}</div>
-                    </div>
-                    <div class="post-item-content">${escapeHtml(post.text)}</div>
-                `;
-                
-                if (post.imageUrl) {
-                    html += `<div style="color: #5f6368; font-size: 13px; margin: 8px 0;">📷 Image: ${escapeHtml(post.imageUrl)}</div>`;
-                }
-                
-                if (post.linkUrl) {
-                    html += `<div style="color: #5f6368; font-size: 13px; margin: 8px 0;">🔗 Link: ${escapeHtml(post.linkUrl)}</div>`;
-                }
-                
-                html += `
-                    <div class="post-item-actions">
-                        <button class="btn-secondary btn-small" onclick="editPost(${index})">Edit</button>
-                        <button class="btn-danger btn-small" onclick="deletePost(${index})">Delete</button>
-                    </div>
-                `;
-                
-                postEl.innerHTML = html;
-                postsList.appendChild(postEl);
-            });
-        }
+      const imageUrl = document.getElementById("imageUrl").value.trim();
+      const linkUrl = document.getElementById("linkUrl").value.trim();
+      const linkText = document.getElementById("linkText").value.trim();
 
-        function clearForm() {
-            editingIndex = -1;
-            document.getElementById('grade3').checked = false;
-            document.getElementById('grade4').checked = false;
-            document.getElementById('grade5').checked = false;
-            document.getElementById('postText').value = '';
-            document.getElementById('imageUrl').value = '';
-            document.getElementById('linkUrl').value = '';
-            document.getElementById('linkText').value = '';
-        }
+      const now = new Date();
+      const dateString =
+        now.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }) +
+        " at " +
+        now.toLocaleTimeString("en-US", {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        });
 
-        function downloadJSON() {
-            if (posts.length === 0) {
-                alert('No posts to save! Add some posts first.');
-                return;
-            }
-            
-            const data = {
-                posts: posts
-            };
-            
-            const jsonStr = JSON.stringify(data, null, 2);
-            const blob = new Blob([jsonStr], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'posts.json';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            
-            showSuccess('posts.json downloaded! Upload it to your GitHub repository.');
-        }
+      const post = {
+        id: Date.now(),
+        timestamp: now.getTime(),
+        dateString: dateString,
+        grades: grades,
+        text: text,
+        imageUrl: imageUrl || null,
+        linkUrl: linkUrl || null,
+        linkText: linkText || null,
+      };
 
-        function showSuccess(message) {
-            const successEl = document.getElementById('successMessage');
-            successEl.textContent = message;
-            successEl.classList.remove('hidden');
-            
-            setTimeout(() => {
-                successEl.classList.add('hidden');
-            }, 5000);
-        }
+      if (editingIndex >= 0) {
+        posts[editingIndex] = post;
+        editingIndex = -1;
+        showSuccess("Post updated successfully!");
+      } else {
+        posts.unshift(post);
+        showSuccess("Post added successfully!");
+      }
 
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
+      clearForm();
+      displayPosts();
+      saveToLocalStorage();
+    }
 
-        // Initialize
+    function editPost(index) {
+      const post = posts[index];
+      editingIndex = index;
+
+      document.getElementById("grade3").checked = post.grades.includes(3);
+      document.getElementById("grade4").checked = post.grades.includes(4);
+      document.getElementById("grade5").checked = post.grades.includes(5);
+      document.getElementById("postText").value = post.text;
+      document.getElementById("imageUrl").value = post.imageUrl || "";
+      document.getElementById("linkUrl").value = post.linkUrl || "";
+      document.getElementById("linkText").value = post.linkText || "";
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      showSuccess('Editing post - make your changes and click "Add Post" to save');
+    }
+
+    function deletePost(index) {
+      if (confirm("Are you sure you want to delete this post?")) {
+        posts.splice(index, 1);
         displayPosts();
-    </script>
+        saveToLocalStorage();
+        showSuccess("Post deleted successfully!");
+      }
+    }
+
+    function displayPosts() {
+      const postsList = document.getElementById("postsList");
+      const postCount = document.getElementById("postCount");
+
+      postCount.textContent = posts.length;
+
+      if (posts.length === 0) {
+        postsList.innerHTML =
+          '<div class="no-posts">No posts yet. Create your first post above!</div>';
+        return;
+      }
+
+      postsList.innerHTML = "";
+
+      posts.forEach((post, index) => {
+        const postEl = document.createElement("div");
+        postEl.className = "post-item";
+
+        const gradeLabels = post.grades.map((g) => `Grade ${g}`).join(", ");
+
+        let html = `
+          <div class="post-item-header">
+            <div class="post-item-date">${post.dateString}</div>
+            <div class="post-item-grades">${gradeLabels}</div>
+          </div>
+          <div class="post-item-content">${escapeHtml(post.text)}</div>
+        `;
+
+        if (post.imageUrl) {
+          html += `<div style="color:#5f6368;font-size:13px;margin:8px 0;">📷 Image: ${escapeHtml(
+            post.imageUrl
+          )}</div>`;
+        }
+
+        if (post.linkUrl) {
+          html += `<div style="color:#5f6368;font-size:13px;margin:8px 0;">🔗 Link: ${escapeHtml(
+            post.linkUrl
+          )}</div>`;
+        }
+
+        html += `
+          <div class="post-item-actions">
+            <button class="btn-secondary btn-small" onclick="editPost(${index})">Edit</button>
+            <button class="btn-danger btn-small" onclick="deletePost(${index})">Delete</button>
+          </div>
+        `;
+
+        postEl.innerHTML = html;
+        postsList.appendChild(postEl);
+      });
+    }
+
+    function clearForm() {
+      editingIndex = -1;
+      document.getElementById("grade3").checked = false;
+      document.getElementById("grade4").checked = false;
+      document.getElementById("grade5").checked = false;
+      document.getElementById("postText").value = "";
+      document.getElementById("imageUrl").value = "";
+      document.getElementById("linkUrl").value = "";
+      document.getElementById("linkText").value = "";
+    }
+
+    function downloadJSON() {
+      if (posts.length === 0) {
+        alert("No posts to save! Add some posts first.");
+        return;
+      }
+
+      const data = { posts: posts };
+      const jsonStr = JSON.stringify(data, null, 2);
+      const blob = new Blob([jsonStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "posts.json";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showSuccess("posts.json downloaded! Upload it to your GitHub repository.");
+    }
+
+    function showSuccess(message) {
+      const successEl = document.getElementById("successMessage");
+      successEl.textContent = message;
+      successEl.classList.remove("hidden");
+      setTimeout(() => successEl.classList.add("hidden"), 5000);
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Initialize on load
+    loadFromLocalStorage();
+    displayPosts();
+  </script>
 </body>
 </html>
