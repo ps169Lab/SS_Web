@@ -1,0 +1,43 @@
+{
+  "posts": [
+    {
+      "id": 1762529594033,
+      "timestamp": 1762529594033,
+      "dateString": "November 7, 2025 at 10:33 AM",
+      "grades": [
+        3,
+        4
+      ],
+      "text": "new test post",
+      "imageUrl": null,
+      "linkUrl": null,
+      "linkText": null
+    },
+    {
+      "id": 1762529483086,
+      "timestamp": 1762529483054,
+      "dateString": "November 7, 2025 at 10:31 AM",
+      "grades": [
+        5
+      ],
+      "text": "Test Post",
+      "imageUrl": null,
+      "linkUrl": "https://news.google.com/home?hl=en-US&gl=US&ceid=US:en",
+      "linkText": null
+    },
+    {
+      "id": 1699380000000,
+      "timestamp": 1699380000000,
+      "dateString": "November 7, 2025 at 2:30 PM",
+      "grades": [
+        3,
+        4,
+        5
+      ],
+      "text": "Welcome to our classroom announcements page! Check here regularly for homework, reminders, and important updates.",
+      "imageUrl": null,
+      "linkUrl": null,
+      "linkText": null
+    }
+  ]
+}
