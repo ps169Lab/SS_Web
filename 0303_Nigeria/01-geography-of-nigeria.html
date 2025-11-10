@@ -9,7 +9,7 @@
 <body>
     <div id="navbar-container"></div>
     <script>
-        fetch('../Web_Template/navbar.html')
+        fetch('navbar.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('navbar-container').innerHTML = data;
