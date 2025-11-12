@@ -518,10 +518,29 @@ function googleTranslateElementInit() {
         a:hover {
             text-decoration: underline;
         }
+        .summary-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #1976d2;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: background 0.3s;
+        }
+        .summary-button:hover {
+            background: #1565c0;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
 ${generatedHTML}
+<a href="SUMMARY_URL_HERE" class="summary-button">Summary</a>
 </body>
 </html>`;
             }
