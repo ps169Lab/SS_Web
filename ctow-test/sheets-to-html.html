@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-style: italic;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #1976d2;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div class="loading">Loading content...</div>
+    </div>
+
+    <script>
+        // PASTE YOUR PUBLISHED CSV URL HERE
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQC4p9w2TQb_82ee3OvVCg4KY5ACXQBre-3NjcCwGN7MpF3p7VpKPqOTP_Nd-rgr_OQUuHSwOsc9XZs/pub?output=csv';
+
+        // Automatically load content when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            if (SHEET_URL === 'YOUR_GOOGLE_SHEETS_CSV_URL_HERE') {
+                document.getElementById('content').innerHTML = `
+                    <div style="background: #fff3cd; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107;">
+                        <h3 style="margin-top: 0;">⚠️ Setup Required</h3>
+                        <p><strong>To use this page:</strong></p>
+                        <ol>
+                            <li>Create a Google Sheet with columns: <code>element</code> and <code>content</code></li>
+                            <li>Add rows like: <code>h1</code> | <code>My Title</code></li>
+                            <li>Go to <strong>File → Share → Publish to web</strong></li>
+                            <li>Choose <strong>"Comma-separated values (.csv)"</strong></li>
+                            <li>Copy the published URL</li>
+                            <li>Replace <code>YOUR_GOOGLE_SHEETS_CSV_URL_HERE</code> in the script with your URL</li>
+                        </ol>
+                    </div>
+                `;
+                return;
+            }
+
+            loadContent();
+        });
+
+        function parseCSV(text) {
+            const lines = text.split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            const data = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+                
+                const values = lines[i].split(',').map(v => v.trim());
+                const row = {};
+                
+                headers.forEach((header, index) => {
+                    row[header] = values[index] || '';
+                });
+                
+                data.push(row);
+            }
+
+            return data;
+        }
+
+        function loadContent() {
+            fetch(SHEET_URL)
+                .then(response => response.text())
+                .then(csvText => {
+                    const data = parseCSV(csvText);
+                    renderContent(data);
+                })
+                .catch(error => {
+                    document.getElementById('content').innerHTML = 
+                        '<p style="color: red;">Error loading content. Please check your sheet URL.</p>';
+                    console.error('Error:', error);
+                });
+        }
+
+        function renderContent(data) {
+            const container = document.getElementById('content');
+            container.innerHTML = '';
+
+            data.forEach(row => {
+                // Skip empty rows
+                if (!row.element || !row.content) return;
+
+                const elementType = row.element.toLowerCase().trim();
+                const content = row.content;
+
+                // Create the HTML element
+                const el = document.createElement(elementType);
+                el.innerHTML = content;
+                container.appendChild(el);
+            });
+
+            // If no content was rendered
+            if (container.children.length === 0) {
+                container.innerHTML = '<p>No content found. Check your Google Sheet format.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
