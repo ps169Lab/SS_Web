@@ -123,7 +123,10 @@
                 💡 To publish your sheet: File → Share → Publish to web → Choose "CSV" format
             </p>
             <p style="margin-top: 10px; font-size: 14px; color: #666;">
-                📋 <strong>Sheet columns:</strong> <code>element</code> (required), <code>content</code> (required), <code>class</code> (optional)
+                📋 <strong>Sheet columns:</strong> <code>element</code> (required), <code>content</code> (required), <code>class</code> (optional), <code>page</code> (optional)
+            </p>
+            <p style="margin-top: 10px; font-size: 13px; color: #999;">
+                💡 Use the <code>page</code> column to organize multiple pages in one sheet (e.g., "home", "about", "contact")
             </p>
         </div>
 
@@ -146,6 +149,12 @@
         <div id="output" class="output-section" style="display: none;">
             <div class="success">
                 ✅ HTML generated successfully!
+            </div>
+            
+            <div id="pageSelector" style="display: none; margin: 20px 0;">
+                <label for="pageSelect" style="font-weight: bold; display: block; margin-bottom: 5px;">Select Page:</label>
+                <select id="pageSelect" onchange="filterByPage()" style="padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; min-width: 200px;">
+                </select>
             </div>
             
             <button class="button" onclick="copyToClipboard()">📋 Copy HTML to Clipboard</button>
@@ -195,6 +204,8 @@
         const templateUploadArea = document.getElementById('templateUploadArea');
         const templateFileInput = document.getElementById('templateFileInput');
         let generatedHTML = '';
+        let allData = []; // Store all parsed data
+        let currentPage = 'all'; // Track current page filter
 
         // Template upload handlers
         templateUploadArea.addEventListener('click', () => templateFileInput.click());
