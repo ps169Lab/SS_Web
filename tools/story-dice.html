@@ -1,0 +1,248 @@
+<html><head><base href="https://websim.creationengine.ai/story-cube-multiple/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-Dice Story Cube Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .container {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 800px;
+    width: 100%;
+  }
+  h1, h2 {
+    color: #333;
+    text-align: center;
+  }
+  .input-group {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  input[type="text"] {
+    flex-grow: 1;
+    padding: 5px;
+    font-size: 16px;
+  }
+  button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .list-container {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  .list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .element-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  .element-list li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .remove-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  .dice-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  .dice {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+  }
+  .dice:hover {
+    transform: scale(1.05);
+  }
+  .roll-animation {
+    animation: roll 0.5s ease;
+  }
+  @keyframes roll {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Multi-Dice Story Cube Generator</h1>
+    <button onclick="addNewList()">Add New List</button>
+    <div id="listsContainer"></div>
+    <button onclick="createAllDice()">Create All Dice</button>
+    <button onclick="rollAllDice()">Roll All Dice</button>
+    <div class="dice-container" id="diceContainer"></div>
+  </div>
+
+  <script>
+    let lists = [];
+    let listCount = 0;
+
+    function addNewList() {
+      const listsContainer = document.getElementById('listsContainer');
+      const listId = `list-${listCount}`;
+      const listHtml = `
+        <div class="list-container" id="${listId}">
+          <div class="list-header">
+            <h2>List ${listCount + 1}</h2>
+            <button onclick="removeList('${listId}')" class="remove-btn">Remove List</button>
+          </div>
+          <div class="input-group">
+            <input type="text" placeholder="Enter a story element">
+            <button onclick="addElement('${listId}')">Add</button>
+          </div>
+          <ul class="element-list"></ul>
+        </div>
+      `;
+      listsContainer.insertAdjacentHTML('beforeend', listHtml);
+      lists.push([]);
+      listCount++;
+    }
+
+    function removeList(listId) {
+      const listIndex = parseInt(listId.split('-')[1]);
+      lists.splice(listIndex, 1);
+      document.getElementById(listId).remove();
+      updateDice();
+    }
+
+    function addElement(listId) {
+      const listIndex = parseInt(listId.split('-')[1]);
+      const input = document.querySelector(`#${listId} input`);
+      if (input.value.trim() !== '') {
+        lists[listIndex].push(input.value.trim());
+        updateElementList(listId);
+        input.value = '';
+      }
+    }
+
+    function updateElementList(listId) {
+      const listIndex = parseInt(listId.split('-')[1]);
+      const list = document.querySelector(`#${listId} .element-list`);
+      list.innerHTML = '';
+      lists[listIndex].forEach((element, index) => {
+        const li = document.createElement('li');
+        li.textContent = element;
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove';
+        removeBtn.className = 'remove-btn';
+        removeBtn.onclick = () => removeElement(listIndex, index);
+        li.appendChild(removeBtn);
+        list.appendChild(li);
+      });
+    }
+
+    function removeElement(listIndex, elementIndex) {
+      lists[listIndex].splice(elementIndex, 1);
+      updateElementList(`list-${listIndex}`);
+      updateDice();
+    }
+
+    function createAllDice() {
+      const diceContainer = document.getElementById('diceContainer');
+      diceContainer.innerHTML = '';
+      lists.forEach((list, index) => {
+        if (list.length > 0) {
+          const dice = document.createElement('div');
+          dice.className = 'dice';
+          dice.id = `dice-${index}`;
+          dice.textContent = 'Click to Roll';
+          dice.onclick = () => rollDice(dice.id);
+          diceContainer.appendChild(dice);
+        }
+      });
+    }
+
+    function rollDice(diceId) {
+      const dice = document.getElementById(diceId);
+      const listIndex = parseInt(diceId.split('-')[1]);
+      dice.classList.add('roll-animation');
+      setTimeout(() => {
+        dice.classList.remove('roll-animation');
+        const randomElement = lists[listIndex][Math.floor(Math.random() * lists[listIndex].length)];
+        dice.textContent = randomElement;
+      }, 500);
+    }
+
+    function rollAllDice() {
+      const allDice = document.querySelectorAll('.dice');
+      allDice.forEach(dice => rollDice(dice.id));
+    }
+
+    function updateDice() {
+      const diceContainer = document.getElementById('diceContainer');
+      diceContainer.innerHTML = '';
+      createAllDice();
+    }
+
+    // Add event listener for Enter key
+    document.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        const activeElement = document.activeElement;
+        if (activeElement.tagName === 'INPUT' && activeElement.type === 'text') {
+          const listId = activeElement.closest('.list-container').id;
+          addElement(listId);
+        }
+      }
+    });
+
+    // Initialize with one list
+    addNewList();
+  </script>
+</body>
+</html>
