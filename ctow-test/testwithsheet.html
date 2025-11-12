@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2299.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;title&gt;Google Sheet JSON to HTML&lt;/title&gt;&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1">&lt;h2&gt;Google Sheet Data&lt;/h2&gt;</p>
+<p class="p1">&lt;table id="dataTable" border="1"&gt;&lt;/table&gt;</p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">const sheetId = 'your_spreadsheet_id_here';</p>
+<p class="p1">const sheetNumber = 1;</p>
+<p class="p1">const url = `https://docs.google.com/spreadsheets/d/1A31A5GORE1V75T7IuoD8MG6IZh52sHr0FZbXKbM4v8c/edit?usp=sharing`;</p>
+<p class="p2"><br></p>
+<p class="p1">fetch(url)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.then(response =&gt; response.json())</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.then(data =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const entries = data.feed.entry;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const table = document.getElementById('dataTable');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if(entries.length &gt; 0){</p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Create table header from keys</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const headers = Object.keys(entries[0]).filter(k =&gt; k.startsWith("gsx$"));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const headerRow = document.createElement('tr');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>headers.forEach(h =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const th = document.createElement('th');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>th.textContent = h.replace('gsx$', '');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>headerRow.appendChild(th);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>table.appendChild(headerRow);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>// Create table rows</p>
+<p class="p1"><span class="Apple-converted-space">      </span>entries.forEach(entry =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const tr = document.createElement('tr');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>headers.forEach(h =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const td = document.createElement('td');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>td.textContent = entry[h].$t;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>tr.appendChild(td);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>table.appendChild(tr);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>table.textContent = 'No data found';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>})</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.catch(e =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>console.error(e);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('dataTable').textContent = 'Failed to load data';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
