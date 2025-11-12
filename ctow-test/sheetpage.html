@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2299.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8" /&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</p>
+<p class="p1">&lt;title&gt;CSV to HTML Table&lt;/title&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>table { border-collapse: collapse; width: 100%; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>th, td { border: 1px solid #ccc; padding: 8px; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>th { background: #eee; }</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1">&lt;h2&gt;CSV Data Display&lt;/h2&gt;</p>
+<p class="p1">&lt;table id="csvTable"&gt;&lt;/table&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">// Function to parse CSV text into 2D array</p>
+<p class="p1">function parseCSV(text) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const lines = text.trim().split('\n');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>return lines.map(line =&gt; line.split(',').map(cell =&gt; cell.trim()));</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">async function loadCSV() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const response = await fetch('test.csv');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!response.ok) throw new Error('CSV file not found');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const csvText = await response.text();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const data = parseCSV(csvText);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const table = document.getElementById('csvTable');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Create table header row</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const headerRow = document.createElement('tr');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>data[0].forEach(headerText =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const th = document.createElement('th');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>th.textContent = headerText;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>headerRow.appendChild(th);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>table.appendChild(headerRow);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// Create table body rows</p>
+<p class="p1"><span class="Apple-converted-space">    </span>for (let i = 1; i &lt; data.length; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const row = document.createElement('tr');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>data[i].forEach(cellText =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const td = document.createElement('td');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>td.textContent = cellText;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>row.appendChild(td);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>table.appendChild(row);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('csvTable').textContent = error.message;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">loadCSV();</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
