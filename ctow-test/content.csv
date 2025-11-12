@@ -1,4 +1,4 @@
-element,type,content
-1,h2,hello
-2,p,this is a paragraph.this is a new paragraph.
-3,img,"<img src=""""https://en.wikipedia.org/wiki/Main_Page#/media/File:St_Cornelius_Chapel,_Governors_Island_10_(cropped).jpg"">"
+element,content
+h2,hello
+p,this is a new paragraph. with another iteration.
+img,"<img src=""""https://en.wikipedia.org/wiki/Main_Page#/media/File:St_Cornelius_Chapel,_Governors_Island_10_(cropped).jpg"">"
