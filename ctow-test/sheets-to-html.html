@@ -38,29 +38,11 @@
     </div>
 
     <script>
-        // PASTE YOUR PUBLISHED CSV URL HERE
-        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQC4p9w2TQb_82ee3OvVCg4KY5ACXQBre-3NjcCwGN7MpF3p7VpKPqOTP_Nd-rgr_OQUuHSwOsc9XZs/pub?output=csv';
+        // Point to your local CSV file
+        const CSV_FILE = 'content.csv';
 
         // Automatically load content when page loads
         window.addEventListener('DOMContentLoaded', function() {
-            if (SHEET_URL === 'YOUR_GOOGLE_SHEETS_CSV_URL_HERE') {
-                document.getElementById('content').innerHTML = `
-                    <div style="background: #fff3cd; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107;">
-                        <h3 style="margin-top: 0;">⚠️ Setup Required</h3>
-                        <p><strong>To use this page:</strong></p>
-                        <ol>
-                            <li>Create a Google Sheet with columns: <code>element</code> and <code>content</code></li>
-                            <li>Add rows like: <code>h1</code> | <code>My Title</code></li>
-                            <li>Go to <strong>File → Share → Publish to web</strong></li>
-                            <li>Choose <strong>"Comma-separated values (.csv)"</strong></li>
-                            <li>Copy the published URL</li>
-                            <li>Replace <code>'YOUR_GOOGLE_SHEETS_CSV_URL_HERE'</code> in the script with your URL</li>
-                        </ol>
-                    </div>
-                `;
-                return;
-            }
-
             loadContent();
         });
 
@@ -86,10 +68,12 @@
         }
 
         function loadContent() {
-            // Add timestamp to prevent caching
-            const url = SHEET_URL + '&timestamp=' + new Date().getTime();
+            // Add timestamp to prevent browser caching
+            const url = CSV_FILE + '?v=' + new Date().getTime();
             
-            fetch(url)
+            fetch(url, {
+                cache: 'no-store'
+            })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('HTTP error! status: ' + response.status);
@@ -103,7 +87,7 @@
                 .catch(error => {
                     document.getElementById('content').innerHTML = 
                         '<p style="color: red;">Error loading content: ' + error.message + '</p>' +
-                        '<p style="color: #666; font-size: 14px;">Check the browser console (F12) for details.</p>';
+                        '<p style="color: #666; font-size: 14px;">Make sure content.csv is in the same folder as this HTML file.</p>';
                     console.error('Error details:', error);
                 });
         }
