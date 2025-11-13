@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple HTML Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: -20px -20px 20px -20px; /* Compensate for container padding */
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .main-content {
+            display: flex;
+            flex-grow: 1;
+            gap: 20px;
+        }
+        .sidebar {
+            width: 250px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            overflow-y: auto;
+            max-height: 500px;
+            display: none;
+        }
+        .sidebar-header {
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            font-weight: bold;
+        }
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .file-item {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .file-item:hover {
+            background-color: #f5f5f5;
+        }
+        .file-item.active {
+            background-color: #e8f5e9;
+            border-left: 3px solid #4CAF50;
+        }
+        .file-item-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .unsaved-indicator {
+            color: #f44336;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+        .editor-wrapper {
+            flex-grow: 1;
+        }
+        #editor-container {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 500px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: white;
+            position: relative;
+        }
+        .status {
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        #editor-area {
+            width: 100%;
+            min-height: 500px;
+            outline: none;
+            overflow-y: auto;
+        }
+        .no-file {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 500px;
+            color: #999;
+            text-align: center;
+        }
+        .no-file i {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .no-file p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        /* Drag and drop styles */
+        .drag-active {
+            border: 2px dashed #4CAF50 !important;
+            background-color: rgba(76, 175, 80, 0.05);
+        }
+        .drag-over {
+            background-color: rgba(76, 175, 80, 0.1);
+        }
+        .drop-indicator {
+            position: absolute;
+            background-color: rgba(76, 175, 80, 0.2);
+            border: 2px dashed #4CAF50;
+            border-radius: 4px;
+            pointer-events: none;
+            z-index: 100;
+            display: none;
+        }
+        .features-list {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            border-left: 4px solid #4CAF50;
+        }
+        .features-list h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .features-list ul {
+            padding-left: 20px;
+        }
+        .features-list li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">Simple HTML Editor</div>
+            <div class="buttons">
+                <button id="open-folder-btn">Open Folder</button>
+                <button id="open-btn">Open HTML File</button>
+                <button id="save-btn" disabled>Save Changes</button>
+                <button id="add-image-btn" disabled>Add Image</button>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-header">HTML Files</div>
+                <ul class="file-list" id="file-list">
+                    <!-- Files will be listed here -->
+                </ul>
+            </div>
+            
+            <div class="editor-wrapper">
+                <div id="editor-container">
+                    <div class="no-file" id="no-file-message" style="display: none;">
+                        <i>📄</i>
+                        <p>No file opened yet</p>
+                        <button id="open-btn-center">Open an HTML File</button>
+                        
+                        <div class="features-list">
+                            <h3>Features:</h3>
+                            <ul>
+                                <li>Edit HTML visually without seeing code</li>
+                                <li>Drag and drop images directly into the editor</li>
+                                <li>Add images by URL with the "Add Image" button</li>
+                                <li>Images are automatically embedded in the HTML</li>
+                                <li>Changes save directly to your original file</li>
+                                <li>Open folders to edit multiple HTML files</li>
+                                <li>Unsaved changes are indicated with an asterisk (*)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="editor-area" contenteditable="true" style="display: block;">
+                        <h1>Sample Content for Testing</h1>
+                        <p>This is a sample content to test the sticky header functionality. Scroll down to see if the header with controls stays fixed at the top.</p>
+                        
+                        <h2>Section 1</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                        
+                        <h2>Section 2</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                        
+                        <h2>Section 3</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                        
+                        <h2>Section 4</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                        
+                        <h2>Section 5</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                        
+                        <h2>Section 6</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                        
+                        <h2>Section 7</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                        
+                        <h2>Section 8</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                        
+                        <h2>Section 9</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                        
+                        <h2>Section 10</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
+                    </div>
+                    <div class="drop-indicator" id="drop-indicator"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status" id="status-message">Ready to edit HTML files</div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const openFolderBtn = document.getElementById('open-folder-btn');
+        const openBtn = document.getElementById('open-btn');
+        const openBtnCenter = document.getElementById('open-btn-center');
+        const saveBtn = document.getElementById('save-btn');
+        const addImageBtn = document.getElementById('add-image-btn');
+        const editorArea = document.getElementById('editor-area');
+        const editorContainer = document.getElementById('editor-container');
+        const noFileMessage = document.getElementById('no-file-message');
+        const statusMessage = document.getElementById('status-message');
+        const dropIndicator = document.getElementById('drop-indicator');
+        const sidebar = document.getElementById('sidebar');
+        const fileList = document.getElementById('file-list');
+        
+        // Enable buttons for testing
+        saveBtn.disabled = false;
+        addImageBtn.disabled = false;
+        
+        // File handle for saving
+        let fileHandle = null;
+        let originalHtml = '';
+        let originalDoc = null;
+        let folderHandle = null;
+        let openedFiles = new Map(); // Map to store file handles and their states
+        let currentFileName = '';
+        let hasUnsavedChanges = false;
+        
+        // Check if the File System Access API is supported
+        if ('showOpenFilePicker' in window) {
+            openFolderBtn.addEventListener('click', openFolder);
+            openBtn.addEventListener('click', openFile);
+            openBtnCenter.addEventListener('click', openFile);
+            saveBtn.addEventListener('click', saveFile);
+            addImageBtn.addEventListener('click', addImageFromUrl);
+            
+            // Add event listener for content changes to detect unsaved changes
+            editorArea.addEventListener('input', markAsUnsaved);
+        } else {
+            statusMessage.textContent = 'Your browser does not support the File System Access API. Please use Chrome, Edge, or another compatible browser.';
+            openFolderBtn.disabled = true;
+            openBtn.disabled = true;
+            openBtnCenter.disabled = true;
+            addImageBtn.disabled = true;
+        }
+        
+        // Function to open a folder
+        async function openFolder() {
+            try {
+                // Show directory picker
+                folderHandle = await window.showDirectoryPicker();
+                
+                // Clear the file list
+                fileList.innerHTML = '';
+                openedFiles.clear();
+                
+                // Show the sidebar
+                sidebar.style.display = 'block';
+                
+                // List HTML files in the folder
+                await listHtmlFiles(folderHandle);
+                
+                // Update status
+                statusMessage.textContent = `Opened folder: ${folderHandle.name}`;
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    statusMessage.textContent = `Error opening folder: ${error.message}`;
+                    console.error('Error opening folder:', error);
+                }
+            }
+        }
+        
+        // Function to list HTML files in a folder
+        async function listHtmlFiles(dirHandle) {
+            try {
+                for await (const entry of dirHandle.values()) {
+                    if (entry.kind === 'file' && (entry.name.endsWith('.html') || entry.name.endsWith('.htm'))) {
+                        // Add file to the list
+                        openedFiles.set(entry.name, {
+                            handle: entry,
+                            hasUnsavedChanges: false
+                        });
+                    }
+                }
+                
+                // Update the file list in the sidebar
+                updateFileList();
+            } catch (error) {
+                statusMessage.textContent = `Error listing files: ${error.message}`;
+                console.error('Error listing files:', error);
+            }
+        }
+        
+        // Function to update the file list in the sidebar
+        function updateFileList() {
+            fileList.innerHTML = '';
+            
+            openedFiles.forEach((fileData, fileName) => {
+                const li = document.createElement('li');
+                li.className = 'file-item';
+                if (currentFileName === fileName) {
+                    li.classList.add('active');
+                }
+                
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'file-item-name';
+                nameSpan.textContent = fileName;
+                
+                li.appendChild(nameSpan);
+                
+                // Add unsaved indicator if needed
+                if (currentFileName === fileName && hasUnsavedChanges) {
+                    const indicator = document.createElement('span');
+                    indicator.className = 'unsaved-indicator';
+                    indicator.textContent = '*';
+                    li.appendChild(indicator);
+                } else if (fileData.hasUnsavedChanges) {
+                    const indicator = document.createElement('span');
+                    indicator.className = 'unsaved-indicator';
+                    indicator.textContent = '*';
+                    li.appendChild(indicator);
+                }
+                
+                // Add click event to open the file
+                li.addEventListener('click', () => openFileFromSidebar(fileName));
+                
+                fileList.appendChild(li);
+            });
+        }
+        
+        // Function to open a file from the sidebar
+        async function openFileFromSidebar(fileName) {
+            // Check if there are unsaved changes in the current file
+            if (hasUnsavedChanges) {
+                const confirmSave = confirm(`You have unsaved changes in ${currentFileName}. Do you want to save them before opening ${fileName}?`);
+                if (confirmSave) {
+                    await saveFile();
+                }
+            }
+            
+            try {
+                const fileData = openedFiles.get(fileName);
+                if (!fileData) return;
+                
+                fileHandle = fileData.handle;
+                currentFileName = fileName;
+                hasUnsavedChanges = false;
+                
+                // Get file data
+                const file = await fileHandle.getFile();
+                originalHtml = await file.text();
+                
+                // Parse the HTML
+                const parser = new DOMParser();
+                originalDoc = parser.parseFromString(originalHtml, 'text/html');
+                
+                // Display the content in the editor
+                noFileMessage.style.display = 'none';
+                editorArea.style.display = 'block';
+                
+                // Extract the body content and put it in the editor
+                const bodyContent = originalDoc.body.innerHTML;
+                editorArea.innerHTML = bodyContent;
+                
+                // Enable save and add image buttons
+                saveBtn.disabled = false;
+                addImageBtn.disabled = false;
+                
+                // Update status and file list
+                statusMessage.textContent = `Editing: ${fileName}`;
+                updateFileList();
+                
+                // Setup drag and drop for images
+                setupDragAndDrop();
+            } catch (error) {
+                statusMessage.textContent = `Error opening file: ${error.message}`;
+                console.error('Error opening file:', error);
+            }
+        }
+        
+        // Function to mark the current file as having unsaved changes
+        function markAsUnsaved() {
+            if (currentFileName && !hasUnsavedChanges) {
+                hasUnsavedChanges = true;
+                updateFileList();
+            }
+        }
+        
+        // Function to add an image from URL
+        function addImageFromUrl(e) {
+            // Prevent default behavior
+            e.preventDefault();
+            
+            // Prompt user for image URL
+            const imageUrl = prompt('Enter the URL of the image:');
+            
+            // Check if URL was provided
+            if (imageUrl && imageUrl.trim() !== '') {
+                // Create image element
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.style.maxWidth = '100%';
+                img.alt = 'Image'; // Default alt text
+                
+                // Insert at cursor position
+                insertImageAtCursor(img);
+                
+                statusMessage.textContent = 'Image added from URL. Don\'t forget to save!';
+            }
+        }
+        
+        // Function to open an HTML file
+        async function openFile() {
+            try {
+                // Show file picker and get file handle
+                const [handle] = await window.showOpenFilePicker({
+                    types: [
+                        {
+                            description: 'HTML Files',
+                            accept: {
+                                'text/html': ['.html', '.htm']
+                            }
+                        }
+                    ],
+                    multiple: false
+                });
+                
+                // Check if there are unsaved changes in the current file
+                if (hasUnsavedChanges && currentFileName) {
+                    const confirmSave = confirm(`You have unsaved changes in ${currentFileName}. Do you want to save them before opening a new file?`);
+                    if (confirmSave) {
+                        await saveFile();
+                    }
+                }
+                
+                fileHandle = handle;
+                
+                // Get file data
+                const file = await handle.getFile();
+                originalHtml = await file.text();
+                currentFileName = file.name;
+                hasUnsavedChanges = false;
+                
+                // If we're in folder mode, add this file to the opened files
+                if (folderHandle) {
+                    openedFiles.set(file.name, {
+                        handle: fileHandle,
+                        hasUnsavedChanges: false
+                    });
+                    updateFileList();
+                }
+                
+                // Parse the HTML
+                const parser = new DOMParser();
+                originalDoc = parser.parseFromString(originalHtml, 'text/html');
+                
+                // Display the content in the editor
+                noFileMessage.style.display = 'none';
+                editorArea.style.display = 'block';
+                
+                // Extract the body content and put it in the editor
+                const bodyContent = originalDoc.body.innerHTML;
+                editorArea.innerHTML = bodyContent;
+                
+                // Enable save and add image buttons
+                saveBtn.disabled = false;
+                addImageBtn.disabled = false;
+                
+                // Update status
+                statusMessage.textContent = `Editing: ${file.name}`;
+                
+                // Setup drag and drop for images
+                setupDragAndDrop();
+            } catch (error) {
+                if (error.name !== 'AbortError') {
+                    statusMessage.textContent = `Error opening file: ${error.message}`;
+                    console.error('Error opening file:', error);
+                }
+            }
+        }
+        
+        // Function to save changes back to the file
+        async function saveFile() {
+            if (!fileHandle) return;
+            
+            try {
+                // Get the edited content
+                const editedBodyContent = editorArea.innerHTML;
+                
+                // Update the original document with the edited content
+                originalDoc.body.innerHTML = editedBodyContent;
+                
+                // Create a new HTML string
+                const serializer = new XMLSerializer();
+                let newHtmlContent = serializer.serializeToString(originalDoc);
+                
+                // Fix arrow functions in JavaScript that might be encoded
+                newHtmlContent = newHtmlContent.replace(/=&amp;amp;gt;/g, "=>");
+                newHtmlContent = newHtmlContent.replace(/=&amp;gt;/g, "=>");
+                newHtmlContent = newHtmlContent.replace(/=&gt;/g, "=>");
+                
+                // Write to the file
+                const writable = await fileHandle.createWritable();
+                await writable.write(newHtmlContent);
+                await writable.close();
+                
+                // Clear unsaved changes flag
+                hasUnsavedChanges = false;
+                
+                // Update file in the openedFiles map if in folder mode
+                if (folderHandle && currentFileName) {
+                    const fileData = openedFiles.get(currentFileName);
+                    if (fileData) {
+                        fileData.hasUnsavedChanges = false;
+                        openedFiles.set(currentFileName, fileData);
+                    }
+                }
+                
+                // Update the file list to remove the asterisk
+                updateFileList();
+                
+                statusMessage.textContent = 'File saved successfully!';
+                
+                // Update the original HTML
+                originalHtml = newHtmlContent;
+            } catch (error) {
+                statusMessage.textContent = `Error saving file: ${error.message}`;
+                console.error('Error saving file:', error);
+            }
+        }
+        
+        // Setup drag and drop functionality for images
+        function setupDragAndDrop() {
+            // Prevent default drag behaviors
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                editorArea.addEventListener(eventName, preventDefaults, false);
+                document.body.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            // Highlight drop area when item is dragged over it
+            ['dragenter', 'dragover'].forEach(eventName => {
+                editorArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                editorArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            // Handle dropped files
+            editorArea.addEventListener('drop', handleDrop, false);
+            
+            // Track mouse position for drop indicator
+            editorArea.addEventListener('dragover', updateDropIndicator, false);
+        }
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        function highlight(e) {
+            editorContainer.classList.add('drag-active');
+            editorArea.classList.add('drag-over');
+        }
+        
+        function unhighlight(e) {
+            editorContainer.classList.remove('drag-active');
+            editorArea.classList.remove('drag-over');
+            dropIndicator.style.display = 'none';
+        }
+        
+        function updateDropIndicator(e) {
+            // Get cursor position relative to the editor
+            const rect = editorArea.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Position the drop indicator
+            dropIndicator.style.display = 'block';
+            dropIndicator.style.left = `${x - 10}px`;
+            dropIndicator.style.top = `${y - 10}px`;
+            dropIndicator.style.width = '20px';
+            dropIndicator.style.height = '20px';
+        }
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            
+            // Get drop position
+            const selection = window.getSelection();
+            let range;
+            
+            // Create a range at the drop position
+            if (document.caretRangeFromPoint) {
+                range = document.caretRangeFromPoint(e.clientX, e.clientY);
+            } else if (document.caretPositionFromPoint) {
+                const position = document.caretPositionFromPoint(e.clientX, e.clientY);
+                range = document.createRange();
+                range.setStart(position.offsetNode, position.offset);
+                range.collapse(true);
+            }
+            
+            if (range) {
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+            
+            // Handle the dropped files
+            handleFiles(files);
+        }
+        
+        function handleFiles(files) {
+            ([...files]).forEach(uploadFile);
+        }
+        
+        function uploadFile(file) {
+            // Only process image files
+            if (!file.type.match('image.*')) {
+                statusMessage.textContent = 'Only image files are supported for drag and drop.';
+                return;
+            }
+            
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                // Create image element
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '100%';
+                img.alt = file.name.replace(/\.[^/.]+$/, ""); // Use filename without extension as alt text
+                
+                // Insert at cursor position
+                insertImageAtCursor(img);
+                
+                statusMessage.textContent = `Image "${file.name}" added. Don't forget to save!`;
+            };
+            
+            reader.readAsDataURL(file);
+        }
+        
+        function insertImageAtCursor(imgElement) {
+            const selection = window.getSelection();
+            
+            if (selection.rangeCount > 0) {
+                const range = selection.getRangeAt(0);
+                range.deleteContents();
+                range.insertNode(imgElement);
+                
+                // Move cursor after the inserted image
+                range.setStartAfter(imgElement);
+                range.setEndAfter(imgElement);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            } else {
+                // If no selection, append to the end
+                editorArea.appendChild(imgElement);
+            }
+        }
+    </script>
+</body>
+</html>
