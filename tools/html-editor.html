@@ -720,20 +720,38 @@
         function insertImageAtCursor(imgElement) {
             const selection = window.getSelection();
             
+            // Wrap image in a paragraph to ensure it's a block element
+            const paragraph = document.createElement('p');
+            paragraph.appendChild(imgElement);
+            
             if (selection.rangeCount > 0) {
                 const range = selection.getRangeAt(0);
-                range.deleteContents();
-                range.insertNode(imgElement);
                 
-                // Move cursor after the inserted image
-                range.setStartAfter(imgElement);
-                range.setEndAfter(imgElement);
-                selection.removeAllRanges();
-                selection.addRange(range);
+                // Find the nearest block-level parent (paragraph, div, etc.)
+                let blockParent = range.commonAncestorContainer;
+                while (blockParent && blockParent !== editorArea && blockParent.nodeType === Node.TEXT_NODE) {
+                    blockParent = blockParent.parentNode;
+                }
+                
+                // If we're inside a paragraph or other block, insert after it
+                if (blockParent && blockParent.nodeType === Node.ELEMENT_NODE && blockParent !== editorArea) {
+                    blockParent.parentNode.insertBefore(paragraph, blockParent.nextSibling);
+                } else {
+                    // Otherwise, insert at the cursor position but wrapped in paragraph
+                    range.deleteContents();
+                    range.insertNode(paragraph);
+                }
             } else {
                 // If no selection, append to the end
-                editorArea.appendChild(imgElement);
+                editorArea.appendChild(paragraph);
             }
+            
+            // Move cursor after the inserted image paragraph
+            const newRange = document.createRange();
+            newRange.setStartAfter(paragraph);
+            newRange.setEndAfter(paragraph);
+            selection.removeAllRanges();
+            selection.addRange(newRange);
         }
     </script>
 </body>
