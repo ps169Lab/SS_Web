@@ -74,6 +74,10 @@
             max-height: 500px;
             display: none;
         }
+        .sidebar.wide {
+            min-width: 800px;
+            width: 800px;
+        }
         .sidebar-header {
             padding: 10px;
             background-color: #f5f5f5;
@@ -424,9 +428,11 @@
                 const parser = new DOMParser();
                 originalDoc = parser.parseFromString(originalHtml, 'text/html');
                 
-                // Display the content in the editor
+                // Display the content in the editor and ensure sidebar stays visible and wide
                 noFileMessage.style.display = 'none';
                 editorArea.style.display = 'block';
+                sidebar.style.display = 'block';
+                sidebar.classList.add('wide');
                 
                 // Extract the body content and put it in the editor
                 const bodyContent = originalDoc.body.innerHTML;
@@ -524,9 +530,11 @@
                 const parser = new DOMParser();
                 originalDoc = parser.parseFromString(originalHtml, 'text/html');
                 
-                // Display the content in the editor
+                // Display the content in the editor and ensure sidebar stays visible and wide
                 noFileMessage.style.display = 'none';
                 editorArea.style.display = 'block';
+                sidebar.style.display = 'block';
+                sidebar.classList.add('wide');
                 
                 // Extract the body content and put it in the editor
                 const bodyContent = originalDoc.body.innerHTML;
