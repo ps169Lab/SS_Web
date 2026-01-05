@@ -1,0 +1,154 @@
+body {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timer {
+    display: flex;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.timer input {
+    width: 60px;
+    padding: 8px;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#addTimer,
+#schoolMode,
+#startAll {
+    padding: 8px 12px;
+    background-color: #badbff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    margin: 5px 0;
+}
+
+#addTimer:hover,
+#schoolMode:hover,
+#startAll:hover {
+    background-color: #badbff;
+}
+
+.timer button {
+    margin-left: 5px;
+    padding: 8px 12px;
+    background-color: #badbff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.timer button:hover {
+    background-color: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .timer {
+        flex-direction: row;
+        align-items: center;
+        width: 90%; /* Increase width */
+    }
+
+    .timer-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hamburger {
+        display: block;
+        width: 100px;
+        height: 40px;
+        position: relative;
+        cursor: pointer;
+        margin-left: auto;
+    }
+
+    .hamburger span {
+        display: block;
+        position: absolute;
+        height: 4px;
+        width: 100%;
+        background: #000;
+        border-radius: 2px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: .25s ease-in-out;
+    }
+
+    .hamburger span:nth-child(1) {
+        top: 0px;
+    }
+
+    .hamburger span:nth-child(2),
+    .hamburger span:nth-child(3) {
+        top: 10px;
+    }
+
+    .hamburger span:nth-child(3) {
+        top: 20px;
+    }
+
+    .hamburger.open span:nth-child(1) {
+        top: 10px;
+        transform: rotate(135deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+        opacity: 0;
+        left: -60px;
+    }
+
+    .hamburger.open span:nth-child(3) {
+        top: 10px;
+        transform: rotate(-135deg);
+    }
+
+    .timer input {
+        width: 80%;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .timer button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    body {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .global-buttons {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #addTimer,
+    #schoolMode,
+    #startAll {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
