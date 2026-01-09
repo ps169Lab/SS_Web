@@ -1,6 +1,6 @@
 /**
  * Reading Level Toggle JavaScript
- * Allows users to switch between standard and easy reading versions of content
+ * Allows users to switch between standard, easy reading, and image-only versions of content
  */
 
 // Initialize the reading level toggle when the page loads
@@ -16,6 +16,7 @@ function initializeReadingLevelToggle() {
             <select id="reading-level-select">
                 <option value="standard">Standard</option>
                 <option value="easy">Summary</option>
+                <option value="images">Images Only</option>
             </select>
         </div>
     `;
@@ -46,11 +47,16 @@ function initializeReadingLevelToggle() {
 function applyReadingLevel(level) {
     const body = document.body;
     
+    // Remove all reading mode classes first
+    body.classList.remove('easy-reading-mode', 'image-only-mode');
+    
+    // Apply the selected mode
     if (level === 'easy') {
         body.classList.add('easy-reading-mode');
-    } else {
-        body.classList.remove('easy-reading-mode');
+    } else if (level === 'images') {
+        body.classList.add('image-only-mode');
     }
+    // If level === 'standard', no classes are added (default state)
 }
 
 /**
