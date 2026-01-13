@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Noise Level Measurement</title>
+	<style>
+    	#stopwatch {font-size: 24px;}
+	</style>
+</head>
+<body>
+	<h1>Noise Level Measurement</h1>
+	<p>Current noise level: <span id="noise-level">...</span></p>
+	<p>
+    	Set threshold:
+    	<input type="number" id="threshold-input" min="0" step="1" value="32">
+    	<button onclick="setThreshold()">Set</button>
+	</p>
+	<p id='stopwatch'>
+    	Stopwatch:
+    	<span id="stopwatch-minutes">0</span> min
+    	<span id="stopwatch-seconds">0</span> s
+    	<button onclick="resetStopwatch()">Reset</button>
+	</p>
+	<p>
+    	<button id="pause-button" onclick="pause()">Pause</button>
+    	<button id="mute-button" onclick="mute()">mute</button>
+	</p>
+    
+	<p>
+   	 
+	</p>
+
+	<script>
+    	// Variables for accessing microphone and audio context
+    	let audioContext;
+    	let analyserNode;
+    	let threshold = 100;
+    	let totalElapsedTime = 0; // Initialize total elapsed time
+    	let pauseMonitoring = false;
+    	let pauseText = 'pause';
+    	let muteTone = false;
+    	let muteText = 'mute';
+   	 
+
+    	// Variables for stopwatch
+    	let stopwatchStartTime = performance.now();
+    	let stopwatchInterval;
+
+    	// Variables for countdown
+    	let countdownInterval;
+    	let countdownDuration = 2; // Set the countdown duration in seconds
+    	let itr = 1;
+
+    	// Function to update the stopwatch display
+    	function updateStopwatch() {
+        	if(!pauseMonitoring){
+            	totalElapsedTime += 0.1; // Add 0.1 seconds to the total elapsed time (adjust as needed)
+//            	playTone();
+            	if(itr==1) {
+                	itr = 20;
+                	console.log('tone');
+                	playTone();
+            	} else {
+                	itr-=1;
+            	}
+            	console.log(itr);
+        	}
+
+        	const minutes = Math.floor(totalElapsedTime / 60);
+        	const seconds = totalElapsedTime % 60;
+        	document.getElementById('stopwatch-minutes').textContent = minutes;
+        	document.getElementById('stopwatch-seconds').textContent = seconds.toFixed(1);
+    	}
+
+    	// Function to start the stopwatch
+    	function startStopwatch() {
+        	if (stopwatchInterval === undefined) {
+            	stopwatchInterval = setInterval(updateStopwatch, 100);
+        	}
+    	}
+   	 
+    	function pause() {
+        	pauseMonitoring = !pauseMonitoring;
+       	 
+        	if(pauseText=='pause') {
+            	pauseText = 'unpause';
+        	} else {
+            	pauseText = 'pause';
+        	}
+        	document.getElementById('pause-button').textContent = pauseText;
+    	}
+   	 
+    	function mute() {
+        	muteTone = !muteTone;
+       	 
+        	if(muteText=='mute') {
+            	muteText = 'unmute';
+        	} else {
+            	muteText = 'mute';
+        	}
+        	document.getElementById('mute-button').textContent = muteText;
+    	}
+
+    	// Function to stop the stopwatch
+    	function stopStopwatch() {
+        	clearInterval(stopwatchInterval);
+        	stopwatchInterval = undefined;
+    	}
+
+    	// Function to reset the stopwatch
+    	function resetStopwatch() {
+        	totalElapsedTime = 0;
+        	updateStopwatch();
+    	}
+
+    	// Function to set the threshold based on user input
+    	function setThreshold() {
+        	const newThreshold = parseFloat(document.getElementById('threshold-input').value);
+        	if (!isNaN(newThreshold)) {
+            	threshold = newThreshold;
+        	} else {
+            	alert('Please enter a valid threshold.');
+        	}
+    	}
+   	 
+
+    	function playTone() {
+        	if (!muteTone) {
+            	// Check if the tone has been played recently
+            	if (!playTone.lastPlayed || (Date.now() - playTone.lastPlayed) > 1000) {
+                	// Create an AudioContext
+                	const audioContext = new AudioContext();
+
+                	// Create an OscillatorNode to generate the tone
+                	const oscillator = audioContext.createOscillator();
+                	oscillator.type = 'sine'; // Set the waveform type (sine wave)
+                	oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // Set the frequency (440 Hz)
+
+                	// Create a GainNode to control the volume
+                	const gainNode = audioContext.createGain();
+                	gainNode.gain.setValueAtTime(0.2, audioContext.currentTime); // Set the initial volume level (0.5 is half volume)
+
+                	// Connect the oscillator to the gain node and the gain node to the audio context's destination (speakers)
+                	oscillator.connect(gainNode);
+                	gainNode.connect(audioContext.destination);
+
+                	// Start the oscillator
+                	oscillator.start();
+
+                	// Gradually decrease the volume level to 0 over 1 second using an exponential ramp for a gradual fade-out effect
+                	gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 3);
+
+                	// Stop the oscillator after the fade-out duration (1 second)
+                	setTimeout(() => {
+                    	oscillator.stop();
+                	}, 3000);
+
+                	// Update the timestamp of the last played tone
+                	playTone.lastPlayed = Date.now();
+            	}
+        	}
+    	}
+
+    	// Function to handle the countdown
+    	function startCountdown() {
+        	let countdownRemaining = countdownDuration;
+
+        	function countdown() {
+            	if (countdownRemaining > 0) {
+                	countdownRemaining--;
+            	} else {
+                	clearInterval(countdownInterval);
+                	startStopwatch();
+                	playTone();
+            	}
+        	}
+
+        	countdownInterval = setInterval(countdown, 1000);
+    	}
+
+    	// Function to initialize microphone access and noise level measurement
+    	async function init() {
+        	try {
+            	// Get access to the microphone
+            	const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            	audioContext = new AudioContext();
+
+            	// Create an AnalyserNode to analyze the audio data
+            	analyserNode = audioContext.createAnalyser();
+            	const microphoneStream = audioContext.createMediaStreamSource(stream);
+            	microphoneStream.connect(analyserNode);
+
+            	// Set parameters for the analyserNode
+            	analyserNode.fftSize = 2048; // FFT size (frequency bin count)
+            	const bufferLength = analyserNode.frequencyBinCount;
+            	const dataArray = new Uint8Array(bufferLength);
+
+            	// Function to measure noise level continuously
+            	function measureNoiseLevel() {
+                	requestAnimationFrame(measureNoiseLevel);
+
+                	// Get the current decibel level
+                	analyserNode.getByteFrequencyData(dataArray);
+                	const averageDecibel = dataArray.reduce((sum, value) => sum + value, 0) / bufferLength;
+                	const decibel = 20 * Math.log10(averageDecibel) -5;
+
+                	// Display the current noise level
+                	document.getElementById('noise-level').textContent = decibel.toFixed(2);
+
+                	// Start the countdown if the noise level is above the threshold
+                	if (decibel > threshold) {
+                    	if (!countdownInterval) {
+                        	startCountdown();
+                    	}
+                	} else {
+                    	// Reset the countdown if the noise level falls below
+                    	// the threshold
+if (countdownInterval) {
+	clearInterval(countdownInterval);
+	countdownInterval = undefined;
+}
+stopStopwatch();
+}
+}
+
+// Start measuring noise level
+measureNoiseLevel();
+} catch (error) {
+console.error('Error accessing microphone:', error);
+}
+}
+
+// Initialize microphone access and noise level measurement when the page loads
+window.addEventListener('DOMContentLoaded', init);
+
+// Start the stopwatch when the page loads
+window.addEventListener('load', function() {
+updateStopwatch(); // Update the stopwatch display immediately
+startStopwatch(); // Start the stopwatch
+});
+
+// Set threshold based on user input when the "Set" button is clicked
+function setThreshold() {
+const newThreshold = parseFloat(document.getElementById('threshold-input').value);
+if (!isNaN(newThreshold)) {
+	threshold = newThreshold;
+} else {
+	alert('Please enter a valid threshold.');
+}
+}
+	</script>
+</body>
+</html>
+
+                            
