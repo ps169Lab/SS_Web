@@ -81,6 +81,10 @@ main {
         border-bottom: 1pt solid #000 !important;
     }
     
+    .section-title h1 {
+        margin-top: 0.8em;
+    }
+    
     .subtitle {
         font-size: 14pt !important;
         margin-bottom: 0.8em !important;
@@ -145,6 +149,38 @@ main {
     a[href^="#"]:after,
     a[href^="/"]:after {
         content: "";
+    }
+    
+    /* Optimize vocabulary sections for print */
+    .vocabulary-section {
+        background-color: transparent !important;
+        border: 1pt solid #000 !important;
+        border-radius: 0 !important;
+        padding: 1em !important;
+        margin-bottom: 1em !important;
+        page-break-inside: avoid;
+    }
+    
+    .vocabulary-section h3 {
+        color: #000 !important;
+        margin-bottom: 0.5em !important;
+        font-size: 14pt !important;
+    }
+    
+    .vocabulary-list {
+        list-style: none;
+        padding-left: 0;
+    }
+    
+    .vocabulary-list li {
+        margin-bottom: 0.5em !important;
+        font-size: 12pt !important;
+        line-height: 1.4 !important;
+    }
+    
+    .vocabulary-list strong {
+        color: #000 !important;
+        font-weight: bold;
     }
     
     /* Page break controls */
@@ -250,47 +286,47 @@ main {
 }
 
 .nav-links li:nth-child(1) {
-  background-color: #8B4513; /* Saddle Brown */
+  background-color: #e0f2f7; /* Light blue */
 }
 
 .nav-links li:nth-child(2) {
-  background-color: #4682B4; /* Steel Blue */
+  background-color: #b3f0a8; /* Light green */
 }
 
 .nav-links li:nth-child(3) {
-  background-color: #228B22; /* Forest Green */
+  background-color: #fff59d; /* Light yellow */
 }
 
 .nav-links li:nth-child(4) {
-  background-color: #DAA520; /* Goldenrod */
+  background-color: #ffd699; /* Light orange */
 }
 
 .nav-links li:nth-child(5) {
-  background-color: #CD853F; /* Peru */
+  background-color: #ffcce6; /* Light pink */
 }
 
 .nav-links li:nth-child(6) {
-  background-color: #556B2F; /* Dark Olive Green */
+  background-color: #d9c3e6; /* Light lavender */
 }
 
 .nav-links li:nth-child(7) {
-  background-color: #8B4513; /* Saddle Brown - cycling back */
+  background-color: #a8e6cf; /* Light mint */
 }
 
 .nav-links li:nth-child(8) {
-  background-color: #4682B4; /* Steel Blue - cycling back */
+  background-color: #ffb3b3; /* Light coral */
 }
 
 .nav-links li:nth-child(9) {
-  background-color: #228B22; /* Forest Green - cycling back */
+  background-color: #c7ceea; /* Light periwinkle */
 }
 
 .nav-links li:nth-child(10) {
-  background-color: #DAA520; /* Goldenrod - cycling back */
+  background-color: #b5ead7; /* Light seafoam */
 }
 
 .nav-links a {
-  color: #ffffff;
+  color: #333;
   text-decoration: none;
   border: none;
   padding: 1rem;
@@ -301,14 +337,10 @@ main {
   overflow-wrap: break-word;
   line-height: 1.4;
   font-size:1.1rem;
-  font-weight: 500;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 .nav-links a:hover {
-  opacity: 0.9;
-  transform: translateX(5px);
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  opacity: 0.8;
 }
 
 /* Hamburger menu */
@@ -488,6 +520,37 @@ li {
 .chinese-text {
   font-family: 'Noto Serif SC', serif;
   font-weight: normal;
+}
+
+/* Vocabulary section styling */
+.vocabulary-section {
+  background-color: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.vocabulary-section h3 {
+  color: #495057;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.vocabulary-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.vocabulary-list li {
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.vocabulary-list strong {
+  color: #007bff;
+  font-weight: 600;
 }
 
 /* Responsive styles */
