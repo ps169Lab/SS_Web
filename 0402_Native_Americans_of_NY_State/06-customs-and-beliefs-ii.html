@@ -10,6 +10,20 @@
 </head>
 <body>
     <div id="navbar-container"></div>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
     <main>
         <article>
             <h1 class="section-title">The False Face Society & Wampum</h1>
