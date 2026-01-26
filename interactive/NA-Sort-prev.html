@@ -13,28 +13,11 @@
             transform: scale(1.05);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        .clue-card.selected {
-            border-color: #3b82f6;
-            background: linear-gradient(to bottom right, #dbeafe, #bfdbfe);
-            transform: scale(1.05);
-            box-shadow: 0 0 0 3px #3b82f6;
-        }
         .env-zone {
             transition: border-color 0.2s ease;
         }
         .env-zone:hover {
             border-color: #f59e0b;
-        }
-        .env-zone.drop-target {
-            border-color: #3b82f6;
-            background-color: #eff6ff;
-        }
-        .pulse {
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
         }
     </style>
 </head>
@@ -43,20 +26,16 @@
         <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
             <h1 class="text-3xl font-bold text-amber-900 mb-2">🔍 Tribal Environment Detective</h1>
             <p class="text-gray-700 mb-4">
-                <span class="hidden md:inline">Drag each clue to the environment where you think those tribes lived.</span>
-                <span class="md:hidden"><strong>Tap a clue card, then tap an environment</strong> to place it there.</span>
+                Drag each clue to the environment where you think those tribes lived. 
                 The clues tell you about their homes, food, and way of life!
             </p>
-            <div class="flex items-center gap-4 flex-wrap">
+            <div class="flex items-center gap-4">
                 <div class="text-lg font-semibold text-green-600">
                     Score: <span id="score">0</span> / <span id="total">30</span>
                 </div>
                 <button onclick="resetGame()" class="flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition">
                     🔄 Reset
                 </button>
-                <div id="selected-indicator" class="hidden px-4 py-2 bg-blue-100 border-2 border-blue-500 rounded-lg text-sm font-medium text-blue-800">
-                    ✓ Clue selected - Tap an environment!
-                </div>
             </div>
         </div>
 
@@ -64,7 +43,7 @@
 
         <div class="bg-white rounded-lg shadow-lg p-6">
             <h3 class="text-xl font-bold text-amber-900 mb-4">
-                🎴 Clue Cards - <span class="hidden md:inline">Drag to Match</span><span class="md:hidden">Tap to Select</span>! (<span id="remaining">30</span> remaining)
+                🎴 Clue Cards - Drag to Match! (<span id="remaining">30</span> remaining)
             </h3>
             <div id="clues" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3"></div>
             <div id="complete-message" class="hidden text-center py-8">
@@ -153,7 +132,6 @@
         let feedback = {};
         let score = 0;
         let draggedClue = null;
-        let selectedClue = null;
 
         function init() {
             renderEnvironments();
@@ -169,7 +147,6 @@
                     data-env-id="${env.id}"
                     ondrop="handleDrop(event)"
                     ondragover="handleDragOver(event)"
-                    onclick="handleEnvironmentClick('${env.id}')"
                 >
                     <div class="text-center mb-3">
                         <div class="text-5xl mb-2">${env.image}</div>
@@ -187,11 +164,10 @@
             
             container.innerHTML = unplacedClues.map(clue => `
                 <div 
-                    class="clue-card p-3 bg-gradient-to-br from-amber-100 to-orange-100 border-2 border-amber-400 rounded-lg cursor-pointer ${selectedClue?.id === clue.id ? 'selected' : ''}"
+                    class="clue-card p-3 bg-gradient-to-br from-amber-100 to-orange-100 border-2 border-amber-400 rounded-lg cursor-move"
                     draggable="true"
                     data-clue-id="${clue.id}"
                     ondragstart="handleDragStart(event)"
-                    onclick="handleClueClick('${clue.id}')"
                 >
                     <p class="text-sm font-medium text-gray-800">${clue.text}</p>
                 </div>
@@ -223,12 +199,11 @@
                     const iconColor = isCorrect ? 'text-green-600' : 'text-red-600';
                     const draggable = !isCorrect;
                     const cursorClass = draggable ? 'cursor-move hover:shadow-md' : '';
-                    const selectedClass = selectedClue?.id === clue.id ? 'selected' : '';
                     
                     return `
                         <div 
-                            class="p-2 rounded-lg text-xs ${bgColor} border-2 ${cursorClass} ${selectedClass}"
-                            ${draggable ? `draggable="true" data-clue-id="${clue.id}" ondragstart="handleDragStart(event)" onclick="handleClueClick('${clue.id}')"` : ''}
+                            class="p-2 rounded-lg text-xs ${bgColor} border-2 ${cursorClass}"
+                            ${draggable ? `draggable="true" data-clue-id="${clue.id}" ondragstart="handleDragStart(event)"` : ''}
                         >
                             <div class="flex items-start gap-2">
                                 <span class="${iconColor} flex-shrink-0 font-bold">${icon}</span>
@@ -237,42 +212,6 @@
                         </div>
                     `;
                 }).join('');
-            });
-        }
-
-        function handleClueClick(clueId) {
-            const clue = clues.find(c => c.id === clueId);
-            const isCorrect = feedback[clueId] === 'correct';
-            
-            // Don't allow selection of correctly placed clues
-            if (isCorrect) return;
-            
-            selectedClue = clue;
-            
-            // Show indicator
-            document.getElementById('selected-indicator').classList.remove('hidden');
-            
-            // Highlight environment zones
-            document.querySelectorAll('.env-zone').forEach(zone => {
-                zone.classList.add('drop-target', 'pulse');
-            });
-            
-            renderClues();
-            renderPlacedClues();
-        }
-
-        function handleEnvironmentClick(envId) {
-            if (!selectedClue) return;
-            
-            placeClue(selectedClue, envId);
-            
-            // Clear selection
-            selectedClue = null;
-            document.getElementById('selected-indicator').classList.add('hidden');
-            
-            // Remove environment highlighting
-            document.querySelectorAll('.env-zone').forEach(zone => {
-                zone.classList.remove('drop-target', 'pulse');
             });
         }
 
@@ -292,20 +231,16 @@
             if (!draggedClue) return;
 
             const envId = event.target.closest('[data-env-id]').dataset.envId;
-            placeClue(draggedClue, envId);
-            draggedClue = null;
-        }
+            const isCorrect = draggedClue.env === envId;
 
-        function placeClue(clue, envId) {
-            const isCorrect = clue.env === envId;
-
-            placements[clue.id] = envId;
-            feedback[clue.id] = isCorrect ? 'correct' : 'incorrect';
+            placements[draggedClue.id] = envId;
+            feedback[draggedClue.id] = isCorrect ? 'correct' : 'incorrect';
 
             if (isCorrect) {
                 score++;
             }
 
+            draggedClue = null;
             updateScore();
             renderClues();
             renderPlacedClues();
@@ -321,11 +256,6 @@
             feedback = {};
             score = 0;
             draggedClue = null;
-            selectedClue = null;
-            document.getElementById('selected-indicator').classList.add('hidden');
-            document.querySelectorAll('.env-zone').forEach(zone => {
-                zone.classList.remove('drop-target', 'pulse');
-            });
             updateScore();
             renderClues();
             renderPlacedClues();
