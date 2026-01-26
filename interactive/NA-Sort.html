@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tribal Environment Detective</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .clue-card {
+            transition: all 0.2s ease;
+        }
+        .clue-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .env-zone {
+            transition: border-color 0.2s ease;
+        }
+        .env-zone:hover {
+            border-color: #f59e0b;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 p-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h1 class="text-3xl font-bold text-amber-900 mb-2">🔍 Tribal Environment Detective</h1>
+            <p class="text-gray-700 mb-4">
+                Drag each clue to the environment where you think those tribes lived. 
+                The clues tell you about their homes, food, and way of life!
+            </p>
+            <div class="flex items-center gap-4">
+                <div class="text-lg font-semibold text-green-600">
+                    Score: <span id="score">0</span> / <span id="total">30</span>
+                </div>
+                <button onclick="resetGame()" class="flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition">
+                    🔄 Reset
+                </button>
+            </div>
+        </div>
+
+        <div id="environments" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6"></div>
+
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-bold text-amber-900 mb-4">
+                🎴 Clue Cards - Drag to Match! (<span id="remaining">30</span> remaining)
+            </h3>
+            <div id="clues" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3"></div>
+            <div id="complete-message" class="hidden text-center py-8">
+                <p class="text-2xl font-bold text-green-600 mb-2">🎉 All clues placed!</p>
+                <p class="text-gray-600">
+                    You got <span id="final-score">0</span> out of <span id="final-total">30</span> correct!
+                    <span id="perfect-msg" class="hidden"> Perfect score! 🌟</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const environments = [
+            {
+                id: 'arctic',
+                name: 'Arctic',
+                image: '❄️',
+                correctClues: ['igloos', 'seal-hunting', 'kayaks', 'blubber', 'ice-fishing', 'dog-sleds'],
+                tribes: 'Inuit, Yupik, Aleut'
+            },
+            {
+                id: 'rainforest',
+                name: 'Pacific Northwest Rainforest',
+                image: '🌲',
+                correctClues: ['salmon', 'totem-poles', 'plank-houses', 'potlatch', 'cedar-bark', 'whale-hunting'],
+                tribes: 'Tlingit, Haida, Chinook, Salish'
+            },
+            {
+                id: 'forest',
+                name: 'Eastern Woodlands Forest',
+                image: '🌳',
+                correctClues: ['longhouses', 'three-sisters', 'birch-canoes', 'wampum', 'deer-hunting', 'maple-syrup'],
+                tribes: 'Iroquois, Cherokee, Powhatan, Mohawk'
+            },
+            {
+                id: 'grasslands',
+                name: 'Grasslands/Plains',
+                image: '🌾',
+                correctClues: ['buffalo-hide', 'nomadic', 'travois', 'buffalo-hunt', 'horseback', 'buffalo-robes'],
+                tribes: 'Lakota Sioux, Cheyenne, Comanche, Pawnee'
+            },
+            {
+                id: 'desert',
+                name: 'Southwest Desert',
+                image: '🏜️',
+                correctClues: ['adobe', 'corn-beans-squash', 'irrigation', 'pottery', 'cliff-dwellings', 'turquoise'],
+                tribes: 'Pueblo, Hopi, Navajo, Apache'
+            }
+        ];
+
+        const clues = [
+            { id: 'igloos', text: 'Built dome-shaped igloos from blocks of snow and ice', env: 'arctic' },
+            { id: 'seal-hunting', text: 'Hunted seals, walrus, and polar bears for survival', env: 'arctic' },
+            { id: 'kayaks', text: 'Used kayaks made from animal skins for water travel', env: 'arctic' },
+            { id: 'blubber', text: 'Burned whale and seal blubber for heat and light', env: 'arctic' },
+            { id: 'ice-fishing', text: 'Fished through holes in thick ice', env: 'arctic' },
+            { id: 'dog-sleds', text: 'Traveled across snow using dog sleds', env: 'arctic' },
+            { id: 'salmon', text: 'Relied heavily on salmon fishing in rivers', env: 'rainforest' },
+            { id: 'totem-poles', text: 'Carved tall totem poles to tell family stories', env: 'rainforest' },
+            { id: 'plank-houses', text: 'Built large wooden plank houses from cedar trees', env: 'rainforest' },
+            { id: 'potlatch', text: 'Held potlatch ceremonies to show wealth and status', env: 'rainforest' },
+            { id: 'cedar-bark', text: 'Wove cedar bark into clothing, baskets, and ropes', env: 'rainforest' },
+            { id: 'whale-hunting', text: 'Hunted whales in large ocean-going canoes', env: 'rainforest' },
+            { id: 'longhouses', text: 'Built large longhouses for multiple families', env: 'forest' },
+            { id: 'three-sisters', text: 'Farmed corn, beans, and squash together', env: 'forest' },
+            { id: 'birch-canoes', text: 'Made lightweight canoes from birch bark', env: 'forest' },
+            { id: 'wampum', text: 'Used wampum belts for treaties and keeping records', env: 'forest' },
+            { id: 'deer-hunting', text: 'Hunted deer and used hides for clothing', env: 'forest' },
+            { id: 'maple-syrup', text: 'Tapped maple trees to make syrup and sugar', env: 'forest' },
+            { id: 'buffalo-hide', text: 'Built portable tepees from buffalo hide', env: 'grasslands' },
+            { id: 'nomadic', text: 'Followed buffalo herds seasonally across vast plains', env: 'grasslands' },
+            { id: 'travois', text: 'Used horses to drag travois carrying belongings', env: 'grasslands' },
+            { id: 'buffalo-hunt', text: 'Hunted buffalo and used every part of the animal', env: 'grasslands' },
+            { id: 'horseback', text: 'Became expert riders after horses arrived', env: 'grasslands' },
+            { id: 'buffalo-robes', text: 'Made warm robes and blankets from buffalo fur', env: 'grasslands' },
+            { id: 'adobe', text: 'Built pueblos from sun-dried adobe bricks', env: 'desert' },
+            { id: 'corn-beans-squash', text: 'Grew the "Three Sisters" in dry climate', env: 'desert' },
+            { id: 'irrigation', text: 'Created irrigation channels for desert farming', env: 'desert' },
+            { id: 'pottery', text: 'Created beautiful painted pottery and clay vessels', env: 'desert' },
+            { id: 'cliff-dwellings', text: 'Built homes into cliff sides for protection', env: 'desert' },
+            { id: 'turquoise', text: 'Mined and traded turquoise for jewelry', env: 'desert' }
+        ];
+
+        let placements = {};
+        let feedback = {};
+        let score = 0;
+        let draggedClue = null;
+
+        function init() {
+            renderEnvironments();
+            renderClues();
+            updateScore();
+        }
+
+        function renderEnvironments() {
+            const container = document.getElementById('environments');
+            container.innerHTML = environments.map(env => `
+                <div 
+                    class="env-zone bg-white rounded-lg shadow-lg p-4 border-4 border-dashed border-gray-300 min-h-64"
+                    data-env-id="${env.id}"
+                    ondrop="handleDrop(event)"
+                    ondragover="handleDragOver(event)"
+                >
+                    <div class="text-center mb-3">
+                        <div class="text-5xl mb-2">${env.image}</div>
+                        <h2 class="text-xl font-bold text-amber-900">${env.name}</h2>
+                        <p class="text-xs text-gray-600 mt-1">${env.tribes}</p>
+                    </div>
+                    <div id="env-${env.id}" class="space-y-2"></div>
+                </div>
+            `).join('');
+        }
+
+        function renderClues() {
+            const container = document.getElementById('clues');
+            const unplacedClues = clues.filter(clue => !placements[clue.id]);
+            
+            container.innerHTML = unplacedClues.map(clue => `
+                <div 
+                    class="clue-card p-3 bg-gradient-to-br from-amber-100 to-orange-100 border-2 border-amber-400 rounded-lg cursor-move"
+                    draggable="true"
+                    data-clue-id="${clue.id}"
+                    ondragstart="handleDragStart(event)"
+                >
+                    <p class="text-sm font-medium text-gray-800">${clue.text}</p>
+                </div>
+            `).join('');
+
+            document.getElementById('remaining').textContent = unplacedClues.length;
+            
+            if (unplacedClues.length === 0) {
+                document.getElementById('complete-message').classList.remove('hidden');
+                document.getElementById('final-score').textContent = score;
+                document.getElementById('final-total').textContent = clues.length;
+                if (score === clues.length) {
+                    document.getElementById('perfect-msg').classList.remove('hidden');
+                }
+            } else {
+                document.getElementById('complete-message').classList.add('hidden');
+            }
+        }
+
+        function renderPlacedClues() {
+            environments.forEach(env => {
+                const container = document.getElementById(`env-${env.id}`);
+                const envClues = clues.filter(clue => placements[clue.id] === env.id);
+                
+                container.innerHTML = envClues.map(clue => {
+                    const isCorrect = feedback[clue.id] === 'correct';
+                    const bgColor = isCorrect ? 'bg-green-100 border-green-500' : 'bg-red-100 border-red-500';
+                    const icon = isCorrect ? '✓' : '✗';
+                    const iconColor = isCorrect ? 'text-green-600' : 'text-red-600';
+                    const draggable = !isCorrect;
+                    const cursorClass = draggable ? 'cursor-move hover:shadow-md' : '';
+                    
+                    return `
+                        <div 
+                            class="p-2 rounded-lg text-xs ${bgColor} border-2 ${cursorClass}"
+                            ${draggable ? `draggable="true" data-clue-id="${clue.id}" ondragstart="handleDragStart(event)"` : ''}
+                        >
+                            <div class="flex items-start gap-2">
+                                <span class="${iconColor} flex-shrink-0 font-bold">${icon}</span>
+                                <span>${clue.text}</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            });
+        }
+
+        function handleDragStart(event) {
+            const clueId = event.target.closest('[data-clue-id]').dataset.clueId;
+            draggedClue = clues.find(c => c.id === clueId);
+            event.dataTransfer.effectAllowed = 'move';
+        }
+
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'move';
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            if (!draggedClue) return;
+
+            const envId = event.target.closest('[data-env-id]').dataset.envId;
+            const isCorrect = draggedClue.env === envId;
+
+            placements[draggedClue.id] = envId;
+            feedback[draggedClue.id] = isCorrect ? 'correct' : 'incorrect';
+
+            if (isCorrect) {
+                score++;
+            }
+
+            draggedClue = null;
+            updateScore();
+            renderClues();
+            renderPlacedClues();
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('total').textContent = clues.length;
+        }
+
+        function resetGame() {
+            placements = {};
+            feedback = {};
+            score = 0;
+            draggedClue = null;
+            updateScore();
+            renderClues();
+            renderPlacedClues();
+        }
+
+        init();
+    </script>
+</body>
+</html>
