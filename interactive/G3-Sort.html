@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three G's Sorting Game - Age of Exploration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .clue-card {
+            transition: all 0.2s ease;
+        }
+        .clue-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .clue-card.selected {
+            border-color: #3b82f6;
+            background: linear-gradient(to bottom right, #dbeafe, #bfdbfe);
+            transform: scale(1.05);
+            box-shadow: 0 0 0 3px #3b82f6;
+        }
+        .category-zone {
+            transition: border-color 0.2s ease;
+        }
+        .category-zone:hover {
+            border-color: #f59e0b;
+        }
+        .category-zone.drop-target {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        .pulse {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-100 p-6">
+    <div class="max-w-6xl mx-auto">
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h1 class="text-3xl font-bold text-blue-900 mb-2">⚓ The Three G's of Exploration</h1>
+            <p class="text-gray-700 mb-4">
+                <span class="hidden md:inline">Drag each reason to the correct category:</span>
+                <span class="md:hidden"><strong>Tap a card, then tap a category</strong> to sort it.</span>
+                <strong>Gold</strong> (riches & trade), <strong>God</strong> (religion), or <strong>Glory</strong> (fame & power)!
+            </p>
+            <div class="flex items-center gap-4 flex-wrap">
+                <div class="text-lg font-semibold text-green-600">
+                    Score: <span id="score">0</span> / <span id="total">24</span>
+                </div>
+                <button onclick="resetGame()" class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    🔄 Reset
+                </button>
+                <div id="selected-indicator" class="hidden px-4 py-2 bg-blue-100 border-2 border-blue-500 rounded-lg text-sm font-medium text-blue-800">
+                    ✓ Card selected - Tap a category!
+                </div>
+            </div>
+        </div>
+
+        <div id="categories" class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6"></div>
+
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h3 class="text-xl font-bold text-blue-900 mb-4">
+                🎴 Reasons for Exploration - <span class="hidden md:inline">Drag to Sort</span><span class="md:hidden">Tap to Select</span>! (<span id="remaining">24</span> remaining)
+            </h3>
+            <div id="clues" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"></div>
+            <div id="complete-message" class="hidden text-center py-8">
+                <p class="text-2xl font-bold text-green-600 mb-2">🎉 All cards sorted!</p>
+                <p class="text-gray-600">
+                    You got <span id="final-score">0</span> out of <span id="final-total">24</span> correct!
+                    <span id="perfect-msg" class="hidden"> Perfect score! 🌟</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const categories = [
+            {
+                id: 'gold',
+                name: 'GOLD',
+                subtitle: 'Wealth & Trade',
+                image: '💰',
+                color: 'from-yellow-100 to-amber-100',
+                borderColor: 'border-yellow-500'
+            },
+            {
+                id: 'god',
+                name: 'GOD',
+                subtitle: 'Religion & Faith',
+                image: '⛪',
+                color: 'from-purple-100 to-pink-100',
+                borderColor: 'border-purple-500'
+            },
+            {
+                id: 'glory',
+                name: 'GLORY',
+                subtitle: 'Fame & Power',
+                image: '👑',
+                color: 'from-red-100 to-orange-100',
+                borderColor: 'border-red-500'
+            }
+        ];
+
+        const items = [
+            { id: 1, text: 'Find gold and silver', category: 'gold' },
+            { id: 2, text: 'Spread Christianity to new lands', category: 'god' },
+            { id: 3, text: 'Become famous back home', category: 'glory' },
+            { id: 4, text: 'Discover new trade routes to Asia', category: 'gold' },
+            { id: 5, text: 'Convert native peoples to Christianity', category: 'god' },
+            { id: 6, text: 'Claim land for your king or queen', category: 'glory' },
+            { id: 7, text: 'Find valuable spices like pepper and cinnamon', category: 'gold' },
+            { id: 8, text: 'Build churches and missions', category: 'god' },
+            { id: 9, text: 'Have countries and places named after you', category: 'glory' },
+            { id: 10, text: 'Trade for silk and jewels', category: 'gold' },
+            { id: 11, text: 'Save souls and do God\'s work', category: 'god' },
+            { id: 12, text: 'Win honor for your country', category: 'glory' },
+            { id: 13, text: 'Get rich from new resources', category: 'gold' },
+            { id: 14, text: 'Teach people about the Bible', category: 'god' },
+            { id: 15, text: 'Return home a hero', category: 'glory' },
+            { id: 16, text: 'Find precious gems and treasures', category: 'gold' },
+            { id: 17, text: 'Establish your religion in new places', category: 'god' },
+            { id: 18, text: 'Prove you are the bravest explorer', category: 'glory' },
+            { id: 19, text: 'Control profitable trade markets', category: 'gold' },
+            { id: 20, text: 'Bring priests and missionaries along', category: 'god' },
+            { id: 21, text: 'Expand your nation\'s empire', category: 'glory' },
+            { id: 22, text: 'Discover valuable natural resources', category: 'gold' },
+            { id: 23, text: 'Fulfill a religious mission or calling', category: 'god' },
+            { id: 24, text: 'Be remembered in history books', category: 'glory' }
+        ];
+
+        let placements = {};
+        let feedback = {};
+        let score = 0;
+        let draggedItem = null;
+        let selectedItem = null;
+        let shuffledItems = [];
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function init() {
+            shuffledItems = shuffleArray(items);
+            renderCategories();
+            renderItems();
+            updateScore();
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('categories');
+            container.innerHTML = categories.map(cat => `
+                <div 
+                    class="category-zone bg-gradient-to-br ${cat.color} rounded-lg shadow-lg p-4 border-4 border-dashed ${cat.borderColor} min-h-64"
+                    data-cat-id="${cat.id}"
+                    ondrop="handleDrop(event)"
+                    ondragover="handleDragOver(event)"
+                    onclick="handleCategoryClick('${cat.id}')"
+                >
+                    <div class="text-center mb-3">
+                        <div class="text-5xl mb-2">${cat.image}</div>
+                        <h2 class="text-2xl font-bold text-gray-800">${cat.name}</h2>
+                        <p class="text-sm text-gray-600 italic">${cat.subtitle}</p>
+                    </div>
+                    <div id="cat-${cat.id}" class="space-y-2"></div>
+                </div>
+            `).join('');
+        }
+
+        function renderItems() {
+            const container = document.getElementById('clues');
+            const unplacedItems = shuffledItems.filter(item => !placements[item.id]);
+            
+            container.innerHTML = unplacedItems.map(item => `
+                <div 
+                    class="clue-card p-3 bg-gradient-to-br from-blue-100 to-indigo-100 border-2 border-blue-400 rounded-lg cursor-pointer ${selectedItem?.id === item.id ? 'selected' : ''}"
+                    draggable="true"
+                    data-item-id="${item.id}"
+                    ondragstart="handleDragStart(event)"
+                    onclick="handleItemClick(${item.id})"
+                >
+                    <p class="text-sm font-medium text-gray-800">${item.text}</p>
+                </div>
+            `).join('');
+
+            document.getElementById('remaining').textContent = unplacedItems.length;
+            
+            if (unplacedItems.length === 0) {
+                document.getElementById('complete-message').classList.remove('hidden');
+                document.getElementById('final-score').textContent = score;
+                document.getElementById('final-total').textContent = items.length;
+                if (score === items.length) {
+                    document.getElementById('perfect-msg').classList.remove('hidden');
+                }
+            } else {
+                document.getElementById('complete-message').classList.add('hidden');
+            }
+        }
+
+        function renderPlacedItems() {
+            categories.forEach(cat => {
+                const container = document.getElementById(`cat-${cat.id}`);
+                const catItems = shuffledItems.filter(item => placements[item.id] === cat.id);
+                
+                container.innerHTML = catItems.map(item => {
+                    const isCorrect = feedback[item.id] === 'correct';
+                    const bgColor = isCorrect ? 'bg-green-100 border-green-500' : 'bg-red-100 border-red-500';
+                    const icon = isCorrect ? '✓' : '✗';
+                    const iconColor = isCorrect ? 'text-green-600' : 'text-red-600';
+                    const draggable = !isCorrect;
+                    const cursorClass = draggable ? 'cursor-move hover:shadow-md' : '';
+                    const selectedClass = selectedItem?.id === item.id ? 'selected' : '';
+                    
+                    return `
+                        <div 
+                            class="p-2 rounded-lg text-xs ${bgColor} border-2 ${cursorClass} ${selectedClass}"
+                            ${draggable ? `draggable="true" data-item-id="${item.id}" ondragstart="handleDragStart(event)" onclick="handleItemClick(${item.id})"` : ''}
+                        >
+                            <div class="flex items-start gap-2">
+                                <span class="${iconColor} flex-shrink-0 font-bold">${icon}</span>
+                                <span>${item.text}</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            });
+        }
+
+        function handleItemClick(itemId) {
+            const item = shuffledItems.find(i => i.id === itemId);
+            const isCorrect = feedback[itemId] === 'correct';
+            
+            if (isCorrect) return;
+            
+            selectedItem = item;
+            
+            document.getElementById('selected-indicator').classList.remove('hidden');
+            
+            document.querySelectorAll('.category-zone').forEach(zone => {
+                zone.classList.add('drop-target', 'pulse');
+            });
+            
+            renderItems();
+            renderPlacedItems();
+        }
+
+        function handleCategoryClick(catId) {
+            if (!selectedItem) return;
+            
+            placeItem(selectedItem, catId);
+            
+            selectedItem = null;
+            document.getElementById('selected-indicator').classList.add('hidden');
+            
+            document.querySelectorAll('.category-zone').forEach(zone => {
+                zone.classList.remove('drop-target', 'pulse');
+            });
+        }
+
+        function handleDragStart(event) {
+            const itemId = parseInt(event.target.closest('[data-item-id]').dataset.itemId);
+            draggedItem = shuffledItems.find(i => i.id === itemId);
+            event.dataTransfer.effectAllowed = 'move';
+        }
+
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'move';
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            if (!draggedItem) return;
+
+            const catId = event.target.closest('[data-cat-id]').dataset.catId;
+            placeItem(draggedItem, catId);
+            draggedItem = null;
+        }
+
+        function placeItem(item, catId) {
+            const isCorrect = item.category === catId;
+
+            placements[item.id] = catId;
+            feedback[item.id] = isCorrect ? 'correct' : 'incorrect';
+
+            if (isCorrect) {
+                score++;
+            }
+
+            updateScore();
+            renderItems();
+            renderPlacedItems();
+        }
+
+        function updateScore() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('total').textContent = items.length;
+        }
+
+        function resetGame() {
+            placements = {};
+            feedback = {};
+            score = 0;
+            draggedItem = null;
+            selectedItem = null;
+            shuffledItems = shuffleArray(items);
+            document.getElementById('selected-indicator').classList.add('hidden');
+            document.querySelectorAll('.category-zone').forEach(zone => {
+                zone.classList.remove('drop-target', 'pulse');
+            });
+            updateScore();
+            renderItems();
+            renderPlacedItems();
+        }
+
+        init();
+    </script>
+</body>
+</html>

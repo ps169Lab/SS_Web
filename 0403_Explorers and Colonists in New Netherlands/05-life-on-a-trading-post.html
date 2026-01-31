@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Life on a Trading Post</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">Life on a Trading Post</h1>
+            <p class="subtitle">Fur, Food, and Frontier Living</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Storehouse:</strong> A strong building where valuable goods like furs and tools are kept.</li>
+                    <li><strong>Stockade:</strong> A tall fence made of wooden posts used for protection.</li>
+                    <li><strong>Interpreter:</strong> A person who translates speech between two different languages.</li>
+                </ul>
+            </div>
+
+            <h2>A Busy Hub of Trade</h2>
+            <p>
+                <span class="standard-reading">A trading post was much more than just a store; it was a small, busy village. Inside the <strong>stockade</strong> walls, you would find a storehouse, a blacksmith shop, and small homes for the families who lived there. The most important spot was the trading room. This is where Dutch settlers met with the Haudenosaunee (Iroquois) and Mohican people. Because they spoke different languages, an <strong>interpreter</strong> was often there to help them agree on a fair price for beaver pelts.</span>
+                <span class="easy-reading">A trading post was like a small, busy village. It had tall wooden walls called a <strong>stockade</strong>. Inside, there were houses and a store. This is where Dutch settlers met Native Americans. They traded tools for beaver skins. An <strong>interpreter</strong> helped them talk to each other.</span>
+            </p>
+
+            
+
+            <h2>Daily Chores and Hard Work</h2>
+            <p>
+                <span class="standard-reading">Life at a post like Fort Orange was not easy. There were no grocery stores, so families had to grow their own vegetables and raise cows and pigs for meat. Children helped by gathering firewood, fetching water from the river, and tending to the gardens. Men spent long days inspecting beaver pelts to make sure they were high quality, while women managed the household and often helped run the trading business. Everyone had to work together to survive the cold New York winters.</span>
+                <span class="easy-reading">Life was hard at the trading post. There were no stores for food. Families grew their own vegetables and kept animals. Children helped by getting water and wood for the fire. Men checked the beaver skins. Women ran the homes and the shops. Everyone worked hard to stay warm in the winter.</span>
+            </p>
+
+            
+
+            <h2>The Arrival of the Ships</h2>
+            <p>
+                <span class="standard-reading">The most exciting day at the post was when a ship arrived from Europe. These ships brought letters from home, news from the King, and fresh supplies like flour, cloth, and metal tools. The settlers would load the ship with thousands of beaver pelts to be sent back to the hat-makers in Europe. Once the ship sailed away, the settlers were alone again, waiting months for the next one to arrive.</span>
+                <span class="easy-reading">The best day was when a ship arrived from Europe. Ships brought letters and new clothes. They also brought metal tools. The settlers put beaver skins on the ship to send back to Europe. When the ship left, the settlers had to wait a long time for the next one.</span>
+            </p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>The Interpreter:</strong> Why do you think the <strong>interpreter</strong> was the most important person at the trading post? What would happen if they weren't there?</li>
+                <li><strong>Modern vs. Past:</strong> If you had to trade one of your modern toys for something at a 1600s trading post, what would you want to get in return? Why?</li>
+            </ul>
+        </article>
+    </main>
+    <script src="../reading-level-toggle.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

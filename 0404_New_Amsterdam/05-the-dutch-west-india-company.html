@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Dutch West India Company</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">The Company in Charge</h1>
+            <p class="subtitle">The Dutch West India Company: New York's First Boss</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Monopoly:</strong> When only one company is allowed to sell or trade a certain product.</li>
+                    <li><strong>Shareholder:</strong> A person who invests money in a company hoping to make a profit.</li>
+                    <li><strong>Governor:</strong> The person chosen by the company to lead the colony.</li>
+                </ul>
+            </div>
+
+            <h2>A Business, Not a Kingdom</h2>
+            <p>
+                <span class="standard-reading">Many colonies in the New World were started by Kings, but New York (then called New Netherland) was started by a business called the <strong>Dutch West India Company</strong>. This company was run by wealthy businessmen in the Netherlands. They weren't interested in building a beautiful city; they were interested in making money. They were given a <strong>monopoly</strong> on the fur trade, which meant no other Dutch company was allowed to trade beavers in the area.</span>
+                <span class="easy-reading">New York was started by a business. It was called the <strong>Dutch West India Company</strong>. These businessmen wanted to make money. They were the only ones allowed to trade beavers. This is called a <strong>monopoly</strong>.</span>
+            </p>
+
+            
+
+            <h2>The Company's Rules</h2>
+            <p>
+                <span class="standard-reading">Because the company owned the colony, they made all the rules. They hired the <strong>governors</strong>, like Peter Stuyvesant, to keep order. They paid for the ships, the food, and the tools that the settlers used. In return, the settlers had to give the company most of the furs they found. The company even decided where people could live. If the company didn't make a profit, the colony would be in big trouble!</span>
+                <span class="easy-reading">The company made all the rules. They picked the leaders. They paid for the ships and the food. Settlers had to give their furs to the company. The company decided where people lived. They wanted to make a lot of money.</span>
+            </p>
+
+            
+
+            <h2>Investing in the New World</h2>
+            <p>
+                <span class="standard-reading">The Dutch West India Company was owned by <strong>shareholders</strong>. These were regular people in Europe who gave the company money to buy ships. If the ships came back full of beaver pelts, the shareholders made a profit. This made New Netherland a very diverse place, because the company didn't care where you came from or what you believed, as long as you were a good worker who could help the company succeed.</span>
+                <span class="easy-reading">People in Europe gave the company money to buy ships. These people were called <strong>shareholders</strong>. If the ships brought back many furs, the people got more money back. The company hired many different kinds of people to work for them. They just wanted good workers.</span>
+            </p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Company Town:</strong> Imagine if your favorite toy company or a local grocery store ran your entire town. What would be one good thing about that? What would be one scary thing?</li>
+                <li><strong>The Profit Goal:</strong> Do you think the Dutch West India Company cared more about the people living in New York or the number of beaver pelts on the ships? Why?</li>
+            </ul>
+        </article>
+    </main>
+    <script src="../reading-level-toggle.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>
