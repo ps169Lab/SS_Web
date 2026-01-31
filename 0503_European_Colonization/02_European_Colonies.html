@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colonial Characteristics: How They Lived</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">Colonial Life: Different Ways of Living</h1>
+            <p class="subtitle">Exploring the Culture, Economy, and People of the Six Major Colonies</p>
+
+            <div class="vocabulary">
+                <h3>Key Words</h3>
+                <ul>
+                    <li><strong>Extraction:</strong> Removing natural resources like gold or silver from the earth by mining.</li>
+                    <li><strong>Tolerance:</strong> Accepting people who have different religions or customs without punishment.</li>
+                    <li><strong>Alliance:</strong> An agreement between groups to work together and help each other.</li>
+                </ul>
+            </div>
+
+            <h2>Spain: The Conquistadors</h2>
+            <p>
+                <span class="standard-reading">The Spanish colonies were located in what we now call Mexico, Florida, and the Southwest United States. Their culture was defined by the Spanish language, the Catholic religion, and grand architecture. Spain was focused on getting gold and silver from the ground. Because this work was dangerous and difficult, they forced many Native American groups to do the work. While they sometimes formed agreements to work together, their history in the Americas was frequently marked by fighting as they pushed to spread their religion and build their churches.</span>
+                <span class="easy-reading">Spain lived in Mexico and Florida. They spoke Spanish and were very religious. They wanted to find gold and silver in the ground. To get the gold, they forced many Native Americans to do the hard work. They built big churches called missions to spread their faith.</span>
+            </p>
+
+            
+
+            <h2>Portugal: The Sea Explorers</h2>
+            <p>
+                <span class="standard-reading">Portugal focused almost entirely on the coast of Brazil. Unlike the Spanish who hunted for gold, the Portuguese built their economy on huge sugar farms. Growing sugar was a massive business, but it required an enormous amount of work. The Portuguese established trade with some Native groups, but they also used enslaved labor to keep their farms running. Their culture was deeply connected to their traditions as great sailors and explorers, and the Portuguese language, which is still spoken in Brazil today.</span>
+                <span class="easy-reading">Portugal built colonies in Brazil. They did not look for gold. Instead, they grew sugar on big farms. This was very hard work, so they used enslaved people to help. They were famous for being great sailors and explorers of the sea.</span>
+            </p>
+
+            <h2>France: The Fur Traders</h2>
+            <p>
+                <span class="standard-reading">The French took a very different path in Canada and along the Mississippi River. Instead of farming or mining, they focused on hunting and trading fur, especially beaver pelts which were worth a lot of money in Europe. Because they needed to find the best hunting grounds, the French built strong agreements with Native American tribes to work together. They treated many tribes as business partners rather than enemies. Their culture brought the French language and Catholic influence deep into the North American continent.</span>
+                <span class="easy-reading">France went to Canada and the Mississippi River. They did not want to farm. They wanted to trade beaver furs. To do this, they made friends with Native American tribes. They worked together as partners. They brought the French language to the north.</span>
+            </p>
+
+            
+
+            <h2>England: The Settlers</h2>
+            <p>
+                <span class="standard-reading">The English settled along the Atlantic coast, from the cold shores of New England down to the warm fields of Virginia. Their goal was to find land and resources for families to live on forever. In the north, they built communities of people with the same religion, while in the south, they grew tobacco on large farms. Because they brought so many families, they were constantly taking more land, which led to a mix of friendly trade and violent conflicts with Native American groups. Their colonies were known for having different types of religions compared to Spain.</span>
+                <span class="easy-reading">England built colonies on the East Coast. They brought whole families to live in the Americas forever. In the north, they had small towns. In the south, they grew tobacco. Because they needed more land for their houses, they often had fights with Native Americans.</span>
+            </p>
+
+            <h2>The Netherlands: The Traders</h2>
+            <p>
+                <span class="standard-reading">The Dutch settled in parts of present-day New York and New Jersey, calling it "New Netherland." They were primarily motivated by <strong>economic opportunity</strong> and trade. The Dutch were very unique because they practiced <strong>religious tolerance</strong>. They didn't care what you believed as long as you were good at business! This made their colony a melting pot of different languages and cultures. They generally maintained peaceful trade relations with Native Americans to ensure their fur trading posts remained profitable.</span>
+                <span class="easy-reading">The Dutch started a colony in New York. They were all about business and trade. They were very fair and let people of all religions live there. Because they wanted to make money, they tried to stay on good terms with the Native Americans for trading furs.</span>
+            </p>
+
+            <h2>Russia: The Far Explorers</h2>
+            <p>
+                <span class="standard-reading">Far to the North and West, Russia explored the icy wilderness of Alaska. Like the French, they were motivated by the fur trade, but they hunted sea otters and other ocean animals. They brought the Russian language and the Orthodox Christian faith to the coast. However, their arrival was often difficult for the local people; Russia frequently had fights with Native Americans over who owned the land and who had the right to hunt the valuable animals found there.</span>
+                <span class="easy-reading">Russia explored Alaska. It was very cold there. They hunted sea otters for their fur. They brought the Russian language to the West Coast. They often had fights with the Native Americans over the land and the animals.</span>
+            </p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>The Neighbor Test:</strong> If you were a Native American leader, which of these six countries would you want as a neighbor? Use a specific detail from the text about how that country treated people or resources to justify your choice.</li>
+                <li><strong>The Diversity Debate:</strong> The Dutch allowed many religions, but the Spanish only allowed one. Does having many different types of people make a colony stronger or harder to rule? Why?</li>
+            </ul>
+        </article>
+    </main>
+    <script src="../reading-level-toggle.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

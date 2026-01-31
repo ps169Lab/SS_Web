@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Native American Perspectives</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        .perspective-card { border: 2px solid #5d4037; padding: 20px; border-radius: 10px; margin-bottom: 25px; background-color: #efebe9; }
+        .quote-box { font-style: italic; color: #4e342e; border-left: 4px solid #8d6e63; padding-left: 15px; margin: 15px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #d7ccc8; padding: 12px; text-align: left; }
+        th { background-color: #d7ccc8; }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">Whose Land? The Native American Perspective</h1>
+            <p class="subtitle">Looking at Colonization Through Different Eyes</p>
+
+            <div class="vocabulary">
+                <h3>Key Words</h3>
+                <ul>
+                    <li><strong>Ancestral Lands:</strong> Land that has belonged to a family or group for many generations.</li>
+                    <li><strong>Displacement:</strong> Being forced to leave your home or land.</li>
+                    <li><strong>Sovereignty:</strong> The right of a group to rule and make decisions for themselves.</li>
+                </ul>
+            </div>
+
+            <h2>A Changing World</h2>
+            <p>
+                <span class="standard-reading">For thousands of years, hundreds of different Native American nations lived across North America, each with their own unique governments, languages, and traditions. When Europeans arrived, they didn't find an "empty" wilderness—they found a busy continent full of people. The arrival of these "Major Players" changed everything, from the animals in the woods to the very ground beneath their feet.</span>
+                <span class="easy-reading">Native Americans lived in North America for thousands of years. They had their own laws, languages, and homes. When explorers came from Europe, the land was already full of people. The new settlers changed the way Native Americans lived and used the land.</span>
+            </p>
+
+            
+
+            <div class="perspective-card">
+                <h2>The Impact of the Exchange</h2>
+                <p>
+                    <span class="standard-reading">As we learned in the <strong>Columbian Exchange</strong>, the arrival of Europeans brought invisible enemies: diseases like smallpox. Because Native Americans had no <strong>immunity</strong>, many nations lost more than half of their people in a very short time. This loss of life hurt their ability to protect their <strong>ancestral lands</strong> and keep their traditions alive.</span>
+                    <span class="easy-reading">The Columbian Exchange brought new germs to America. Native Americans got very sick from diseases like smallpox. Their bodies did not know how to fight the germs. Many people died, which made it hard for tribes to keep their homes and their way of life.</span>
+                </p>
+            </div>
+
+            <h2>Interacting with the "Major Players"</h2>
+            <p>How a Native American group experienced colonization often depended on which European country moved into their area.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>European Group</th>
+                        <th>Impact on Native Life</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>The Spanish</strong></td>
+                        <td>Forced many into missions; took control of land for gold and silver.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>The French</strong></td>
+                        <td>Traded for furs; often lived together as partners and <strong>allies</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>The English</strong></td>
+                        <td>Took large amounts of land for permanent farms, leading to <strong>displacement</strong>.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            
+
+            <h2>The Barter System and Tradition</h2>
+            <p>
+                <span class="standard-reading">The <strong>barter system</strong> (or trading system) changed how Native Americans survived. Before, they hunted and farmed only what they needed. To get metal tools, cloth, and guns from Europeans, they began hunting much more than usual to get enough furs to trade. This put stress on the land and shifted their focus from traditional ways of life to a world based on global trade.</span>
+                <span class="easy-reading">Native Americans used a <strong>barter system</strong> to trade with settlers. They swapped furs for metal pots and blankets. To get these things, they had to hunt many more animals than before. This changed their traditions and the nature around them.</span>
+            </p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>The Concept of Ownership:</strong> Many European settlers believed you "owned" land if you built a fence around it. Many Native American groups believed land belonged to everyone. How would this different way of thinking lead to conflict?</li>
+                <li><strong>The Horse:</strong> We know the horse was part of the Columbian Exchange. How did it help some Native American groups protect their <strong>sovereignty</strong> (their right to rule themselves)?</li>
+                <li><strong>Looking Back:</strong> How can we learn from history to better support and respect Indigenous communities today?</li>
+            </ul>
+        </article>
+    </main>
+    <script src="../reading-level-toggle.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>
