@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brown Gold Word Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .grid-cell {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 18px;
+            user-select: none;
+            cursor: pointer;
+            background: white;
+            transition: all 0.1s ease;
+        }
+        .grid-cell:hover {
+            background: #f1f5f9;
+        }
+        .grid-cell.selected {
+            background: #fef3c7;
+            border-color: #f59e0b;
+        }
+        .grid-cell.found {
+            background: #86efac;
+            border-color: #22c55e;
+            color: #166534;
+        }
+        .hint-item {
+            transition: all 0.3s ease;
+        }
+        .hint-item.completed {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+        .hint-item.completed::before {
+            content: '✓ ';
+            color: #22c55e;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-amber-50 to-yellow-100 p-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h1 class="text-3xl font-bold text-amber-900 mb-2">🦫 The "Brown Gold" Word Search</h1>
+            <p class="text-gray-700 mb-4">
+                Read the hints below and find the words in the grid! <strong>Click and drag</strong> to highlight words (horizontal, vertical, or diagonal). Words can go forwards or backwards!
+            </p>
+            <div class="flex items-center gap-4 flex-wrap">
+                <div class="text-lg font-semibold text-green-600">
+                    Found: <span id="found-count">0</span> / <span id="total-count">12</span>
+                </div>
+                <button onclick="resetGame()" class="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition">
+                    🔄 Reset
+                </button>
+                <!-- <button onclick="toggleHints()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    💡 Toggle Answers
+                </button> -->
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-xl font-bold text-amber-900 mb-4">Word Grid</h2>
+                    <div id="word-grid" class="inline-block border-4 border-amber-600 rounded-lg overflow-hidden"></div>
+                    <div id="success-message" class="hidden mt-4 p-4 bg-green-100 border-2 border-green-500 rounded-lg text-center">
+                        <p class="text-xl font-bold text-green-700">🎉 Congratulations!</p>
+                        <p class="text-green-600">You found all the words!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-xl font-bold text-amber-900 mb-4">🔍 Word Hints</h2>
+                    <div id="hints-list" class="space-y-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const words = [
+            { word: 'BEAVER', hint: 'The furry animal that was called "brown gold"' },
+            { word: 'MISSION', hint: 'A place set up by Europeans to spread their religion' },
+            { word: 'FORT', hint: 'A building with high wooden walls to keep goods safe' },
+            { word: 'TRADING', hint: 'What people did at posts to exchange beaver pelts for metal tools' },
+            { word: 'DUTCH', hint: 'The group of Europeans who built Fort Orange' },
+            { word: 'FRENCH', hint: 'The Europeans who built missions in Northern New York' },
+            { word: 'PELTS', hint: 'Another word for animal furs or skins' },
+            { word: 'HATS', hint: 'What beaver fur was used to make in Europe' },
+            { word: 'BARTER', hint: 'To trade or exchange goods without using money' },
+            { word: 'FORTS', hint: 'Protected settlements with walls (plural)' },
+            { word: 'RIVERS', hint: 'Where trading posts were built because beavers lived there' },
+            { word: 'ORANGE', hint: 'Fort _____ was built by the Dutch near Albany' }
+        ];
+
+        const gridSize = 15;
+        let grid = [];
+        let selectedCells = [];
+        let foundWords = new Set();
+        let isSelecting = false;
+        let showAnswers = false;
+        let wordPositions = [];
+
+        function createEmptyGrid() {
+            return Array(gridSize).fill(null).map(() => Array(gridSize).fill(''));
+        }
+
+        function placeWord(word, startRow, startCol, direction) {
+            const [dRow, dCol] = direction;
+            for (let i = 0; i < word.length; i++) {
+                const row = startRow + i * dRow;
+                const col = startCol + i * dCol;
+                grid[row][col] = word[i];
+            }
+        }
+
+        function canPlaceWord(word, startRow, startCol, direction) {
+            const [dRow, dCol] = direction;
+            for (let i = 0; i < word.length; i++) {
+                const row = startRow + i * dRow;
+                const col = startCol + i * dCol;
+                if (row < 0 || row >= gridSize || col < 0 || col >= gridSize) return false;
+                if (grid[row][col] !== '' && grid[row][col] !== word[i]) return false;
+            }
+            return true;
+        }
+
+        function generateGrid() {
+            grid = createEmptyGrid();
+            wordPositions = [];
+            
+            const directions = [
+                [0, 1],   // horizontal right
+                [0, -1],  // horizontal left
+                [1, 0],   // vertical down
+                [-1, 0],  // vertical up
+                [1, 1],   // diagonal down-right
+                [-1, -1], // diagonal up-left
+                [1, -1],  // diagonal down-left
+                [-1, 1]   // diagonal up-right
+            ];
+
+            words.forEach(wordObj => {
+                const word = wordObj.word;
+                let placed = false;
+                let attempts = 0;
+                
+                while (!placed && attempts < 100) {
+                    const direction = directions[Math.floor(Math.random() * directions.length)];
+                    const startRow = Math.floor(Math.random() * gridSize);
+                    const startCol = Math.floor(Math.random() * gridSize);
+                    
+                    if (canPlaceWord(word, startRow, startCol, direction)) {
+                        placeWord(word, startRow, startCol, direction);
+                        wordPositions.push({
+                            word: word,
+                            start: [startRow, startCol],
+                            direction: direction
+                        });
+                        placed = true;
+                    }
+                    attempts++;
+                }
+            });
+
+            // Fill empty cells with random letters
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
+                    if (grid[i][j] === '') {
+                        grid[i][j] = letters[Math.floor(Math.random() * letters.length)];
+                    }
+                }
+            }
+        }
+
+        function renderGrid() {
+            const container = document.getElementById('word-grid');
+            let html = '<div class="grid gap-0" style="grid-template-columns: repeat(' + gridSize + ', 40px);">';
+            
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
+                    const cellId = `cell-${i}-${j}`;
+                    let classes = 'grid-cell';
+                    
+                    if (showAnswers) {
+                        const isPartOfWord = wordPositions.some(wp => {
+                            const [dRow, dCol] = wp.direction;
+                            for (let k = 0; k < wp.word.length; k++) {
+                                const row = wp.start[0] + k * dRow;
+                                const col = wp.start[1] + k * dCol;
+                                if (row === i && col === j) return true;
+                            }
+                            return false;
+                        });
+                        if (isPartOfWord) classes += ' found';
+                    }
+                    
+                    html += `<div class="${classes}" id="${cellId}" data-row="${i}" data-col="${j}">${grid[i][j]}</div>`;
+                }
+            }
+            html += '</div>';
+            container.innerHTML = html;
+            
+            attachGridListeners();
+        }
+
+        function attachGridListeners() {
+            const cells = document.querySelectorAll('.grid-cell');
+            cells.forEach(cell => {
+                cell.addEventListener('mousedown', handleMouseDown);
+                cell.addEventListener('mouseenter', handleMouseEnter);
+                cell.addEventListener('mouseup', handleMouseUp);
+            });
+            
+            document.addEventListener('mouseup', handleMouseUp);
+        }
+
+        function handleMouseDown(e) {
+            if (showAnswers) return;
+            isSelecting = true;
+            selectedCells = [];
+            clearSelection();
+            const row = parseInt(e.target.dataset.row);
+            const col = parseInt(e.target.dataset.col);
+            selectedCells.push([row, col]);
+            e.target.classList.add('selected');
+        }
+
+        function handleMouseEnter(e) {
+            if (!isSelecting || showAnswers) return;
+            const row = parseInt(e.target.dataset.row);
+            const col = parseInt(e.target.dataset.col);
+            
+            // Check if this cell is in line with the first cell
+            if (selectedCells.length > 0) {
+                const [startRow, startCol] = selectedCells[0];
+                const isInLine = 
+                    row === startRow || // same row
+                    col === startCol || // same column
+                    Math.abs(row - startRow) === Math.abs(col - startCol); // diagonal
+                
+                if (isInLine) {
+                    selectedCells.push([row, col]);
+                    e.target.classList.add('selected');
+                }
+            }
+        }
+
+        function handleMouseUp() {
+            if (!isSelecting) return;
+            isSelecting = false;
+            checkWord();
+        }
+
+        function clearSelection() {
+            document.querySelectorAll('.grid-cell.selected').forEach(cell => {
+                if (!cell.classList.contains('found')) {
+                    cell.classList.remove('selected');
+                }
+            });
+        }
+
+        function checkWord() {
+            if (selectedCells.length < 2) {
+                clearSelection();
+                return;
+            }
+
+            const selectedWord = selectedCells.map(([r, c]) => grid[r][c]).join('');
+            const reversedWord = selectedWord.split('').reverse().join('');
+            
+            let foundWord = words.find(w => 
+                w.word === selectedWord || w.word === reversedWord
+            );
+
+            if (foundWord && !foundWords.has(foundWord.word)) {
+                foundWords.add(foundWord.word);
+                selectedCells.forEach(([r, c]) => {
+                    document.getElementById(`cell-${r}-${c}`).classList.add('found');
+                    document.getElementById(`cell-${r}-${c}`).classList.remove('selected');
+                });
+                updateHints();
+                updateScore();
+            } else {
+                clearSelection();
+            }
+            
+            selectedCells = [];
+        }
+
+        function renderHints() {
+            const container = document.getElementById('hints-list');
+            container.innerHTML = words.map((wordObj, index) => {
+                const isFound = foundWords.has(wordObj.word);
+                return `
+                    <div class="hint-item p-3 bg-amber-50 rounded-lg border-2 border-amber-200 ${isFound ? 'completed' : ''}">
+                        <p class="text-sm font-medium text-gray-800">${wordObj.hint}</p>
+                        ${showAnswers ? `<p class="text-xs text-amber-700 mt-1 font-bold">(${wordObj.word})</p>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateHints() {
+            renderHints();
+        }
+
+        function updateScore() {
+            document.getElementById('found-count').textContent = foundWords.size;
+            document.getElementById('total-count').textContent = words.length;
+            
+            if (foundWords.size === words.length) {
+                document.getElementById('success-message').classList.remove('hidden');
+            }
+        }
+
+        function toggleHints() {
+            showAnswers = !showAnswers;
+            renderGrid();
+            renderHints();
+        }
+
+        function resetGame() {
+            foundWords = new Set();
+            selectedCells = [];
+            isSelecting = false;
+            showAnswers = false;
+            document.getElementById('success-message').classList.add('hidden');
+            generateGrid();
+            renderGrid();
+            renderHints();
+            updateScore();
+        }
+
+        // Initialize game
+        generateGrid();
+        renderGrid();
+        renderHints();
+        updateScore();
+    </script>
+</body>
+</html>
