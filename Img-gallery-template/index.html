@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Gallery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="search-bar">
+    <div id="filter-row">
+      <div id="active-pills"></div>
+      <input type="text" id="search-input" placeholder="filter by tag..." autocomplete="off" />
+    </div>
+    <button id="export-btn">export images.js</button>
+  </div>
+
+  <div id="gallery"></div>
+  <div id="no-results">no images match that tag.</div>
+
+  <script src="images.js"></script>
+  <script src="gallery.js"></script>
+
+</body>
+</html>
