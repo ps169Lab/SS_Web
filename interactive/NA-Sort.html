@@ -36,6 +36,27 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
+        .check-btn {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            transition: all 0.2s ease;
+        }
+        .check-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #15803d, #166534);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(22, 163, 74, 0.4);
+        }
+        .check-btn:disabled {
+            background: linear-gradient(135deg, #9ca3af, #6b7280);
+            cursor: not-allowed;
+        }
+        .reveal-animation {
+            animation: revealFeedback 0.4s ease forwards;
+        }
+        @keyframes revealFeedback {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            60% { transform: scale(1.03); }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 p-6">
@@ -48,9 +69,17 @@
                 The clues tell you about their homes, food, and way of life!
             </p>
             <div class="flex items-center gap-4 flex-wrap">
-                <div class="text-lg font-semibold text-green-600">
+                <div id="score-display" class="text-lg font-semibold text-green-600 hidden">
                     Score: <span id="score">0</span> / <span id="total">30</span>
                 </div>
+                <button
+                    id="check-btn"
+                    onclick="checkAnswers()"
+                    disabled
+                    class="check-btn flex items-center gap-2 px-5 py-2 text-white font-semibold rounded-lg"
+                >
+                    ✅ Check My Answers
+                </button>
                 <button onclick="resetGame()" class="flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition">
                     🔄 Reset
                 </button>
@@ -58,6 +87,7 @@
                     ✓ Clue selected - Tap an environment!
                 </div>
             </div>
+            <p id="check-hint" class="text-sm text-gray-500 mt-2">Place all 30 clues to unlock the <strong>Check My Answers</strong> button.</p>
         </div>
 
         <div id="environments" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6"></div>
@@ -69,6 +99,12 @@
             <div id="clues" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3"></div>
             <div id="complete-message" class="hidden text-center py-8">
                 <p class="text-2xl font-bold text-green-600 mb-2">🎉 All clues placed!</p>
+                <p class="text-gray-600 mb-4">
+                    Ready to see how you did? Press <strong>Check My Answers</strong> above!
+                </p>
+            </div>
+            <div id="results-message" class="hidden text-center py-8">
+                <p class="text-2xl font-bold text-green-600 mb-2">📊 Results Revealed!</p>
                 <p class="text-gray-600">
                     You got <span id="final-score">0</span> out of <span id="final-total">30</span> correct!
                     <span id="perfect-msg" class="hidden"> Perfect score! 🌟</span>
@@ -150,7 +186,8 @@
         ];
 
         let placements = {};
-        let feedback = {};
+        let feedback = {};    // only populated after checkAnswers()
+        let answersChecked = false;
         let score = 0;
         let draggedClue = null;
         let selectedClue = null;
@@ -158,7 +195,7 @@
         function init() {
             renderEnvironments();
             renderClues();
-            updateScore();
+            updateCheckButton();
         }
 
         function renderEnvironments() {
@@ -197,18 +234,21 @@
                 </div>
             `).join('');
 
-            document.getElementById('remaining').textContent = unplacedClues.length;
+            const remaining = unplacedClues.length;
+            document.getElementById('remaining').textContent = remaining;
             
-            if (unplacedClues.length === 0) {
+            const allPlaced = remaining === 0;
+
+            // Show/hide complete message (pre-check)
+            if (allPlaced && !answersChecked) {
                 document.getElementById('complete-message').classList.remove('hidden');
-                document.getElementById('final-score').textContent = score;
-                document.getElementById('final-total').textContent = clues.length;
-                if (score === clues.length) {
-                    document.getElementById('perfect-msg').classList.remove('hidden');
-                }
-            } else {
+                document.getElementById('results-message').classList.add('hidden');
+            } else if (!allPlaced) {
                 document.getElementById('complete-message').classList.add('hidden');
+                document.getElementById('results-message').classList.add('hidden');
             }
+
+            updateCheckButton();
         }
 
         function renderPlacedClues() {
@@ -217,42 +257,108 @@
                 const envClues = clues.filter(clue => placements[clue.id] === env.id);
                 
                 container.innerHTML = envClues.map(clue => {
-                    const isCorrect = feedback[clue.id] === 'correct';
-                    const bgColor = isCorrect ? 'bg-green-100 border-green-500' : 'bg-red-100 border-red-500';
-                    const icon = isCorrect ? '✓' : '✗';
-                    const iconColor = isCorrect ? 'text-green-600' : 'text-red-600';
-                    const draggable = !isCorrect;
-                    const cursorClass = draggable ? 'cursor-move hover:shadow-md' : '';
-                    const selectedClass = selectedClue?.id === clue.id ? 'selected' : '';
-                    
-                    return `
-                        <div 
-                            class="p-2 rounded-lg text-xs ${bgColor} border-2 ${cursorClass} ${selectedClass}"
-                            ${draggable ? `draggable="true" data-clue-id="${clue.id}" ondragstart="handleDragStart(event)" onclick="handleClueClick('${clue.id}')"` : ''}
-                        >
-                            <div class="flex items-start gap-2">
-                                <span class="${iconColor} flex-shrink-0 font-bold">${icon}</span>
-                                <span>${clue.text}</span>
+                    // Only show color feedback if answers have been checked
+                    if (answersChecked) {
+                        const isCorrect = feedback[clue.id] === 'correct';
+                        const bgColor = isCorrect ? 'bg-green-100 border-green-500' : 'bg-red-100 border-red-500';
+                        const icon = isCorrect ? '✓' : '✗';
+                        const iconColor = isCorrect ? 'text-green-600' : 'text-red-600';
+                        // After checking, incorrect ones can still be moved; correct ones are locked
+                        const draggable = !isCorrect;
+                        const cursorClass = draggable ? 'cursor-move hover:shadow-md' : '';
+                        const selectedClass = selectedClue?.id === clue.id ? 'selected' : '';
+
+                        return `
+                            <div 
+                                class="p-2 rounded-lg text-xs ${bgColor} border-2 ${cursorClass} ${selectedClass} reveal-animation"
+                                ${draggable ? `draggable="true" data-clue-id="${clue.id}" ondragstart="handleDragStart(event)" onclick="handleClueClick('${clue.id}')"` : ''}
+                            >
+                                <div class="flex items-start gap-2">
+                                    <span class="${iconColor} flex-shrink-0 font-bold">${icon}</span>
+                                    <span>${clue.text}</span>
+                                </div>
                             </div>
-                        </div>
-                    `;
+                        `;
+                    } else {
+                        // Neutral style before checking — no color hints
+                        const selectedClass = selectedClue?.id === clue.id ? 'ring-2 ring-blue-400' : '';
+                        return `
+                            <div 
+                                class="p-2 rounded-lg text-xs bg-amber-50 border-2 border-amber-300 cursor-move hover:shadow-md ${selectedClass}"
+                                draggable="true"
+                                data-clue-id="${clue.id}"
+                                ondragstart="handleDragStart(event)"
+                                onclick="handleClueClick('${clue.id}')"
+                            >
+                                <div class="flex items-start gap-2">
+                                    <span class="text-amber-500 flex-shrink-0">•</span>
+                                    <span>${clue.text}</span>
+                                </div>
+                            </div>
+                        `;
+                    }
                 }).join('');
             });
         }
 
+        function updateCheckButton() {
+            const allPlaced = clues.every(clue => placements[clue.id]);
+            const btn = document.getElementById('check-btn');
+            const hint = document.getElementById('check-hint');
+
+            if (answersChecked) {
+                btn.disabled = true;
+                btn.textContent = '✅ Answers Checked!';
+                hint.textContent = 'Move incorrect clues (red) and reset to try again!';
+            } else if (allPlaced) {
+                btn.disabled = false;
+                hint.textContent = "All clues placed! Press Check My Answers when you're ready.";
+            } else {
+                btn.disabled = true;
+                const remaining = clues.filter(c => !placements[c.id]).length;
+                hint.textContent = `Place all ${remaining} remaining clue${remaining !== 1 ? 's' : ''} to unlock the Check My Answers button.`;
+            }
+        }
+
+        function checkAnswers() {
+            if (!clues.every(clue => placements[clue.id])) return;
+
+            score = 0;
+            clues.forEach(clue => {
+                const isCorrect = clue.env === placements[clue.id];
+                feedback[clue.id] = isCorrect ? 'correct' : 'incorrect';
+                if (isCorrect) score++;
+            });
+
+            answersChecked = true;
+
+            // Show score
+            document.getElementById('score').textContent = score;
+            document.getElementById('total').textContent = clues.length;
+            document.getElementById('score-display').classList.remove('hidden');
+
+            // Show results message
+            document.getElementById('complete-message').classList.add('hidden');
+            document.getElementById('results-message').classList.remove('hidden');
+            document.getElementById('final-score').textContent = score;
+            document.getElementById('final-total').textContent = clues.length;
+            if (score === clues.length) {
+                document.getElementById('perfect-msg').classList.remove('hidden');
+            }
+
+            updateCheckButton();
+            renderPlacedClues();
+        }
+
         function handleClueClick(clueId) {
+            // If answers checked, only allow moving incorrect clues
+            if (answersChecked && feedback[clueId] === 'correct') return;
+
             const clue = clues.find(c => c.id === clueId);
-            const isCorrect = feedback[clueId] === 'correct';
-            
-            // Don't allow selection of correctly placed clues
-            if (isCorrect) return;
-            
             selectedClue = clue;
             
-            // Show indicator
             document.getElementById('selected-indicator').classList.remove('hidden');
             
-            // Highlight environment zones
             document.querySelectorAll('.env-zone').forEach(zone => {
                 zone.classList.add('drop-target', 'pulse');
             });
@@ -266,11 +372,9 @@
             
             placeClue(selectedClue, envId);
             
-            // Clear selection
             selectedClue = null;
             document.getElementById('selected-indicator').classList.add('hidden');
             
-            // Remove environment highlighting
             document.querySelectorAll('.env-zone').forEach(zone => {
                 zone.classList.remove('drop-target', 'pulse');
             });
@@ -278,6 +382,11 @@
 
         function handleDragStart(event) {
             const clueId = event.target.closest('[data-clue-id]').dataset.clueId;
+            // Don't drag correctly-placed clues after checking
+            if (answersChecked && feedback[clueId] === 'correct') {
+                event.preventDefault();
+                return;
+            }
             draggedClue = clues.find(c => c.id === clueId);
             event.dataTransfer.effectAllowed = 'move';
         }
@@ -297,38 +406,46 @@
         }
 
         function placeClue(clue, envId) {
-            const isCorrect = clue.env === envId;
-
             placements[clue.id] = envId;
-            feedback[clue.id] = isCorrect ? 'correct' : 'incorrect';
 
-            if (isCorrect) {
-                score++;
+            // If already checked, re-evaluate this one clue
+            if (answersChecked) {
+                const isCorrect = clue.env === envId;
+                const wasCorrect = feedback[clue.id] === 'correct';
+                // Adjust score
+                if (wasCorrect && !isCorrect) score--;
+                if (!wasCorrect && isCorrect) score++;
+                feedback[clue.id] = isCorrect ? 'correct' : 'incorrect';
+                document.getElementById('score').textContent = score;
+                document.getElementById('final-score').textContent = score;
             }
 
-            updateScore();
             renderClues();
             renderPlacedClues();
-        }
-
-        function updateScore() {
-            document.getElementById('score').textContent = score;
-            document.getElementById('total').textContent = clues.length;
+            updateCheckButton();
         }
 
         function resetGame() {
             placements = {};
             feedback = {};
+            answersChecked = false;
             score = 0;
             draggedClue = null;
             selectedClue = null;
+
             document.getElementById('selected-indicator').classList.add('hidden');
+            document.getElementById('score-display').classList.add('hidden');
+            document.getElementById('complete-message').classList.add('hidden');
+            document.getElementById('results-message').classList.add('hidden');
+            document.getElementById('perfect-msg').classList.add('hidden');
             document.querySelectorAll('.env-zone').forEach(zone => {
                 zone.classList.remove('drop-target', 'pulse');
             });
-            updateScore();
+
+            renderEnvironments();
             renderClues();
             renderPlacedClues();
+            updateCheckButton();
         }
 
         init();

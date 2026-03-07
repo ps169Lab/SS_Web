@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confucianism vs Legalism Sorter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --gold: #c9973a;
+            --red: #b83232;
+            --ink: #1a1209;
+            --conf-bg: #fdf3e3;
+            --conf-border: #c9973a;
+            --conf-accent: #8B5E1A;
+            --leg-bg: #e8f0f7;
+            --leg-border: #3a6fa8;
+            --leg-accent: #1a3a5c;
+            --parchment: #fdf6e9;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #1a1209;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(201,151,58,0.04) 40px, rgba(201,151,58,0.04) 41px),
+                repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(201,151,58,0.04) 40px, rgba(201,151,58,0.04) 41px);
+            min-height: 100vh;
+            padding: 1.5rem;
+        }
+
+        h1, h2, .serif {
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .header-panel {
+            background: linear-gradient(135deg, #2a1a08 0%, #1a1209 60%, #0d1a2a 100%);
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            box-shadow: 0 0 40px rgba(201,151,58,0.15), inset 0 0 60px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(201,151,58,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .corner-ornament {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.4;
+            color: var(--gold);
+        }
+
+        .clue-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            user-select: none;
+            background: var(--parchment);
+            border: 2px solid #d4a843;
+            border-radius: 10px;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+        }
+        .clue-card:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            border-color: var(--gold);
+        }
+        .clue-card.selected {
+            border-color: #3b82f6;
+            background: #dbeafe;
+            transform: scale(1.05);
+            box-shadow: 0 0 0 3px #3b82f6;
+        }
+
+        .env-zone {
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+            border-radius: 16px;
+        }
+        .env-zone.drop-target {
+            border-color: #3b82f6 !important;
+            background-color: #eff6ff !important;
+        }
+
+        .conf-zone {
+            background: var(--conf-bg);
+            border: 3px dashed var(--conf-border);
+        }
+        .conf-zone:hover { border-color: var(--conf-accent); }
+
+        .leg-zone {
+            background: var(--leg-bg);
+            border: 3px dashed var(--leg-border);
+        }
+        .leg-zone:hover { border-color: var(--leg-accent); }
+
+        .zone-header-conf {
+            background: linear-gradient(135deg, #8B5E1A, #c9973a);
+        }
+        .zone-header-leg {
+            background: linear-gradient(135deg, #1a3a5c, #3a6fa8);
+        }
+
+        .check-btn {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            transition: all 0.2s ease;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+        }
+        .check-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #15803d, #166534);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(22,163,74,0.4);
+        }
+        .check-btn:disabled {
+            background: linear-gradient(135deg, #4b5563, #374151);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #92400e, #b45309);
+            transition: all 0.2s ease;
+        }
+        .reset-btn:hover {
+            background: linear-gradient(135deg, #78350f, #92400e);
+            transform: translateY(-1px);
+        }
+
+        .placed-card-neutral {
+            background: white;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            transition: all 0.15s ease;
+        }
+        .placed-card-neutral:hover {
+            border-color: #9ca3af;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .placed-card-correct {
+            background: #f0fdf4;
+            border: 2px solid #22c55e;
+            border-radius: 8px;
+            animation: revealGreen 0.4s ease forwards;
+        }
+        .placed-card-wrong {
+            background: #fef2f2;
+            border: 2px solid #ef4444;
+            border-radius: 8px;
+            animation: revealRed 0.4s ease forwards;
+        }
+
+        @keyframes revealGreen {
+            0% { transform: scale(0.95); opacity: 0.6; }
+            60% { transform: scale(1.04); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes revealRed {
+            0% { transform: scale(0.95); opacity: 0.6; }
+            60% { transform: scale(1.04); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .pulse {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .score-badge {
+            background: linear-gradient(135deg, #166534, #15803d);
+            color: white;
+            border-radius: 999px;
+            font-weight: 800;
+            font-family: 'Nunito', sans-serif;
+            padding: 0.35rem 1rem;
+            box-shadow: 0 2px 8px rgba(22,163,74,0.3);
+        }
+
+        .clue-bank {
+            background: rgba(253,246,233,0.07);
+            border: 1px solid rgba(201,151,58,0.3);
+            border-radius: 16px;
+        }
+
+        .hint-text {
+            color: rgba(201,151,58,0.7);
+            font-size: 0.8rem;
+        }
+
+        .selected-banner {
+            background: linear-gradient(90deg, #1d4ed8, #3b82f6);
+            border-radius: 8px;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.4rem 1rem;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .yin-yang {
+            font-size: 2rem;
+            animation: spin 20s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-6xl mx-auto">
+
+        <!-- Header -->
+        <div class="header-panel p-6 mb-6">
+            <span class="corner-ornament" style="top:12px;left:16px">☯</span>
+            <span class="corner-ornament" style="top:12px;right:16px">⚖</span>
+            <span class="corner-ornament" style="bottom:12px;left:16px">🏮</span>
+            <span class="corner-ornament" style="bottom:12px;right:16px">🏯</span>
+
+            <div class="text-center mb-4 relative z-10">
+                <div class="yin-yang inline-block mb-1">☯</div>
+                <h1 class="text-3xl font-black text-yellow-400 mb-1" style="text-shadow: 0 2px 10px rgba(201,151,58,0.5)">
+                    Confucianism or Legalism?
+                </h1>
+                <p class="text-yellow-200 text-sm font-semibold opacity-80">Ancient Chinese Ideas Sorting Challenge</p>
+            </div>
+
+            <div class="bg-black bg-opacity-30 rounded-xl p-4 mb-4 relative z-10 text-center max-w-2xl mx-auto">
+                <p class="text-yellow-100 text-sm font-semibold leading-relaxed">
+                    <span class="hidden md:inline">🖱️ <strong>Drag</strong> each idea card to the correct scroll — Confucianism or Legalism!</span>
+                    <span class="md:hidden">👆 <strong>Tap</strong> a card, then <strong>tap</strong> a scroll to place it!</span>
+                    <br>When you've placed them all, press <strong>Check My Answers</strong>!
+                </p>
+            </div>
+
+            <div class="flex items-center gap-3 flex-wrap justify-center relative z-10">
+                <div id="score-display" class="hidden score-badge">
+                    ✅ Score: <span id="score">0</span> / <span id="total">16</span>
+                </div>
+                <button id="check-btn" onclick="checkAnswers()" disabled class="check-btn px-5 py-2 text-white rounded-lg text-sm">
+                    ✅ Check My Answers
+                </button>
+                <button onclick="resetGame()" class="reset-btn px-4 py-2 text-white rounded-lg text-sm font-bold">
+                    🔄 Reset
+                </button>
+                <div id="selected-indicator" class="hidden selected-banner">
+                    ✓ Card selected — tap a scroll!
+                </div>
+            </div>
+            <p id="check-hint" class="hint-text text-center mt-2">Place all <span id="hint-count">16</span> cards to unlock <strong style="color:rgba(201,151,58,0.9)">Check My Answers</strong>.</p>
+        </div>
+
+        <!-- Two Sort Zones -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+
+            <!-- Confucianism -->
+            <div class="env-zone conf-zone p-5 shadow-xl"
+                data-env-id="confucianism"
+                ondrop="handleDrop(event)"
+                ondragover="handleDragOver(event)"
+                onclick="handleEnvironmentClick('confucianism')">
+                <div class="zone-header-conf rounded-xl p-4 mb-4 text-center text-white shadow-md">
+                    <div class="text-4xl mb-1">📜</div>
+                    <h2 class="serif text-2xl font-black">Confucianism</h2>
+                    <p class="text-xs opacity-80 mt-1 font-semibold">Based on kindness, respect & learning</p>
+                </div>
+                <!-- Mini reference -->
+                <div class="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mb-3 text-xs text-yellow-900 font-semibold">
+                    💡 <em>Confucius taught that people should be kind to each other, respect their elders, and learn to be good.</em>
+                </div>
+                <div id="env-confucianism" class="space-y-2 min-h-24"></div>
+            </div>
+
+            <!-- Legalism -->
+            <div class="env-zone leg-zone p-5 shadow-xl"
+                data-env-id="legalism"
+                ondrop="handleDrop(event)"
+                ondragover="handleDragOver(event)"
+                onclick="handleEnvironmentClick('legalism')">
+                <div class="zone-header-leg rounded-xl p-4 mb-4 text-center text-white shadow-md">
+                    <div class="text-4xl mb-1">⚖️</div>
+                    <h2 class="serif text-2xl font-black">Legalism</h2>
+                    <p class="text-xs opacity-80 mt-1 font-semibold">Based on strict rules, laws & punishments</p>
+                </div>
+                <!-- Mini reference -->
+                <div class="bg-blue-50 border border-blue-300 rounded-lg p-3 mb-3 text-xs text-blue-900 font-semibold">
+                    💡 <em>Legalists believed people needed strict rules and punishments to keep order and obey the ruler.</em>
+                </div>
+                <div id="env-legalism" class="space-y-2 min-h-24"></div>
+            </div>
+        </div>
+
+        <!-- Clue Bank -->
+        <div class="clue-bank p-5">
+            <h3 class="serif text-xl font-black text-yellow-400 mb-1 text-center">
+                🃏 Idea Cards — <span id="remaining">16</span> remaining
+            </h3>
+            <p class="text-center hint-text mb-4">
+                <span class="hidden md:inline">Drag each card to the correct scroll above.</span>
+                <span class="md:hidden">Tap a card, then tap the correct scroll above.</span>
+            </p>
+            <div id="clues" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"></div>
+            <div id="complete-message" class="hidden text-center py-6">
+                <p class="text-2xl font-black text-yellow-400">🎉 All cards placed!</p>
+                <p class="text-yellow-200 text-sm mt-1">Press <strong>Check My Answers</strong> above when you're ready!</p>
+            </div>
+            <div id="results-message" class="hidden text-center py-6">
+                <p class="text-2xl font-black text-yellow-400">📊 Results Revealed!</p>
+                <p class="text-yellow-200 mt-1">
+                    You got <strong><span id="final-score">0</span> out of <span id="final-total">16</span></strong> correct!
+                    <span id="perfect-msg" class="hidden">🌟 Perfect score!</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const environments = [
+            { id: 'confucianism', name: 'Confucianism' },
+            { id: 'legalism',     name: 'Legalism' }
+        ];
+
+        const clues = [
+            // --- CONFUCIANISM ---
+            { id: 'c1', text: '❤️ Be kind and caring to others', env: 'confucianism' },
+            { id: 'c2', text: '🙇 Respect and obey your parents', env: 'confucianism' },
+            { id: 'c3', text: '📚 A good leader studies and learns', env: 'confucianism' },
+            { id: 'c4', text: '👴 Always listen to your elders', env: 'confucianism' },
+            { id: 'c5', text: '🤝 Treat others the way you want to be treated', env: 'confucianism' },
+            { id: 'c6', text: '🎓 Education makes people better citizens', env: 'confucianism' },
+            { id: 'c7', text: '🌱 Good behavior comes from good values inside', env: 'confucianism' },
+            { id: 'c8', text: '👨‍👩‍👧 A strong family makes a strong country', env: 'confucianism' },
+
+            // --- LEGALISM ---
+            { id: 'l1', text: '📋 Everyone must follow the ruler\'s rules — no exceptions', env: 'legalism' },
+            { id: 'l2', text: '⛓️ If you break the law, you get a harsh punishment', env: 'legalism' },
+            { id: 'l3', text: '👑 The ruler\'s power should be absolute and total', env: 'legalism' },
+            { id: 'l4', text: '🚫 People cannot be trusted to do the right thing on their own', env: 'legalism' },
+            { id: 'l5', text: '🏰 A strong army keeps the country under control', env: 'legalism' },
+            { id: 'l6', text: '👮 Soldiers and police should enforce the laws strictly', env: 'legalism' },
+            { id: 'l7', text: '😨 Fear of punishment keeps people from breaking rules', env: 'legalism' },
+            { id: 'l8', text: '🔒 Order is more important than kindness', env: 'legalism' },
+        ];
+
+        let placements = {};
+        let feedback = {};
+        let answersChecked = false;
+        let score = 0;
+        let draggedClue = null;
+        let selectedClue = null;
+        let shuffledClues = [];
+
+        function shuffle(arr) {
+            const a = [...arr];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        function init() {
+            shuffledClues = shuffle(clues);
+            renderClues();
+            renderPlacedClues();
+            updateCheckButton();
+        }
+
+        function renderClues() {
+            const container = document.getElementById('clues');
+            const unplaced = shuffledClues.filter(c => !placements[c.id]);
+
+            container.innerHTML = unplaced.map(clue => `
+                <div
+                    class="clue-card p-3 ${selectedClue?.id === clue.id ? 'selected' : ''}"
+                    draggable="true"
+                    data-clue-id="${clue.id}"
+                    ondragstart="handleDragStart(event)"
+                    onclick="handleClueClick('${clue.id}')"
+                >
+                    <p class="text-sm font-bold text-gray-800 leading-snug">${clue.text}</p>
+                </div>
+            `).join('');
+
+            const remaining = unplaced.length;
+            document.getElementById('remaining').textContent = remaining;
+            document.getElementById('hint-count').textContent = clues.length;
+
+            if (remaining === 0 && !answersChecked) {
+                document.getElementById('complete-message').classList.remove('hidden');
+                document.getElementById('results-message').classList.add('hidden');
+            } else if (remaining > 0) {
+                document.getElementById('complete-message').classList.add('hidden');
+            }
+
+            updateCheckButton();
+        }
+
+        function renderPlacedClues() {
+            environments.forEach(env => {
+                const container = document.getElementById(`env-${env.id}`);
+                const placed = clues.filter(c => placements[c.id] === env.id);
+
+                container.innerHTML = placed.map(clue => {
+                    if (answersChecked) {
+                        const ok = feedback[clue.id] === 'correct';
+                        const cardClass = ok ? 'placed-card-correct' : 'placed-card-wrong';
+                        const icon = ok ? '✓' : '✗';
+                        const iconColor = ok ? 'text-green-600' : 'text-red-600';
+                        const draggable = !ok;
+                        const sel = selectedClue?.id === clue.id ? 'ring-2 ring-blue-400' : '';
+
+                        return `
+                            <div class="${cardClass} p-2 ${sel} ${draggable ? 'cursor-move' : ''}"
+                                ${draggable ? `draggable="true" data-clue-id="${clue.id}" ondragstart="handleDragStart(event)" onclick="handleClueClick('${clue.id}')"` : ''}>
+                                <div class="flex items-start gap-2 text-xs font-bold">
+                                    <span class="${iconColor} flex-shrink-0 text-sm">${icon}</span>
+                                    <span>${clue.text}</span>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        const sel = selectedClue?.id === clue.id ? 'ring-2 ring-blue-400' : '';
+                        return `
+                            <div class="placed-card-neutral p-2 cursor-move ${sel}"
+                                draggable="true"
+                                data-clue-id="${clue.id}"
+                                ondragstart="handleDragStart(event)"
+                                onclick="handleClueClick('${clue.id}')">
+                                <div class="flex items-start gap-2 text-xs font-bold text-gray-700">
+                                    <span class="text-gray-400 flex-shrink-0">•</span>
+                                    <span>${clue.text}</span>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }).join('');
+            });
+        }
+
+        function updateCheckButton() {
+            const allPlaced = clues.every(c => placements[c.id]);
+            const btn = document.getElementById('check-btn');
+            const hint = document.getElementById('check-hint');
+            const remaining = clues.filter(c => !placements[c.id]).length;
+
+            if (answersChecked) {
+                btn.disabled = true;
+                btn.textContent = '✅ Answers Checked!';
+                hint.innerHTML = 'Move incorrect cards (red) to try again, or Reset.';
+            } else if (allPlaced) {
+                btn.disabled = false;
+                hint.innerHTML = "All cards placed! Press <strong style='color:rgba(201,151,58,0.9)'>Check My Answers</strong> when you're ready.";
+            } else {
+                btn.disabled = true;
+                hint.innerHTML = `Place all <span id="hint-count">${remaining}</span> remaining card${remaining !== 1 ? 's' : ''} to unlock <strong style="color:rgba(201,151,58,0.9)">Check My Answers</strong>.`;
+            }
+        }
+
+        function checkAnswers() {
+            if (!clues.every(c => placements[c.id])) return;
+
+            score = 0;
+            clues.forEach(clue => {
+                const ok = clue.env === placements[clue.id];
+                feedback[clue.id] = ok ? 'correct' : 'incorrect';
+                if (ok) score++;
+            });
+
+            answersChecked = true;
+
+            document.getElementById('score').textContent = score;
+            document.getElementById('total').textContent = clues.length;
+            document.getElementById('score-display').classList.remove('hidden');
+
+            document.getElementById('complete-message').classList.add('hidden');
+            document.getElementById('results-message').classList.remove('hidden');
+            document.getElementById('final-score').textContent = score;
+            document.getElementById('final-total').textContent = clues.length;
+            if (score === clues.length) document.getElementById('perfect-msg').classList.remove('hidden');
+
+            updateCheckButton();
+            renderPlacedClues();
+        }
+
+        function handleClueClick(clueId) {
+            if (answersChecked && feedback[clueId] === 'correct') return;
+            selectedClue = clues.find(c => c.id === clueId);
+            document.getElementById('selected-indicator').classList.remove('hidden');
+            document.querySelectorAll('.env-zone').forEach(z => z.classList.add('drop-target', 'pulse'));
+            renderClues();
+            renderPlacedClues();
+        }
+
+        function handleEnvironmentClick(envId) {
+            if (!selectedClue) return;
+            placeClue(selectedClue, envId);
+            selectedClue = null;
+            document.getElementById('selected-indicator').classList.add('hidden');
+            document.querySelectorAll('.env-zone').forEach(z => z.classList.remove('drop-target', 'pulse'));
+        }
+
+        function handleDragStart(event) {
+            const clueId = event.target.closest('[data-clue-id]').dataset.clueId;
+            if (answersChecked && feedback[clueId] === 'correct') { event.preventDefault(); return; }
+            draggedClue = clues.find(c => c.id === clueId);
+            event.dataTransfer.effectAllowed = 'move';
+        }
+
+        function handleDragOver(event) {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = 'move';
+        }
+
+        function handleDrop(event) {
+            event.preventDefault();
+            if (!draggedClue) return;
+            const envId = event.target.closest('[data-env-id]').dataset.envId;
+            placeClue(draggedClue, envId);
+            draggedClue = null;
+        }
+
+        function placeClue(clue, envId) {
+            placements[clue.id] = envId;
+
+            if (answersChecked) {
+                const ok = clue.env === envId;
+                const wasOk = feedback[clue.id] === 'correct';
+                if (wasOk && !ok) score--;
+                if (!wasOk && ok) score++;
+                feedback[clue.id] = ok ? 'correct' : 'incorrect';
+                document.getElementById('score').textContent = score;
+                document.getElementById('final-score').textContent = score;
+            }
+
+            renderClues();
+            renderPlacedClues();
+            updateCheckButton();
+        }
+
+        function resetGame() {
+            placements = {};
+            feedback = {};
+            answersChecked = false;
+            score = 0;
+            draggedClue = null;
+            selectedClue = null;
+
+            document.getElementById('selected-indicator').classList.add('hidden');
+            document.getElementById('score-display').classList.add('hidden');
+            document.getElementById('complete-message').classList.add('hidden');
+            document.getElementById('results-message').classList.add('hidden');
+            document.getElementById('perfect-msg').classList.add('hidden');
+            document.querySelectorAll('.env-zone').forEach(z => z.classList.remove('drop-target', 'pulse'));
+
+            shuffledClues = shuffle(clues);
+            renderClues();
+            renderPlacedClues();
+            updateCheckButton();
+        }
+
+        init();
+    </script>
+</body>
+</html>

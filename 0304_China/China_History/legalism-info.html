@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legalism in Ancient China</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C0392B;
+    --gold: #F0A500;
+    --dark-gold: #C68C00;
+    --cream: #FFF8E7;
+    --dark: #1A0A00;
+    --ink: #2C1A0A;
+    --jade: #2E7D5A;
+    --light-jade: #E8F5EE;
+    --sky: #1565C0;
+    --light-sky: #E3F0FF;
+    --parchment: #F5E6C8;
+    --shadow: #8B6914;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--ink);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .page {
+    width: 900px;
+    background: var(--cream);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    border: 6px solid var(--gold);
+    animation: fadeIn 0.8s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--red);
+    padding: 32px 40px 24px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(240,165,0,0.08) 0px,
+      rgba(240,165,0,0.08) 2px,
+      transparent 2px,
+      transparent 20px
+    );
+  }
+  .header-emoji {
+    font-size: 54px;
+    display: block;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.3));
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 52px;
+    color: var(--gold);
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+    position: relative;
+  }
+  .header .subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 700;
+    margin-top: 6px;
+    position: relative;
+    letter-spacing: 1px;
+  }
+  .chinese-char {
+    position: absolute;
+    font-size: 80px;
+    color: rgba(240,165,0,0.18);
+    font-weight: 900;
+  }
+  .chinese-char.left { left: 20px; top: 10px; }
+  .chinese-char.right { right: 20px; top: 10px; }
+
+  /* INTRO BANNER */
+  .intro {
+    background: var(--gold);
+    padding: 14px 40px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: 0.5px;
+  }
+
+  /* MAIN CONTENT */
+  .content {
+    padding: 32px 36px;
+    display: grid;
+    gap: 28px;
+  }
+
+  /* SECTION TITLES */
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .section-title .icon { font-size: 28px; }
+  .section-title.red { color: var(--red); }
+  .section-title.jade { color: var(--jade); }
+
+  /* CARDS GRID */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .card {
+    border-radius: 16px;
+    padding: 18px 20px;
+    border: 3px solid transparent;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+
+  .card.red-card { background: #FFF0EE; border-color: #F0907A; }
+  .card.gold-card { background: #FFFBEE; border-color: var(--gold); }
+  .card.jade-card { background: var(--light-jade); border-color: #5BAA82; }
+  .card.sky-card  { background: var(--light-sky); border-color: #5B9BD5; }
+
+  .card-emoji { font-size: 32px; display: block; margin-bottom: 8px; }
+  .card-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 18px;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .card-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #3D2B10;
+    line-height: 1.5;
+  }
+
+  /* DIVIDER */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .divider-line {
+    flex: 1;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    border-radius: 2px;
+  }
+  .divider-icon { font-size: 24px; }
+
+  /* QIN SECTION */
+  .qin-section {
+    background: var(--parchment);
+    border-radius: 20px;
+    padding: 24px;
+    border: 3px solid var(--shadow);
+  }
+
+  .qin-intro {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: white;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 18px;
+    border: 2px solid var(--gold);
+  }
+  .qin-portrait { font-size: 56px; flex-shrink: 0; }
+  .qin-intro-text { }
+  .qin-intro-text strong {
+    font-family: 'Fredoka One', cursive;
+    font-size: 20px;
+    color: var(--red);
+    display: block;
+  }
+  .qin-intro-text p {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+
+  .qin-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .qin-card {
+    background: white;
+    border-radius: 14px;
+    padding: 14px 16px;
+    border-left: 5px solid var(--red);
+    transition: transform 0.2s ease;
+  }
+  .qin-card:nth-child(2) { border-left-color: var(--jade); }
+  .qin-card:nth-child(3) { border-left-color: var(--sky); }
+  .qin-card:nth-child(4) { border-left-color: #8B4513; }
+  .qin-card:hover { transform: translateX(3px); }
+
+  .qin-card-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .qin-card-top .emoji { font-size: 24px; }
+  .qin-card-top strong {
+    font-family: 'Fredoka One', cursive;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .qin-card p {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3D2B10;
+    line-height: 1.5;
+  }
+
+  /* FALL SECTION */
+  .fall-section {
+    background: linear-gradient(135deg, #FFF0EE 0%, #FFE8D6 100%);
+    border-radius: 20px;
+    padding: 22px 24px;
+    border: 3px solid #F0907A;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .fall-icon { font-size: 64px; flex-shrink: 0; }
+  .fall-text { flex: 1; }
+  .fall-text strong {
+    font-family: 'Fredoka One', cursive;
+    font-size: 22px;
+    color: var(--red);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .fall-text p {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  .fall-badge {
+    background: var(--red);
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--ink);
+    padding: 16px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 4px solid var(--gold);
+  }
+  .footer-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .footer-dragons { font-size: 24px; letter-spacing: 8px; }
+
+  /* WORD BANK */
+  .word-bank {
+    background: white;
+    border-radius: 16px;
+    padding: 16px 20px;
+    border: 2px dashed var(--gold);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .word-bank-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 15px;
+    color: var(--ink);
+    width: 100%;
+    margin-bottom: 2px;
+  }
+  .vocab-pill {
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 13px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .vocab-def {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <span class="chinese-char left">法</span>
+    <span class="chinese-char right">律</span>
+    <span class="header-emoji">🏯</span>
+    <h1>Legalism</h1>
+    <p class="subtitle">Ancient China's System of Strict Rules &amp; Strong Government</p>
+  </div>
+
+  <!-- INTRO BANNER -->
+  <div class="intro">
+    📜 Legalism was a set of ideas about how rulers should govern — using LAWS, POWER, and CONTROL to keep order.
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+
+    <!-- CORE IDEAS -->
+    <div>
+      <div class="section-title red">
+        <span class="icon">💡</span> The Big Ideas of Legalism
+      </div>
+      <div class="cards-grid">
+        <div class="card red-card">
+          <span class="card-emoji">📜</span>
+          <div class="card-title">Rule by Law</div>
+          <div class="card-text">Legalists believed in very <strong>strict laws</strong>. Clear rules and punishments were needed to keep everyone safe and orderly.</div>
+        </div>
+        <div class="card gold-card">
+          <span class="card-emoji">👑</span>
+          <div class="card-title">Strong Power (Shi)</div>
+          <div class="card-text">The ruler's power had to be <strong>total and complete</strong>. Nobody was allowed to challenge or question the ruler's authority.</div>
+        </div>
+        <div class="card jade-card">
+          <span class="card-emoji">🧠</span>
+          <div class="card-title">Smart Control (Shu)</div>
+          <div class="card-text">Rulers used <strong>clever methods</strong> to stay in control — including smart ways to manage officials and everyday people.</div>
+        </div>
+        <div class="card sky-card">
+          <span class="card-emoji">⚖️</span>
+          <div class="card-title">Rewards &amp; Punishments</div>
+          <div class="card-text">Good behavior earned <strong>rewards</strong>. Breaking the rules brought <strong>harsh punishments</strong>. This kept people following the law.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-icon">🐉</span>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- QIN DYNASTY -->
+    <div class="qin-section">
+      <div class="section-title jade">
+        <span class="icon">🏛️</span> Legalism in Action: The Qin Dynasty
+      </div>
+
+      <div class="qin-intro">
+        <span class="qin-portrait">🤴</span>
+        <div class="qin-intro-text">
+          <strong>Qin Shi Huang — China's First Emperor</strong>
+          <p>The Qin (say: "Chin") Dynasty was the best example of Legalism. Emperor Qin Shi Huang used Legalist ideas to rule a huge empire — making everything <em>uniform</em>, building great things, and keeping very strict control.</p>
+        </div>
+      </div>
+
+      <div class="qin-cards">
+        <div class="qin-card">
+          <div class="qin-card-top">
+            <span class="emoji">⚖️</span>
+            <strong>Same Rules Everywhere</strong>
+          </div>
+          <p>He made weights, money, and writing <strong>the same all across China</strong>. This made it much easier to trade and talk to people in faraway places.</p>
+        </div>
+        <div class="qin-card">
+          <div class="qin-card-top">
+            <span class="emoji">🧱</span>
+            <strong>Huge Building Projects</strong>
+          </div>
+          <p>He built parts of the <strong>Great Wall of China</strong>, plus roads and canals. These huge projects showed just how powerful the government was.</p>
+        </div>
+        <div class="qin-card">
+          <div class="qin-card-top">
+            <span class="emoji">⚔️</span>
+            <strong>Very Strict Punishments</strong>
+          </div>
+          <p>Laws were <strong>extremely tough</strong>. Even small mistakes could lead to big punishments. This made people afraid to break the rules.</p>
+        </div>
+        <div class="qin-card">
+          <div class="qin-card-top">
+            <span class="emoji">🔥</span>
+            <strong>Burning of Books</strong>
+          </div>
+          <p>To control what people thought, he <strong>burned many books</strong>. Only books about farming, medicine, and fortune-telling were kept.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FALL OF QIN -->
+    <div class="fall-section">
+      <span class="fall-icon">💥</span>
+      <div class="fall-text">
+        <strong>Why Did the Qin Dynasty Fall Apart?</strong>
+        <p>The Qin Dynasty was very powerful — but it only lasted about <strong>15 years!</strong> The rules were so harsh that people became very angry. Citizens <strong>rebelled</strong> against the cruel government, and the whole dynasty fell apart. This shows that being too strict can backfire!</p>
+        <span class="fall-badge">⏳ Only 15 years!</span>
+      </div>
+    </div>
+
+    <!-- VOCAB WORD BANK -->
+    <div class="word-bank">
+      <div class="word-bank-title">📚 Key Words to Know</div>
+      <span class="vocab-pill">Legalism</span><span class="vocab-def">= a set of rules for governing</span>
+      <span class="vocab-pill">Dynasty</span><span class="vocab-def">= a family of rulers</span>
+      <span class="vocab-pill">Emperor</span><span class="vocab-def">= the top ruler</span>
+      <span class="vocab-pill">Punishment</span><span class="vocab-def">= consequence for breaking a rule</span>
+      <span class="vocab-pill">Rebellion</span><span class="vocab-def">= fighting back against a ruler</span>
+      <span class="vocab-pill">Uniform</span><span class="vocab-def">= the same everywhere</span>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span class="footer-text">Ancient China — Social Studies</span>
+    <span class="footer-dragons">🐉 🐉 🐉</span>
+    <span class="footer-text">The Qin Dynasty</span>
+  </div>
+
+</div>
+</body>
+</html>
