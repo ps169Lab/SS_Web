@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Amsterdam</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                New Amsterdam
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                The Dutch Colony That Became New York City
+            </p>
+        
+            <!-- Introduction Section -->
+            <h2>Welcome to New Amsterdam!</h2>
+            
+            <p>
+                New Amsterdam was a Dutch colony founded on Manhattan Island in the early 1600s. It would eventually become New York City, one of the most important cities in the world. This website will take you on an exciting journey to learn about the Dutch settlers, the Dutch West India Company, and what daily life was like in this thriving colonial settlement.
+            </p>
+            
+            <p>
+                You'll discover how the Dutch built their colony, the important role of the Dutch West India Company, and the diverse people who called New Amsterdam home. Get ready to travel back in time over 400 years and explore the foundations of modern New York City!
+            </p>
+
+            <h2>What You'll Learn</h2>
+            
+            <p>
+                In this collection of articles, you'll explore important topics about New Amsterdam and the Dutch colony:
+            </p>
+            
+            <ul>
+                <li><strong>Geography of New Amsterdam</strong> - Where was the colony located and why did the Dutch choose this place?</li>
+                <li><strong>The Dutch West India Company</strong> - The powerful business that built and controlled the colony</li>
+                <li><strong>Early Settlement</strong> - How the Dutch established their first colony on Manhattan</li>
+                <li><strong>Government and Leadership</strong> - How was New Amsterdam governed and ruled?</li>
+                <li><strong>Trade and Commerce</strong> - The businesses that made New Amsterdam prosperous</li>
+                <li><strong>Diversity in the Colony</strong> - The many different people who lived in New Amsterdam</li>
+                <li><strong>Everyday Life in New Amsterdam</strong> - What was daily life like in early New York City?</li>
+            </ul>
+
+            <h2>How to Use This Website</h2>
+            
+            <p>
+                Use the colorful navigation menu on the left (or at the top on phones and tablets) to explore each topic. Each page has vocabulary words to help you understand important terms, and the articles are written especially for students like you.
+            </p>
+            
+            <p>
+                You can also use the Google Translate button in the bottom right corner to read these articles in different languages if that helps you learn better.
+            </p>
+
+            <h2>Ready to Explore?</h2>
+            
+            <p>
+                Click on the first topic in the menu to begin your journey to New Amsterdam. You'll learn amazing facts about the Dutch settlers, the Dutch West India Company, and how they created a vibrant colony that would transform into modern-day New York City!
+            </p>
+        </article>
+    </main>
+    
+    <!-- Google Translate Widget -->
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
