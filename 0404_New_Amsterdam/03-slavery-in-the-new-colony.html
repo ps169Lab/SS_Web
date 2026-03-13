@@ -1,11 +1,21 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Slavery in the New Colony</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
     <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
-
+    <style>
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-family: 'Spectral', serif; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f8f0f0; color: #7b241c; }
+        .injustice-note { border-left: 5px solid #7b241c; padding: 15px; background-color: #fff5f5; margin: 20px 0; }
+    </style>
 </head>
+
 <body>
     <div id="navbar-container"></div>
     <script>
@@ -15,92 +25,90 @@
                 document.getElementById('navbar-container').innerHTML = data;
             });
     </script>
-    <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
-    </script>
     <main>
         <article>
-            <!-- Page title -->
-            <h1 class="section-title">
-                Slavery in the New Colony
-            </h1>
-            
-            <!-- Subtitle -->
-            <p class="subtitle">
-                A Sad and Wrong Part of Early American History
-            </p>
+            <h1 class="section-title">Slavery in the New Colony</h1>
+            <p class="subtitle">A Sad and Wrong Part of Early American History</p>
 
-            <!-- Vocabulary Section -->
-            <h2>Vocabulary Words</h2>
-            <ul>
-                <li><strong>Slavery</strong> - forcing people to work without pay</li>
-                <li><strong>Enslaved person</strong> - someone forced to work as property</li>
-                <li><strong>Freedom</strong> - the right to make your own choices</li>
-                <li><strong>Labor</strong> - hard work, especially physical work</li>
-                <li><strong>Injustice</strong> - something that is unfair and wrong</li>
-            </ul>
-        
-            <!-- Main Focus Section -->
-            <h2>Slavery Comes to New Netherlands</h2>
-            
-            <p>
-                Slavery was a terrible and unfair system where people were forced to work without pay and were treated as property. In the Dutch colony of New Netherlands, enslaved people were brought from Africa to work on farms, build houses, and help with trade. This was completely wrong, but it happened because company and many of the colonists wanted cheap workers to make their businesses successful.
-            </p>
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Slavery:</strong> A cruel system where people are forced to work without pay and treated as property.</li>
+                    <li><strong>Labor:</strong> Hard physical work.</li>
+                    <li><strong>Injustice:</strong> Something that is unfair and morally wrong.</li>
+                    <li><strong>Essential:</strong> Absolutely necessary; something a system cannot function without.</li>
+                </ul>
+            </div>
+
+            <div class="injustice-note">
+                <h2>The Arrival of Enslaved People</h2>
+                <p>
+                    <span class="standard-reading">We have learned that the <strong>Dutch West India Company</strong> was a business looking for profit. Because they wanted to build a colony quickly and cheaply, they turned to the terrible practice of <strong>slavery</strong>. The first enslaved Africans were brought to New Amsterdam in 1626, only one year after the Dutch built the fort. These men and women did not choose to come here; they were stolen from their homes in Africa and forced to work for the company’s success.</span>
+                    <span class="easy-reading">The <strong>Dutch West India Company</strong> wanted to make money. To do this, they brought enslaved people from Africa to the colony. These people were forced to move and work for no pay. This was very unfair and wrong, but the company used them to build the new town.</span>
+                </p>
+            </div>
 
             
-            
-            <p>
-                The first enslaved Africans arrived in New Amsterdam in 1626, just one year after the Dutch built Fort Amsterdam. The Dutch West India Company brought them to work on company projects like building forts and clearing land. By 1664, about 20% of New Amsterdam's population were enslaved people.
-            </p><p><br /></p>
 
             <h2>What Work Did Enslaved People Do?</h2>
-            
             <p>
-                Enslaved people in New Netherlands did many different jobs. They worked on farms growing crops like wheat and corn, built houses and roads, loaded and unloaded ships at the harbor, and worked as servants in wealthy people's homes. Some learned special skills like carpentry or cooking, but they were never paid for their hard work.
+                <span class="standard-reading">The <strong>labor</strong> of enslaved people was <strong>essential</strong> to building New York. They did the hardest jobs that the merchants and leaders didn't want to do. Enslaved people cleared the thick forests, built the stone walls for Fort Amsterdam, and paved the muddy streets with cobblestones. On farms, they grew the wheat and corn that fed the colony. At the harbor, they loaded heavy bundles of furs onto ships heading back to Europe. Without their forced work, the colony would not have survived.</span>
+                <span class="easy-reading">Enslaved people did the hardest work in the colony. They cut down trees to clear land. They built the fort and the roads. They worked on farms to grow food like corn. They also carried heavy furs to the ships in the harbor. Their hard work helped the colony grow.</span>
             </p>
 
             
 
+            <h2>Summary: Forced Labor in New Amsterdam</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type of Work</th>
+                        <th>Specific Jobs</th>
+                        <th>How it Helped the Colony</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Construction</strong></td>
+                        <td>Building forts, houses, and stone walls.</td>
+                        <td>It gave the settlers a safe place to live and work.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agriculture</strong></td>
+                        <td>Planting and harvesting wheat and corn.</td>
+                        <td>It provided the food needed to feed the growing population.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shipping</strong></td>
+                        <td>Loading and unloading trade ships at the port.</td>
+                        <td>It allowed the Company to send furs to Europe for profit.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Skilled Trades</strong></td>
+                        <td>Blacksmithing, cooking, and carpentry.</td>
+                        <td>It provided the tools and services the city needed to run.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Life and the Struggle for Freedom</h2>
             <p>
-                Enslaved people also helped with the fur trade, carrying heavy bundles of furs and helping to transport goods between trading posts and ships. Their labor was essential to making the Dutch colony successful, even though they received no benefits from their hard work.
+                <span class="standard-reading">Life was incredibly difficult for enslaved people. They were often treated as objects rather than human beings, and families could be separated at any time. Despite this <strong>injustice</strong>, they worked hard to keep their cultures and families together. Under Dutch rule, some were eventually able to earn "half-freedom," which allowed them to own a small piece of land, but they still had to work for the Company whenever they were called. Even in these terrible conditions, enslaved people never stopped hoping and fighting for their right to be free.</span>
+                <span class="easy-reading">Life was very hard for enslaved people. They were treated poorly and often separated from their families. But they did not give up. They tried to keep their families together. Some even got a little bit of land to farm, but they were still not fully free. They always hoped for a better life.</span>
             </p>
 
-            <h2>Life for Enslaved People</h2>
-            
-            <p>
-                Life was very hard for enslaved people. They lived in poor conditions, had little food, and could be bought and sold like objects. Families were often separated when family members were sold to different owners. Despite these terrible conditions, enslaved people tried to maintain their cultures, religions, and family connections.
-            </p>
+            <hr />
 
-            
-
-            <p>
-                Under Dutch rule, enslaved families were usually kept together, and they could join churches and get married. But when the English took control in 1664, life became much harder. New laws said enslaved people could not travel, trade, or buy things without permission from their owners.
-            </p>
-
-            <h2>Fighting for Freedom</h2>
-
-            <p>
-                Even though life was very difficult, enslaved people never stopped hoping for freedom. Some tried to escape to find better lives. In 1712, a group of enslaved New Yorkers fought back against their treatment in what was called the New York Slave Revolt. Though it was not successful, it showed that enslaved people would never stop wanting their freedom.
-            </p>
-
-            
-
-            <h2>The Path to Freedom</h2>
-
-            <p>
-                After the American Revolution, New York slowly began to end slavery. In 1799, the state passed a law saying that children born to enslaved mothers would eventually be free, but they had to work for many years first. Finally, in 1827, slavery officially ended in New York State.
-            </p>
-
-            <p>
-                It's important to learn about slavery because it was a major injustice in American history. Understanding this helps us appreciate freedom and equality today. Many enslaved people showed incredible courage and strength, and their contributions helped build America, even though they were treated unfairly.
-            </p>
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Building a City:</strong> Looking at the table above, which job do you think was the most difficult? Why was it so important to the Dutch West India Company?</li>
+                <li><strong>The Meaning of "Essential":</strong> If enslaved people did all the building and farming, why do you think the Dutch merchants were the ones who got rich?</li>
+                <li><strong>Respecting History:</strong> Why is it important for us to remember the names and hard work of the enslaved people who built the first streets of Manhattan?</li>
+            </ul>
         </article>
     </main>
-    
-    <!-- Google Translate Widget -->
+    <script src="../reading-level-toggle.js"></script>
+
     <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
     <script type="text/javascript">
         function googleTranslateElementInit() {
@@ -109,4 +117,6 @@
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-</body></html>
+</body>
+
+</html>

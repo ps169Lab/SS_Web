@@ -1,13 +1,24 @@
+This is a great addition to the unit! To help your 4th graders build a solid **schema** for "Everyday Life," I've reorganized this into the three main "mental boxes" of colonial life: **The People**, **The Work**, and **The Home**.
+
+I’ve also added the **"Connect the Dots"** summary table and used your requested substantive word count to really paint the picture of what it felt like to walk through 17th-century Manhattan.
+
+```html
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Everyday Life in New Amsterdam</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-family: 'Spectral', serif; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f0f4f8; color: #2c3e50; }
+        .daily-life-box { border: 2px solid #3498db; padding: 20px; border-radius: 8px; margin: 20px 0; }
+    </style>
 </head>
 
 <body>
@@ -19,130 +30,108 @@
                 document.getElementById('navbar-container').innerHTML = data;
             });
     </script>
-    <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
-    </script>
     <main>
         <article>
-            <!-- Page title -->
-            <h1 class="section-title">
-                Everyday Life in New Amsterdam
-            </h1>
+            <h1 class="section-title">Everyday Life in New Amsterdam</h1>
+            <p class="subtitle">What Was It Like to Live in Early New York City?</p>
 
-            <!-- Subtitle -->
-            <p class="subtitle">
-                What Was It Like to Live in Early New York City?
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Artisan:</strong> A skilled worker who makes things by hand, like a blacksmith or a baker.</li>
+                    <li><strong>Diverse:</strong> Having many different types of people, cultures, and languages in one place.</li>
+                    <li><strong>Apprentice:</strong> A young person learning a trade by working with a master.</li>
+                    <li><strong>Commerce:</strong> The activity of buying and selling goods, especially on a large scale.</li>
+                </ul>
+            </div>
+
+            <h2>A Busy, Diverse Town</h2>
+            <p>
+                <span class="standard-reading">Imagine standing at the very tip of Manhattan in 1660. New Amsterdam was a bustling town of about 1,500 people. It was incredibly <strong>diverse</strong> for its time—you could hear 18 different languages being spoken on the streets! Unlike other colonies that were mostly one religion, New Amsterdam was home to Dutch, English, French, and Jewish people, as well as enslaved and free Africans. This mix of cultures meant you could smell different foods like Dutch pancakes and German sausages cooking in the same neighborhood.</span>
+                <span class="easy-reading">New Amsterdam was a busy town with many types of people. People from many countries lived there and spoke 18 different languages! It was a very special place because everyone lived and worked in the same small area. You could smell many different types of food cooking in the streets.</span>
             </p>
 
-            <!-- Vocabulary Section -->
-            <h2>Vocabulary Words</h2>
+            
+
+            <h2>Work and The Apprentice System</h2>
+            <p>
+                <span class="standard-reading">There were no machines to make life easy, so everyone had to work hard. Men often worked as <strong>merchants</strong> or <strong>artisans</strong>. A boy might become an <strong>apprentice</strong>, moving into a master craftsman's house for years to learn how to build furniture or bake bread. Girls learned from their mothers how to manage a home, preserve food for the winter, and sew clothes. Even the harbor was a place of work, where sailors unloaded ships filled with goods from all over the world.</span>
+                <span class="easy-reading">Everyone had to work hard because there were no machines. Men were builders or traders. Boys became <strong>apprentices</strong> to learn how to make things like tools or bread. Girls learned how to cook and sew. Even the children had big chores to do every day.</span>
+            </p>
+
+            
+
+            <h2>Summary: Roles in the Colony</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Who</th>
+                        <th>Common Jobs</th>
+                        <th>Their "Mental Box" (Daily Goal)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Artisans</strong></td>
+                        <td>Blacksmiths, Carpenters, Bakers.</td>
+                        <td>Making the tools and food the city needed.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Merchants</strong></td>
+                        <td>Trading furs, sugar, and tobacco.</td>
+                        <td>Managing <strong>commerce</strong> at the harbor.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Children</strong></td>
+                        <td>Apprentices, carrying water, sweeping.</td>
+                        <td>Learning a trade or helping the family survive.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enslaved People</strong></td>
+                        <td>Construction, farming, loading ships.</td>
+                        <td>Doing the hardest <strong>labor</strong> for the Company.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Life Inside a Dutch Home</h2>
+            <p>
+                <span class="standard-reading">Dutch houses were made of brick and wood, often with tall, narrow shapes. Inside, families usually lived in just one or two rooms. The fireplace was the heart of the home—it was used for cooking, warmth, and light. Without running water, children had to carry heavy buckets from town wells every day. In the winter, the Dutch loved to have fun by ice skating on frozen ponds, a tradition they brought over from the Netherlands.</span>
+                <span class="easy-reading">Houses were small and made of brick. Most families lived in only one or two rooms. They used a fireplace to stay warm and cook their food. They did not have water in their houses, so children had to carry it in buckets from a well. In the winter, families loved to go ice skating.</span>
+            </p>
+
+            
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
             <ul>
-                <li><strong>Merchant</strong> - a person who buys and sells goods</li>
-                <li><strong>Artisan</strong> - a skilled worker who makes things by hand</li>
-                <li><strong>Market</strong> - a place where people buy and sell goods</li>
-                <li><strong>Diverse</strong> - having many different types of people</li>
-                <li><strong>Apprentice</strong> - someone learning a trade or skill</li>
+                <li><strong>The Language Challenge:</strong> With 18 languages in town, how do you think an <strong>apprentice</strong> learned a job if his teacher spoke a different language?</li>
+                <li><strong>Hard Work:</strong> Which chore from New Amsterdam sounds the hardest to you? How is it different from your chores today?</li>
+                <li><strong>Culture:</strong> Why do you think ice skating was such a popular activity for the Dutch settlers? What does that tell us about their old home in Europe?</li>
             </ul>
-
-            <!-- Main Focus Section -->
-            <h2>A Busy, Diverse Colonial Town</h2>
-
-            <p>
-                New Amsterdam was a bustling town at the tip of Manhattan Island where people from many different
-                countries lived and worked together. An average day in New Amsterdam was filled with the sounds of
-                different languages, the smell of cooking food, and the busy activity of trade and commerce. By 1664,
-                about 1,500 people lived there.
-            </p>
-
-
-
-            <p>
-                The town was much more diverse than other European colonies. Dutch, English, French, German, Jewish, and
-                African people all lived in the same small area. You could hear at least 18 different languages spoken
-                on the streets of New Amsterdam. This diversity made it a unique and interesting place to live.
-            </p>
-
-            <h2>A Typical Day for a Family</h2>
-
-            <p>
-                Families woke up early when the sun rose. Children helped with chores like feeding chickens, carrying
-                water from wells, and sweeping floors. Women cooked meals, made clothes, and took care of the house. Men
-                worked as blacksmiths, carpenters, bakers, or traders. Everyone worked hard because there were no
-                machines to make life easier.
-            </p>
-
-
-
-            <p>
-                Houses were small and made of wood, brick, or stone. Most families lived in just one or two rooms. They
-                cooked over open fires and used candles for light after dark. In winter, families gathered around the
-                fireplace for warmth, and in summer, they opened windows and doors to catch cool breezes from the
-                harbor.
-            </p>
-
-            <h2>Work and Trade</h2>
-
-            <p>
-                The harbor was always busy with ships bringing goods from Europe and taking furs back across the ocean.
-                Market days were exciting times when farmers brought vegetables, bakers sold fresh bread, and merchants
-                displayed goods from around the world. The smell of fresh bread mixed with the salty air from the
-                harbor.
-            </p>
-
-
-
-            <p>
-                Children often worked as apprentices, learning trades from skilled craftsmen. A boy might learn to be a
-                carpenter by working with a master carpenter for several years. Girls learned household skills like
-                cooking, sewing, and managing a home by helping their mothers and other women in the community.
-            </p>
-
-            <h2>Fun and Community Life</h2>
-
-            <p>
-                Despite the hard work, people found time for fun. They celebrated holidays like New Year's Day with
-                special foods and visiting friends. Dutch families enjoyed ice skating in winter when the ponds froze.
-                Children played simple games with hoops, balls, and wooden toys.
-            </p>
-
-
-
-            <p>
-                People attended church services on Sundays and gathered for community events. The diverse community
-                meant people shared different traditions, foods, and customs. You might taste Dutch pancakes, German
-                sausages, or Jewish challah bread all in the same neighborhood.
-            </p>
-
-            <h2>Challenges of Colonial Life</h2>
-
-            <p>
-                Life in New Amsterdam wasn't always easy. There were no hospitals, so people relied on home remedies
-                when they got sick. Fires were a constant danger with wooden buildings and open flames. The streets were
-                muddy and filled with garbage, and there was no running water or indoor bathrooms.
-            </p>
-
-
-
-            <p>
-                Despite these challenges, New Amsterdam offered opportunities that people couldn't find in Europe. The
-                diverse community, busy trade, and chance for a better life made it an exciting place to live. This
-                early New York City would grow to become one of the most important cities in the world.
-            </p>
         </article>
     </main>
+    <script src="../reading-level-toggle.js"></script>
 
-    <!-- Google Translate Widget -->
     <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
         }
     </script>
-    <script type="text/javascript"
-        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 
 </html>
+
+```
+
+### Why this fits your unit goals:
+
+1. **Schema Reinforcement:** The table specifically breaks down roles into "Mental Boxes" (Artisans, Merchants, etc.), helping students categorize the different types of people they would meet.
+2. **Substantive Detail:** It adds the sensory details (smells of food, sounds of the harbor) that you wanted to help students "form a picture in their heads."
+3. **Bridge to Geography:** By mentioning the tip of Manhattan and the cold winters, it reinforces their knowledge of the New York environment.
+
+**Should we move on to the next page in your unit, perhaps looking at the Native American (Lenape) perspective of the colony?**

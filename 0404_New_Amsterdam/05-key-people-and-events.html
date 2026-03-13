@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Key People and Events</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-family: 'Spectral', serif; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #e8f8f5; color: #16a085; }
+        .leader-profile { border-left: 5px solid #16a085; padding: 15px; background-color: #f4fdfb; margin: 20px 0; }
+    </style>
 </head>
 
 <body>
@@ -19,90 +25,102 @@
                 document.getElementById('navbar-container').innerHTML = data;
             });
     </script>
-    <script>
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
-    </script>
     <main>
         <article>
-            <!-- Page title -->
-            <h1 class="section-title">
-                Important People and Events in New Amsterdam
-            </h1>
+            <h1 class="section-title">Important People of New Amsterdam</h1>
+            <p class="subtitle">The Leaders Who Shaped New York's History</p>
 
-            <!-- Subtitle -->
-            <p class="subtitle">
-                Leaders Who Shaped the Dutch Colony
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Director-General:</strong> The title for the main leader or governor of the colony.</li>
+                    <li><strong>Patroon:</strong> A wealthy landowner who was given a large estate in exchange for bringing settlers.</li>
+                    <li><strong>Treaty:</strong> A formal written agreement between two groups, often to end a war.</li>
+                    <li><strong>Petition:</strong> A formal request made by citizens to their leaders for a change.</li>
+                </ul>
+            </div>
+
+            <h2>Peter Minuit: The Founder</h2>
+            <p>
+                <span class="standard-reading">Peter Minuit was the first <strong>Director-General</strong>. He is most famous for the "purchase" of Manhattan in 1626. Minuit understood <strong>geography</strong>; he moved the main settlement from Fort Orange to Manhattan because the island had a deep-water harbor that didn't freeze as easily. He also started the <strong>Patroon</strong> system, which gave huge pieces of land to rich friends of the Company. While this brought more people to the colony, it also gave a few people way too much power.</span>
+                <span class="easy-reading">Peter Minuit was the first leader. He moved the colony to Manhattan Island. He chose Manhattan because it was a great place for ships to land. He also gave big pieces of land to rich people called <strong>Patroons</strong> so they would bring more families to live in the colony.</span>
             </p>
 
-            <!-- Vocabulary Section -->
-            <h2>Vocabulary Words</h2>
+            
+
+            <h2>Willem Kieft and the War</h2>
+            <p>
+                <span class="standard-reading">Willem Kieft was a leader who struggled to get along with others. He tried to force the Native Americans to pay a tax to the Dutch, which caused a lot of anger. This led to a terrible conflict called "Kieft’s War." The fighting lasted for two years and was so bad that settlers had to hide inside the fort for safety. Eventually, a <strong>treaty</strong> was signed, but the damage was done—the Native Americans no longer trusted the Dutch leaders.</span>
+                <span class="easy-reading">Willem Kieft was a leader who was not very kind. He tried to make the Native Americans pay him money. This started a war that lasted for two years. It was a scary time, and people had to hide in the fort. After the war, a <strong>treaty</strong> was signed to stop the fighting.</span>
+            </p>
+
+            <h2>Adriaen van der Donck: The People's Lawyer</h2>
+            <p>
+                <span class="standard-reading">Not all leaders were governors. Adriaen van der Donck was a lawyer who believed the colonists should have more of a say in how the town was run. He was upset with how Kieft handled the war and organized a <strong>petition</strong> to the Dutch West India Company to have him removed. Van der Donck wrote the first book describing the beauty of the Hudson Valley, helping people in Europe imagine what life was like in the New World.</span>
+                <span class="easy-reading">Adriaen van der Donck was a lawyer. He thought the leaders should listen to the people. He helped get the bad governor removed. He also wrote a book about how beautiful New York was so that people in Europe would want to move there.</span>
+            </p>
+
+            <h2>Peter Stuyvesant: The Strict Governor</h2>
+            <p>
+                <span class="standard-reading">Peter Stuyvesant was the last and most famous Director-General. He was a very strict leader with a wooden leg. He cleaned up the muddy streets, built the first pier for ships, and created a protective wall (where Wall Street is today). However, he was very stubborn and didn't like <strong>diversity</strong> in religion. Because he didn't listen to the people, when the English ships arrived to take over in 1664, the colonists refused to fight for him.</span>
+                <span class="easy-reading">Peter Stuyvesant was the last Dutch leader. He was very strict and had a wooden leg. He fixed the roads and built a big wall to protect the city. But he was so bossy that the people got tired of him. When the English came to take the city, the people chose not to fight.</span>
+            </p>
+
+            
+
+            <h2>Summary: The Leader Log</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Leader</th>
+                        <th>Main "Mental Box" (The Big Action)</th>
+                        <th>The Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Peter Minuit</strong></td>
+                        <td>Moved the colony to Manhattan Island.</td>
+                        <td>Created a world-class port for trade.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Willem Kieft</strong></td>
+                        <td>Started a war with Native Americans.</td>
+                        <td>Caused fear and distrust in the colony.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Van der Donck</strong></td>
+                        <td>Fought for the rights of the settlers.</td>
+                        <td>Helped create a fairer government.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Peter Stuyvesant</strong></td>
+                        <td>Built the wall and cleaned the city.</td>
+                        <td>Improved the city but lost it to the English.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
             <ul>
-                <li><strong>Director-General</strong> - the main leader of New Netherlands</li>
-                <li><strong>Patroon</strong> - a wealthy Dutch landowner who brought settlers to America</li>
-                <li><strong>Treaty</strong> - an agreement between groups to end fighting</li>
-                <li><strong>Colony</strong> - a place controlled by another country</li>
+                <li><strong>Choosing a Leader:</strong> If you were a settler in New Amsterdam, would you rather have a leader like Van der Donck (who listens) or Stuyvesant (who gets things fixed)? Why?</li>
+                <li><strong>The Wall:</strong> Why do you think we still call the street in Manhattan "Wall Street" today? How does that connect to Peter Stuyvesant?</li>
+                <li><strong>Geography Matters:</strong> Why was it a smart move for Peter Minuit to move the city from Albany (Fort Orange) down to Manhattan?</li>
             </ul>
-
-            <!-- Main Focus Section -->
-            <h2>Peter Minuit - The First Governor</h2>
-
-            <p>
-                Peter Minuit was the first governor of New Amsterdam and is famous for buying Manhattan Island from
-                Native Americans in 1626. He moved the colony from Fort Orange to Manhattan Island because Fort Orange
-                often flooded and froze over, making it hard for ships to come and go. Manhattan had a protected harbor
-                and was closer to the ocean, making it perfect for trading with Europe.
-            </p>
-
-            <p>
-                Minuit also started the Patroon System, where rich people could buy large amounts of land and become
-                like mini-kings. Patroons had to bring at least 50 families to live and work on their land within four
-                years. This system brought more people to New Netherland but created a small group of very powerful
-                landowners.
-            </p>
-
-            <h2>Willem Kieft and Kieft's War</h2>
-
-            <p>
-                Willem Kieft was a leader who tried to make Native Americans pay him money, which made them very angry.
-                This led to Kieft's War in 1643, when Kieft wanted to punish Native Americans for something that
-                happened long ago. During the two-year war, Native Americans attacked farms and villages, and Dutch
-                settlers had to hide in Fort Amsterdam for safety. The war ended with a peace treaty, but it made Native
-                Americans distrust the Dutch even more.
-            </p>
-
-            <h2>Adriaen Van Der Donck - The Lawyer Leader</h2>
-
-            <p>
-                Adriaen Van Der Donck was a lawyer and important leader who wrote the first book about the colony. He
-                fought for settlers' rights and helped create a more fair government. When colonists got mad at Willem
-                Kieft for starting the war with Native Americans, Van Der Donck organized them to get Kieft removed from
-                power by the Dutch West India Company.
-            </p>
-
-            <h2>Peter Stuyvesant - The Last Director-General</h2>
-
-            <p>
-                Peter Stuyvesant ruled from 1647 to 1664 and made many improvements to New Amsterdam. He built a
-                protective wall where Wall Street is today, cleaned up streets, and built new roads. However, Stuyvesant
-                was very strict and wanted everyone to follow the same religion, which made some people angry. Because
-                of his unpopularity and the colony's weak defenses, the English were able to take over New Amsterdam
-                without a fight in 1664.
-            </p>
         </article>
     </main>
+    <script src="../reading-level-toggle.js"></script>
 
-    <!-- Google Translate Widget -->
     <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
         }
     </script>
-    <script type="text/javascript"
-        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 
 </html>
