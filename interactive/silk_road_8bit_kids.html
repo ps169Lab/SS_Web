@@ -1,0 +1,538 @@
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  #root{font-family:var(--font-sans);padding:1.5rem 1.25rem 2rem;}
+
+  .nav-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.75rem;}
+  .nav-btn{font-size:13px;padding:9px 18px;border-radius:6px;border:2px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer;font-weight:500;transition:all 0.12s;letter-spacing:0.02em;}
+  .nav-btn.active{background:#FAEEDA;border-color:#BA7517;color:#412402;}
+  .nav-btn:hover:not(.active){background:var(--color-background-secondary);}
+
+  .section{display:none;}.section.visible{display:block;}
+
+  .pg-title{font-size:24px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px;}
+  .pg-sub{font-size: 22px;color:var(--color-text-secondary);margin-bottom:20px;line-height:1.7;max-width:640px;}
+
+  .map-outer{border:2px solid var(--color-border-tertiary);border-radius:8px;overflow:hidden;cursor:default;}
+
+  .city-pop{margin-top:14px;background:#FAEEDA;border:2px solid #EF9F27;border-radius:8px;padding:16px 20px;display:none;}
+  .city-pop.show{display:block;}
+  .city-pop h3{font-size:17px;font-weight:500;color:#412402;margin-bottom:7px;}
+  .city-pop p{font-size:22px;color:#633806;line-height:1.75;}
+
+  .legend-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+  .leg-pill{font-size:13px;padding:4px 12px;border-radius:4px;font-weight:500;}
+
+  .cards2{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;}
+  .card2{background:var(--color-background-primary);border:2px solid var(--color-border-tertiary);border-radius:8px;padding:16px 12px;cursor:pointer;transition:border-color 0.12s;text-align:center;}
+  .card2:hover,.card2.sel{border-color:#BA7517;background:#FAEEDA;}
+  .card2-name{font-size: 20px;font-weight:500;color:var(--color-text-primary);margin-top:10px;margin-bottom:5px;}
+  .card2-tag{font-size:12px;padding:3px 10px;border-radius:4px;display:inline-block;}
+  .tag-from{background:#E6F1FB;color:#0C447C;}
+  .tag-to{background:#EAF3DE;color:#27500A;}
+  .tag-idea{background:#EEEDFE;color:#3C3489;}
+
+  .detail-box{margin-top:14px;background:var(--color-background-secondary);border-radius:8px;padding:16px 20px;display:none;}
+  .detail-box.show{display:block;}
+  .detail-box h3{font-size:17px;font-weight:500;color:var(--color-text-primary);margin-bottom:7px;}
+  .detail-box p{font-size:22px;color:var(--color-text-secondary);line-height:1.75;}
+
+  .change-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:16px;}
+  .change-card{background:var(--color-background-primary);border:2px solid var(--color-border-tertiary);border-radius:8px;padding:16px;}
+  .change-card-era{font-size:12px;font-weight:500;padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:10px;}
+  .change-card h3{font-size: 22px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px;}
+  .change-card p{font-size: 20px;color:var(--color-text-secondary);line-height:1.7;}
+
+  .think-box{margin-top:22px;background:var(--color-background-secondary);border-radius:8px;padding:16px 20px;}
+  .think-box .think-label{font-size: 22px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px;}
+  .think-box p{font-size: 20px;color:var(--color-text-secondary);line-height:1.7;}
+
+  .stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:22px;}
+  .stat-box{background:var(--color-background-secondary);border-radius:8px;padding:14px;text-align:center;}
+  .stat-big{font-size:26px;font-weight:500;color:var(--color-text-primary);}
+  .stat-small{font-size:12px;color:var(--color-text-secondary);margin-top:5px;line-height:1.5;}
+
+  .story-row{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--color-border-tertiary);}
+  .story-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+  .story-icon{flex-shrink:0;}
+  .story-text h3{font-size:16px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px;}
+  .story-text p{font-size: 20px;color:var(--color-text-secondary);line-height:1.75;}
+
+  .vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;}
+  .vocab-card{background:var(--color-background-secondary);border-radius:8px;padding:16px;}
+  .vocab-word{font-size:16px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px;}
+  .vocab-def{font-size: 20px;color:var(--color-text-secondary);line-height:1.7;}
+
+  .qscore{font-size:13px;color:var(--color-text-tertiary);margin-bottom:16px;}
+  .quiz-q{font-size:17px;font-weight:500;color:var(--color-text-primary);margin-bottom:16px;line-height:1.55;}
+  .quiz-opts{display:flex;flex-direction:column;gap:10px;}
+  .qopt{font-size: 20px;padding:12px 18px;border:2px solid var(--color-border-secondary);border-radius:8px;cursor:pointer;text-align:left;background:var(--color-background-primary);color:var(--color-text-primary);transition:all 0.12s;line-height:1.5;}
+  .qopt:hover:not(:disabled){background:var(--color-background-secondary);}
+  .qopt.ok{background:#EAF3DE;border-color:#3B6D11;color:#173404;}
+  .qopt.no{background:#FCEBEB;border-color:#A32D2D;color:#501313;}
+  .qfb{margin-top:12px;padding:12px 16px;background:var(--color-background-secondary);border-radius:8px;font-size: 20px;color:var(--color-text-secondary);line-height:1.75;display:none;}
+  .qnext{margin-top:14px;font-size: 20px;padding:10px 24px;border-radius:8px;border:2px solid #BA7517;background:#FAEEDA;color:#412402;cursor:pointer;font-weight:500;display:none;}
+  .qnext:hover{background:#FAC775;}
+</style>
+
+<div id="root">
+<div class="nav-bar">
+  <button class="nav-btn active" onclick="show('map',this)">&#9654; The Route</button>
+  <button class="nav-btn" onclick="show('trade',this)">&#9632; Goods &amp; Ideas</button>
+  <button class="nav-btn" onclick="show('change',this)">&#9650; How China Changed</button>
+  <button class="nav-btn" onclick="show('stories',this)">&#9670; Cool Facts</button>
+  <button class="nav-btn" onclick="show('vocab',this)">&#9724; Vocab</button>
+  <button class="nav-btn" onclick="show('quiz',this)">&#9733; Quiz!</button>
+</div>
+
+<!-- MAP -->
+<div id="sec-map" class="section visible">
+  <div class="pg-title">The Silk Road</div>
+  <p class="pg-sub">The Silk Road was not one road — it was many paths connecting China to India, Africa, and Europe! Merchants, explorers, and monks traveled thousands of miles to trade goods AND share ideas.</p>
+  <div class="map-outer">
+    <svg width="100%" viewBox="0 0 680 320" style="display:block;">
+      <rect width="680" height="320" fill="#87CEEB"/>
+      <rect x="620" y="18" width="28" height="28" fill="#EF9F27"/>
+      <rect x="616" y="22" width="4" height="20" fill="#EF9F27"/>
+      <rect x="652" y="22" width="4" height="20" fill="#EF9F27"/>
+      <rect x="624" y="14" width="20" height="4" fill="#EF9F27"/>
+      <rect x="624" y="46" width="20" height="4" fill="#EF9F27"/>
+      <rect x="0" y="240" width="680" height="80" fill="#C8A870"/>
+      <rect x="0" y="260" width="680" height="60" fill="#B89860"/>
+      <rect x="570" y="236" width="110" height="8" fill="#7BAF60"/>
+      <rect x="600" y="228" width="80" height="8" fill="#7BAF60"/>
+      <rect x="80" y="245" width="4" height="4" fill="#A88848" opacity="0.5"/>
+      <rect x="160" y="250" width="4" height="4" fill="#A88848" opacity="0.5"/>
+      <rect x="240" y="248" width="4" height="4" fill="#A88848" opacity="0.5"/>
+      <rect x="320" y="252" width="4" height="4" fill="#A88848" opacity="0.5"/>
+      <rect x="400" y="246" width="4" height="4" fill="#A88848" opacity="0.5"/>
+      <!-- Mountains left -->
+      <polygon points="28,240 56,195 84,240" fill="#888780"/>
+      <polygon points="44,240 76,188 108,240" fill="#B4B2A9"/>
+      <polygon points="22,240 46,200 70,240" fill="#9A9890"/>
+      <polygon points="56,195 66,208 46,208" fill="#fff" opacity="0.8"/>
+      <polygon points="76,188 86,202 66,202" fill="#fff" opacity="0.8"/>
+      <!-- Mountains center -->
+      <polygon points="310,240 338,196 366,240" fill="#888780"/>
+      <polygon points="324,240 356,190 388,240" fill="#B4B2A9"/>
+      <polygon points="304,240 330,202 356,240" fill="#9A9890"/>
+      <polygon points="338,196 348,210 328,210" fill="#fff" opacity="0.8"/>
+      <polygon points="356,190 366,204 346,204" fill="#fff" opacity="0.8"/>
+      <!-- Mountains right -->
+      <polygon points="610,240 632,204 654,240" fill="#888780"/>
+      <polygon points="600,240 626,198 652,240" fill="#B4B2A9"/>
+      <polygon points="632,204 640,214 624,214" fill="#fff" opacity="0.8"/>
+      <!-- Desert label -->
+      <rect x="148" y="218" width="140" height="20" rx="2" fill="#C8A870" opacity="0.7"/>
+      <text x="218" y="231" text-anchor="middle" style="font-size:10px;fill:#7A6040;font-family:var(--font-sans);font-weight:500;">Taklamakan Desert</text>
+      <!-- Route -->
+      <path d="M72 225 Q120 210 175 215 Q240 220 295 205 Q340 192 382 198 Q425 203 468 196 Q515 189 560 194 Q600 198 635 200" fill="none" stroke="#BA7517" stroke-width="3" stroke-dasharray="8 5" opacity="0.95"/>
+      <!-- Camel 1 -->
+      <g transform="translate(198,198)">
+        <rect x="0" y="8" width="20" height="10" fill="#C8A870"/>
+        <rect x="6" y="2" width="8" height="8" fill="#C8A870"/>
+        <rect x="8" y="0" width="4" height="4" fill="#C8A870"/>
+        <rect x="-6" y="4" width="8" height="6" fill="#C8A870"/>
+        <rect x="-8" y="0" width="6" height="6" fill="#C8A870"/>
+        <rect x="-8" y="-2" width="2" height="3" fill="#A88848"/>
+        <rect x="0" y="17" width="3" height="7" fill="#BA9860"/>
+        <rect x="5" y="17" width="3" height="7" fill="#BA9860"/>
+        <rect x="12" y="17" width="3" height="7" fill="#BA9860"/>
+        <rect x="17" y="17" width="3" height="7" fill="#BA9860"/>
+        <rect x="10" y="4" width="12" height="8" fill="#D85A30" opacity="0.85"/>
+      </g>
+      <!-- Camel 2 -->
+      <g transform="translate(95,210)">
+        <rect x="0" y="8" width="22" height="11" fill="#BFA060"/>
+        <rect x="7" y="2" width="8" height="8" fill="#BFA060"/>
+        <rect x="9" y="0" width="4" height="4" fill="#BFA060"/>
+        <rect x="-7" y="4" width="9" height="7" fill="#BFA060"/>
+        <rect x="-9" y="0" width="7" height="6" fill="#BFA060"/>
+        <rect x="-9" y="-2" width="2" height="3" fill="#A08040"/>
+        <rect x="0" y="18" width="3" height="7" fill="#A88848"/>
+        <rect x="5" y="18" width="3" height="7" fill="#A88848"/>
+        <rect x="13" y="18" width="3" height="7" fill="#A88848"/>
+        <rect x="18" y="18" width="3" height="7" fill="#A88848"/>
+        <rect x="11" y="4" width="13" height="8" fill="#8B5CF6" opacity="0.8"/>
+      </g>
+      <!-- Camel 3 -->
+      <g transform="translate(420,190)">
+        <rect x="0" y="8" width="20" height="10" fill="#C8A870"/>
+        <rect x="6" y="2" width="8" height="8" fill="#C8A870"/>
+        <rect x="8" y="0" width="4" height="4" fill="#C8A870"/>
+        <rect x="-6" y="4" width="8" height="6" fill="#C8A870"/>
+        <rect x="-8" y="0" width="6" height="6" fill="#C8A870"/>
+        <rect x="-8" y="-2" width="2" height="3" fill="#A88848"/>
+        <rect x="0" y="17" width="3" height="7" fill="#BA9860"/>
+        <rect x="5" y="17" width="3" height="7" fill="#BA9860"/>
+        <rect x="12" y="17" width="3" height="7" fill="#BA9860"/>
+        <rect x="17" y="17" width="3" height="7" fill="#BA9860"/>
+        <rect x="10" y="4" width="12" height="8" fill="#5DCAA5" opacity="0.85"/>
+      </g>
+      <!-- Chang'an pagoda -->
+      <g>
+        <rect x="28" y="175" width="36" height="50" fill="#E24B4A"/>
+        <polygon points="28,175 46,162 64,175" fill="#A32D2D"/>
+        <rect x="32" y="178" width="6" height="8" fill="#FAEEDA"/>
+        <rect x="44" y="178" width="6" height="8" fill="#FAEEDA"/>
+        <rect x="38" y="190" width="8" height="14" fill="#712B13"/>
+        <rect x="34" y="162" width="24" height="14" fill="#D85A30"/>
+        <polygon points="34,162 46,153 58,162" fill="#993C1D"/>
+        <rect x="38" y="165" width="5" height="6" fill="#FAEEDA"/>
+        <rect x="47" y="165" width="5" height="6" fill="#FAEEDA"/>
+      </g>
+      <g class="city-btn" onclick="showCity('xian')" style="cursor:pointer;">
+        <rect x="18" y="148" width="56" height="92" fill="transparent"/>
+        <circle cx="46" cy="232" r="7" fill="#E24B4A" stroke="#fff" stroke-width="2"/>
+        <text x="46" y="251" text-anchor="middle" style="font-size:11px;fill:#3d3d3a;font-family:var(--font-sans);font-weight:500;">Chang'an</text>
+        <text x="46" y="264" text-anchor="middle" style="font-size:10px;fill:#888780;font-family:var(--font-sans);">(China)</text>
+      </g>
+      <!-- Dunhuang -->
+      <g class="city-btn" onclick="showCity('dunhuang')" style="cursor:pointer;">
+        <rect x="164" y="194" width="20" height="26" fill="#EF9F27"/>
+        <polygon points="164,194 174,185 184,194" fill="#BA7517"/>
+        <rect x="169" y="197" width="4" height="5" fill="#FAEEDA"/>
+        <rect x="175" y="197" width="4" height="5" fill="#FAEEDA"/>
+        <rect x="170" y="207" width="8" height="10" fill="#854F0B"/>
+        <circle cx="174" cy="225" r="6" fill="#EF9F27" stroke="#fff" stroke-width="2"/>
+        <text x="174" y="243" text-anchor="middle" style="font-size:11px;fill:#3d3d3a;font-family:var(--font-sans);font-weight:500;">Dunhuang</text>
+      </g>
+      <!-- Kashgar -->
+      <g class="city-btn" onclick="showCity('kashgar')" style="cursor:pointer;">
+        <rect x="280" y="186" width="22" height="24" fill="#EF9F27"/>
+        <rect x="284" y="180" width="14" height="8" fill="#EF9F27"/>
+        <rect x="288" y="176" width="6" height="6" fill="#BA7517"/>
+        <rect x="283" y="189" width="4" height="6" fill="#FAEEDA"/>
+        <rect x="291" y="189" width="4" height="6" fill="#FAEEDA"/>
+        <rect x="285" y="200" width="8" height="9" fill="#854F0B"/>
+        <circle cx="291" cy="220" r="6" fill="#EF9F27" stroke="#fff" stroke-width="2"/>
+        <text x="291" y="238" text-anchor="middle" style="font-size:11px;fill:#3d3d3a;font-family:var(--font-sans);font-weight:500;">Kashgar</text>
+      </g>
+      <!-- Samarkand -->
+      <g class="city-btn" onclick="showCity('samarkand')" style="cursor:pointer;">
+        <rect x="415" y="194" width="24" height="20" fill="#378ADD"/>
+        <rect x="419" y="186" width="16" height="10" rx="8" fill="#185FA5"/>
+        <rect x="424" y="182" width="6" height="6" fill="#0C447C"/>
+        <rect x="418" y="197" width="5" height="8" fill="#FAEEDA"/>
+        <rect x="429" y="197" width="5" height="8" fill="#FAEEDA"/>
+        <rect x="421" y="207" width="8" height="7" fill="#0C447C"/>
+        <circle cx="427" cy="223" r="6" fill="#EF9F27" stroke="#fff" stroke-width="2"/>
+        <text x="427" y="241" text-anchor="middle" style="font-size:11px;fill:#3d3d3a;font-family:var(--font-sans);font-weight:500;">Samarkand</text>
+      </g>
+      <!-- Rome -->
+      <g class="city-btn" onclick="showCity('rome')" style="cursor:pointer;">
+        <rect x="615" y="184" width="38" height="28" fill="#D3D1C7"/>
+        <rect x="611" y="180" width="46" height="6" fill="#B4B2A9"/>
+        <rect x="617" y="188" width="5" height="22" fill="#888780"/>
+        <rect x="626" y="188" width="5" height="22" fill="#888780"/>
+        <rect x="635" y="188" width="5" height="22" fill="#888780"/>
+        <rect x="644" y="188" width="5" height="22" fill="#888780"/>
+        <rect x="619" y="188" width="7" height="10" rx="3" fill="#FAEEDA"/>
+        <rect x="629" y="188" width="7" height="10" rx="3" fill="#FAEEDA"/>
+        <rect x="638" y="188" width="7" height="10" rx="3" fill="#FAEEDA"/>
+        <circle cx="634" cy="221" r="7" fill="#7F77DD" stroke="#fff" stroke-width="2"/>
+        <text x="634" y="240" text-anchor="middle" style="font-size:11px;fill:#3d3d3a;font-family:var(--font-sans);font-weight:500;">Rome</text>
+        <text x="634" y="253" text-anchor="middle" style="font-size:10px;fill:#888780;font-family:var(--font-sans);">(Europe)</text>
+      </g>
+      <!-- Legend bar -->
+      <rect x="0" y="290" width="680" height="30" fill="rgba(200,168,112,0.35)"/>
+      <path d="M14 305 Q34 305 54 305" fill="none" stroke="#BA7517" stroke-width="2.5" stroke-dasharray="6 4"/>
+      <text x="60" y="309" style="font-size:10px;fill:#633806;font-family:var(--font-sans);">Silk Road route</text>
+      <circle cx="198" cy="305" r="5" fill="#E24B4A" stroke="#fff" stroke-width="1.5"/>
+      <text x="208" y="309" style="font-size:10px;fill:#3d3d3a;font-family:var(--font-sans);">Start/end</text>
+      <circle cx="308" cy="305" r="5" fill="#EF9F27" stroke="#fff" stroke-width="1.5"/>
+      <text x="318" y="309" style="font-size:10px;fill:#3d3d3a;font-family:var(--font-sans);">Trading city</text>
+      <text x="440" y="309" style="font-size:10px;fill:#3d3d3a;font-family:var(--font-sans);">Tap a city to learn about it!</text>
+    </svg>
+  </div>
+  <div class="city-pop" id="city-pop">
+    <h3 id="cpn"></h3><p id="cpd"></p>
+  </div>
+</div>
+
+<!-- TRADE -->
+<div id="sec-trade" class="section">
+  <div class="pg-title">Goods AND Ideas Were Traded</div>
+  <p class="pg-sub">The Silk Road was amazing because people didn't just trade "stuff" — they also shared ideas, stories, and beliefs! Tap any card to learn more.</p>
+  <div class="legend-row">
+    <span class="leg-pill" style="background:#E6F1FB;color:#0C447C;">Blue = From China</span>
+    <span class="leg-pill" style="background:#EAF3DE;color:#27500A;">Green = To China</span>
+    <span class="leg-pill" style="background:#EEEDFE;color:#3C3489;">Purple = Ideas</span>
+  </div>
+  <div class="cards2" id="trade-grid"></div>
+  <div class="detail-box" id="trade-detail">
+    <h3 id="td-n"></h3><p id="td-d"></p>
+  </div>
+</div>
+
+<!-- CHANGE -->
+<div id="sec-change" class="section">
+  <div class="pg-title">How the Silk Road Changed China</div>
+  <p class="pg-sub">The Silk Road didn't just make merchants rich — it changed China forever! New ideas, religions, and ways of thinking came in from faraway places. Here's how China changed over time:</p>
+  <div class="change-grid">
+    <div class="change-card">
+      <span class="change-card-era" style="background:#E6F1FB;color:#0C447C;">Han Dynasty</span>
+      <h3>The Silk Road begins</h3>
+      <p>The Han emperor sent explorer Zhang Qian west through mountains and deserts. His trips created the Silk Road, connecting China to India, Africa, and Europe for the very first time.</p>
+    </div>
+    <div class="change-card">
+      <span class="change-card-era" style="background:#EEEDFE;color:#3C3489;">Han &amp; Tang Dynasty</span>
+      <h3>Buddhism arrives in China</h3>
+      <p>Buddhist monks and merchants traveled the Silk Road from India into China. Buddhism became one of China's most important religions. The brave monk Xuanzang walked over 25,000 km to India and brought back Buddhist books!</p>
+    </div>
+    <div class="change-card">
+      <span class="change-card-era" style="background:#EAF3DE;color:#27500A;">Tang Dynasty</span>
+      <h3>China opens up to the world</h3>
+      <p>Tang Dynasty China kept the Silk Road safe and busy. Foreign merchants from Persia and Arabia lived in Chinese cities. New music, food, and art poured in. Chang'an became the most international city in the world!</p>
+    </div>
+    <div class="change-card">
+      <span class="change-card-era" style="background:#FAEEDA;color:#633806;">Qing Dynasty</span>
+      <h3>New ideas about government</h3>
+      <p>Later, European countries visited China more often and brought new ideas about how countries should be run. These ideas helped inspire the Chinese people to make a very big change.</p>
+    </div>
+    <div class="change-card">
+      <span class="change-card-era" style="background:#FCEBEB;color:#791F1F;">Early 1900s</span>
+      <h3>End of the emperors</h3>
+      <p>After thousands of years of emperors, the Chinese people started a Republic — where a group of leaders rules together instead of one emperor having all the power.</p>
+    </div>
+    <div class="change-card">
+      <span class="change-card-era" style="background:#E1F5EE;color:#085041;">The Big Idea</span>
+      <h3>Trading ideas is powerful!</h3>
+      <p>China shared paper, silk, and printing with the world. The world shared Buddhism, music, and new ways of thinking with China. Trading ideas can change the world just as much as trading goods!</p>
+    </div>
+  </div>
+  <div class="think-box">
+    <div class="think-label">Think about it:</div>
+    <p>If you were a merchant on the Silk Road, what Chinese invention — paper, silk, or the compass — would you be most excited to show someone from another country? <button onclick="sendPrompt('I am a 3rd grade student learning about the Silk Road. If I were a merchant, the Chinese invention I would most want to share is... tell me why that invention was so important ↗')" style="font-size:13px;color:var(--color-text-info);background:none;border:none;cursor:pointer;padding:0 4px;">Ask Claude ↗</button></p>
+  </div>
+</div>
+
+<!-- COOL FACTS -->
+<div id="sec-stories" class="section">
+  <div class="pg-title">Cool Facts!</div>
+  <p class="pg-sub">Here are some of the most surprising and amazing things about the Silk Road.</p>
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-big">7,000+</div><div class="stat-small">km long — longer than the USA is wide, twice!</div></div>
+    <div class="stat-box"><div class="stat-big">1,500</div><div class="stat-small">years the route stayed active</div></div>
+    <div class="stat-box"><div class="stat-big">40+</div><div class="stat-small">kingdoms connected at its peak</div></div>
+    <div class="stat-box"><div class="stat-big">5</div><div class="stat-small">major religions traveled the routes</div></div>
+  </div>
+
+  <div class="story-row">
+    <div class="story-icon">
+      <svg width="56" height="56" viewBox="0 0 48 48">
+        <rect x="4" y="20" width="30" height="14" fill="#C8A870"/>
+        <rect x="10" y="14" width="12" height="8" fill="#C8A870"/>
+        <rect x="13" y="10" width="6" height="6" fill="#C8A870"/>
+        <rect x="2" y="22" width="10" height="8" fill="#C8A870"/>
+        <rect x="0" y="20" width="6" height="8" fill="#C8A870"/>
+        <rect x="0" y="18" width="4" height="4" fill="#A08040"/>
+        <rect x="4" y="32" width="5" height="10" fill="#BA9860"/>
+        <rect x="12" y="32" width="5" height="10" fill="#BA9860"/>
+        <rect x="22" y="32" width="5" height="10" fill="#BA9860"/>
+        <rect x="29" y="32" width="5" height="10" fill="#BA9860"/>
+        <rect x="22" y="14" width="14" height="10" fill="#D85A30"/>
+      </svg>
+    </div>
+    <div class="story-text">
+      <h3>Camels were the trucks of the ancient world!</h3>
+      <p>Merchants used camels to carry heavy loads. Camels are perfect for desert travel — they can go a long time without water and their wide feet don't sink in sand! A caravan might have hundreds of camels traveling together for safety.</p>
+    </div>
+  </div>
+
+  <div class="story-row">
+    <div class="story-icon">
+      <svg width="56" height="56" viewBox="0 0 48 48">
+        <rect x="8" y="14" width="32" height="24" fill="#D4A0C0"/>
+        <rect x="8" y="10" width="32" height="6" fill="#C070A0"/>
+        <rect x="10" y="12" width="4" height="28" fill="#A05080"/>
+        <rect x="34" y="12" width="4" height="28" fill="#A05080"/>
+        <rect x="12" y="22" width="24" height="2" fill="#A05080"/>
+        <rect x="20" y="14" width="8" height="24" fill="#A05080"/>
+        <rect x="14" y="16" width="6" height="4" fill="#FAEEDA"/>
+        <rect x="28" y="16" width="6" height="4" fill="#FAEEDA"/>
+        <rect x="14" y="26" width="6" height="4" fill="#FAEEDA"/>
+        <rect x="28" y="26" width="6" height="4" fill="#FAEEDA"/>
+      </svg>
+    </div>
+    <div class="story-text">
+      <h3>China's biggest secret: silk!</h3>
+      <p>For 3,000 years, only Chinese people knew silk was made by tiny silkworms! If someone told this secret to a foreigner, they could get in huge trouble. People in Rome thought silk grew on trees or came from spiderwebs. The secret finally escaped around 550 CE!</p>
+    </div>
+  </div>
+
+  <div class="story-row">
+    <div class="story-icon">
+      <svg width="56" height="56" viewBox="0 0 48 48">
+        <rect x="8" y="12" width="32" height="28" rx="2" fill="#E1F5EE"/>
+        <rect x="8" y="8" width="32" height="6" fill="#5DCAA5"/>
+        <rect x="12" y="20" width="24" height="3" fill="#9FE1CB"/>
+        <rect x="12" y="26" width="24" height="3" fill="#9FE1CB"/>
+        <rect x="12" y="32" width="16" height="3" fill="#9FE1CB"/>
+        <rect x="6" y="10" width="4" height="30" fill="#1D9E75"/>
+        <rect x="38" y="10" width="4" height="30" fill="#1D9E75"/>
+      </svg>
+    </div>
+    <div class="story-text">
+      <h3>Paper changed the world!</h3>
+      <p>China invented paper about 2,000 years ago. Before paper, people wrote on heavy clay tablets or animal skins. Paper was light and cheap. When the idea traveled west along the Silk Road, it helped more and more people learn to read and write everywhere.</p>
+    </div>
+  </div>
+
+  <div class="story-row">
+    <div class="story-icon">
+      <svg width="56" height="56" viewBox="0 0 48 48">
+        <rect x="16" y="28" width="16" height="14" fill="#EF9F27"/>
+        <rect x="18" y="24" width="12" height="6" fill="#BA7517"/>
+        <rect x="20" y="18" width="8" height="8" fill="#EF9F27"/>
+        <rect x="22" y="14" width="4" height="6" fill="#854F0B"/>
+        <rect x="14" y="28" width="4" height="14" fill="#BA7517"/>
+        <rect x="30" y="28" width="4" height="14" fill="#BA7517"/>
+        <rect x="12" y="40" width="24" height="4" fill="#854F0B"/>
+        <rect x="18" y="30" width="4" height="6" fill="#FAEEDA"/>
+        <rect x="26" y="30" width="4" height="6" fill="#FAEEDA"/>
+        <rect x="21" y="36" width="6" height="6" fill="#854F0B"/>
+      </svg>
+    </div>
+    <div class="story-text">
+      <h3>Buddhism traveled the Silk Road!</h3>
+      <p>The Silk Road carried ideas as well as goods. Buddhism started in India and traveled into China along trading routes. A Chinese monk named Xuanzang was so curious about Buddhism that he walked all the way to India and back — more than 25,000 km — to bring home Buddhist books!</p>
+    </div>
+  </div>
+
+  <div class="story-row">
+    <div class="story-icon">
+      <svg width="56" height="56" viewBox="0 0 48 48">
+        <rect x="4" y="20" width="40" height="22" fill="#85B7EB"/>
+        <rect x="4" y="16" width="40" height="6" fill="#378ADD"/>
+        <polygon points="4,16 24,6 44,16" fill="#185FA5"/>
+        <rect x="16" y="24" width="8" height="10" rx="1" fill="#0C447C"/>
+        <rect x="28" y="24" width="8" height="16" rx="1" fill="#FAEEDA"/>
+        <rect x="8" y="26" width="5" height="5" fill="#FAEEDA"/>
+        <rect x="35" y="26" width="5" height="5" fill="#FAEEDA"/>
+        <rect x="8" y="33" width="5" height="5" fill="#FAEEDA"/>
+        <rect x="35" y="33" width="5" height="5" fill="#FAEEDA"/>
+      </svg>
+    </div>
+    <div class="story-text">
+      <h3>Caravanserais: ancient rest stops!</h3>
+      <p>Imagine walking for weeks in the desert — you'd need somewhere to sleep! Special inns called caravanserais were built along the whole Silk Road. Travelers could rest, eat, and let their camels drink water — for free! They were like ancient hotels for traders.</p>
+    </div>
+  </div>
+</div>
+
+<!-- VOCAB -->
+<div id="sec-vocab" class="section">
+  <div class="pg-title">Expert Vocabulary</div>
+  <p class="pg-sub">These are the important words from your reading. See if you can use each one in a sentence!</p>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="vocab-word">Silk Road</div><div class="vocab-def">A network (like a web!) of trade paths that connected China to Europe, Africa, and other parts of Asia. It was used for over 1,500 years.</div></div>
+    <div class="vocab-card"><div class="vocab-word">Merchant</div><div class="vocab-def">A person who buys and sells goods to make money. Merchants traveled the Silk Road carrying silk, spices, and other valuable things.</div></div>
+    <div class="vocab-card"><div class="vocab-word">Buddhism</div><div class="vocab-def">A religion that started in India and spread into China along the Silk Road. Today, Buddhism is one of the world's biggest religions.</div></div>
+    <div class="vocab-card"><div class="vocab-word">Han Dynasty</div><div class="vocab-def">A powerful group of rulers that ran China after the Qin Dynasty. The Han Dynasty helped create the Silk Road by sending explorers west.</div></div>
+    <div class="vocab-card"><div class="vocab-word">Tang Dynasty</div><div class="vocab-def">A later dynasty that kept the Silk Road safe and busy. Their capital Chang'an became one of the most international cities in the world.</div></div>
+    <div class="vocab-card"><div class="vocab-word">Republic</div><div class="vocab-def">A kind of government where a group of leaders runs the country together, instead of one emperor having all the power. China became a Republic in the early 1900s.</div></div>
+    <div class="vocab-card"><div class="vocab-word">Caravan</div><div class="vocab-def">A group of merchants and camels traveling together across the desert for safety. Caravans could have hundreds of camels!</div></div>
+    <div class="vocab-card"><div class="vocab-word">Cultural exchange</div><div class="vocab-def">When people from different places share their ideas, beliefs, food, music, and inventions with each other. The Silk Road was one of history's greatest cultural exchanges.</div></div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="sec-quiz" class="section">
+  <div class="pg-title">Quiz Time!</div>
+  <p class="pg-sub">Let's see what you learned! Read each question and pick the best answer.</p>
+  <div style="max-width:560px;">
+    <div class="qscore" id="qscore">Question 1 of 6</div>
+    <div id="qbox"></div>
+  </div>
+</div>
+</div>
+
+<script>
+const CITIES={
+  xian:{name:"Chang'an — The Starting Point!",desc:"Chang'an (say: Chang-AHN) was where the Silk Road began in China. It was one of the biggest cities in the world! Merchants would pack up their camels here and start the long journey west. The Tang Dynasty made it the most international city on Earth — people came from Persia, Arabia, Japan, and Korea to live and trade there. Today it's called Xi'an."},
+  dunhuang:{name:"Dunhuang — Gateway to the West!",desc:"Dunhuang was the last big Chinese city before travelers had to cross the scary Taklamakan Desert. Travelers rested here, stocked up on food and water, then headed west. Nearby are the Mogao Caves — giant cliff-side rooms filled with thousands of beautiful Buddhist paintings made over 1,000 years. It's like an ancient art museum in a rock!"},
+  kashgar:{name:"Kashgar — The Crossroads!",desc:"Kashgar was where the northern and southern paths around the desert met again. Merchants from China, India, Persia, and Rome all gathered here. Its huge outdoor market has been open for over 2,000 years! Traders swapped goods and shared stories from far-off lands around campfires."},
+  samarkand:{name:"Samarkand — Jewel of the Road!",desc:"Samarkand was one of the most beautiful and important cities on the Silk Road. Merchants from China, India, Persia, and Rome all passed through. The city became famous for making the best paper in the world — they learned how from Chinese papermakers. Their paper helped spread books and ideas across the world."},
+  rome:{name:"Rome — The Western End!",desc:"Far away in Europe, Rome was where Chinese silk finally arrived after traveling thousands of miles. Romans LOVED silk — it was so soft and shiny! Rich Romans paid huge amounts of gold for it. They had no idea it came from tiny worms. Some Romans thought silk grew on trees like cotton!"}
+};
+
+const GOODS=[
+  {name:"Silk",tag:"From China",type:"from",svg:`<svg width="52" height="52" viewBox="0 0 48 48"><rect x="4" y="16" width="40" height="22" fill="#D4A0C0"/><rect x="4" y="12" width="40" height="6" fill="#C070A0"/><rect x="6" y="14" width="4" height="26" fill="#A05080"/><rect x="38" y="14" width="4" height="26" fill="#A05080"/><rect x="8" y="26" width="32" height="2" fill="#A05080"/><rect x="22" y="14" width="4" height="26" fill="#A05080"/><rect x="10" y="18" width="10" height="6" fill="#FAEEDA" opacity="0.6"/><rect x="28" y="18" width="10" height="6" fill="#FAEEDA" opacity="0.6"/></svg>`,desc:"Silk is a smooth, shiny fabric made from threads spun by silkworms. China kept this secret for 3,000 years! Silk was so valuable that it was sometimes used as money. The whole trading network was named after it."},
+  {name:"Paper",tag:"From China",type:"from",svg:`<svg width="52" height="52" viewBox="0 0 48 48"><rect x="10" y="8" width="30" height="36" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="1.5"/><rect x="8" y="6" width="30" height="36" fill="#fff" stroke="#B4B2A9" stroke-width="1.5"/><rect x="13" y="14" width="20" height="2" fill="#888780"/><rect x="13" y="19" width="20" height="2" fill="#888780"/><rect x="13" y="24" width="20" height="2" fill="#888780"/><rect x="13" y="29" width="14" height="2" fill="#888780"/></svg>`,desc:"China invented paper about 2,000 years ago. Before paper, people wrote on heavy clay tablets or animal skins. Paper was light and easy to carry. When papermaking spread west along the Silk Road, it helped more people learn to read and write."},
+  {name:"Porcelain",tag:"From China",type:"from",svg:`<svg width="52" height="52" viewBox="0 0 48 48"><rect x="14" y="36" width="20" height="5" fill="#5DCAA5"/><rect x="10" y="30" width="28" height="8" fill="#9FE1CB"/><rect x="12" y="18" width="24" height="14" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="1.5"/><rect x="16" y="12" width="16" height="8" fill="#9FE1CB"/><rect x="18" y="8" width="12" height="6" fill="#5DCAA5"/><rect x="14" y="22" width="6" height="4" fill="#378ADD" opacity="0.7"/><rect x="22" y="20" width="4" height="6" fill="#378ADD" opacity="0.7"/><rect x="28" y="22" width="6" height="4" fill="#378ADD" opacity="0.7"/></svg>`,desc:"Chinese porcelain (fancy pottery) was so smooth and beautiful that people in other countries couldn't figure out how it was made! Blue-and-white porcelain became the most copied design in the world. That's why fine dishes are still called 'china' today."},
+  {name:"Spices",tag:"To China",type:"to",svg:`<svg width="52" height="52" viewBox="0 0 48 48"><rect x="16" y="30" width="16" height="14" fill="#EF9F27"/><rect x="18" y="24" width="12" height="8" fill="#BA7517"/><rect x="8" y="18" width="8" height="8" fill="#E24B4A"/><rect x="22" y="14" width="8" height="8" fill="#D85A30"/><rect x="34" y="16" width="8" height="8" fill="#E24B4A"/><rect x="10" y="22" width="4" height="4" fill="#A32D2D"/><rect x="36" y="20" width="4" height="4" fill="#A32D2D"/></svg>`,desc:"Spices like pepper, cinnamon, and ginger came into China from India and Southeast Asia. Spices made food taste amazing and could even help keep food from spoiling. They were so valuable that a bag of pepper could be used like money!"},
+  {name:"Horses",tag:"To China",type:"to",svg:`<svg width="52" height="52" viewBox="0 0 48 48"><rect x="6" y="20" width="30" height="16" fill="#C8A870"/><rect x="4" y="24" width="12" height="12" fill="#BA9860"/><rect x="2" y="18" width="12" height="12" fill="#C8A870"/><rect x="4" y="14" width="10" height="8" fill="#C8A870"/><rect x="6" y="10" width="4" height="6" fill="#A88848"/><rect x="10" y="10" width="4" height="6" fill="#A88848"/><rect x="6" y="34" width="5" height="10" fill="#A88848"/><rect x="13" y="36" width="5" height="8" fill="#A88848"/><rect x="24" y="34" width="5" height="10" fill="#A88848"/><rect x="31" y="34" width="5" height="10" fill="#A88848"/><rect x="34" y="20" width="8" height="8" fill="#C8A870"/></svg>`,desc:"Chinese emperors desperately wanted big, strong horses from Central Asia for their armies. Chinese horses were smaller. They traded rolls of silk for horses — one roll of silk for one horse! These 'heavenly horses' helped China build a powerful military."},
+  {name:"Gold &amp; gems",tag:"To China",type:"to",svg:`<svg width="52" height="52" viewBox="0 0 48 48"><rect x="16" y="16" width="16" height="16" fill="#EF9F27"/><rect x="12" y="20" width="24" height="8" fill="#EF9F27"/><rect x="20" y="12" width="8" height="24" fill="#EF9F27"/><rect x="22" y="10" width="4" height="4" fill="#FAC775"/><rect x="22" y="34" width="4" height="4" fill="#FAC775"/><rect x="10" y="22" width="4" height="4" fill="#FAC775"/><rect x="34" y="22" width="4" height="4" fill="#FAC775"/><rect x="20" y="20" width="8" height="8" fill="#FAC775"/><rect x="16" y="14" width="4" height="4" fill="#E24B4A"/><rect x="28" y="14" width="4" height="4" fill="#378ADD"/></svg>`,desc:"Merchants from Rome and Persia brought gold, silver, and precious gems east to China. Rubies, emeralds, and lapis lazuli (a deep blue stone) traveled thousands of miles to decorate Chinese jewelry, art, and palaces. China sent silk; the West sent gold."},
+  {name:"Buddhism",tag:"Idea",type:"idea",svg:`<svg width="52" height="52" viewBox="0 0 48 48"><rect x="18" y="30" width="12" height="14" fill="#EF9F27"/><rect x="14" y="26" width="20" height="6" fill="#BA7517"/><rect x="16" y="18" width="16" height="10" fill="#EF9F27"/><rect x="18" y="14" width="12" height="6" fill="#BA7517"/><rect x="20" y="10" width="8" height="6" fill="#EF9F27"/><rect x="22" y="6" width="4" height="6" fill="#854F0B"/><rect x="12" y="30" width="6" height="14" fill="#BA7517"/><rect x="30" y="30" width="6" height="14" fill="#BA7517"/><rect x="8" y="42" width="32" height="4" fill="#854F0B"/><rect x="20" y="20" width="8" height="4" fill="#7F77DD" opacity="0.8"/></svg>`,desc:"Buddhism is a religion that started in India. It traveled into China along the Silk Road, carried by monks and merchants sharing stories about their beliefs. Buddhism became one of China's most important religions. The monk Xuanzang walked 25,000 km to India and back to collect Buddhist books for China!"},
+  {name:"New foods",tag:"Idea",type:"idea",svg:`<svg width="52" height="52" viewBox="0 0 48 48"><rect x="10" y="28" width="28" height="14" fill="#7BAF60"/><rect x="8" y="30" width="32" height="6" fill="#639922"/><rect x="14" y="16" width="8" height="14" fill="#D85A30"/><rect x="26" y="18" width="8" height="12" fill="#E24B4A"/><rect x="12" y="12" width="12" height="6" fill="#BA7517"/><rect x="24" y="14" width="10" height="6" fill="#993C1D"/><rect x="18" y="8" width="6" height="6" fill="#639922"/><rect x="28" y="10" width="6" height="6" fill="#639922"/></svg>`,desc:"New foods and plants came into China along the Silk Road! Grapes, cotton, pomegranates, sesame, and saffron all arrived from Persia and Central Asia. These crops completely changed what Chinese people grew on farms and what they ate for dinner. Imagine Chinese cooking without them!"},
+  {name:"Music &amp; art",tag:"Idea",type:"idea",svg:`<svg width="52" height="52" viewBox="0 0 48 48"><rect x="8" y="32" width="32" height="12" fill="#7F77DD"/><rect x="10" y="28" width="4" height="4" fill="#534AB7"/><rect x="17" y="22" width="4" height="10" fill="#534AB7"/><rect x="24" y="18" width="4" height="14" fill="#534AB7"/><rect x="31" y="24" width="4" height="8" fill="#534AB7"/><rect x="38" y="28" width="4" height="4" fill="#534AB7"/><rect x="12" y="14" width="24" height="6" fill="#AFA9EC"/><rect x="10" y="10" width="28" height="6" fill="#7F77DD"/></svg>`,desc:"Along the Silk Road, people shared music, dance, and art styles. Central Asian music and instruments like the pipa (a type of lute) came into China. New musical styles mixed together to create something brand new. Art styles also mixed — you can see Persian patterns in Chinese art from the Tang Dynasty!"},
+];
+
+const QUIZ=[
+  {q:"What was the Silk Road?",opts:["A road paved with silk fabric","A network of trade paths connecting China to Europe, Africa, and Asia","A road only inside China","A road just for silk merchants"],ans:1,fb:"The Silk Road was a huge network of paths — not just one road! It connected China to India, Africa, and Europe for over 1,500 years."},
+  {q:"The Silk Road helped China share more than just goods. What ELSE traveled along it?",opts:["Only food","Only animals","Ideas, religions, and inventions","Just gold and silver"],ans:2,fb:"The Silk Road was famous for sharing ideas! Buddhism, new foods, music, and inventions like paper all traveled the routes along with silk and spices."},
+  {q:"Which religion traveled from India into China along the Silk Road?",opts:["Christianity","Islam","Hinduism","Buddhism"],ans:3,fb:"Buddhism! It started in India and monks and merchants brought it into China along trading routes. The brave monk Xuanzang even walked over 25,000 km to India to bring back Buddhist books!"},
+  {q:"What kind of government did China switch to in the early 1900s?",opts:["A kingdom","A dictatorship","A republic","An empire"],ans:2,fb:"After thousands of years of emperors, China became a Republic — where a group of leaders runs the country together instead of one emperor. New ideas from other countries helped inspire this big change."},
+  {q:"What Chinese invention spread west along the Silk Road and helped people read and write?",opts:["The compass","Paper","Silk","Fireworks"],ans:1,fb:"Paper! China invented it about 2,000 years ago. Before paper, people used heavy clay tablets or animal skins. When papermaking spread west, it changed the world by making books and writing much easier."},
+  {q:"How did the Silk Road change China?",opts:["It made China smaller and more isolated","It brought new ideas, religions, and goods that changed Chinese culture forever","It only helped merchants get rich","It had no effect on China"],ans:1,fb:"The Silk Road changed China forever! New religions like Buddhism, new foods, new music, and new ideas about government all came into China because of the Silk Road. Trading ideas is just as powerful as trading goods!"},
+];
+
+let qIdx=0,score=0;
+
+function show(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));
+  document.getElementById('sec-'+id).classList.add('visible');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function showCity(id){
+  const c=CITIES[id];
+  document.getElementById('cpn').textContent=c.name;
+  document.getElementById('cpd').textContent=c.desc;
+  document.getElementById('city-pop').classList.add('show');
+}
+
+const tg=document.getElementById('trade-grid');
+GOODS.forEach((g,i)=>{
+  const el=document.createElement('div');
+  el.className='card2';
+  const tc=g.type==='from'?'tag-from':g.type==='to'?'tag-to':'tag-idea';
+  el.innerHTML=`${g.svg}<div class="card2-name">${g.name}</div><span class="card2-tag ${tc}">${g.tag}</span>`;
+  el.onclick=()=>{
+    document.querySelectorAll('.card2').forEach(c=>c.classList.remove('sel'));
+    el.classList.add('sel');
+    document.getElementById('td-n').textContent=g.name;
+    document.getElementById('td-d').textContent=g.desc;
+    document.getElementById('trade-detail').classList.add('show');
+  };
+  tg.appendChild(el);
+});
+
+function renderQ(){
+  if(qIdx>=QUIZ.length){
+    document.getElementById('qscore').textContent='Finished!';
+    document.getElementById('qbox').innerHTML=`<div style="text-align:center;padding:2.5rem 0;">
+      <div style="font-size:40px;font-weight:500;color:var(--color-text-primary);margin-bottom:10px;">${score} / ${QUIZ.length}</div>
+      <div style="font-size:16px;color:var(--color-text-secondary);margin-bottom:20px;">${score===6?'Perfect score! You are a Silk Road expert!':score>=4?'Great job! You really learned the Silk Road!':score>=2?'Good try! Keep exploring to learn more.':'Keep going — the Silk Road has more secrets!'}</div>
+      <button class="qnext" style="display:inline-block;" onclick="qIdx=0;score=0;renderQ()">Try again!</button></div>`;
+    return;
+  }
+  const q=QUIZ[qIdx];
+  document.getElementById('qscore').textContent=`Question ${qIdx+1} of ${QUIZ.length} · Score: ${score}`;
+  document.getElementById('qbox').innerHTML=`
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-opts">${q.opts.map((o,i)=>`<button class="qopt" onclick="ansQ(${i},this)">${o}</button>`).join('')}</div>
+    <div class="qfb" id="qfb">${q.fb}</div>
+    <button class="qnext" id="qnxt" onclick="qIdx++;renderQ()">${qIdx<QUIZ.length-1?'Next question →':'See my score!'}</button>`;
+}
+function ansQ(i,btn){
+  if(document.getElementById('qnxt').style.display==='inline-block')return;
+  document.querySelectorAll('.qopt').forEach(b=>b.disabled=true);
+  if(i===QUIZ[qIdx].ans){btn.classList.add('ok');score++;}
+  else{btn.classList.add('no');document.querySelectorAll('.qopt')[QUIZ[qIdx].ans].classList.add('ok');}
+  document.getElementById('qfb').style.display='block';
+  document.getElementById('qnxt').style.display='inline-block';
+}
+renderQ();
+</script>
