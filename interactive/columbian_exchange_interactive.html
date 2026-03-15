@@ -1,0 +1,500 @@
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  #root{font-family:var(--font-sans);padding:1.5rem 1.25rem 2rem;}
+
+  .pg-title{font-size:24px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px;}
+  .pg-sub{font-size:15px;color:var(--color-text-secondary);margin-bottom:20px;line-height:1.7;max-width:660px;}
+
+  .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;align-items:center;}
+  .filter-btn{font-size:13px;padding:7px 16px;border-radius:6px;border:2px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer;font-weight:500;transition:all 0.12s;}
+  .filter-btn:hover:not(.active){background:var(--color-background-secondary);}
+  .filter-btn.active-all{background:var(--color-background-secondary);border-color:var(--color-border-primary);color:var(--color-text-primary);}
+  .filter-btn.active-new{background:#E1F5EE;border-color:#0F6E56;color:#085041;}
+  .filter-btn.active-old{background:#E6F1FB;border-color:#185FA5;color:#0C447C;}
+  .filter-btn.active-impact{background:#FCEBEB;border-color:#A32D2D;color:#791F1F;}
+
+  .legend-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+  .leg-pill{font-size:13px;padding:4px 12px;border-radius:4px;font-weight:500;}
+
+  .cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;}
+  .xcard{background:var(--color-background-primary);border:1px solid rgb(191, 191, 191);border-radius:8px;padding:16px 12px;cursor:pointer;transition:border-color 0.12s,background 0.12s;text-align:center;}
+  .xcard:hover{border-color:var(--color-border-secondary);background:var(--color-background-secondary);}
+  .xcard.sel-new{border-color:#0F6E56;background:#E1F5EE;}
+  .xcard.sel-old{border-color:#185FA5;background:#E6F1FB;}
+  .xcard.sel-impact{border-color:#A32D2D;background:#FCEBEB;}
+  .xcard.hidden{display:none;}
+  .card-name{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-top:10px;margin-bottom:5px;}
+  .card-tag{font-size:12px;padding:3px 10px;border-radius:4px;display:inline-block;font-weight:500;}
+  .tag-new{background:#E1F5EE;color:#085041;}
+  .tag-old{background:#E6F1FB;color:#0C447C;}
+  .tag-impact{background:#FCEBEB;color:#791F1F;}
+
+  .detail-box{margin-top:16px;border-radius:8px;padding:18px 20px;display:none;border:2px solid transparent;}
+  .detail-box.show{display:block;}
+  .detail-box.db-new{background:#E1F5EE;border-color:#0F6E56;}
+  .detail-box.db-old{background:#E6F1FB;border-color:#185FA5;}
+  .detail-box.db-impact{background:#FCEBEB;border-color:#A32D2D;}
+  .detail-box h3{font-size:18px;font-weight:500;margin-bottom:8px;}
+  .detail-box.db-new h3{color:#085041;}
+  .detail-box.db-old h3{color:#0C447C;}
+  .detail-box.db-impact h3{color:#791F1F;}
+  .detail-box p{font-size:15px;line-height:1.75;}
+  .detail-box.db-new p{color:#0F6E56;}
+  .detail-box.db-old p{color:#185FA5;}
+  .detail-box.db-impact p{color:#A32D2D;}
+
+  .map-wrap{border:2px solid var(--color-border-tertiary);border-radius:8px;overflow:hidden;margin-bottom:20px;display:none;}
+
+  .think-box{margin-top:22px;background:var(--color-background-secondary);border-radius:8px;padding:16px 20px;}
+  .think-label{font-size:15px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px;}
+  .think-box p{font-size:14px;color:var(--color-text-secondary);line-height:1.7;}
+
+  .count-bar{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+  .count-chip{font-size:13px;padding:5px 14px;border-radius:4px;font-weight:500;}
+</style>
+
+<div id="root">
+
+  <div class="pg-title">The Columbian Exchange</div>
+  <p class="pg-sub">In 1492, Christopher Columbus sailed from Europe to the Americas. This started an enormous exchange of plants, animals, diseases, and ideas between the "Old World" (Europe, Africa, Asia) and the "New World" (the Americas). It changed everything — on both sides of the ocean. Tap any card to learn more.</p>
+
+  <!-- Map -->
+  <div class="map-wrap">
+    <svg width="100%" viewBox="0 0 680 260" style="display:block;">
+      <!-- Ocean -->
+      <rect width="680" height="260" fill="#A8CFEA"/>
+      <!-- Wave texture lines -->
+      <path d="M0 80 Q40 75 80 80 Q120 85 160 80" fill="none" stroke="#89B8D8" stroke-width="1" opacity="0.5"/>
+      <path d="M200 120 Q240 115 280 120 Q320 125 360 120" fill="none" stroke="#89B8D8" stroke-width="1" opacity="0.5"/>
+      <path d="M380 90 Q420 85 460 90 Q500 95 540 90" fill="none" stroke="#89B8D8" stroke-width="1" opacity="0.5"/>
+      <path d="M100 150 Q140 145 180 150 Q220 155 260 150" fill="none" stroke="#89B8D8" stroke-width="1" opacity="0.5"/>
+      <path d="M420 160 Q460 155 500 160 Q540 165 580 160" fill="none" stroke="#89B8D8" stroke-width="1" opacity="0.5"/>
+
+      <!-- Americas (left) - geometric pixel style -->
+      <!-- North America -->
+      <rect x="20" y="30" width="160" height="140" fill="#7BAF60"/>
+      <rect x="20" y="30" width="160" height="10" fill="#639922"/>
+      <rect x="20" y="30" width="10" height="140" fill="#639922"/>
+      <rect x="50" y="20" width="100" height="12" fill="#7BAF60"/>
+      <rect x="60" y="10" width="80" height="12" fill="#639922"/>
+      <rect x="160" y="70" width="20" height="60" fill="#7BAF60"/>
+      <!-- South America -->
+      <rect x="60" y="168" width="100" height="80" fill="#7BAF60"/>
+      <rect x="60" y="168" width="100" height="8" fill="#639922"/>
+      <rect x="80" y="245" width="60" height="12" fill="#639922"/>
+      <!-- Mountain range pixel -->
+      <rect x="65" y="185" width="8" height="16" fill="#639922"/>
+      <rect x="73" y="180" width="8" height="21" fill="#639922"/>
+      <rect x="81" y="186" width="8" height="15" fill="#639922"/>
+      <!-- Amazon green patch -->
+      <rect x="90" y="190" width="50" height="30" fill="#5DCAA5" opacity="0.5"/>
+
+      <!-- Europe/Africa (right) - geometric pixel style -->
+      <!-- Europe -->
+      <rect x="490" y="20" width="130" height="100" fill="#D4C8A8"/>
+      <rect x="490" y="20" width="130" height="8" fill="#B4A888"/>
+      <rect x="490" y="20" width="8" height="100" fill="#B4A888"/>
+      <rect x="500" y="10" width="80" height="12" fill="#D4C8A8"/>
+      <rect x="610" y="50" width="20" height="40" fill="#D4C8A8"/>
+      <!-- Alps pixel mountains -->
+      <rect x="520" y="80" width="8" height="14" fill="#B4B2A9"/>
+      <rect x="528" y="75" width="8" height="19" fill="#B4B2A9"/>
+      <rect x="536" y="80" width="8" height="14" fill="#B4B2A9"/>
+      <rect x="528" y="75" width="8" height="5" fill="#fff" opacity="0.8"/>
+      <!-- Africa -->
+      <rect x="500" y="118" width="120" height="130" fill="#C8A870"/>
+      <rect x="500" y="118" width="120" height="8" fill="#A88848"/>
+      <rect x="500" y="118" width="8" height="130" fill="#A88848"/>
+      <rect x="510" y="245" width="80" height="8" fill="#A88848"/>
+      <!-- Sahara texture -->
+      <rect x="510" y="128" width="6" height="6" fill="#A88848" opacity="0.4"/>
+      <rect x="530" y="135" width="6" height="6" fill="#A88848" opacity="0.4"/>
+      <rect x="550" y="128" width="6" height="6" fill="#A88848" opacity="0.4"/>
+      <rect x="570" y="138" width="6" height="6" fill="#A88848" opacity="0.4"/>
+      <!-- Sub-Saharan green -->
+      <rect x="510" y="180" width="100" height="58" fill="#7BAF60" opacity="0.5"/>
+
+      <!-- Labels -->
+      <rect x="22" y="55" width="120" height="20" rx="2" fill="rgba(0,0,0,0.18)"/>
+      <text x="82" y="68" text-anchor="middle" style="font-size:11px;fill:#fff;font-family:var(--font-sans);font-weight:500;">The Americas</text>
+      <rect x="22" y="76" width="120" height="16" rx="2" fill="rgba(0,0,0,0.12)"/>
+      <text x="82" y="87" text-anchor="middle" style="font-size:10px;fill:#fff;font-family:var(--font-sans);">"The New World"</text>
+
+      <rect x="498" y="42" width="118" height="20" rx="2" fill="rgba(0,0,0,0.18)"/>
+      <text x="557" y="55" text-anchor="middle" style="font-size:11px;fill:#fff;font-family:var(--font-sans);font-weight:500;">Europe &amp; Africa</text>
+      <rect x="498" y="63" width="118" height="16" rx="2" fill="rgba(0,0,0,0.12)"/>
+      <text x="557" y="74" text-anchor="middle" style="font-size:10px;fill:#fff;font-family:var(--font-sans);">"The Old World"</text>
+
+      <!-- Ships on ocean -->
+      <!-- Ship 1 going right (Old to New) -->
+      <g transform="translate(290,85)">
+        <rect x="0" y="12" width="40" height="10" fill="#D4C8A8"/>
+        <rect x="5" y="8" width="4" height="16" fill="#888780"/>
+        <rect x="9" y="8" width="18" height="12" fill="#fff" opacity="0.9"/>
+        <rect x="27" y="9" width="4" height="14" fill="#888780"/>
+        <rect x="31" y="9" width="10" height="10" fill="#fff" opacity="0.7"/>
+        <rect x="-2" y="20" width="6" height="4" fill="#B4A888"/>
+        <rect x="36" y="20" width="6" height="4" fill="#B4A888"/>
+      </g>
+      <!-- Ship 2 going left (New to Old) -->
+      <g transform="translate(330,130) scale(-1,1)">
+        <rect x="0" y="12" width="36" height="9" fill="#C8A870"/>
+        <rect x="5" y="8" width="4" height="14" fill="#888780"/>
+        <rect x="9" y="8" width="16" height="10" fill="#EF9F27" opacity="0.85"/>
+        <rect x="25" y="9" width="4" height="12" fill="#888780"/>
+        <rect x="29" y="9" width="8" height="9" fill="#EF9F27" opacity="0.7"/>
+        <rect x="-2" y="19" width="5" height="4" fill="#A88848"/>
+        <rect x="33" y="19" width="5" height="4" fill="#A88848"/>
+      </g>
+
+      <!-- Arrow labels on ocean -->
+      <path d="M200 100 Q280 90 310 95" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7" marker-end="none"/>
+      <text x="246" y="88" text-anchor="middle" style="font-size:9px;fill:#fff;font-family:var(--font-sans);font-weight:500;opacity:0.9;">horses, wheat →</text>
+      <path d="M460 140 Q400 148 370 145" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7"/>
+      <text x="415" y="158" text-anchor="middle" style="font-size:9px;fill:#fff;font-family:var(--font-sans);font-weight:500;opacity:0.9;">← corn, potatoes</text>
+
+      <!-- Year badge -->
+      <rect x="298" y="220" width="84" height="26" rx="4" fill="#412402"/>
+      <text x="340" y="237" text-anchor="middle" style="font-size:12px;fill:#FAEEDA;font-family:var(--font-sans);font-weight:500;">1492 onward</text>
+    </svg>
+  </div>
+
+  <!-- Legend + filter -->
+  <div class="legend-row">
+    <span class="leg-pill" style="background:#E1F5EE;color:#085041;">Green = From the Americas</span>
+    <span class="leg-pill" style="background:#E6F1FB;color:#0C447C;">Blue = From Europe &amp; Africa</span>
+    <span class="leg-pill" style="background:#FCEBEB;color:#791F1F;">Red = Devastating impacts</span>
+  </div>
+
+  <div class="filter-bar">
+    <span style="font-size:13px;color:var(--color-text-tertiary);padding-right:4px;">Filter:</span>
+    <button class="filter-btn active-all" onclick="filterCards('all',this)">Show all</button>
+    <button class="filter-btn" onclick="filterCards('new',this)">From the Americas</button>
+    <button class="filter-btn" onclick="filterCards('old',this)">From Europe &amp; Africa</button>
+    <button class="filter-btn" onclick="filterCards('impact',this)">Devastating impacts</button>
+  </div>
+
+  <div class="count-bar" id="count-bar"></div>
+  <div class="cards-grid" id="cards-grid"></div>
+  <div class="detail-box" id="detail-box">
+    <h3 id="db-title"></h3>
+    <p id="db-desc"></p>
+  </div>
+
+  <div class="think-box">
+    <div class="think-label">Think about it:</div>
+    <p>The Columbian Exchange changed what people all over the world eat, how they farm, and even how many people survived. If you could un-do one part of the Columbian Exchange, what would it be — and why? <button onclick="sendPrompt('I am a 5th grade student learning about the Columbian Exchange. Help me think through: if I could un-do one part of the Columbian Exchange, what would have the biggest impact on history? ↗')" style="font-size:13px;color:var(--color-text-info);background:none;border:none;cursor:pointer;padding:0 4px;">Ask Claude ↗</button></p>
+  </div>
+</div>
+
+<script>
+const ITEMS = [
+  {
+    id:'corn', name:'Corn (maize)', type:'new',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="20" y="6" width="8" height="6" fill="#639922"/>
+      <rect x="18" y="10" width="12" height="4" fill="#639922"/>
+      <rect x="16" y="36" width="16" height="6" fill="#639922"/>
+      <rect x="14" y="30" width="20" height="8" fill="#7BAF60"/>
+      <rect x="16" y="14" width="16" height="22" fill="#EF9F27"/>
+      <rect x="18" y="12" width="12" height="4" fill="#EF9F27"/>
+      <rect x="18" y="16" width="3" height="3" fill="#BA7517"/>
+      <rect x="23" y="16" width="3" height="3" fill="#BA7517"/>
+      <rect x="28" y="16" width="3" height="3" fill="#BA7517"/>
+      <rect x="18" y="21" width="3" height="3" fill="#BA7517"/>
+      <rect x="23" y="21" width="3" height="3" fill="#BA7517"/>
+      <rect x="28" y="21" width="3" height="3" fill="#BA7517"/>
+      <rect x="18" y="26" width="3" height="3" fill="#BA7517"/>
+      <rect x="23" y="26" width="3" height="3" fill="#BA7517"/>
+      <rect x="28" y="26" width="3" height="3" fill="#BA7517"/>
+      <rect x="18" y="31" width="3" height="3" fill="#BA7517"/>
+      <rect x="23" y="31" width="3" height="3" fill="#BA7517"/>
+      <rect x="28" y="31" width="3" height="3" fill="#BA7517"/>
+    </svg>`,
+    desc:"Corn (maize) was one of the most important crops grown by Native Americans for thousands of years. When Europeans brought it back to Europe and Africa, it spread rapidly because it grew in many climates and produced huge amounts of food. Today corn is the most grown crop on Earth — used in food, animal feed, and even fuel!"
+  },
+  {
+    id:'potato', name:'Potato', type:'new',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="12" y="18" width="24" height="16" fill="#C8A870"/>
+      <rect x="10" y="20" width="28" height="12" fill="#C8A870"/>
+      <rect x="14" y="16" width="20" height="4" fill="#BA9860"/>
+      <rect x="16" y="32" width="16" height="4" fill="#BA9860"/>
+      <rect x="12" y="14" width="4" height="4" fill="#639922"/>
+      <rect x="8" y="10" width="4" height="6" fill="#639922"/>
+      <rect x="24" y="12" width="4" height="4" fill="#639922"/>
+      <rect x="28" y="8" width="4" height="6" fill="#639922"/>
+      <rect x="18" y="22" width="3" height="3" fill="#A88848"/>
+      <rect x="26" y="25" width="3" height="3" fill="#A88848"/>
+      <rect x="22" y="20" width="2" height="2" fill="#A88848"/>
+    </svg>`,
+    desc:"The potato came from the Andes mountains in South America, where Native Americans had grown it for 8,000 years. When it reached Europe, it transformed farming — potatoes grow in cold climates and produce more calories per acre than wheat. Ireland became so dependent on potatoes that when a disease wiped out the crop in the 1840s, over a million people starved."
+  },
+  {
+    id:'tomato', name:'Tomato', type:'new',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="14" y="18" width="20" height="18" fill="#E24B4A"/>
+      <rect x="12" y="20" width="24" height="14" fill="#E24B4A"/>
+      <rect x="16" y="16" width="16" height="4" fill="#D85A30"/>
+      <rect x="18" y="34" width="12" height="4" fill="#D85A30"/>
+      <rect x="20" y="12" width="8" height="6" fill="#639922"/>
+      <rect x="16" y="8" width="4" height="6" fill="#639922"/>
+      <rect x="28" y="8" width="4" height="6" fill="#639922"/>
+      <rect x="22" y="6" width="4" height="4" fill="#7BAF60"/>
+      <rect x="22" y="22" width="4" height="8" fill="#C04030" opacity="0.5"/>
+    </svg>`,
+    desc:"Hard to believe, but before 1492 there were no tomatoes in Italian food, no tomato sauce on pizza! Tomatoes came from Mexico and Central America. Europeans were actually afraid of them at first — they thought they might be poisonous. It took about 200 years before tomatoes became popular in European cooking. Now they're used in cuisines all over the world."
+  },
+  {
+    id:'cacao', name:'Cacao (chocolate)', type:'new',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="14" y="16" width="20" height="22" fill="#993C1D"/>
+      <rect x="12" y="20" width="24" height="14" fill="#993C1D"/>
+      <rect x="16" y="14" width="16" height="4" fill="#712B13"/>
+      <rect x="18" y="36" width="12" height="4" fill="#712B13"/>
+      <rect x="16" y="20" width="16" height="2" fill="#712B13"/>
+      <rect x="16" y="24" width="16" height="2" fill="#712B13"/>
+      <rect x="16" y="28" width="16" height="2" fill="#712B13"/>
+      <rect x="20" y="10" width="8" height="6" fill="#639922"/>
+      <rect x="22" y="6" width="4" height="6" fill="#7BAF60"/>
+    </svg>`,
+    desc:"The Aztec and Maya civilizations in Mexico had been making chocolate drinks from cacao beans for thousands of years. They considered it sacred and sometimes used cacao beans as money! When Europeans first tasted it, they found it bitter — so they added sugar. Chocolate became one of the most popular foods in Europe and eventually the whole world. No Columbian Exchange = no chocolate bars!"
+  },
+  {
+    id:'tobacco', name:'Tobacco', type:'new',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="20" y="8" width="8" height="28" fill="#7BAF60"/>
+      <rect x="16" y="14" width="16" height="10" fill="#7BAF60"/>
+      <rect x="14" y="20" width="20" height="10" fill="#5DCAA5" opacity="0.7"/>
+      <rect x="18" y="10" width="12" height="6" fill="#639922"/>
+      <rect x="12" y="28" width="24" height="6" fill="#639922"/>
+      <rect x="16" y="36" width="16" height="8" fill="#C8A870"/>
+      <rect x="18" y="34" width="12" height="4" fill="#BA9860"/>
+    </svg>`,
+    desc:"Native Americans had used tobacco in ceremonies for thousands of years. European explorers brought it back to Europe, and it spread rapidly around the world as people began smoking and chewing it. Tobacco became a hugely profitable crop — especially in Virginia — but we now know it causes serious diseases. It's one of the most complicated parts of the Columbian Exchange."
+  },
+  {
+    id:'turkey', name:'Turkey', type:'new',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="18" y="20" width="14" height="14" fill="#BA7517"/>
+      <rect x="16" y="22" width="18" height="10" fill="#BA7517"/>
+      <rect x="14" y="26" width="6" height="8" fill="#993C1D"/>
+      <rect x="8" y="24" width="8" height="6" fill="#993C1D"/>
+      <rect x="6" y="22" width="6" height="4" fill="#E24B4A"/>
+      <rect x="28" y="32" width="4" height="10" fill="#A88848"/>
+      <rect x="22" y="32" width="4" height="10" fill="#A88848"/>
+      <rect x="16" y="32" width="4" height="10" fill="#A88848"/>
+      <rect x="20" y="10" width="4" height="12" fill="#993C1D"/>
+      <rect x="18" y="8" width="8" height="4" fill="#639922"/>
+      <rect x="14" y="12" width="4" height="4" fill="#E24B4A"/>
+      <rect x="22" y="6" width="4" height="4" fill="#7BAF60"/>
+      <rect x="28" y="10" width="4" height="6" fill="#D85A30"/>
+    </svg>`,
+    desc:"Wild turkeys were native to North America and were domesticated by Native Americans centuries before Columbus arrived. European explorers brought them back to Europe, where they became popular food birds. Now turkeys are eaten all over the world, especially in the United States at Thanksgiving — a holiday that celebrates some of the first interactions between colonists and Native Americans."
+  },
+  {
+    id:'horse', name:'Horse', type:'old',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="8" y="20" width="28" height="16" fill="#C8A870"/>
+      <rect x="6" y="24" width="10" height="12" fill="#BA9860"/>
+      <rect x="4" y="18" width="10" height="12" fill="#C8A870"/>
+      <rect x="4" y="14" width="10" height="8" fill="#C8A870"/>
+      <rect x="6" y="10" width="4" height="6" fill="#A88848"/>
+      <rect x="10" y="10" width="4" height="6" fill="#A88848"/>
+      <rect x="6" y="34" width="5" height="10" fill="#A88848"/>
+      <rect x="14" y="35" width="5" height="9" fill="#A88848"/>
+      <rect x="24" y="34" width="5" height="10" fill="#A88848"/>
+      <rect x="31" y="34" width="5" height="10" fill="#A88848"/>
+      <rect x="34" y="20" width="8" height="8" fill="#C8A870"/>
+      <rect x="36" y="16" width="6" height="6" fill="#C8A870"/>
+    </svg>`,
+    desc:"There were no horses in the Americas when Columbus arrived — they had gone extinct there thousands of years earlier. Spanish conquistadors brought horses over, and this completely changed life for many Native American nations. The Plains peoples — like the Lakota and Comanche — became expert horse riders and built entire cultures around the horse. Horses transformed hunting, travel, and warfare across the continent."
+  },
+  {
+    id:'wheat', name:'Wheat &amp; rice', type:'old',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="22" y="6" width="4" height="32" fill="#BA7517"/>
+      <rect x="14" y="12" width="8" height="6" fill="#EF9F27"/>
+      <rect x="14" y="10" width="6" height="4" fill="#BA7517"/>
+      <rect x="26" y="12" width="8" height="6" fill="#EF9F27"/>
+      <rect x="28" y="10" width="6" height="4" fill="#BA7517"/>
+      <rect x="16" y="20" width="6" height="6" fill="#EF9F27"/>
+      <rect x="16" y="18" width="4" height="4" fill="#BA7517"/>
+      <rect x="26" y="20" width="6" height="6" fill="#EF9F27"/>
+      <rect x="28" y="18" width="4" height="4" fill="#BA7517"/>
+      <rect x="18" y="28" width="6" height="6" fill="#EF9F27"/>
+      <rect x="26" y="28" width="6" height="6" fill="#EF9F27"/>
+      <rect x="18" y="36" width="12" height="8" fill="#BA7517"/>
+    </svg>`,
+    desc:"Wheat was the main grain crop of Europe and the Middle East for thousands of years — it was used to make bread, the basic food of European life. When colonists came to the Americas, they brought wheat seeds and planted them everywhere. Rice came from Africa and Asia. Today, wheat and rice are two of the most important food crops in North and South America."
+  },
+  {
+    id:'cattle', name:'Cattle &amp; pigs', type:'old',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="10" y="20" width="26" height="16" fill="#D3D1C7"/>
+      <rect x="8" y="22" width="12" height="12" fill="#D3D1C7"/>
+      <rect x="6" y="20" width="10" height="10" fill="#B4B2A9"/>
+      <rect x="4" y="14" width="8" height="10" fill="#D3D1C7"/>
+      <rect x="6" y="10" width="4" height="6" fill="#B4B2A9"/>
+      <rect x="10" y="10" width="4" height="6" fill="#B4B2A9"/>
+      <rect x="10" y="34" width="5" height="10" fill="#B4B2A9"/>
+      <rect x="18" y="35" width="5" height="9" fill="#B4B2A9"/>
+      <rect x="26" y="34" width="5" height="10" fill="#B4B2A9"/>
+      <rect x="32" y="35" width="5" height="9" fill="#B4B2A9"/>
+      <rect x="34" y="20" width="10" height="6" fill="#D3D1C7"/>
+      <rect x="2" y="10" width="6" height="4" fill="#D3D1C7"/>
+      <rect x="8" y="6" width="4" height="6" fill="#B4B2A9"/>
+    </svg>`,
+    desc:"Before Europeans arrived, there were no cattle, pigs, sheep, or goats in the Americas. These animals transformed the landscape — cattle could be raised on grasslands, and pigs were brought everywhere because they ate almost anything and multiplied quickly. Beef and pork became important foods in the Americas. But the animals also spread new diseases to Native Americans who had no immunity to them."
+  },
+  {
+    id:'sugarcane', name:'Sugarcane', type:'old',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="18" y="6" width="6" height="36" fill="#7BAF60"/>
+      <rect x="26" y="10" width="6" height="32" fill="#639922"/>
+      <rect x="12" y="14" width="8" height="4" fill="#5DCAA5" opacity="0.8"/>
+      <rect x="8" y="20" width="10" height="4" fill="#5DCAA5" opacity="0.8"/>
+      <rect x="12" y="28" width="8" height="4" fill="#5DCAA5" opacity="0.8"/>
+      <rect x="30" y="16" width="10" height="4" fill="#7BAF60"/>
+      <rect x="32" y="24" width="8" height="4" fill="#7BAF60"/>
+      <rect x="30" y="32" width="10" height="4" fill="#7BAF60"/>
+      <rect x="14" y="40" width="20" height="6" fill="#C8A870"/>
+    </svg>`,
+    desc:"Sugarcane originally came from Asia but was grown in Europe's colonies in Africa before Columbus. Europeans planted it across the Caribbean and Brazil because it grew incredibly well there and sugar was extremely valuable. The demand for sugar to work on huge plantations led directly to the enslaved African trade — millions of people were kidnapped from Africa and brought to the Americas to work in brutal conditions. Sugar is one of the most consequential — and tragic — parts of the Columbian Exchange."
+  },
+  {
+    id:'disease', name:'Smallpox &amp; measles', type:'impact',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="12" y="12" width="24" height="24" fill="#FCEBEB"/>
+      <rect x="10" y="14" width="28" height="20" fill="#FCEBEB"/>
+      <rect x="14" y="10" width="20" height="4" fill="#F09595"/>
+      <rect x="14" y="34" width="20" height="4" fill="#F09595"/>
+      <rect x="10" y="14" width="4" height="20" fill="#F09595"/>
+      <rect x="34" y="14" width="4" height="20" fill="#F09595"/>
+      <rect x="18" y="18" width="4" height="4" fill="#E24B4A"/>
+      <rect x="26" y="16" width="4" height="4" fill="#E24B4A"/>
+      <rect x="22" y="24" width="4" height="4" fill="#E24B4A"/>
+      <rect x="16" y="28" width="4" height="4" fill="#E24B4A"/>
+      <rect x="30" y="26" width="4" height="4" fill="#E24B4A"/>
+    </svg>`,
+    desc:"This is the most devastating part of the Columbian Exchange. Europeans brought diseases like smallpox, measles, and flu to the Americas. Native Americans had never been exposed to these diseases and had no immunity. The results were catastrophic — historians estimate that up to 90% of the Native American population died from disease in the 100 years after Columbus arrived. Entire civilizations that had existed for thousands of years were nearly wiped out. It was one of the greatest human tragedies in history."
+  },
+  {
+    id:'slavery', name:'Enslaved people', type:'impact',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="14" y="8" width="20" height="6" fill="#A32D2D"/>
+      <rect x="12" y="12" width="24" height="4" fill="#791F1F"/>
+      <rect x="10" y="14" width="28" height="20" fill="#FCEBEB"/>
+      <rect x="14" y="34" width="20" height="4" fill="#F09595"/>
+      <rect x="16" y="38" width="6" height="6" fill="#791F1F"/>
+      <rect x="26" y="38" width="6" height="6" fill="#791F1F"/>
+      <rect x="14" y="18" width="8" height="12" fill="#F7C1C1"/>
+      <rect x="26" y="18" width="8" height="12" fill="#F7C1C1"/>
+      <rect x="12" y="20" width="4" height="8" fill="#F09595"/>
+      <rect x="32" y="20" width="4" height="8" fill="#F09595"/>
+      <rect x="18" y="22" width="12" height="2" fill="#E24B4A"/>
+    </svg>`,
+    desc:"To grow the enormous sugar, tobacco, and cotton plantations in the Americas, European colonists forced millions of enslaved Africans to do the work. Between 1500 and 1900, an estimated 12 million Africans were kidnapped and transported across the Atlantic in horrific conditions — a journey called the Middle Passage. Hundreds of thousands died on the ships. The forced labor of enslaved people built enormous wealth for European colonizers, while causing immeasurable suffering. This is one of the greatest crimes in human history."
+  },
+  {
+    id:'land', name:'Land &amp; displacement', type:'impact',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="8" y="28" width="32" height="16" fill="#C8A870"/>
+      <rect x="8" y="24" width="32" height="6" fill="#7BAF60"/>
+      <rect x="14" y="14" width="10" height="12" fill="#D3D1C7"/>
+      <rect x="10" y="10" width="18" height="6" fill="#B4B2A9"/>
+      <polygon points="10,10 19,4 28,10" fill="#888780"/>
+      <rect x="28" y="18" width="8" height="8" fill="#E24B4A" opacity="0.8"/>
+      <rect x="26" y="16" width="12" height="4" fill="#A32D2D" opacity="0.8"/>
+      <rect x="30" y="12" width="4" height="6" fill="#A32D2D" opacity="0.8"/>
+      <rect x="38" y="26" width="6" height="18" fill="#D3D1C7" opacity="0.6"/>
+      <rect x="36" y="24" width="10" height="4" fill="#B4B2A9" opacity="0.6"/>
+    </svg>`,
+    desc:"As Europeans colonized the Americas, they claimed land that had belonged to Native American nations for thousands of years. Native peoples were pushed off their homelands, forced onto reservations, or killed if they resisted. Entire ways of life — farming systems, trade networks, cities, languages, and traditions built over millennia — were destroyed or suppressed. The displacement of Native peoples is an ongoing legacy that continues to affect Native American communities today."
+  },
+  {
+    id:'coffee', name:'Coffee', type:'old',
+    svg:`<svg width="52" height="52" viewBox="0 0 48 48">
+      <rect x="12" y="22" width="24" height="20" fill="#712B13"/>
+      <rect x="10" y="24" width="28" height="16" fill="#712B13"/>
+      <rect x="36" y="28" width="6" height="10" rx="3" fill="#712B13"/>
+      <rect x="36" y="30" width="6" height="6" fill="#993C1D"/>
+      <rect x="10" y="20" width="28" height="4" fill="#993C1D"/>
+      <rect x="14" y="16" width="20" height="6" fill="#C8A870"/>
+      <rect x="18" y="14" width="12" height="4" fill="#B4A888"/>
+      <rect x="20" y="10" width="8" height="6" fill="#A88848"/>
+      <rect x="18" y="26" width="4" height="4" fill="#993C1D" opacity="0.5"/>
+      <rect x="26" y="30" width="4" height="4" fill="#993C1D" opacity="0.5"/>
+    </svg>`,
+    desc:"Coffee originally came from Ethiopia in Africa and was already popular across the Middle East and Europe before Columbus. When Europeans set up colonies in Central and South America, they discovered the climate was perfect for growing coffee. Today, Brazil and Colombia are among the biggest coffee producers in the world. The coffee in your morning cup likely has Columbian Exchange roots!"
+  },
+];
+
+let activeFilter = 'all';
+let selectedId = null;
+
+function getTagClass(type){
+  return type==='new'?'tag-new':type==='old'?'tag-old':'tag-impact';
+}
+function getSelClass(type){
+  return type==='new'?'sel-new':type==='old'?'sel-old':'sel-impact';
+}
+function getDbClass(type){
+  return type==='new'?'db-new':type==='old'?'db-old':'db-impact';
+}
+function getTagLabel(type){
+  return type==='new'?'From the Americas':type==='old'?'From Europe/Africa':'Devastating impact';
+}
+
+const grid = document.getElementById('cards-grid');
+ITEMS.forEach(item => {
+  const el = document.createElement('div');
+  el.className = 'xcard';
+  el.dataset.type = item.type;
+  el.dataset.id = item.id;
+  el.innerHTML = `${item.svg}<div class="card-name">${item.name}</div><span class="card-tag ${getTagClass(item.type)}">${getTagLabel(item.type)}</span>`;
+  el.onclick = () => selectCard(item, el);
+  grid.appendChild(el);
+});
+
+function updateCounts(){
+  const visible = [...document.querySelectorAll('.xcard:not(.hidden)')];
+  const nNew = visible.filter(e=>e.dataset.type==='new').length;
+  const nOld = visible.filter(e=>e.dataset.type==='old').length;
+  const nImp = visible.filter(e=>e.dataset.type==='impact').length;
+  const bar = document.getElementById('count-bar');
+  const parts = [];
+  if(nNew>0) parts.push(`<span class="count-chip" style="background:#E1F5EE;color:#085041;">${nNew} from the Americas</span>`);
+  if(nOld>0) parts.push(`<span class="count-chip" style="background:#E6F1FB;color:#0C447C;">${nOld} from Europe/Africa</span>`);
+  if(nImp>0) parts.push(`<span class="count-chip" style="background:#FCEBEB;color:#791F1F;">${nImp} devastating impacts</span>`);
+  bar.innerHTML = parts.join('');
+}
+
+function filterCards(type, btn){
+  activeFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.className='filter-btn');
+  btn.className = 'filter-btn active-'+type;
+  document.querySelectorAll('.xcard').forEach(card=>{
+    card.classList.toggle('hidden', type!=='all' && card.dataset.type!==type);
+  });
+  document.getElementById('detail-box').className='detail-box';
+  selectedId=null;
+  updateCounts();
+}
+
+function selectCard(item, el){
+  document.querySelectorAll('.xcard').forEach(c=>{
+    c.classList.remove('sel-new','sel-old','sel-impact');
+  });
+  el.classList.add(getSelClass(item.type));
+  selectedId = item.id;
+  const db = document.getElementById('detail-box');
+  db.className = 'detail-box show '+getDbClass(item.type);
+  document.getElementById('db-title').textContent = item.name;
+  document.getElementById('db-desc').textContent = item.desc;
+  db.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+updateCounts();
+</script>
