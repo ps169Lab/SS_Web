@@ -1,0 +1,397 @@
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  #root{font-family:var(--font-sans);padding:1.5rem 1.25rem 2.5rem;}
+  .pg-title{font-size:24px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px;}
+  .pg-sub{font-size:15px;color:var(--color-text-secondary);margin-bottom:22px;line-height:1.75;max-width:660px;}
+
+  .perspective-nav{display:flex;gap:0;margin-bottom:24px;border:2px solid var(--color-border-secondary);border-radius:8px;overflow:hidden;}
+  .pnav-btn{flex:1;font-size:16px;font-weight:500;padding:11px 8px;border:none;background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer;transition:all 0.15s;border-right:2px solid var(--color-border-secondary);line-height:1.4;text-align:center;}
+  .pnav-btn:last-child{border-right:none;}
+  .pnav-btn:hover:not(.active){background:var(--color-background-secondary);}
+  .pnav-btn.active-eu{background:#E6F1FB;color:#0C447C;}
+  .pnav-btn.active-na{background:#EAF3DE;color:#27500A;}
+  .pnav-btn.active-af{background:#FAEEDA;color:#633806;}
+  .pnav-btn.active-all{background:var(--color-background-secondary);color:var(--color-text-primary);}
+
+  .perspective-section{display:none;}
+  .perspective-section.visible{display:block;}
+
+  .view-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding:16px 18px;border-radius:8px;}
+  .view-header.hdr-eu{background:#E6F1FB;border:2px solid #185FA5;}
+  .view-header.hdr-na{background:#EAF3DE;border:2px solid #3B6D11;}
+  .view-header.hdr-af{background:#FAEEDA;border:2px solid #BA7517;}
+  .hdr-icon{flex-shrink:0;}
+  .hdr-text h2{font-size:18px;font-weight:500;margin-bottom:4px;}
+  .hdr-eu .hdr-text h2{color:#0C447C;}
+  .hdr-na .hdr-text h2{color:#27500A;}
+  .hdr-af .hdr-text h2{color:#633806;}
+  .hdr-text p{font-size:16px;line-height:1.6;}
+  .hdr-eu .hdr-text p{color:#185FA5;}
+  .hdr-na .hdr-text p{color:#3B6D11;}
+  .hdr-af .hdr-text p{color:#854F0B;}
+
+  .quotes-list{display:flex;flex-direction:column;gap:16px;}
+  .quote-card{background:var(--color-background-primary);border:2px solid var(--color-border-tertiary);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color 0.15s;}
+  .quote-card:hover{border-color:var(--color-border-secondary);}
+  .quote-card.open-eu{border-color:#185FA5;}
+  .quote-card.open-na{border-color:#3B6D11;}
+  .quote-card.open-af{border-color:#BA7517;}
+
+  .qcard-top{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;}
+  .qcard-mark{font-size:32px;font-weight:500;line-height:1;flex-shrink:0;margin-top:-2px;}
+  .qcard-eu .qcard-mark{color:#85B7EB;}
+  .qcard-na .qcard-mark{color:#97C459;}
+  .qcard-af .qcard-mark{color:#FAC775;}
+  .qcard-body{flex:1;}
+  .qcard-who{font-size:15px;font-weight:500;padding:2px 10px;border-radius:4px;display:inline-block;margin-bottom:8px;}
+  .qcard-eu .qcard-who{background:#E6F1FB;color:#0C447C;}
+  .qcard-na .qcard-who{background:#EAF3DE;color:#27500A;}
+  .qcard-af .qcard-who{background:#FAEEDA;color:#633806;}
+  .qcard-quote{font-size:15px;line-height:1.8;color:var(--color-text-primary);font-style:italic;}
+  .qcard-attribution{font-size:15px;color:var(--color-text-tertiary);margin-top:8px;font-style:normal;}
+  .qcard-chevron{flex-shrink:0;font-size:18px;color:var(--color-text-tertiary);margin-top:2px;transition:transform 0.2s;}
+  .quote-card.expanded .qcard-chevron{transform:rotate(180deg);}
+
+  .qcard-detail{display:none;padding:0 18px 18px;border-top:1px solid var(--color-border-tertiary);}
+  .quote-card.expanded .qcard-detail{display:block;}
+  .detail-section{margin-top:14px;}
+  .detail-label{font-size:15px;font-weight:500;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-tertiary);margin-bottom:6px;}
+  .detail-text{font-size:14px;color:var(--color-text-secondary);line-height:1.75;}
+  .vocab-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+  .vocab-chip{font-size:16px;padding:5px 12px;border-radius:4px;cursor:pointer;transition:all 0.12s;border:1px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-primary);}
+  .vocab-chip:hover{background:var(--color-background-primary);}
+  .vocab-chip.open{background:#FAEEDA;border-color:#BA7517;color:#412402;}
+  .vocab-def{font-size:16px;color:var(--color-text-secondary);line-height:1.65;margin-top:8px;padding:10px 14px;background:var(--color-background-secondary);border-radius:6px;display:none;}
+  .vocab-def.show{display:block;}
+
+  .reflect-box{display: none; margin-top:12px;background:var(--color-background-secondary);border-radius:6px;padding:14px 16px;}
+  .reflect-q{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:10px;line-height:1.5;}
+  .reflect-input{width:100%;font-size:14px;padding:10px 12px;border:2px solid var(--color-border-secondary);border-radius:6px;background:var(--color-background-primary);color:var(--color-text-primary);line-height:1.6;resize:vertical;min-height:80px;font-family:var(--font-sans);}
+  .reflect-input:focus{outline:none;border-color:#BA7517;}
+  .reflect-submit{display: none; margin-top:8px;font-size:16px;padding:8px 18px;border-radius:6px;border:2px solid #BA7517;background:#FAEEDA;color:#412402;cursor:pointer;font-weight:500;}
+  .reflect-submit:hover{background:#FAC775;}
+
+  .all-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+  .all-mini{border-radius:8px;padding:16px;border:2px solid transparent;}
+  .all-mini-eu{background:#E6F1FB;border-color:#85B7EB;}
+  .all-mini-na{background:#EAF3DE;border-color:#97C459;}
+  .all-mini-af{background:#FAEEDA;border-color:#FAC775;}
+  .all-mini-label{font-size:14px;font-weight:500;letter-spacing:0.05em;margin-bottom:8px;}
+  .all-mini-eu .all-mini-label{color:#0C447C;}
+  .all-mini-na .all-mini-label{color:#27500A;}
+  .all-mini-af .all-mini-label{color:#633806;}
+  .all-mini-quote{font-size:16px;font-style:italic;line-height:1.7;color:var(--color-text-primary);margin-bottom:8px;}
+  .all-mini-who{font-size:15px;color:var(--color-text-tertiary);}
+  .all-mini-btn{margin-top:10px;font-size:15px;padding:5px 12px;border-radius:4px;border:none;cursor:pointer;font-weight:500;}
+  .all-mini-eu .all-mini-btn{background:#B5D4F4;color:#0C447C;}
+  .all-mini-na .all-mini-btn{background:#C0DD97;color:#27500A;}
+  .all-mini-af .all-mini-btn{background:#FAC775;color:#633806;}
+
+  .notice{background:var(--color-background-secondary);border-left:4px solid var(--color-border-secondary);border-radius:0 6px 6px 0;padding:12px 16px;margin-bottom:20px;font-size:16px;color:var(--color-text-secondary);line-height:1.65;}
+</style>
+
+<div id="root">
+  <div class="pg-title">Voices from the Age of Colonization</div>
+  <p class="pg-sub">When Europeans arrived in the Americas, it was a world-changing moment — but it was experienced very differently depending on who you were. Read real words from people who lived through it. Each voice tells a different part of the same story.</p>
+
+  <div class="notice">These quotes come from real historical sources. Some have been lightly simplified so they are easier to read, but the meaning and the person who said them are real.</div>
+
+  <div class="perspective-nav">
+    <button class="pnav-btn active-all" onclick="showPerspective('all',this)">All voices</button>
+    <button class="pnav-btn" onclick="showPerspective('eu',this)">European perspective</button>
+    <button class="pnav-btn" onclick="showPerspective('na',this)">Native American perspective</button>
+    <button class="pnav-btn" onclick="showPerspective('af',this)">African perspective</button>
+  </div>
+
+  <!-- ALL VIEW -->
+  <div id="sec-all" class="perspective-section visible">
+    <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:16px;line-height:1.7;">Below are quotes from three different perspectives. Notice how the same events — exploration, land, and trade — feel very different depending on who is speaking. Click any quote to read it in full.</p>
+    <div class="all-grid" id="all-grid"></div>
+  </div>
+
+  <!-- EUROPEAN -->
+  <div id="sec-eu" class="perspective-section">
+    <div class="view-header hdr-eu">
+      <div class="hdr-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48">
+          <rect x="4" y="14" width="40" height="28" fill="#B5D4F4"/>
+          <rect x="4" y="10" width="40" height="6" fill="#378ADD"/>
+          <rect x="4" y="10" width="8" height="34" fill="#378ADD" opacity="0.4"/>
+          <rect x="16" y="18" width="8" height="10" fill="#fff" opacity="0.8"/>
+          <rect x="28" y="18" width="8" height="10" fill="#fff" opacity="0.8"/>
+          <rect x="16" y="30" width="8" height="10" fill="#185FA5"/>
+          <rect x="28" y="30" width="8" height="10" fill="#185FA5"/>
+          <rect x="6" y="12" width="4" height="28" fill="#fff" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="hdr-text">
+        <h2>The European perspective</h2>
+        <p>European explorers and colonizers wrote about their voyages, the lands they found, and the people they met. Their writings often show excitement and ambition — but also attitudes about power and ownership that caused great harm. Reading their words helps us understand how they thought, even when we disagree with them.</p>
+      </div>
+    </div>
+    <div class="quotes-list" id="list-eu"></div>
+  </div>
+
+  <!-- NATIVE AMERICAN -->
+  <div id="sec-na" class="perspective-section">
+    <div class="view-header hdr-na">
+      <div class="hdr-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48">
+          <rect x="20" y="6" width="8" height="36" fill="#7BAF60"/>
+          <rect x="16" y="10" width="16" height="4" fill="#639922"/>
+          <rect x="12" y="6" width="8" height="8" fill="#7BAF60"/>
+          <rect x="28" y="6" width="8" height="8" fill="#7BAF60"/>
+          <rect x="8" y="4" width="8" height="6" fill="#639922"/>
+          <rect x="32" y="4" width="8" height="6" fill="#639922"/>
+          <rect x="16" y="18" width="16" height="4" fill="#5DCAA5" opacity="0.7"/>
+          <rect x="16" y="26" width="16" height="4" fill="#5DCAA5" opacity="0.7"/>
+          <rect x="14" y="38" width="20" height="4" fill="#C8A870"/>
+          <rect x="18" y="42" width="4" height="4" fill="#A88848"/>
+          <rect x="26" y="42" width="4" height="4" fill="#A88848"/>
+        </svg>
+      </div>
+      <div class="hdr-text">
+        <h2>The Native American perspective</h2>
+        <p>Native American voices from this period are harder to find because European colonizers controlled most of the writing. But some words were recorded — by Native leaders speaking directly to colonizers, in oral traditions written down later, and by a few Native people who learned to write in European languages. These voices show strength, wisdom, and the deep pain of losing land and loved ones.</p>
+      </div>
+    </div>
+    <div class="quotes-list" id="list-na"></div>
+  </div>
+
+  <!-- AFRICAN -->
+  <div id="sec-af" class="perspective-section">
+    <div class="view-header hdr-af">
+      <div class="hdr-icon">
+        <svg width="48" height="48" viewBox="0 0 48 48">
+          <rect x="10" y="8" width="28" height="32" fill="#C8A870"/>
+          <rect x="8" y="12" width="32" height="24" fill="#C8A870"/>
+          <rect x="10" y="8" width="28" height="6" fill="#A88848"/>
+          <rect x="10" y="34" width="28" height="6" fill="#A88848"/>
+          <rect x="8" y="12" width="6" height="24" fill="#A88848"/>
+          <rect x="34" y="12" width="6" height="24" fill="#A88848"/>
+          <rect x="16" y="16" width="16" height="16" fill="#EF9F27" opacity="0.6"/>
+          <rect x="20" y="18" width="8" height="2" fill="#854F0B"/>
+          <rect x="20" y="22" width="8" height="2" fill="#854F0B"/>
+          <rect x="20" y="26" width="8" height="2" fill="#854F0B"/>
+        </svg>
+      </div>
+      <div class="hdr-text">
+        <h2>The African perspective</h2>
+        <p>Millions of Africans were kidnapped and enslaved during the colonial period. Very few of their words were written down — because enslaving people often meant taking away their ability to read and write. The voices we do have, like Olaudah Equiano, are extraordinary and brave. Reading their words is one of the most important things we can do to understand what really happened.</p>
+      </div>
+    </div>
+    <div class="quotes-list" id="list-af"></div>
+  </div>
+</div>
+
+<script>
+const QUOTES = [
+  {
+    id:'columbus1', perspective:'eu',
+    who:'Christopher Columbus, Italian explorer sailing for Spain',
+    when:'1492 — from his journal, the first day he arrived in the Americas',
+    short:'They ought to be good servants... I could conquer the whole of them with fifty men.',
+    quote:'They ought to be good servants and of good intelligence... I could conquer the whole of them with fifty men, and govern them as I pleased.',
+    context:'Columbus wrote this in his journal on the very first day he met the Taíno people of the Caribbean. He had been in the Americas for less than 24 hours. This quote shows how quickly European explorers began thinking about the people they met as people to control — not as equals.',
+    reflectQ:'What does this quote tell you about how Columbus saw the Taíno people? How do you think the Taíno people would have felt if they could read this?',
+    vocab:[{w:'conquer',d:'To defeat and take control of a people or place by force.'},
+           {w:'govern',d:'To rule and control a group of people or a country.'},
+           {w:'intelligence',d:'The ability to learn and understand things. Columbus is saying the Taíno seemed smart — but he still wanted to control them.'}]
+  },
+  {
+    id:'columbus2', perspective:'eu',
+    who:'Christopher Columbus, Italian explorer sailing for Spain',
+    when:'1493 — from a letter to the King and Queen of Spain after his first voyage',
+    short:'I have found many islands with large populations, and I have taken possession of them all for Their Highnesses.',
+    quote:'I have found many islands filled with people without number, and of them all I have taken possession for Their Highnesses, by proclamation and with the royal standard displayed, and nobody objected.',
+    context:'Columbus is reporting back to the Spanish royal family. He describes "taking possession" of islands full of people — as if the land was empty and free for the taking. The fact that "nobody objected" likely means the Taíno people did not understand what was being declared in a foreign language.',
+    reflectQ:'Columbus says "nobody objected." Does that mean the Taíno people agreed to give him their land? What might have actually been happening?',
+    vocab:[{w:'possession',d:'Owning or controlling something.'},
+           {w:'proclamation',d:'An official announcement, usually spoken out loud in public.'},
+           {w:'royal standard',d:'A flag that represents a king or queen.'}]
+  },
+  {
+    id:'taino1', perspective:'na',
+    who:'Chief Hatuey, Taíno leader from Hispaniola (present-day Haiti/Dominican Republic)',
+    when:'Around 1511 — recorded by Spanish priest Bartolomé de las Casas, who witnessed it',
+    short:'They tell us these things to make us work for them and to take our gold... Let us dance so that if it is God\'s will, we will be taken to their heaven.',
+    quote:'You see how they treat us. The reason they do it is for this thing [holding up gold]. They worship this thing, and for it they make us suffer... This is what they worship. Let us dance so that if it is God\'s will, we will be taken to their heaven.',
+    context:'Chief Hatuey had fled from Hispaniola to Cuba after the Spanish conquered his homeland, killing most of his people. He showed his people a basket of gold and explained why the Spanish had come. He was later captured and burned at the stake by Spanish soldiers. His words show deep understanding of what was driving the colonizers.',
+    reflectQ:'Chief Hatuey figured out something very important about why the Spanish came. What did he understand? How do you think his people felt hearing this?',
+    vocab:[{w:'worship',d:'To treat something or someone as holy or extremely important.'},
+           {w:'flee / fled',d:'To run away from danger.'},
+           {w:'conquered',d:'Taken over by force.'}]
+  },
+  {
+    id:'native2', perspective:'na',
+    who:'Moctezuma II, leader of the Aztec Empire (also spelled Montezuma)',
+    when:'1519 — recorded by Spanish conquistador Hernán Cortés in a letter to the Spanish king',
+    short:'For a long time we have known from the writings of our ancestors that neither I, nor any of those who dwell in this land, are natives of it.',
+    quote:'For a long time we have known from the writings of our ancestors that neither I, nor any of those who dwell in this land, are natives of it... I have always held that those who inhabit it must be of your nation.',
+    context:'This is a complicated quote. Cortés wrote down what he claimed Moctezuma said when they first met. Historians debate whether Cortés translated or reported it accurately — he may have changed the meaning. It was used to justify the idea that the Aztec people welcomed Spanish rule, which historians believe is not true. Reading carefully who recorded a quote is just as important as reading the quote itself.',
+    reflectQ:'This quote was written DOWN by Cortés, a Spanish conquistador — not by Moctezuma himself. Why does that matter? How might Cortés have changed the meaning?',
+    vocab:[{w:'ancestors',d:'Family members from long ago — grandparents, great-grandparents, and further back.'},
+           {w:'dwell',d:'To live somewhere.'},
+           {w:'inhabit',d:'To live in a place.'}]
+  },
+  {
+    id:'native3', perspective:'na',
+    who:'Chief Seattle (Sealth), leader of the Duwamish and Suquamish peoples',
+    when:'1854 — spoken in response to the U.S. government\'s offer to buy Native lands in the Pacific Northwest',
+    short:'How can you buy or sell the sky? The warmth of the land? The idea is strange to us.',
+    quote:'How can you buy or sell the sky? The warmth of the land? The idea is strange to us. If we do not own the freshness of the air and the sparkle of the water, how can you buy them?',
+    context:'Chief Seattle\'s speech was given as the U.S. government was pressuring Native nations to sell their lands. His words reveal a completely different way of thinking about land — not as property to be owned and sold, but as something living that people belong to. This clash of ideas about land ownership was at the heart of centuries of conflict between Native peoples and European colonizers.',
+    reflectQ:'Chief Seattle says the idea of buying and selling land is "strange." Why might Native Americans and Europeans have had such different ideas about land? Whose idea do you think makes more sense — and why?',
+    vocab:[{w:'property',d:'Something that is owned by a person.'},
+           {w:'ownership',d:'Having the right to use and control something.'},
+           {w:'freshness',d:'Being clean and pure — he is talking about clean air.'}]
+  },
+  {
+    id:'equiano1', perspective:'af',
+    who:'Olaudah Equiano, enslaved person from the Igbo people of West Africa (present-day Nigeria)',
+    when:'1789 — from his autobiography, "The Interesting Narrative of the Life of Olaudah Equiano"',
+    short:'I was soon put down under the decks, and there I received such a greeting in my nostrils as I had never experienced in my life.',
+    quote:'I was soon put down under the decks, and there I received such a greeting in my nostrils as I had never experienced in my life: so that, with the loathsomeness of the stench, and crying together, I became so sick and low that I was not able to eat.',
+    context:'Equiano was kidnapped from his home in Africa at around age 11 and forced onto a slave ship headed to the Americas. He is describing the horrific conditions below the deck of the ship — crowded with hundreds of enslaved people in darkness, heat, and filth. This journey was called the Middle Passage. Equiano later bought his freedom and wrote his story to help end the slave trade.',
+    reflectQ:'Equiano uses very specific descriptions — smells, sounds, feelings — to help readers understand what he went through. Why do you think he wrote these details down? What did he want people to understand?',
+    vocab:[{w:'loathsomeness',d:'Something that is disgusting and horrible.'},
+           {w:'stench',d:'A very bad, strong smell.'},
+           {w:'autobiography',d:'A book someone writes about their own life.'}]
+  },
+  {
+    id:'equiano2', perspective:'af',
+    who:'Olaudah Equiano, enslaved person from the Igbo people of West Africa',
+    when:'1789 — from his autobiography',
+    short:'I asked if we were not to be eaten by those white men with horrible looks, red faces, and long hair.',
+    quote:'When I looked round the ship too and saw a large furnace of copper boiling, and a multitude of black people of every description chained together... I asked if we were not to be eaten by those white men with horrible looks, red faces, and long hair.',
+    context:'Equiano describes his first moments on the slave ship. He had never seen Europeans before. His fear that he might be eaten shows how completely foreign and terrifying the experience was — just as European colonizers described Native peoples as strange and frightening, enslaved Africans had the same reaction to Europeans. This quote helps us remember that every group in this story was encountering something completely unknown.',
+    reflectQ:'Equiano was afraid the Europeans might eat him. Columbus was afraid of Native peoples too, at first. What does this tell you about how people react to meeting someone completely different from themselves?',
+    vocab:[{w:'multitude',d:'A very large number of people.'},
+           {w:'furnace',d:'A large container used for heating or boiling things.'},
+           {w:'description',d:'Here it means people of all different kinds.'}]
+  },
+  {
+    id:'af3', perspective:'af',
+    who:'Venture Smith, enslaved person originally from West Africa (present-day Ghana)',
+    when:'1798 — from his memoir, one of the earliest narratives written by a formerly enslaved person in America',
+    short:'All my people were put to death except myself, my mother, and two sisters... I was then taken prisoner.',
+    quote:'All my people were put to death except myself, my mother, and two sisters... I was then taken prisoner and kept for the space of many months, until a Dutch ship came into harbor.',
+    context:'Venture Smith was only around six years old when slave traders attacked his village in West Africa. He watched his father be killed and his family destroyed before being taken to be sold. He was eventually brought to Connecticut, where he was enslaved for many years before earning his freedom. His memoir was published in 1798 and is one of the most important firsthand accounts we have.',
+    reflectQ:'Venture Smith was six years old when this happened. How does knowing his age change how you feel reading this? Why is it important to hear his story in his own words?',
+    vocab:[{w:'prisoner',d:'Someone who is captured and kept against their will.'},
+           {w:'memoir',d:'A book written about your own life and memories.'},
+           {w:'harbor',d:'A place where ships can dock and anchor safely.'}]
+  },
+];
+
+function buildCard(q, perspective){
+  const p = q.perspective;
+  const cardClass = `quote-card qcard-${p}`;
+  const vocabHtml = q.vocab.map((v,i)=>`
+    <span class="vocab-chip" onclick="toggleVocab(this,'${q.id}-${i}')">${v.w}</span>
+    <div class="vocab-def" id="vd-${q.id}-${i}">${v.d}</div>
+  `).join('');
+
+  return `<div class="${cardClass}" id="qc-${q.id}">
+    <div class="qcard-top" onclick="toggleCard('${q.id}')">
+      <div class="qcard-mark">"</div>
+      <div class="qcard-body">
+        <span class="qcard-who">${q.who}</span>
+        <div class="qcard-quote">"${q.short}"</div>
+        <div class="qcard-attribution">${q.when}</div>
+      </div>
+      <div class="qcard-chevron">&#8964;</div>
+    </div>
+    <div class="qcard-detail">
+      <div class="detail-section">
+        <div class="detail-label">Full quote</div>
+        <div class="detail-text" style="font-style:italic;">"${q.quote}"</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Who said this &amp; why it matters</div>
+        <div class="detail-text">${q.context}</div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-label">Vocabulary help — tap a word</div>
+        <div class="vocab-chips">${vocabHtml}</div>
+      </div>
+      <div class="reflect-box">
+        <div class="reflect-q">Think about it: ${q.reflectQ}</div>
+        <textarea class="reflect-input" placeholder="Write your thoughts here..." rows="3"></textarea>
+        <br>
+        <button class="reflect-submit" onclick="submitReflect('${q.id}',this)">Share my thinking ↗</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function buildAllMini(q){
+  const p = q.perspective;
+  const labels = {eu:'European perspective', na:'Native American perspective', af:'African perspective'};
+  return `<div class="all-mini all-mini-${p}">
+    <div class="all-mini-label">${labels[p]}</div>
+    <div class="all-mini-quote">"${q.short}"</div>
+    <div class="all-mini-who">${q.who}</div>
+    <button class="all-mini-btn" onclick="jumpTo('${p}','${q.id}')">Read full quote →</button>
+  </div>`;
+}
+
+const listEu = document.getElementById('list-eu');
+const listNa = document.getElementById('list-na');
+const listAf = document.getElementById('list-af');
+const allGrid = document.getElementById('all-grid');
+
+QUOTES.forEach(q=>{
+  if(q.perspective==='eu') listEu.innerHTML += buildCard(q);
+  if(q.perspective==='na') listNa.innerHTML += buildCard(q);
+  if(q.perspective==='af') listAf.innerHTML += buildCard(q);
+  allGrid.innerHTML += buildAllMini(q);
+});
+
+function showPerspective(id, btn){
+  document.querySelectorAll('.perspective-section').forEach(s=>s.classList.remove('visible'));
+  document.getElementById('sec-'+(id==='all'?'all':id)).classList.add('visible');
+  document.querySelectorAll('.pnav-btn').forEach(b=>{
+    b.className='pnav-btn';
+  });
+  btn.className = 'pnav-btn active-'+id;
+}
+
+function toggleCard(id){
+  const card = document.getElementById('qc-'+id);
+  card.classList.toggle('expanded');
+  const p = card.className.includes('qcard-eu')?'eu':card.className.includes('qcard-na')?'na':'af';
+  card.classList.remove('open-eu','open-na','open-af');
+  if(card.classList.contains('expanded')) card.classList.add('open-'+p);
+}
+
+function toggleVocab(chip, id){
+  const def = document.getElementById('vd-'+id);
+  chip.classList.toggle('open');
+  def.classList.toggle('show');
+}
+
+function jumpTo(perspective, id){
+  const btns = document.querySelectorAll('.pnav-btn');
+  const idx = {all:0,eu:1,na:2,af:3};
+  showPerspective(perspective, btns[idx[perspective]]);
+  setTimeout(()=>{
+    const card = document.getElementById('qc-'+id);
+    if(card){
+      card.classList.add('expanded');
+      const p = perspective;
+      card.classList.add('open-'+p);
+      card.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  }, 100);
+}
+
+function submitReflect(id, btn){
+  const box = btn.closest('.reflect-box');
+  const txt = box.querySelector('.reflect-input').value.trim();
+  if(!txt) return;
+  const q = QUOTES.find(q=>q.id===id);
+  sendPrompt(`I am a 5th grade student reading a primary source from ${q.who}. The quote is: "${q.quote}". My reflection on it is: "${txt}". Can you respond to my thinking and help me go deeper? Please keep your response appropriate for a 5th grader.`);
+}
+</script>
