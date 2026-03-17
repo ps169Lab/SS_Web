@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attention Bell</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;1,300&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #faf7f2;
+      --ink: #1a1208;
+      --amber: #d4830a;
+      --amber-light: #f5c65d;
+      --amber-pale: #fef3d0;
+      --shadow: rgba(212, 131, 10, 0.25);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Subtle dot grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, #d4830a22 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .card {
+      position: relative;
+      background: white;
+      border-radius: 24px;
+      padding: 56px 64px;
+      text-align: center;
+      box-shadow: 0 4px 0px 0 var(--amber), 0 12px 48px rgba(0,0,0,0.08);
+      border: 1.5px solid #e8dfc8;
+      max-width: 420px;
+      width: 90%;
+    }
+
+    .label {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 2.4rem;
+      color: var(--ink);
+      line-height: 1.1;
+      margin-bottom: 40px;
+    }
+
+    /* Bell button */
+    .bell-btn {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: var(--amber);
+      box-shadow: 0 6px 0 #a0600a, 0 10px 30px var(--shadow);
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 32px;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .bell-btn:hover {
+      background: #e08f12;
+    }
+
+    .bell-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #a0600a, 0 4px 16px var(--shadow);
+    }
+
+    .bell-btn svg {
+      width: 64px;
+      height: 64px;
+      fill: white;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+      transition: transform 0.1s ease;
+    }
+
+    /* Ring animation on the button icon */
+    .bell-btn.ringing svg {
+      animation: bellSwing 0.5s ease-in-out;
+    }
+
+    @keyframes bellSwing {
+      0%   { transform: rotate(0deg); }
+      15%  { transform: rotate(18deg); }
+      35%  { transform: rotate(-16deg); }
+      55%  { transform: rotate(12deg); }
+      70%  { transform: rotate(-8deg); }
+      85%  { transform: rotate(5deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    /* Ripple rings */
+    .ripple-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 2.5px solid var(--amber);
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .bell-btn.ringing .ripple-ring:nth-child(1) {
+      animation: ripple 1s ease-out 0s forwards;
+    }
+    .bell-btn.ringing .ripple-ring:nth-child(2) {
+      animation: ripple 1s ease-out 0.2s forwards;
+    }
+    .bell-btn.ringing .ripple-ring:nth-child(3) {
+      animation: ripple 1s ease-out 0.4s forwards;
+    }
+
+    @keyframes ripple {
+      0%   { transform: scale(1); opacity: 0.7; }
+      100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    /* Status message */
+    .status {
+      font-size: 0.9rem;
+      color: #8a7a5a;
+      font-weight: 500;
+      min-height: 22px;
+      letter-spacing: 0.02em;
+      transition: opacity 0.3s;
+    }
+
+    .status.active {
+      color: var(--amber);
+    }
+
+    /* Tone selector */
+    .tone-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 28px;
+    }
+
+    .tone-btn {
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1.5px solid #e0d5be;
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #7a6a4a;
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 0.03em;
+    }
+
+    .tone-btn:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .tone-btn.selected {
+      background: var(--amber-pale);
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .divider {
+      height: 1px;
+      background: #ede5d4;
+      margin: 28px 0 0;
+    }
+
+    .hint {
+      margin-top: 20px;
+      font-size: 0.75rem;
+      color: #b0a080;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="label">Classroom Tool</div>
+  <h1>Attention Bell</h1>
+
+  <button class="bell-btn" id="bellBtn" aria-label="Ring the bell">
+    <div class="ripple-ring"></div>
+    <div class="ripple-ring"></div>
+    <div class="ripple-ring"></div>
+    <!-- Bell SVG -->
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 22c1.1 0 2-.9 2-2h-4a2 2 0 0 0 2 2zm6-6V11c0-3.07-1.64-5.64-4.5-6.32V4a1.5 1.5 0 1 0-3 0v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
+    </svg>
+  </button>
+
+  <div class="status" id="status">Press to get attention</div>
+
+  <div class="tone-row">
+    <button class="tone-btn selected" data-tone="chime" onclick="selectTone(this)">Chime</button>
+    <button class="tone-btn" data-tone="ding" onclick="selectTone(this)">Ding</button>
+    <button class="tone-btn" data-tone="triple" onclick="selectTone(this)">Triple</button>
+  </div>
+
+  <div class="divider"></div>
+  <div class="hint">🔔 Works best with speakers on</div>
+</div>
+
+<script>
+  let selectedTone = 'chime';
+  const btn = document.getElementById('bellBtn');
+  const status = document.getElementById('status');
+  let ctx = null;
+
+  function getCtx() {
+    if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+    return ctx;
+  }
+
+  function playTone(freq, startTime, duration, type = 'sine', gain = 0.5) {
+    const ac = getCtx();
+    const osc = ac.createOscillator();
+    const g = ac.createGain();
+    osc.connect(g);
+    g.connect(ac.destination);
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, startTime);
+    g.gain.setValueAtTime(0, startTime);
+    g.gain.linearRampToValueAtTime(gain, startTime + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+    osc.start(startTime);
+    osc.stop(startTime + duration);
+  }
+
+  function playChime() {
+    const ac = getCtx();
+    const t = ac.currentTime;
+    // Pleasant major chord arpeggio
+    playTone(784, t, 1.4, 'sine', 0.4);       // G5
+    playTone(987, t + 0.08, 1.2, 'sine', 0.3); // B5
+    playTone(1175, t + 0.16, 1.6, 'sine', 0.35); // D6
+    playTone(1568, t + 0.28, 1.8, 'sine', 0.25); // G6
+    return 1800;
+  }
+
+  function playDing() {
+    const ac = getCtx();
+    const t = ac.currentTime;
+    playTone(1047, t, 1.6, 'sine', 0.5);
+    playTone(2093, t, 1.2, 'sine', 0.15);
+    return 1600;
+  }
+
+  function playTriple() {
+    const ac = getCtx();
+    const t = ac.currentTime;
+    [0, 0.3, 0.6].forEach(delay => {
+      playTone(1046, t + delay, 0.6, 'sine', 0.4);
+      playTone(1318, t + delay + 0.01, 0.55, 'sine', 0.25);
+    });
+    return 1400;
+  }
+
+  function ring() {
+    btn.classList.remove('ringing');
+    void btn.offsetWidth; // force reflow
+    btn.classList.add('ringing');
+
+    let duration = 1500;
+    if (selectedTone === 'chime') duration = playChime();
+    else if (selectedTone === 'ding') duration = playDing();
+    else if (selectedTone === 'triple') duration = playTriple();
+
+    status.textContent = '🔔 Ringing…';
+    status.classList.add('active');
+
+    setTimeout(() => {
+      btn.classList.remove('ringing');
+      status.textContent = 'Press to get attention';
+      status.classList.remove('active');
+    }, duration);
+  }
+
+  function selectTone(el) {
+    document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedTone = el.dataset.tone;
+  }
+
+  btn.addEventListener('click', ring);
+
+  // Keyboard shortcut: spacebar
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Space' && e.target === document.body) {
+      e.preventDefault();
+      ring();
+    }
+  });
+</script>
+</body>
+</html>
