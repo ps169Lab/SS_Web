@@ -1,13 +1,23 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wildlife of Peru</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
     <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
-
+    <style>
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-family: 'Spectral', serif; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f0f3ff; color: #2e4053; }
+        .adaptation-card { border-left: 5px solid #2e86c1; padding: 15px; background-color: #ebf5fb; margin: 20px 0; }
+        img { max-width: 100%; height: auto; display: block; margin: 15px 0; border-radius: 8px; }
+    </style>
 </head>
+
 <body>
-    <!-- Navbar directly embedded -->
     <nav class="navbar">
         <div class="navbar-title">
             <h1>Peru Web</h1>
@@ -27,133 +37,125 @@
             <li><a href="06-Peru-History-III-Independence-and-Modern-Times.html">06: Peru History III - Independence and Modern Times</a></li>
         </ul>
     </nav>
-    
+
     <script>
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
     </script>
+
     <main>
         <article>
-            <!-- Page title -->
-            <h1 class="section-title">
-                Wildlife of Peru
-            </h1>
-            
-            <!-- Vocabulary Section -->
+            <h1 class="section-title">Wildlife of Peru</h1>
+            <p class="subtitle">Nature’s Amazing Survivors</p>
+
             <div class="vocabulary-section">
-                <h2>Vocabulary</h2>
+                <h2>Expert Vocabulary</h2>
                 <dl>
-                    <dt>Adaptation</dt>
-                    <dd>Special body parts or behaviors that help animals and plants survive</dd>
-                    
-                    <dt>Biome</dt>
-                    <dd>A large area with similar climate, plants, and animals</dd>
-                    
-                    <dt>Altitude</dt>
-                    <dd>How high a place is above sea level</dd>
+                    <dt><strong>Adaptation</strong></dt>
+                    <dd>A special body part or behavior that helps a living thing survive in its home.</dd>
+                    <dt><strong>Altitude</strong></dt>
+                    <dd>The height of a place above the level of the ocean.</dd>
+                    <dt><strong>Megadiverse</strong></dt>
+                    <dd>A word used for countries that have a huge variety of different plants and animals.</dd>
                 </dl>
             </div>
-            
-            <!-- Introduction -->
-            <h2>Peru's Three Climate Regions</h2>
-            
+
             <p>
-                Peru has three main climate regions: the Coast, the Highlands, and the Amazon Jungle. In each region, plants and animals have special adaptations to help them survive. Let's learn about three amazing examples: pelicans, alpacas, and ichu grass!
+                <span class="standard-reading">Because Peru has three very different regions—the Coast, the Highlands, and the Jungle—the animals and plants here have had to develop incredible <strong>adaptations</strong>. To survive in the freezing mountains or the salty ocean, every living thing needs a special "survival kit."</span>
+                <span class="easy-reading">Peru has three main parts: the Coast, the Mountains, and the Jungle. In each part, animals and plants have special ways to stay alive. We call these <strong>adaptations</strong>.</span>
             </p>
-            
-            <!-- Image placeholder -->
-            <h2><img src="https://vt-web-bucket-1.s3.amazonaws.com/uploads/2022/09/08/endemic-puvian-animals-contenidos_11.jpg" alt="Image" style="max-width: 100%;" /><br /></h2><h2>Pelican Adaptations in the Coastal Desert</h2><div><img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Pel%C3%ADcano_en_Pucusana.JPG" alt="Image" style="max-width: 100%;" /><br /></div><p>Pelicans live along Peru's Pacific Coast. They have amazing adaptations to help them catch fish and survive by the ocean.
+
+            <img src="https://vt-web-bucket-1.s3.amazonaws.com/uploads/2022/09/08/endemic-puvian-animals-contenidos_11.jpg" alt="Variety of Peruvian animals" />
+
+            <h2>Summary: How They Survive</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Animal / Plant</th>
+                        <th>The Region</th>
+                        <th>Their Special "Survival Tool"</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Pelican</strong></td>
+                        <td>The Coast (Ocean)</td>
+                        <td>A stretchy throat pouch to scoop up fish.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alpaca</strong></td>
+                        <td>The Highlands (Mountains)</td>
+                        <td>Thick wool for warmth and special blood for breathing thin air.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ichu Grass</strong></td>
+                        <td>The Highlands (Mountains)</td>
+                        <td>Deep roots and clumped shapes to stay warm and find water.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Jaguar</strong></td>
+                        <td>The Amazon Jungle</td>
+                        <td>Spotted fur that helps them hide in the shadows of the forest.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Pelican Adaptations: The Coastal Fisherman</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Pel%C3%ADcano_en_Pucusana.JPG" alt="Pelican in Pucusana" />
+            <p>
+                <span class="standard-reading">Pelicans along the Pacific Coast are built for fishing. They have huge throat pouches that stretch like rubber bands to scoop up three gallons of water and fish at once! Their feathers are waterproof, and their webbed feet make them excellent swimmers.</span>
+                <span class="easy-reading">Pelicans live by the ocean. They have a big pouch under their beak. It stretches out to catch lots of fish and water. Their feathers stay dry when they dive into the waves!</span>
             </p>
-            
-            <ul>
-                <li>Pelicans have huge pouches under their beaks that can hold up to 3 gallons of water and fish!</li>
-                <li>Their special throat pouches stretch like rubber bands to scoop up fish.</li>
-                <li>Pelicans have waterproof feathers that keep them dry when diving into water.</li>
-                <li>They have webbed feet that help them swim and take off from water.</li>
-                <li>Pelicans have excellent eyesight to spot fish from high in the air.</li>
-            </ul><div><img src="https://lh4.googleusercontent.com/proxy/W9YbWr4xK4PffV8khBT_H0LnibqrGDEvq8iueqmLWc_F2mzwCSs3TcxacyN30C_O0MSvNeRb0AlIfVmHnaELPuzaD-dyl2NOCppz1Qtc" alt="Image" style="max-width: 100%;" /><br /></div>
-            
-            <!-- Alpaca Adaptations -->
-            <h2>Alpaca Adaptations in the Highlands</h2>
-            
+
+            <h2>Alpaca Adaptations: The Mountain Traveler</h2>
+            <img src="https://wvusstatic.com/www/uploads/2017/09/D305-0165-0125-crop.jpg" alt="Alpaca in the Andes" />
             <p>
-                Alpacas live in the Andes Mountains of Peru. They have special adaptations to survive in cold, high places where there isn't much oxygen.
+                <span class="standard-reading">High in the Andes, the air is thin and cold. Alpacas have thick, warm wool to survive freezing nights. They also have special blood that carries more oxygen, which helps them breathe at a high <strong>altitude</strong> where the air is "thinner."</span>
+                <span class="easy-reading">Alpacas live high in the mountains. They have very thick fur to stay warm. Their bodies are special because they can breathe easily in the high, thin mountain air.</span>
             </p>
-            
-            <ul>
-                <li>Alpacas have thick, warm wool that keeps them cozy in freezing temperatures.</li>
-                <li>Their blood can carry more oxygen than other animals, helping them live high in the mountains.</li>
-                <li>Alpacas have special padded feet that don't damage the ground when they walk.</li>
-                <li>They have long necks to reach grass without bending down in the snow.</li>
-                <li>Alpacas can go a long time without water, which helps in dry mountain areas.</li>
-            </ul><div><img src="https://wvusstatic.com/www/uploads/2017/09/D305-0165-0125-crop.jpg" alt="Image" style="max-width: 100%;" /><br /></div>
-            
-            <!-- Ichu Grass Adaptations -->
-            <h2>Ichu Grass Adaptations in the Highlands</h2>
-            
+
+            <h2>Ichu Grass: The Tough Mountain Clump</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Pajonal_con_la_Laguna_Verde_al_fondo_%28Potos%C3%AD_-_Bolivia%29.jpg" alt="Ichu grass in the mountains" />
             <p>
-                Ichu grass grows in the high Andes Mountains. It has special adaptations to survive harsh mountain weather.
+                <span class="standard-reading">Ichu grass is a survival expert. It grows in tight clumps to trap heat and stay warm. Its narrow, tough leaves won't break in strong mountain winds, and its deep roots search for water in the dry soil.</span>
+                <span class="easy-reading">This grass grows in the cold mountains. It grows in tight bunches to stay warm. Its roots go deep into the ground to find water.</span>
             </p>
-            
-            <ul>
-                <li>Ichu grass has tough, narrow leaves that don't break in strong winds.</li>
-                <li>It grows in tight clumps to trap heat and stay warm.</li>
-                <li>The grass has deep roots to find water in dry mountain soil.</li>
-                <li>Ichu grass can survive freezing temperatures that would kill other plants.</li>
-                <li>Its silvery color reflects sunlight to protect it from strong mountain sun.</li>
-            </ul><div><img src="https://upload.wikimedia.org/wikipedia/commons/1/1d/Pajonal_con_la_Laguna_Verde_al_fondo_%28Potos%C3%AD_-_Bolivia%29.jpg" alt="Image" style="max-width: 100%;" /><br /></div>
-            
-            <!-- Conclusion -->
-            <h2>People and Wildlife in Peru</h2>
-            
+
+            <h2>More Amazing Wildlife</h2>
+            <div class="adaptation-card">
+                <h3>The Amazon Jungle (Selva)</h3>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Toco_Toucan_%28Ramphastos_toco%29_-_48153967707.jpg/1200px-Toco_Toucan_%28Ramphastos_toco%29_-_48153967707.jpg" alt="Toco Toucan" />
+                <p>In the hot, rainy jungle, <strong>Toucans</strong> have light, hollow beaks to reach fruit, and <strong>Jaguars</strong> use spots to camouflage (hide) in the leaves.</p>
+
+                <h3>The Highland Wonders</h3>
+                <img src="https://sbc-peru.org/wp-content/uploads/2019/11/sbc-spectacled-bear-cub-in-natal-den-crop.jpg" alt="Spectacled Bear" />
+                <p>The <strong>Andean Condor</strong> has giant wings to soar through mountain air, while the <strong>Spectacled Bear</strong> has thick fur to stay cozy.</p>
+
+                <h3>The Coastal Life</h3>
+                <img src="https://c1.staticflickr.com/9/8691/28150857264_47fa18edaa_c.jpg" alt="Sea Lions" />
+                <p><strong>Sea Lions</strong> have thick fat to swim in cold ocean water, and <strong>Carob trees</strong> have long roots to find water in the desert sand.</p>
+            </div>
+
             <p>
-                Just like plants and animals, people in Peru have adapted to live in different regions. In the mountains, people use alpaca wool to make warm clothes. They also use ichu grass to build roofs for their homes. Along the coast, people catch fish like pelicans do, but with boats and nets instead of beaks!
-            </p><p><img src="https://i0.wp.com/inthegardenaroundtheworld.blog/wp-content/uploads/2019/03/img_4059.jpg?w=1000&amp;ssl=1" alt="Image" style="max-width: 100%;" /><br /></p>
-            
-            <p>
-                The special places where plants and animals live help decide where people build their homes too. People learn from wildlife and find ways to live in all of Peru's different regions.
-            </p><p><br /></p>
-            
-            <!-- More Wildlife Section -->
-            <h2>More Amazing Wildlife in Peru</h2>
-            
-            <p>
-                Peru has so many other amazing animals and plants! Here are a few more examples from each region:
+                <span class="standard-reading">Peru is <strong>megadiverse</strong>, meaning it has one of the largest varieties of life on Earth. From over 1,800 types of birds to thousands of plants, every living thing has a story of how it adapted to its home.</span>
+                <span class="easy-reading">Peru has so many different plants and animals. It is one of the most diverse places on Earth! Every creature has a special way of living in its home.</span>
             </p>
-            
-            <h3>More Coast Animals and Plants</h3>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
             <ul>
-                <li>Sea lions have thick fat to stay warm in the cold Humboldt Current</li>
-                <li>Anchovies swim in huge groups to stay safe from bigger fish</li>
-                <li>Carob trees have very long roots to find water in the desert</li>
-                <li>Mangrove trees can grow in salty water that would kill other plants</li>
-            </ul><div><img src="https://c1.staticflickr.com/9/8691/28150857264_47fa18edaa_c.jpg" alt="Image" style="max-width: 100%;" /><br /></div>
-            
-            <h3>More Highlands Animals and Plants</h3>
-            <ul>
-                <li>The Andean condor has huge wings that help it fly in thin mountain air</li>
-                <li>Spectacled bears have thick fur to stay warm in cold mountains</li>
-                <li>Guinea pigs have round bodies that keep heat in</li>
-                <li>The Puya raimondii plant can live even when it's freezing</li>
-            </ul><div><img src="https://sbc-peru.org/wp-content/uploads/2019/11/sbc-spectacled-bear-cub-in-natal-den-crop.jpg" alt="Image" style="max-width: 100%;" /><br /></div>
-            
-            <h3>More Amazon Jungle Animals and Plants</h3>
-            <ul>
-                <li>Jaguars have spotted fur that helps them hide in the forest</li>
-                <li>Toucans have big, light beaks to reach fruit on thin branches</li>
-                <li>Poison dart frogs are bright colors to warn other animals they are dangerous</li>
-                <li>Orchids grow on trees to get sunlight in the dense jungle</li>
-            </ul><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Toco_Toucan_%28Ramphastos_toco%29_-_48153967707.jpg/1200px-Toco_Toucan_%28Ramphastos_toco%29_-_48153967707.jpg" alt="Image" style="max-width: 100%;" /><br /></div>
-            
-            <p>
-                Peru is one of the most "megadiverse" countries in the world. This means it has lots and lots of different plants and animals. Peru has over 1,800 kinds of birds and 500 kinds of mammals. It also has over 21,000 different plants and animals in total!
-            </p>
+                <li><strong>The Survival Kit:</strong> If you had to live at a high altitude in the mountains, which alpaca adaptation would you want the most?</li>
+                <li><strong>Plant Power:</strong> How does the "clump" shape of Ichu grass help it stay warm compared to a single blade of grass?</li>
+                <li><strong>Learning from Nature:</strong> How do people in Peru use alpaca wool and ichu grass to help *themselves* adapt to the cold mountains?</li>
+            </ul>
         </article>
     </main>
-    
-    <!-- Google Translate Widget -->
+
+    <script src="../reading-level-toggle.js"></script>
+
     <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
     <script type="text/javascript">
         function googleTranslateElementInit() {
@@ -162,4 +164,6 @@
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-</body></html>
+</body>
+
+</html>

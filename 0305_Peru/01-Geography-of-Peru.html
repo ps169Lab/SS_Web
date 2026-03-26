@@ -1,13 +1,50 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Geography of Peru</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
     <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-family: 'Spectral', serif;
+        }
 
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e9f7ef;
+            color: #1e8449;
+        }
+
+        .region-card {
+            border-left: 5px solid #1e8449;
+            padding: 15px;
+            background-color: #f4faf6;
+            margin: 20px 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px 0;
+        }
+    </style>
 </head>
+
 <body>
-    <!-- Navbar directly embedded -->
     <nav class="navbar">
         <div class="navbar-title">
             <h1>Peru Web</h1>
@@ -24,132 +61,174 @@
             <li><a href="03-Wildlife.html">03: Wildlife of Peru</a></li>
             <li><a href="04-Peru-History-I-Ancient-People.html">04: Peru History I - Ancient People</a></li>
             <li><a href="05-Peru-History-II-Spanish-Colony.html">05: Peru History II - Spanish Colony</a></li>
-            <li><a href="06-Peru-History-III-Independence-and-Modern-Times.html">06: Peru History III - Independence and Modern Times</a></li>
+            <li><a href="06-Peru-History-III-Independence-and-Modern-Times.html">06: Peru History III - Independence and
+                    Modern Times</a></li>
         </ul>
     </nav>
-    
+
     <script>
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
     </script>
+
     <main>
         <article>
-            <!-- Page title -->
-            <h1 class="section-title">
-                Geography of Peru
-            </h1>
-            
-            <!-- Vocabulary Section -->
+            <h1 class="section-title">The Geography of Peru</h1>
+            <p class="subtitle">A Land of Three Worlds</p>
+
             <div class="vocabulary-section">
-                <h2>Vocabulary</h2>
+                <h2>Expert Vocabulary</h2>
                 <dl>
-                    <dt>Andes</dt>
-                    <dd>A large mountain range that runs through Peru and divides the country into three regions</dd>
-                    
-                    <dt>Biome</dt>
-                    <dd>A large naturally occurring community of plants and animals in a particular climate</dd>
-                    
-                    <dt>Climate</dt>
-                    <dd>The weather conditions in an area over a long period of time</dd>
+                    <dt><strong>Andes</strong></dt>
+                    <dd>A large mountain range that runs through Peru and divides the country into three regions.</dd>
+                    <dt><strong>Biome</strong></dt>
+                    <dd>A large area of land with its own special weather, plants, and animals.</dd>
+                    <dt><strong>Climate</strong></dt>
+                    <dd>The usual weather in a place over a long period of time.</dd>
+                    <dt><strong>Equator</strong></dt>
+                    <dd>An imaginary line around the middle of the Earth where it is usually very warm.</dd>
                 </dl>
             </div>
-            
-            <!-- Introduction -->
-            <h2>Where is Peru Located?</h2><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Peru_in_South_America.svg/1396px-Peru_in_South_America.svg.png" alt="Image" style="max-width: 100%;" /><br /></div>
-            
+
+            <h2>Where is Peru Located?</h2>
+            <img src="https://cdn.britannica.com/33/183733-050-F25A4459/World-Data-Locator-Map-Peru.jpg"
+                alt="Peru in South America map" />
+
             <p>
-                Peru is a country in South America. It sits next to the Pacific Ocean. Peru has neighbors: Ecuador and Colombia to the north, Brazil to the east, Bolivia to the southeast, and Chile to the south. It has a long coastline along the ocean.
+                <span class="standard-reading">Peru is a large country located on the western side of South America,
+                    right next to the Pacific Ocean. It shares borders with five other countries: Ecuador, Colombia,
+                    Brazil, Bolivia, and Chile. Because Peru is near the <strong>equator</strong>, it has many different
+                    <strong>climates</strong>—from snowy mountain peaks to hot jungles!</span>
+                <span class="easy-reading">Peru is a big country in South America. It sits next to the Pacific Ocean.
+                    Peru is near the middle of the Earth, called the <strong>equator</strong>. Peru has many kinds of
+                    weather because of its high mountains.</span>
             </p>
-            
-            <p>
-                Peru is a big country. The highest mountain in Peru is Huascarán Sur. It is very tall! The lowest point is the Bayóvar Depression, which goes below sea level.
-            </p>
-            
-            <!-- Image placeholder -->
-            <img src="https://peakvisor.com/photo/Peru-Huascaran-Sur-1.jpg" alt="Image" style="max-width: 100%;" /><h2>The Three Regions of Peru</h2>
-            
-            <p>
-                The Andes Mountains split Peru into three different regions. Each region is special in its own way.
-            </p><p><img src="https://www.worldometers.info/img/maps/peru_physical_map.gif" alt="Image" style="max-width: 100%;" /><br /></p>
-            
+
+            <img src="https://peakvisor.com/photo/Peru-Huascaran-Sur-1.jpg" alt="Huascarán Sur Mountain" />
+
+            <div class="region-card">
+                <h2>The Three Regions of Peru</h2>
+                <p>
+                    <span class="standard-reading">The most important thing to know about Peru’s geography is that the
+                        <strong>Andes</strong> Mountains split the country into three distinct <strong>biomes</strong>.
+                        Imagine the country as three long strips of land, each with its own look and feel.</span>
+                    <span class="easy-reading">The giant <strong>Andes</strong> mountains divide Peru into three special
+                        parts. Each part has its own plants, animals, and weather.</span>
+                </p>
+            </div>
+
+            <img src="https://www.worldometers.info/img/maps/peru_physical_map.gif" alt="Physical map of Peru" />
+
+            <h2>Comparing the Three Regions</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Region Name</th>
+                        <th>What it Looks Like</th>
+                        <th>The Climate (Weather)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>The Coast (Costa)</strong></td>
+                        <td>A narrow, dry strip of desert next to the ocean.</td>
+                        <td>Mild and damp, but almost never rains.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>The Highlands (Sierra)</strong></td>
+                        <td>Giant, snowy peaks in the Andes Mountains.</td>
+                        <td>Cold and crisp with rainy summers.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>The Jungle (Selva)</strong></td>
+                        <td>Flat, thick rainforest that covers 60% of Peru.</td>
+                        <td>Very hot and very rainy all year.</td>
+                    </tr>
+                </tbody>
+            </table>
+
             <h3>The Coast (Costa)</h3>
-            
+            <img src="https://cdn.kimkim.com/files/a/trip_plans/featured_photos/d5475a1110dfa5651ec1748fd51a5d2f3bd42321/big-af710d78308ec6cc74fda4c1f84c8892.jpg"
+                alt="Coastal view of Peru" />
             <p>
-                The Coast is a narrow, mostly dry strip of land next to the Pacific Ocean. It has valleys made by rivers. This area is not too hot or too cold. The north part is warmer and gets more rain. The ocean gives Peru many fish and other sea animals.
-            </p><p><img src="https://cdn.kimkim.com/files/a/trip_plans/featured_photos/d5475a1110dfa5651ec1748fd51a5d2f3bd42321/big-af710d78308ec6cc74fda4c1f84c8892.jpg" alt="Image" style="max-width: 100%;" /><br /></p>
-            
+                <span class="standard-reading">The Coast is a narrow strip of land along the Pacific Ocean. Most of it
+                    is a dry desert, but it has valleys made by rivers flowing from the mountains. The ocean provides
+                    many fish and sea animals for the people of Peru.</span>
+                <span class="easy-reading">The coast is a dry, sandy area next to the ocean. It does not rain much here.
+                    The ocean gives Peru many fish to eat.</span>
+            </p>
+
             <h3>The Highlands (Sierra)</h3>
-            
+            <img src="https://s1.it.atcdn.net/wp-content/uploads/2025/08/CREDITEmilieRistevski.png"
+                alt="Highlands of the Andes" />
             <p>
-                The Highlands are in the Andes mountains. This area gets a lot of rain in summer. It gets colder as you go up the mountains, all the way to the snowy tops. The mountains are close to the coast and block clouds, which is why the coast gets very little rain.
-            </p><p><img src="https://sky-cms-prod.s3.amazonaws.com/LANDING_TEMPORADA_WEB_95b7ac0ecb.jpg" alt="Image" style="max-width: 100%;" /><br /></p>
-            
+                <span class="standard-reading">The Highlands are home to the snowy peaks of the Andes. As you go higher
+                    up the mountains, the air gets much colder. This region blocks the clouds from reaching the coast,
+                    which is why the coast stays so dry.</span>
+                <span class="easy-reading">The Highlands are high up in the mountains. It is very cold and snowy at the
+                    top. The big mountains block the rain from reaching the coast.</span>
+            </p>
+
             <h3>The Amazon Jungle (Selva)</h3>
-            
+            <img src="https://www.prysmian.com/sites/www.prysmian.com/files/2024-01/peru-banner.png"
+                alt="Amazon Jungle view" />
             <p>
-                The Amazon Jungle is a big, flat area covered by rainforest that goes east. This part makes up about 60% of Peru. Peru has one of the biggest rainforests in the world. The jungle gets a lot of rain and is very hot, except for the south part, which has cold winters.
-            </p><p><img src="https://www.prysmian.com/sites/www.prysmian.com/files/2024-01/peru-banner.png" alt="Image" style="max-width: 100%;" /><br /></p>
-            
-            <!-- Climate Section -->
-            <h2>Peru's Diverse Climate</h2>
-            
-            <p>
-                Even though Peru is near the equator, it has many different kinds of weather. This is because of its location, mountains, land shape, and ocean currents. Peru has 84 of the world's 104 climate zones!
+                <span class="standard-reading">The Jungle is a massive rainforest that covers more than half of the
+                    country. It is very hot and gets a lot of rain. The mighty Amazon River starts here and flows all
+                    the way to the Atlantic Ocean.</span>
+                <span class="easy-reading">The Jungle is a big, thick forest. It is very hot and rainy. A huge river
+                    called the Amazon starts in this part of Peru.</span>
             </p>
-            
+
+            <h2>Natural Resources and Population</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Population_density_of_Peru_regions.png"
+                alt="Population density map" />
             <p>
-                The land in Peru goes from below sea level to very high mountains. This helps create many different climates. The three main regions have three main types of weather:
+                <span class="standard-reading">Peru is rich in natural resources like copper, gold, and silver. Most
+                    people (59%) live in cities along the Coast, while others live in the mountains or jungle. Over
+                    thousands of years, people have adapted to the land. Ancient groups like the Incas built "steps" or
+                    terraces into the mountains to grow food.</span>
+                <span class="easy-reading">Peru has many treasures like gold and silver in the ground. Most people live
+                    in cities by the ocean. Long ago, people learned to grow food on big "steps" cut into the
+                    hills.</span>
             </p>
-            
+
+            <img src="https://cdn.britannica.com/57/196357-004-B50E9D31.jpg" alt="Terrace farming in Peru" />
+
+            <div class="fun-facts">
+                <h3>Geography Fun Facts</h3>
+                <ul>
+                    <li>The Amazon River starts in Peru!</li>
+                    <li>Peru has 4% of all the fresh water on Earth.</li>
+                    <li>Machu Picchu is a famous ancient city high on a mountain.</li>
+                    <li>The first potatoes came from the Peruvian mountains.</li>
+                </ul>
+            </div>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
             <ul>
-                <li>The coast is not too hot or cold, gets little rain, and feels damp.</li>
-                <li>The mountains get lots of rain in summer and get colder as you go up.</li>
-                <li>The Amazon jungle is hot and rainy, except for the south part.</li>
-            </ul><div><img src="https://cdn.britannica.com/57/196357-004-B50E9D31.jpg" alt="Image" style="max-width: 100%;" /><br /></div>
-            
-            <!-- Natural Resources Section -->
-            <h2>Natural Resources</h2>
-            
-            <p>
-                Peru has many natural resources. It has metals like copper, silver, and gold. It also has oil, wood, fish, and water power. Peru's different land types give it many resources that have been important for a long time.
-            </p>
-            
-            <p>
-                Peru sometimes has earthquakes, big waves, floods, and landslides. These happen because Peru sits where two big pieces of the Earth's crust meet.
-            </p>
-            
-            <!-- Fun Facts Section -->
-            <h2>Fun Facts About Peru's Geography</h2>
-            
-            <ul>
-                <li>The Amazon River starts in Peru. It is one of the longest rivers in the world.</li>
-                <li>Peru has 4% of all the fresh water on Earth.</li>
-                <li>Machu Picchu, a famous old Inca city, sits high on a mountain.</li>
-                <li>The potato first came from Peru many thousands of years ago.</li>
+                <li>Which of the three regions would you most like to live in? Why?</li>
+                <li>How does the weather change as you travel from the Coast up into the Highlands?</li>
+                <li>Why do you think the Incas built "steps" into the mountains to grow their food?</li>
             </ul>
-            
-            <!-- Population Section -->
-            <h2>Where People Live in Peru</h2>
-            
-            <p>
-                Where people live in Peru depends on the land. About 59% of people live on the coast, 27% in the mountains, and 14% in the jungle. Most people live in cities, especially on the coast where Lima, the capital city, is.
-            </p><p><img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Population_density_of_Peru_regions.png" alt="Image" style="max-width: 100%;" /><br /></p>
-            
-            <p>
-                Over time, people have learned to live in Peru's different lands. Old groups like the Moche and Nazca made steps on hills to grow food and built water systems in dry areas. The Incas built steps on mountains to grow food and made long roads to connect their big empire.
-            </p>
         </article>
     </main>
-    
-    <!-- Google Translate Widget -->
+
+    <script src="../reading-level-toggle.js"></script>
+
     <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
         }
     </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-</body></html>
+</body>
+
+</html>
