@@ -16,13 +16,15 @@
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gifshot/0.4.5/gifshot.min.js"></script>
+    <script src="https://unpkg.com/gifshot@0.4.5/dist/gifshot.min.js"></script>
 
     <style>
         body { font-family: 'Inter', sans-serif; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         input[type="range"] { accent-color: #f97316; }
+        /* Fix for Lucide icons in CDN version */
+        svg.lucide { display: inline-block; vertical-align: middle; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -31,20 +33,24 @@
     <script type="text/babel">
         const { useState, useEffect, useRef, useCallback } = React;
 
-        // Simple Icon Component to wrap Lucide
-        const Icon = ({ name, className }) => {
+        // Fixed Icon Component for CDN version
+        const Icon = ({ name, className = "w-5 h-5" }) => {
             const iconRef = useRef(null);
+            
             useEffect(() => {
                 if (iconRef.current) {
-                    const icon = lucide.icons[name];
-                    if (icon) {
-                        iconRef.current.innerHTML = '';
-                        const svg = icon.toSvg({ class: className });
-                        iconRef.current.innerHTML = svg;
+                    // Convert PascalCase to kebab-case for the data attribute
+                    const iconName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+                    iconRef.current.setAttribute('data-lucide', iconName);
+                    if (window.lucide) {
+                        window.lucide.createIcons({
+                            attrs: { class: `lucide ${className}` }
+                        });
                     }
                 }
             }, [name, className]);
-            return <span ref={iconRef} className="inline-flex items-center justify-center"></span>;
+
+            return <i ref={iconRef} className="inline-flex items-center justify-center"></i>;
         };
 
         const DEFAULT_COLOR = '#000000';
@@ -63,17 +69,17 @@
             const [isExporting, setIsExporting] = useState(false);
             const [isMouseDown, setIsMouseDown] = useState(false);
 
-            const previewRef = useRef(null);
             const canvasRef = useRef(null);
 
             // Animation logic
             useEffect(() => {
+                let interval;
                 if (isPlaying) {
-                    const interval = setInterval(() => {
+                    interval = setInterval(() => {
                         setCurrentFrameIndex((prev) => (prev + 1) % frames.length);
                     }, 1000 / fps);
-                    return () => clearInterval(interval);
                 }
+                return () => clearInterval(interval);
             }, [isPlaying, fps, frames.length]);
 
             const saveToHistory = (newFrames) => {
@@ -140,6 +146,10 @@
             };
 
             const downloadGIF = () => {
+                if (!window.gifshot) {
+                    alert("GIF library is still loading or blocked by browser. Please try again in a moment.");
+                    return;
+                }
                 setIsExporting(true);
                 const pixelSize = 10;
                 const size = gridSize * pixelSize;
@@ -161,7 +171,7 @@
                     images.push(tempCanvas.toDataURL());
                 });
 
-                gifshot.createGIF({
+                window.gifshot.createGIF({
                     images: images,
                     gifWidth: size,
                     gifHeight: size,
@@ -225,7 +235,7 @@
                     <main className="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
                         <div className="space-y-6">
                             {/* Editor */}
-                            <div className="flex flex-col items-center justify-center bg-white border border-slate-200 rounded-3xl p-8 min-h-[500px] shadow-xl">
+                            <div className="flex flex-col items-center justify-center bg-white border border-slate-200 rounded-3xl p-8 min-h-[500px] shadow-xl relative">
                                 <div 
                                     className="grid gap-0 border border-slate-200 bg-slate-50"
                                     style={{ 
