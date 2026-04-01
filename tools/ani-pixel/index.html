@@ -20,7 +20,6 @@
 
     <style>
         body { font-family: 'Inter', sans-serif; }
-        /* Custom Scrollbar for Timeline */
         .timeline-scroll::-webkit-scrollbar { height: 8px; }
         .timeline-scroll::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
         .timeline-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
@@ -36,10 +35,8 @@
     <script type="text/babel">
         const { useState, useEffect, useRef, useCallback } = React;
 
-        // Fixed Icon Component for CDN version
         const Icon = ({ name, className = "w-5 h-5" }) => {
             const iconRef = useRef(null);
-            
             useEffect(() => {
                 if (iconRef.current && window.lucide) {
                     const iconName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
@@ -47,7 +44,6 @@
                     window.lucide.createIcons();
                 }
             }, [name, className]);
-
             return <i ref={iconRef} className={`inline-flex items-center justify-center ${className}`}></i>;
         };
 
@@ -56,11 +52,12 @@
 
         function App() {
             const [gridSize, setGridSize] = useState(16);
+            const [pendingGridSize, setPendingGridSize] = useState(null); // For confirmation modal
             const [frames, setFrames] = useState([Array(16 * 16).fill(EMPTY_COLOR)]);
             const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
             const [brushColor, setBrushColor] = useState(DEFAULT_COLOR);
             const [canvasBgColor, setCanvasBgColor] = useState('#ffffff');
-            const [studentName, setStudentName] = useState(''); // New: Student Name
+            const [studentName, setStudentName] = useState('');
             const [tool, setTool] = useState('pencil');
             const [isPlaying, setIsPlaying] = useState(false);
             const [fps, setFps] = useState(8);
@@ -70,6 +67,15 @@
             const [isMouseDown, setIsMouseDown] = useState(false);
 
             const canvasRef = useRef(null);
+
+            // Initialize/Reset frames when grid size changes
+            useEffect(() => {
+                const newFrames = [Array(gridSize * gridSize).fill(EMPTY_COLOR)];
+                setFrames(newFrames);
+                setCurrentFrameIndex(0);
+                setHistory([newFrames]);
+                setHistoryIndex(0);
+            }, [gridSize]);
 
             // Animation logic
             useEffect(() => {
@@ -81,6 +87,24 @@
                 }
                 return () => clearInterval(interval);
             }, [isPlaying, fps, frames.length]);
+
+            const handleGridSizeChange = (newSize) => {
+                const size = Math.max(4, Math.min(64, newSize));
+                const hasDrawn = frames.some(frame => frame.some(pixel => pixel !== EMPTY_COLOR));
+                
+                if (hasDrawn) {
+                    setPendingGridSize(size);
+                } else {
+                    setGridSize(size);
+                }
+            };
+
+            const confirmGridSizeChange = () => {
+                if (pendingGridSize !== null) {
+                    setGridSize(pendingGridSize);
+                    setPendingGridSize(null);
+                }
+            };
 
             const saveToHistory = (newFrames) => {
                 const newHistory = history.slice(0, historyIndex + 1);
@@ -233,18 +257,33 @@
                             <h1 className="text-xl font-bold tracking-tighter italic uppercase">Pixel Animator</h1>
                         </div>
                         
-                        <div className="flex items-center gap-2">
-                            <button onClick={downloadPNG} className="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-600 px-4 py-2 rounded-lg font-bold text-sm border border-slate-200">
-                                <Icon name="Download" className="w-4 h-4" /> PNG
-                            </button>
-                            <button onClick={downloadGIF} disabled={isExporting} className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-300 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-lg shadow-orange-500/20">
-                                <Icon name="Download" className="w-4 h-4" /> {isExporting ? "EXPORTING..." : "GIF"}
-                            </button>
+                        <div className="flex items-center gap-6">
+                            {/* Grid Size Input */}
+                            <div className="flex items-center gap-3 bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200">
+                                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Grid Size</span>
+                                <div className="flex items-center gap-2">
+                                    <input 
+                                        type="number" 
+                                        value={gridSize}
+                                        onChange={(e) => handleGridSizeChange(parseInt(e.target.value) || 16)}
+                                        className="w-12 bg-white border border-slate-200 rounded px-1.5 py-0.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-orange-500/20"
+                                    />
+                                    <span className="text-xs text-slate-400 font-mono">px</span>
+                                </div>
+                            </div>
+
+                            <div className="flex items-center gap-2">
+                                <button onClick={downloadPNG} className="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-600 px-4 py-2 rounded-lg font-bold text-sm border border-slate-200">
+                                    <Icon name="Download" className="w-4 h-4" /> PNG
+                                </button>
+                                <button onClick={downloadGIF} disabled={isExporting} className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-300 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-lg shadow-orange-500/20">
+                                    <Icon name="Download" className="w-4 h-4" /> {isExporting ? "EXPORTING..." : "GIF"}
+                                </button>
+                            </div>
                         </div>
                     </header>
 
                     <main className="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
-                        {/* Main Column - min-w-0 is the fix for the expanding grid bug */}
                         <div className="space-y-6 min-w-0">
                             {/* Editor */}
                             <div className="flex flex-col items-center justify-center bg-white border border-slate-200 rounded-3xl p-8 min-h-[500px] shadow-xl relative">
@@ -296,7 +335,7 @@
                                 </div>
                             </div>
 
-                            {/* Timeline - Fixed Width with Horizontal Scroll */}
+                            {/* Timeline */}
                             <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-lg overflow-hidden">
                                 <div className="flex items-center justify-between mb-4">
                                     <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400">Timeline</h3>
@@ -321,7 +360,6 @@
 
                         {/* Sidebar */}
                         <aside className="space-y-6">
-                            {/* Student Name Input */}
                             <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-4 shadow-lg">
                                 <h3 className="text-sm font-bold uppercase tracking-widest flex items-center gap-2">
                                     <Icon name="User" className="w-4 h-4 text-orange-500" /> Student Info
@@ -336,7 +374,6 @@
                                         className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-100 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition-all font-medium"
                                     />
                                 </div>
-                                <p className="text-[10px] text-slate-400 leading-tight">Your name will be added to the filename when you download!</p>
                             </div>
 
                             <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-6 shadow-lg">
@@ -360,7 +397,6 @@
                                 </div>
                             </div>
 
-                            {/* Background Color Picker */}
                             <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-4 shadow-lg">
                                 <h3 className="text-sm font-bold uppercase tracking-widest flex items-center gap-2">
                                     <Icon name="Settings" className="w-4 h-4 text-orange-500" /> Canvas Settings
@@ -383,13 +419,31 @@
                             </div>
                         </aside>
                     </main>
+
                     <canvas ref={canvasRef} className="hidden" />
+
+                    {/* Confirmation Modal */}
+                    {pendingGridSize !== null && (
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                            <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onClick={() => setPendingGridSize(null)}></div>
+                            <div className="relative bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-slate-200">
+                                <h3 className="text-xl font-bold mb-2">Change Grid Size?</h3>
+                                <p className="text-slate-500 text-sm mb-6 leading-relaxed">
+                                    Changing the grid size to <span className="font-bold text-slate-900">{pendingGridSize}x{pendingGridSize}</span> will clear your current animation. This cannot be undone.
+                                </p>
+                                <div className="flex gap-3">
+                                    <button onClick={() => setPendingGridSize(null)} className="flex-1 py-3 rounded-2xl font-bold text-slate-600 hover:bg-slate-50 transition-colors">CANCEL</button>
+                                    <button onClick={confirmGridSizeChange} className="flex-1 py-3 rounded-2xl font-bold bg-orange-500 text-white hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/20">CONFIRM</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             );
         }
 
-            const root = ReactDOM.createRoot(document.getElementById('root'));
-            root.render(<App />);
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
 </body>
 </html>
