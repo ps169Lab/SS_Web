@@ -4,27 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pixel Animator - Simple Edition</title>
-    
-    <!-- 1. Tailwind CSS for Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- 2. Fonts and Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <!-- 3. React and Tools -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/gifshot@0.4.5/dist/gifshot.min.js"></script>
-
     <style>
         body { font-family: 'Inter', sans-serif; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         input[type="range"] { accent-color: #f97316; }
-        /* Fix for Lucide icons in CDN version */
-        svg.lucide { display: inline-block; vertical-align: middle; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -33,95 +23,142 @@
     <script type="text/babel">
         const { useState, useEffect, useRef, useCallback } = React;
 
-        // Fixed Icon Component for CDN version
-        const Icon = ({ name, className = "w-5 h-5" }) => {
-            const iconRef = useRef(null);
-            
-            useEffect(() => {
-                if (iconRef.current) {
-                    // Convert PascalCase to kebab-case for the data attribute
-                    const iconName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-                    iconRef.current.setAttribute('data-lucide', iconName);
-                    if (window.lucide) {
-                        window.lucide.createIcons({
-                            attrs: { class: `lucide ${className}` }
-                        });
-                    }
-                }
-            }, [name, className]);
-
-            return <i ref={iconRef} className="inline-flex items-center justify-center"></i>;
+        // FIX A: Replaced broken Lucide ref/CDN Icon component with simple inline SVGs.
+        // The original used lucide.createIcons() inside a useEffect which re-ran on every
+        // render, causing all icons to flicker and often fail to render correctly.
+        const icons = {
+            Grid3X3: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>),
+            Download: (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>),
+            Undo:     (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>),
+            Redo:     (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 14 20 9 15 4"/><path d="M4 20v-7a4 4 0 0 1 4-4h12"/></svg>),
+            Trash2:   (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>),
+            Pencil:   (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>),
+            Eraser:   (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 20H7L3 16l13-13 6 6-2 2"/><path d="M6 14l8-8"/></svg>),
+            Plus:     (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>),
+            Copy:     (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>),
+            Play:     (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>),
+            Pause:    (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>),
+            Palette:  (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>),
         };
+
+        const Icon = ({ name, className = "w-5 h-5" }) => (
+            <span className={`inline-flex items-center justify-center flex-shrink-0 ${className}`}>
+                {React.cloneElement(icons[name] || icons.Plus, { className })}
+            </span>
+        );
 
         const DEFAULT_COLOR = '#000000';
         const EMPTY_COLOR = 'transparent';
+        const MAX_HISTORY = 50;
+        const GRID_SIZE = 16;
 
         function App() {
-            const [gridSize, setGridSize] = useState(16);
-            const [frames, setFrames] = useState([Array(16 * 16).fill(EMPTY_COLOR)]);
+            const [frames, setFrames] = useState([Array(GRID_SIZE * GRID_SIZE).fill(EMPTY_COLOR)]);
             const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
             const [brushColor, setBrushColor] = useState(DEFAULT_COLOR);
             const [tool, setTool] = useState('pencil');
             const [isPlaying, setIsPlaying] = useState(false);
             const [fps, setFps] = useState(8);
-            const [history, setHistory] = useState([[Array(16 * 16).fill(EMPTY_COLOR)]]);
+            const [history, setHistory] = useState([[Array(GRID_SIZE * GRID_SIZE).fill(EMPTY_COLOR)]]);
             const [historyIndex, setHistoryIndex] = useState(0);
             const [isExporting, setIsExporting] = useState(false);
-            const [isMouseDown, setIsMouseDown] = useState(false);
+
+            // FIX G: Use a ref (not state) for mousedown tracking so the global window
+            // listener can reliably read and reset it without stale closure issues.
+            const isMouseDownRef = useRef(false);
+
+            // FIX B: Track whether pixels were changed during a drag stroke.
+            // History is saved once on mouseUp, not on every individual pixel touch.
+            const strokeDirtyRef = useRef(false);
+
+            // Keep a live ref to frames and historyIndex for use inside callbacks/effects
+            // that would otherwise close over stale values.
+            const framesRef = useRef(frames);
+            framesRef.current = frames;
+            const historyIndexRef = useRef(historyIndex);
+            historyIndexRef.current = historyIndex;
 
             const canvasRef = useRef(null);
 
-            // Animation logic
+            // FIX G: Global mouseup listener - handles releasing the mouse outside the grid.
             useEffect(() => {
-                let interval;
-                if (isPlaying) {
-                    interval = setInterval(() => {
-                        setCurrentFrameIndex((prev) => (prev + 1) % frames.length);
-                    }, 1000 / fps);
-                }
-                return () => clearInterval(interval);
-            }, [isPlaying, fps, frames.length]);
+                const onGlobalMouseUp = () => {
+                    if (!isMouseDownRef.current) return;
+                    isMouseDownRef.current = false;
 
+                    // FIX B: Flush one history entry per stroke on mouseUp.
+                    if (strokeDirtyRef.current) {
+                        strokeDirtyRef.current = false;
+                        const snapshot = JSON.parse(JSON.stringify(framesRef.current));
+                        setHistory(prev => {
+                            // FIX C: Slice at current index first, then append.
+                            // The original did history.slice() outside setState which could
+                            // read a stale historyIndex when shift() removed the first entry.
+                            const next = prev.slice(0, historyIndexRef.current + 1);
+                            next.push(snapshot);
+                            if (next.length > MAX_HISTORY) next.shift();
+                            return next;
+                        });
+                        // FIX C: Cap at MAX_HISTORY - 1 so index never overflows after shift().
+                        setHistoryIndex(prev => Math.min(prev + 1, MAX_HISTORY - 1));
+                    }
+                };
+                window.addEventListener('mouseup', onGlobalMouseUp);
+                return () => window.removeEventListener('mouseup', onGlobalMouseUp);
+            }, []); // runs once; reads via refs so no stale deps
+
+            // Animation playback
+            useEffect(() => {
+                if (!isPlaying) return;
+                const id = setInterval(() => {
+                    setCurrentFrameIndex(prev => (prev + 1) % framesRef.current.length);
+                }, 1000 / fps);
+                return () => clearInterval(id);
+            }, [isPlaying, fps]);
+
+            // Explicit history save for non-stroke actions (add/delete/duplicate/clear frame)
             const saveToHistory = (newFrames) => {
-                const newHistory = history.slice(0, historyIndex + 1);
-                newHistory.push(JSON.parse(JSON.stringify(newFrames)));
-                if (newHistory.length > 50) newHistory.shift();
-                setHistory(newHistory);
-                setHistoryIndex(newHistory.length - 1);
+                const snapshot = JSON.parse(JSON.stringify(newFrames));
+                setHistory(prev => {
+                    const next = prev.slice(0, historyIndexRef.current + 1);
+                    next.push(snapshot);
+                    if (next.length > MAX_HISTORY) next.shift();
+                    return next;
+                });
+                setHistoryIndex(prev => Math.min(prev + 1, MAX_HISTORY - 1));
             };
 
             const undo = () => {
-                if (historyIndex > 0) {
-                    const prev = history[historyIndex - 1];
-                    setFrames(JSON.parse(JSON.stringify(prev)));
-                    setHistoryIndex(historyIndex - 1);
-                }
+                if (historyIndex <= 0) return;
+                setFrames(JSON.parse(JSON.stringify(history[historyIndex - 1])));
+                setHistoryIndex(historyIndex - 1);
             };
 
             const redo = () => {
-                if (historyIndex < history.length - 1) {
-                    const next = history[historyIndex + 1];
-                    setFrames(JSON.parse(JSON.stringify(next)));
-                    setHistoryIndex(historyIndex + 1);
-                }
+                if (historyIndex >= history.length - 1) return;
+                setFrames(JSON.parse(JSON.stringify(history[historyIndex + 1])));
+                setHistoryIndex(historyIndex + 1);
             };
 
+            // FIX B: updatePixel only mutates frame state; does NOT save to history.
+            // History is saved in bulk on mouseUp via the global listener above.
             const updatePixel = (index) => {
-                const newFrames = [...frames];
-                const currentFrame = [...newFrames[currentFrameIndex]];
                 const color = tool === 'pencil' ? brushColor : EMPTY_COLOR;
-                
-                if (currentFrame[index] === color) return;
-                
-                currentFrame[index] = color;
-                newFrames[currentFrameIndex] = currentFrame;
-                setFrames(newFrames);
-                saveToHistory(newFrames);
+                setFrames(prev => {
+                    const frame = [...prev[currentFrameIndex]];
+                    if (frame[index] === color) return prev; // no change → no re-render
+                    frame[index] = color;
+                    const next = [...prev];
+                    next[currentFrameIndex] = frame;
+                    framesRef.current = next;   // keep ref in sync for mouseUp handler
+                    strokeDirtyRef.current = true;
+                    return next;
+                });
             };
 
             const addFrame = () => {
                 const newFrames = [...frames];
-                newFrames.splice(currentFrameIndex + 1, 0, Array(gridSize * gridSize).fill(EMPTY_COLOR));
+                newFrames.splice(currentFrameIndex + 1, 0, Array(GRID_SIZE * GRID_SIZE).fill(EMPTY_COLOR));
                 setFrames(newFrames);
                 setCurrentFrameIndex(currentFrameIndex + 1);
                 saveToHistory(newFrames);
@@ -139,49 +176,50 @@
                 if (frames.length <= 1) return;
                 const newFrames = frames.filter((_, i) => i !== index);
                 setFrames(newFrames);
-                if (currentFrameIndex >= newFrames.length) {
-                    setCurrentFrameIndex(newFrames.length - 1);
-                }
+                setCurrentFrameIndex(prev => (prev >= newFrames.length ? newFrames.length - 1 : prev));
+                saveToHistory(newFrames);
+            };
+
+            const clearCurrentFrame = () => {
+                const newFrames = [...frames];
+                newFrames[currentFrameIndex] = Array(GRID_SIZE * GRID_SIZE).fill(EMPTY_COLOR);
+                setFrames(newFrames);
                 saveToHistory(newFrames);
             };
 
             const downloadGIF = () => {
                 if (!window.gifshot) {
-                    alert("GIF library is still loading or blocked by browser. Please try again in a moment.");
+                    alert("GIF library hasn't loaded yet. Please try again in a moment.");
                     return;
                 }
                 setIsExporting(true);
                 const pixelSize = 10;
-                const size = gridSize * pixelSize;
-                const images = [];
+                const size = GRID_SIZE * pixelSize;
 
-                frames.forEach((frame) => {
-                    const tempCanvas = document.createElement('canvas');
-                    tempCanvas.width = size;
-                    tempCanvas.height = size;
-                    const tempCtx = tempCanvas.getContext('2d');
-                    frame.forEach((color, pixelIdx) => {
-                        if (color !== EMPTY_COLOR) {
-                            const x = (pixelIdx % gridSize) * pixelSize;
-                            const y = Math.floor(pixelIdx / gridSize) * pixelSize;
-                            tempCtx.fillStyle = color;
-                            tempCtx.fillRect(x, y, pixelSize, pixelSize);
-                        }
+                const images = frames.map(frame => {
+                    const tmp = document.createElement('canvas');
+                    tmp.width = size;
+                    tmp.height = size;
+                    const ctx = tmp.getContext('2d');
+                    // White background so transparent pixels don't appear black in the GIF
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, size, size);
+                    frame.forEach((color, idx) => {
+                        if (color === EMPTY_COLOR) return;
+                        ctx.fillStyle = color;
+                        ctx.fillRect((idx % GRID_SIZE) * pixelSize, Math.floor(idx / GRID_SIZE) * pixelSize, pixelSize, pixelSize);
                     });
-                    images.push(tempCanvas.toDataURL());
+                    return tmp.toDataURL();
                 });
 
-                window.gifshot.createGIF({
-                    images: images,
-                    gifWidth: size,
-                    gifHeight: size,
-                    interval: 1 / fps
-                }, (obj) => {
+                window.gifshot.createGIF({ images, gifWidth: size, gifHeight: size, interval: 1 / fps }, obj => {
                     if (!obj.error) {
-                        const link = document.createElement('a');
-                        link.download = 'pixel-animation.gif';
-                        link.href = obj.image;
-                        link.click();
+                        const a = document.createElement('a');
+                        a.download = 'pixel-animation.gif';
+                        a.href = obj.image;
+                        a.click();
+                    } else {
+                        alert('GIF export failed: ' + obj.error);
                     }
                     setIsExporting(false);
                 });
@@ -191,24 +229,28 @@
                 const canvas = canvasRef.current;
                 const ctx = canvas.getContext('2d');
                 const pixelSize = 10;
-                canvas.width = gridSize * pixelSize * frames.length;
-                canvas.height = gridSize * pixelSize;
+                canvas.width  = GRID_SIZE * pixelSize * frames.length;
+                canvas.height = GRID_SIZE * pixelSize;
 
-                frames.forEach((frame, frameIdx) => {
-                    frame.forEach((color, pixelIdx) => {
-                        if (color !== EMPTY_COLOR) {
-                            const x = (frameIdx * gridSize + (pixelIdx % gridSize)) * pixelSize;
-                            const y = Math.floor(pixelIdx / gridSize) * pixelSize;
-                            ctx.fillStyle = color;
-                            ctx.fillRect(x, y, pixelSize, pixelSize);
-                        }
+                // FIX E: clear before drawing to prevent pixel bleed on repeated exports
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                frames.forEach((frame, fi) => {
+                    frame.forEach((color, idx) => {
+                        if (color === EMPTY_COLOR) return;
+                        ctx.fillStyle = color;
+                        ctx.fillRect(
+                            (fi * GRID_SIZE + (idx % GRID_SIZE)) * pixelSize,
+                            Math.floor(idx / GRID_SIZE) * pixelSize,
+                            pixelSize, pixelSize
+                        );
                     });
                 });
 
-                const link = document.createElement('a');
-                link.download = 'pixel-animation.png';
-                link.href = canvas.toDataURL();
-                link.click();
+                const a = document.createElement('a');
+                a.download = 'pixel-animation.png';
+                a.href = canvas.toDataURL();
+                a.click();
             };
 
             return (
@@ -221,58 +263,77 @@
                             </div>
                             <h1 className="text-xl font-bold tracking-tighter italic uppercase">Pixel Animator</h1>
                         </div>
-                        
                         <div className="flex items-center gap-2">
                             <button onClick={downloadPNG} className="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-600 px-4 py-2 rounded-lg font-bold text-sm border border-slate-200">
                                 <Icon name="Download" className="w-4 h-4" /> PNG
                             </button>
                             <button onClick={downloadGIF} disabled={isExporting} className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-300 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-lg shadow-orange-500/20">
-                                <Icon name="Download" className="w-4 h-4" /> {isExporting ? "EXPORTING..." : "GIF"}
+                                <Icon name="Download" className="w-4 h-4" />
+                                {isExporting ? "EXPORTING..." : "GIF"}
                             </button>
                         </div>
                     </header>
 
                     <main className="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
                         <div className="space-y-6">
-                            {/* Editor */}
+                            {/* Drawing Editor */}
                             <div className="flex flex-col items-center justify-center bg-white border border-slate-200 rounded-3xl p-8 min-h-[500px] shadow-xl relative">
-                                <div 
+
+                                {/* FIX F: Overlay blocks drawing while animation is playing */}
+                                {isPlaying && (
+                                    <div
+                                        className="absolute inset-0 z-10 rounded-3xl cursor-not-allowed"
+                                        title="Pause playback to draw"
+                                        style={{ background: 'transparent' }}
+                                    />
+                                )}
+
+                                <div
                                     className="grid gap-0 border border-slate-200 bg-slate-50"
-                                    style={{ 
-                                        gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
+                                    style={{
+                                        gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
                                         width: 'min(80vw, 480px)',
-                                        aspectRatio: '1/1'
+                                        aspectRatio: '1/1',
                                     }}
-                                    onMouseDown={() => setIsMouseDown(true)}
-                                    onMouseUp={() => setIsMouseDown(false)}
-                                    onMouseLeave={() => setIsMouseDown(false)}
+                                    onMouseDown={() => { isMouseDownRef.current = true; }}
                                 >
                                     {frames[currentFrameIndex].map((color, i) => (
                                         <div
                                             key={i}
                                             onMouseDown={() => updatePixel(i)}
-                                            onMouseEnter={() => isMouseDown && updatePixel(i)}
+                                            onMouseEnter={() => isMouseDownRef.current && updatePixel(i)}
                                             className="w-full h-full border-[0.5px] border-slate-200/30 cursor-crosshair"
                                             style={{ backgroundColor: color }}
                                         />
                                     ))}
                                 </div>
 
-                                {/* Tools */}
+                                {/* Toolbar */}
                                 <div className="mt-8 flex items-center gap-4 bg-slate-100 p-2 rounded-2xl border border-slate-200">
-                                    <button onClick={undo} disabled={historyIndex <= 0} className="p-2 hover:bg-white rounded-xl disabled:opacity-30"><Icon name="Undo" className="w-5 h-5" /></button>
-                                    <button onClick={redo} disabled={historyIndex >= history.length - 1} className="p-2 hover:bg-white rounded-xl disabled:opacity-30"><Icon name="Redo" className="w-5 h-5" /></button>
-                                    <button onClick={() => {
-                                        const newFrames = [...frames];
-                                        newFrames[currentFrameIndex] = Array(gridSize * gridSize).fill(EMPTY_COLOR);
-                                        setFrames(newFrames);
-                                        saveToHistory(newFrames);
-                                    }} className="p-2 hover:bg-red-50 text-red-500 rounded-xl"><Icon name="Trash2" className="w-5 h-5" /></button>
+                                    <button onClick={undo} disabled={historyIndex <= 0} title="Undo" className="p-2 hover:bg-white rounded-xl disabled:opacity-30">
+                                        <Icon name="Undo" className="w-5 h-5" />
+                                    </button>
+                                    <button onClick={redo} disabled={historyIndex >= history.length - 1} title="Redo" className="p-2 hover:bg-white rounded-xl disabled:opacity-30">
+                                        <Icon name="Redo" className="w-5 h-5" />
+                                    </button>
+                                    <button onClick={clearCurrentFrame} title="Clear frame" className="p-2 hover:bg-red-50 text-red-500 rounded-xl">
+                                        <Icon name="Trash2" className="w-5 h-5" />
+                                    </button>
                                     <div className="w-px h-6 bg-slate-200" />
-                                    <button onClick={() => setTool('pencil')} className={`p-2 rounded-xl ${tool === 'pencil' ? "bg-orange-500 text-white" : "hover:bg-white"}`}><Icon name="Pencil" className="w-5 h-5" /></button>
-                                    <button onClick={() => setTool('eraser')} className={`p-2 rounded-xl ${tool === 'eraser' ? "bg-orange-500 text-white" : "hover:bg-white"}`}><Icon name="Eraser" className="w-5 h-5" /></button>
+                                    <button onClick={() => setTool('pencil')} title="Pencil" className={`p-2 rounded-xl ${tool === 'pencil' ? "bg-orange-500 text-white" : "hover:bg-white"}`}>
+                                        <Icon name="Pencil" className="w-5 h-5" />
+                                    </button>
+                                    <button onClick={() => setTool('eraser')} title="Eraser" className={`p-2 rounded-xl ${tool === 'eraser' ? "bg-orange-500 text-white" : "hover:bg-white"}`}>
+                                        <Icon name="Eraser" className="w-5 h-5" />
+                                    </button>
                                     <div className="w-px h-6 bg-slate-200" />
-                                    <input type="color" value={brushColor} onChange={(e) => setBrushColor(e.target.value)} className="w-10 h-10 rounded-xl cursor-pointer bg-white p-1 border border-slate-200" />
+                                    <input
+                                        type="color"
+                                        value={brushColor}
+                                        onChange={e => { setBrushColor(e.target.value); setTool('pencil'); }}
+                                        title="Pick color"
+                                        className="w-10 h-10 rounded-xl cursor-pointer bg-white p-1 border border-slate-200"
+                                    />
                                 </div>
                             </div>
 
@@ -281,18 +342,35 @@
                                 <div className="flex items-center justify-between mb-4">
                                     <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400">Timeline</h3>
                                     <div className="flex gap-2">
-                                        <button onClick={addFrame} className="p-2 hover:bg-slate-100 rounded-xl text-orange-500 border border-slate-100"><Icon name="Plus" className="w-4 h-4" /></button>
-                                        <button onClick={duplicateFrame} className="p-2 hover:bg-slate-100 rounded-xl text-slate-400 border border-slate-100"><Icon name="Copy" className="w-4 h-4" /></button>
+                                        <button onClick={addFrame} title="Add blank frame" className="p-2 hover:bg-slate-100 rounded-xl text-orange-500 border border-slate-100">
+                                            <Icon name="Plus" className="w-4 h-4" />
+                                        </button>
+                                        <button onClick={duplicateFrame} title="Duplicate current frame" className="p-2 hover:bg-slate-100 rounded-xl text-slate-400 border border-slate-100">
+                                            <Icon name="Copy" className="w-4 h-4" />
+                                        </button>
                                     </div>
                                 </div>
                                 <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
                                     {frames.map((frame, i) => (
-                                        <div key={i} onClick={() => setCurrentFrameIndex(i)} className={`relative flex-shrink-0 w-24 h-24 rounded-2xl border-2 cursor-pointer transition-all overflow-hidden bg-slate-50 ${currentFrameIndex === i ? "border-orange-500 scale-105 shadow-lg" : "border-slate-100 hover:border-slate-200"}`}>
-                                            <div className="grid w-full h-full" style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)` }}>
+                                        <div
+                                            key={i}
+                                            onClick={() => !isPlaying && setCurrentFrameIndex(i)}
+                                            className={`relative flex-shrink-0 w-24 h-24 rounded-2xl border-2 cursor-pointer transition-all overflow-hidden bg-slate-50
+                                                ${currentFrameIndex === i ? "border-orange-500 scale-105 shadow-lg" : "border-slate-100 hover:border-slate-200"}`}
+                                        >
+                                            <div className="grid w-full h-full" style={{ gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)` }}>
                                                 {frame.map((color, j) => <div key={j} style={{ backgroundColor: color }} />)}
                                             </div>
-                                            <button onClick={(e) => { e.stopPropagation(); deleteFrame(i); }} className="absolute top-2 right-2 p-1 bg-white hover:bg-red-500 hover:text-white text-red-500 rounded-lg shadow-sm"><Icon name="Trash2" className="w-3 h-3" /></button>
-                                            <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-white/90 rounded-md text-[10px] font-bold text-slate-400">{i + 1}</div>
+                                            <button
+                                                onClick={e => { e.stopPropagation(); deleteFrame(i); }}
+                                                title="Delete frame"
+                                                className="absolute top-2 right-2 p-1 bg-white hover:bg-red-500 hover:text-white text-red-500 rounded-lg shadow-sm"
+                                            >
+                                                <Icon name="Trash2" className="w-3 h-3" />
+                                            </button>
+                                            <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-white/90 rounded-md text-[10px] font-bold text-slate-400">
+                                                {i + 1}
+                                            </div>
                                         </div>
                                     ))}
                                 </div>
@@ -303,21 +381,32 @@
                         <aside className="space-y-6">
                             <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-6 shadow-lg">
                                 <h3 className="text-sm font-bold uppercase tracking-widest">Preview</h3>
-                                <div className="aspect-square bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-center overflow-hidden relative">
-                                    <div className="grid w-full h-full" style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)` }}>
-                                        {frames[currentFrameIndex].map((color, i) => <div key={i} style={{ backgroundColor: color }} />)}
+                                <div className="aspect-square bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden">
+                                    <div className="grid w-full h-full" style={{ gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)` }}>
+                                        {frames[currentFrameIndex].map((color, i) => (
+                                            <div key={i} style={{ backgroundColor: color }} />
+                                        ))}
                                     </div>
                                 </div>
                                 <div className="space-y-4">
-                                    <button onClick={() => setIsPlaying(!isPlaying)} className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-bold transition-all shadow-lg ${isPlaying ? "bg-slate-900 text-white" : "bg-orange-500 text-white hover:bg-orange-600"}`}>
-                                        <Icon name={isPlaying ? "Pause" : "Play"} className="w-5 h-5" /> {isPlaying ? "PAUSE" : "PLAY"}
+                                    <button
+                                        onClick={() => setIsPlaying(p => !p)}
+                                        className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-bold transition-all shadow-lg
+                                            ${isPlaying ? "bg-slate-900 text-white" : "bg-orange-500 text-white hover:bg-orange-600"}`}
+                                    >
+                                        <Icon name={isPlaying ? "Pause" : "Play"} className="w-5 h-5" />
+                                        {isPlaying ? "PAUSE" : "PLAY"}
                                     </button>
                                     <div className="space-y-3">
                                         <div className="flex justify-between text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                                             <span>Playback Speed</span>
                                             <span className="text-orange-500">{fps} FPS</span>
                                         </div>
-                                        <input type="range" min="1" max="24" value={fps} onChange={(e) => setFps(parseInt(e.target.value))} className="w-full h-2 rounded-lg appearance-none cursor-pointer" />
+                                        <input
+                                            type="range" min="1" max="24" value={fps}
+                                            onChange={e => setFps(parseInt(e.target.value, 10))}
+                                            className="w-full h-2 rounded-lg appearance-none cursor-pointer"
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -327,20 +416,29 @@
                                     <Icon name="Palette" className="w-4 h-4 text-orange-500" /> Palette
                                 </h3>
                                 <div className="grid grid-cols-6 gap-2">
-                                    {['#000000', '#ffffff', '#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffa500', '#800080', '#008000', '#800000'].map((color) => (
-                                        <button key={color} onClick={() => { setBrushColor(color); setTool('pencil'); }} className={`w-full aspect-square rounded-lg border border-slate-100 transition-all ${brushColor === color ? "ring-2 ring-orange-500 ring-offset-2" : ""}`} style={{ backgroundColor: color }} />
+                                    {['#000000','#ffffff','#ff0000','#00ff00','#0000ff','#ffff00',
+                                      '#ff00ff','#00ffff','#ffa500','#800080','#008000','#800000'].map(color => (
+                                        <button
+                                            key={color}
+                                            onClick={() => { setBrushColor(color); setTool('pencil'); }}
+                                            title={color}
+                                            className={`w-full aspect-square rounded-lg border border-slate-100 transition-all
+                                                ${brushColor === color ? "ring-2 ring-orange-500 ring-offset-2" : ""}`}
+                                            style={{ backgroundColor: color }}
+                                        />
                                     ))}
                                 </div>
                             </div>
                         </aside>
                     </main>
+
+                    {/* Hidden canvas used only for PNG sprite-sheet export */}
                     <canvas ref={canvasRef} className="hidden" />
                 </div>
             );
         }
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
     </script>
 </body>
 </html>
