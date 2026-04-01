@@ -20,10 +20,13 @@
 
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Custom Scrollbar for Timeline */
+        .timeline-scroll::-webkit-scrollbar { height: 8px; }
+        .timeline-scroll::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+        .timeline-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .timeline-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
         input[type="range"] { accent-color: #f97316; }
-        /* Fix for Lucide icons in CDN version */
         svg.lucide { display: inline-block; vertical-align: middle; stroke: currentColor; fill: none; }
     </style>
 </head>
@@ -56,7 +59,8 @@
             const [frames, setFrames] = useState([Array(16 * 16).fill(EMPTY_COLOR)]);
             const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
             const [brushColor, setBrushColor] = useState(DEFAULT_COLOR);
-            const [canvasBgColor, setCanvasBgColor] = useState('#ffffff'); // New: Background color
+            const [canvasBgColor, setCanvasBgColor] = useState('#ffffff');
+            const [studentName, setStudentName] = useState(''); // New: Student Name
             const [tool, setTool] = useState('pencil');
             const [isPlaying, setIsPlaying] = useState(false);
             const [fps, setFps] = useState(8);
@@ -141,6 +145,11 @@
                 saveToHistory(newFrames);
             };
 
+            const getFileName = (ext) => {
+                const name = studentName.trim() || 'Pixel_Art';
+                return `${name}_Animation.${ext}`;
+            };
+
             const downloadGIF = () => {
                 if (!window.gifshot) {
                     alert("GIF library is still loading. Please try again in a moment.");
@@ -156,8 +165,6 @@
                     tempCanvas.width = size;
                     tempCanvas.height = size;
                     const tempCtx = tempCanvas.getContext('2d');
-                    
-                    // Fill background first
                     tempCtx.fillStyle = canvasBgColor;
                     tempCtx.fillRect(0, 0, size, size);
 
@@ -180,7 +187,7 @@
                 }, (obj) => {
                     if (!obj.error) {
                         const link = document.createElement('a');
-                        link.download = 'pixel-animation.gif';
+                        link.download = getFileName('gif');
                         link.href = obj.image;
                         link.click();
                     }
@@ -195,7 +202,6 @@
                 canvas.width = gridSize * pixelSize * frames.length;
                 canvas.height = gridSize * pixelSize;
 
-                // Fill background
                 ctx.fillStyle = canvasBgColor;
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -211,7 +217,7 @@
                 });
 
                 const link = document.createElement('a');
-                link.download = 'pixel-animation.png';
+                link.download = getFileName('png');
                 link.href = canvas.toDataURL();
                 link.click();
             };
@@ -238,7 +244,8 @@
                     </header>
 
                     <main className="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
-                        <div className="space-y-6">
+                        {/* Main Column - min-w-0 is the fix for the expanding grid bug */}
+                        <div className="space-y-6 min-w-0">
                             {/* Editor */}
                             <div className="flex flex-col items-center justify-center bg-white border border-slate-200 rounded-3xl p-8 min-h-[500px] shadow-xl relative">
                                 <div 
@@ -247,7 +254,7 @@
                                         gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
                                         width: 'min(80vw, 480px)',
                                         aspectRatio: '1/1',
-                                        backgroundColor: canvasBgColor // Apply background color to editor
+                                        backgroundColor: canvasBgColor
                                     }}
                                     onMouseDown={() => setIsMouseDown(true)}
                                     onMouseUp={() => setIsMouseDown(false)}
@@ -289,8 +296,8 @@
                                 </div>
                             </div>
 
-                            {/* Timeline */}
-                            <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-lg">
+                            {/* Timeline - Fixed Width with Horizontal Scroll */}
+                            <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-lg overflow-hidden">
                                 <div className="flex items-center justify-between mb-4">
                                     <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400">Timeline</h3>
                                     <div className="flex gap-2">
@@ -298,7 +305,7 @@
                                         <button onClick={duplicateFrame} className="p-2 hover:bg-slate-100 rounded-xl text-slate-400 border border-slate-100"><Icon name="Copy" className="w-4 h-4" /></button>
                                     </div>
                                 </div>
-                                <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+                                <div className="flex gap-4 overflow-x-auto pb-4 timeline-scroll">
                                     {frames.map((frame, i) => (
                                         <div key={i} onClick={() => setCurrentFrameIndex(i)} className={`relative flex-shrink-0 w-24 h-24 rounded-2xl border-2 cursor-pointer transition-all overflow-hidden bg-slate-50 ${currentFrameIndex === i ? "border-orange-500 scale-105 shadow-lg" : "border-slate-100 hover:border-slate-200"}`}>
                                             <div className="grid w-full h-full" style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)`, backgroundColor: canvasBgColor }}>
@@ -314,6 +321,24 @@
 
                         {/* Sidebar */}
                         <aside className="space-y-6">
+                            {/* Student Name Input */}
+                            <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-4 shadow-lg">
+                                <h3 className="text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+                                    <Icon name="User" className="w-4 h-4 text-orange-500" /> Student Info
+                                </h3>
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Your Name</label>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Type your name..." 
+                                        value={studentName}
+                                        onChange={(e) => setStudentName(e.target.value)}
+                                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-100 focus:outline-none focus:ring-2 focus:ring-orange-500/20 transition-all font-medium"
+                                    />
+                                </div>
+                                <p className="text-[10px] text-slate-400 leading-tight">Your name will be added to the filename when you download!</p>
+                            </div>
+
                             <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-6 shadow-lg">
                                 <h3 className="text-sm font-bold uppercase tracking-widest">Preview</h3>
                                 <div className="aspect-square bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-center overflow-hidden relative">
@@ -344,7 +369,6 @@
                                     <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Background</span>
                                     <input type="color" value={canvasBgColor} onChange={(e) => setCanvasBgColor(e.target.value)} className="w-10 h-10 rounded-xl cursor-pointer bg-white p-1 border border-slate-200" />
                                 </div>
-                                <p className="text-[10px] text-slate-400 leading-tight">Choose a background color to avoid transparency issues in downloads.</p>
                             </div>
 
                             <div className="bg-white border border-slate-200 rounded-3xl p-6 space-y-4 shadow-lg">
@@ -364,8 +388,8 @@
             );
         }
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(<App />);
     </script>
 </body>
 </html>
