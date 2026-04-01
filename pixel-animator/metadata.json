@@ -1,0 +1,5 @@
+{
+  "name": "Pixel Animator",
+  "description": "Create, animate, and export pixel art with a frame-by-frame editor.",
+  "requestFramePermissions": []
+}
