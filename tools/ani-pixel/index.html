@@ -6,14 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pixel Animator - Simple Edition</title>
 
-    <!-- 1. Tailwind CSS for Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- 2. Fonts and Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- 3. React and Tools -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -73,12 +68,13 @@
             return <i ref={iconRef} className={`inline-flex items-center justify-center ${className}`}></i>;
         };
 
-        const DEFAULT_COLOR = '#000000';
+        const DEFAULT_COLOR = '#3333ff';
         const EMPTY_COLOR = 'transparent';
 
         function App() {
-            const [gridSize, setGridSize] = useState(window.innerWidth < 768 ? 16 : 32);            const [pendingGridSize, setPendingGridSize] = useState(null); // For confirmation modal
-            const [frames, setFrames] = useState([Array(16 * 16).fill(EMPTY_COLOR)]);
+            const [gridSize, setGridSize] = useState(window.innerWidth < 768 ? 16 : 32);
+            const [pendingGridSize, setPendingGridSize] = useState(null);
+            const [frames, setFrames] = useState([Array(window.innerWidth < 768 ? 16 * 16 : 32 * 32).fill(EMPTY_COLOR)]);
             const [currentFrameIndex, setCurrentFrameIndex] = useState(0);
             const [brushColor, setBrushColor] = useState(DEFAULT_COLOR);
             const [canvasBgColor, setCanvasBgColor] = useState('#ffffff');
@@ -86,14 +82,16 @@
             const [tool, setTool] = useState('pencil');
             const [isPlaying, setIsPlaying] = useState(false);
             const [fps, setFps] = useState(8);
-            const [history, setHistory] = useState([[Array(16 * 16).fill(EMPTY_COLOR)]]);
+            const [history, setHistory] = useState([[Array(window.innerWidth < 768 ? 16 * 16 : 32 * 32).fill(EMPTY_COLOR)]]);
             const [historyIndex, setHistoryIndex] = useState(0);
             const [isExporting, setIsExporting] = useState(false);
             const [isMouseDown, setIsMouseDown] = useState(false);
+            const [loadError, setLoadError] = useState('');
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
             const canvasRef = useRef(null);
+            const fileInputRef = useRef(null);
 
-            // Initialize/Reset frames when grid size changes
             useEffect(() => {
                 const newFrames = [Array(gridSize * gridSize).fill(EMPTY_COLOR)];
                 setFrames(newFrames);
@@ -102,7 +100,6 @@
                 setHistoryIndex(0);
             }, [gridSize]);
 
-            // Animation logic
             useEffect(() => {
                 let interval;
                 if (isPlaying) {
@@ -116,7 +113,6 @@
             const handleGridSizeChange = (newSize) => {
                 const size = Math.max(4, Math.min(64, newSize));
                 const hasDrawn = frames.some(frame => frame.some(pixel => pixel !== EMPTY_COLOR));
-
                 if (hasDrawn) {
                     setPendingGridSize(size);
                 } else {
@@ -159,9 +155,7 @@
                 const newFrames = [...frames];
                 const currentFrame = [...newFrames[currentFrameIndex]];
                 const color = tool === 'pencil' ? brushColor : EMPTY_COLOR;
-
                 if (currentFrame[index] === color) return;
-
                 currentFrame[index] = color;
                 newFrames[currentFrameIndex] = currentFrame;
                 setFrames(newFrames);
@@ -199,6 +193,65 @@
                 return `${name}_Animation.${ext}`;
             };
 
+            // --- Save Project ---
+            const saveProject = () => {
+                const projectData = {
+                    version: 1,
+                    gridSize,
+                    fps,
+                    canvasBgColor,
+                    studentName,
+                    frames,
+                };
+                const json = JSON.stringify(projectData);
+                const blob = new Blob([json], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.download = getFileName('json');
+                link.href = url;
+                link.click();
+                URL.revokeObjectURL(url);
+            };
+
+            // --- Load Project ---
+            const loadProject = (e) => {
+                setLoadError('');
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    try {
+                        const data = JSON.parse(event.target.result);
+
+                        // Basic validation
+                        if (
+                            typeof data.gridSize !== 'number' ||
+                            !Array.isArray(data.frames) ||
+                            data.frames.length === 0
+                        ) {
+                            setLoadError('Invalid project file.');
+                            return;
+                        }
+
+                        setGridSize(data.gridSize);
+                        setFrames(data.frames);
+                        setFps(data.fps ?? 8);
+                        setCanvasBgColor(data.canvasBgColor ?? '#ffffff');
+                        setStudentName(data.studentName ?? '');
+                        setCurrentFrameIndex(0);
+                        setHistory([data.frames]);
+                        setHistoryIndex(0);
+                    } catch (err) {
+                        setLoadError('Could not read file. Make sure it is a valid Pixel Animator project.');
+                    }
+                };
+                reader.readAsText(file);
+
+                // Reset the input so the same file can be re-loaded if needed
+                e.target.value = '';
+            };
+
             const downloadGIF = () => {
                 if (!window.gifshot) {
                     alert("GIF library is still loading. Please try again in a moment.");
@@ -216,7 +269,6 @@
                     const tempCtx = tempCanvas.getContext('2d');
                     tempCtx.fillStyle = canvasBgColor;
                     tempCtx.fillRect(0, 0, size, size);
-
                     frame.forEach((color, pixelIdx) => {
                         if (color !== EMPTY_COLOR) {
                             const x = (pixelIdx % gridSize) * pixelSize;
@@ -229,7 +281,7 @@
                 });
 
                 window.gifshot.createGIF({
-                    images: images,
+                    images,
                     gifWidth: size,
                     gifHeight: size,
                     interval: 1 / fps
@@ -250,10 +302,8 @@
                 const pixelSize = 10;
                 canvas.width = gridSize * pixelSize * frames.length;
                 canvas.height = gridSize * pixelSize;
-
                 ctx.fillStyle = canvasBgColor;
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
-
                 frames.forEach((frame, frameIdx) => {
                     frame.forEach((color, pixelIdx) => {
                         if (color !== EMPTY_COLOR) {
@@ -264,7 +314,6 @@
                         }
                     });
                 });
-
                 const link = document.createElement('a');
                 link.download = getFileName('png');
                 link.href = canvas.toDataURL();
@@ -275,6 +324,7 @@
                 <div className="min-h-screen bg-slate-50 text-slate-900">
                     {/* Header */}
                     <header className="border-b border-slate-200 p-4 flex items-center justify-between bg-white sticky top-0 z-50 shadow-sm">
+                        {/* Logo — always visible */}
                         <div className="flex items-center gap-3">
                             <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center shadow-lg shadow-orange-500/20">
                                 <Icon name="Grid3X3" className="w-5 h-5 text-white" />
@@ -282,8 +332,8 @@
                             <h1 className="text-xl font-bold tracking-tighter italic uppercase">Pixel Animator</h1>
                         </div>
 
-                        <div className="flex items-center gap-6">
-                            {/* Grid Size Input */}
+                        {/* Desktop nav — hidden on mobile */}
+                        <div className="hidden md:flex items-center gap-3 flex-wrap justify-end">
                             <div className="flex items-center gap-3 bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200">
                                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Grid Size</span>
                                 <div className="flex items-center gap-2">
@@ -296,27 +346,134 @@
                                     <span className="text-xs text-slate-400 font-mono">px</span>
                                 </div>
                             </div>
+                            <button onClick={saveProject} className="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-600 px-4 py-2 rounded-lg font-bold text-sm border border-slate-200">
+                                <Icon name="Save" className="w-4 h-4" /> Save
+                            </button>
+                            <button onClick={() => fileInputRef.current.click()} className="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-600 px-4 py-2 rounded-lg font-bold text-sm border border-slate-200">
+                                <Icon name="FolderOpen" className="w-4 h-4" /> Load
+                            </button>
+                            <button onClick={downloadPNG} className="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-600 px-4 py-2 rounded-lg font-bold text-sm border border-slate-200">
+                                <Icon name="Download" className="w-4 h-4" /> PNG
+                            </button>
+                            <button onClick={downloadGIF} disabled={isExporting} className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-300 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-lg shadow-orange-500/20">
+                                <Icon name="Download" className="w-4 h-4" /> {isExporting ? "EXPORTING..." : "GIF"}
+                            </button>
+                        </div>
 
-                            <div className="flex items-center gap-2">
-                                <button onClick={downloadPNG} className="flex items-center gap-2 bg-white hover:bg-slate-50 text-slate-600 px-4 py-2 rounded-lg font-bold text-sm border border-slate-200">
-                                    <Icon name="Download" className="w-4 h-4" /> PNG
+                        {/* Mobile hamburger button — hidden on desktop */}
+                        <button onClick={() => setMobileMenuOpen(true)} className="md:hidden p-2 rounded-xl hover:bg-slate-100 text-slate-600">
+                            <Icon name="Menu" className="w-6 h-6" />
+                        </button>
+
+                        {/* Hidden file input — always present */}
+                        <input ref={fileInputRef} type="file" accept=".json" className="hidden" onChange={loadProject} />
+                    </header>
+
+                    {/* Mobile full-screen overlay menu */}
+                    {mobileMenuOpen && (
+                        <div className="fixed inset-0 z-[200] bg-white flex flex-col md:hidden">
+                            {/* Overlay header */}
+                            <div className="flex items-center justify-between p-5 border-b border-slate-100">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+                                        <Icon name="Grid3X3" className="w-5 h-5 text-white" />
+                                    </div>
+                                    <span className="text-xl font-bold tracking-tighter italic uppercase">Menu</span>
+                                </div>
+                                <button onClick={() => setMobileMenuOpen(false)} className="p-2 rounded-xl hover:bg-slate-100 text-slate-500">
+                                    <Icon name="X" className="w-6 h-6" />
                                 </button>
-                                <button onClick={downloadGIF} disabled={isExporting} className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 disabled:bg-orange-300 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-lg shadow-orange-500/20">
-                                    <Icon name="Download" className="w-4 h-4" /> {isExporting ? "EXPORTING..." : "GIF"}
+                            </div>
+
+                            {/* Menu items */}
+                            <div className="flex-1 overflow-y-auto p-6 space-y-3">
+
+                                {/* Grid Size */}
+                                <div className="flex items-center justify-between bg-slate-50 border border-slate-200 rounded-2xl px-5 py-4">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-9 h-9 bg-slate-100 rounded-xl flex items-center justify-center">
+                                            <Icon name="Grid3X3" className="w-5 h-5 text-slate-500" />
+                                        </div>
+                                        <div>
+                                            <div className="font-bold text-sm text-slate-800">Grid Size</div>
+                                            <div className="text-xs text-slate-400">Set canvas dimensions</div>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <input
+                                            type="number"
+                                            value={gridSize}
+                                            onChange={(e) => { handleGridSizeChange(parseInt(e.target.value) || 16); }}
+                                            className="w-14 bg-white border border-slate-200 rounded-lg px-2 py-1.5 text-sm font-mono text-center focus:outline-none focus:ring-2 focus:ring-orange-500/20"
+                                        />
+                                        <span className="text-xs text-slate-400 font-mono">px</span>
+                                    </div>
+                                </div>
+
+                                {/* Save */}
+                                <button onClick={() => { saveProject(); setMobileMenuOpen(false); }} className="w-full flex items-center gap-4 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-4 hover:bg-slate-100 transition-colors">
+                                    <div className="w-9 h-9 bg-slate-100 rounded-xl flex items-center justify-center">
+                                        <Icon name="Save" className="w-5 h-5 text-slate-500" />
+                                    </div>
+                                    <div className="text-left">
+                                        <div className="font-bold text-sm text-slate-800">Save Project</div>
+                                        <div className="text-xs text-slate-400">Download as .json to continue later</div>
+                                    </div>
+                                </button>
+
+                                {/* Load */}
+                                <button onClick={() => { fileInputRef.current.click(); setMobileMenuOpen(false); }} className="w-full flex items-center gap-4 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-4 hover:bg-slate-100 transition-colors">
+                                    <div className="w-9 h-9 bg-slate-100 rounded-xl flex items-center justify-center">
+                                        <Icon name="FolderOpen" className="w-5 h-5 text-slate-500" />
+                                    </div>
+                                    <div className="text-left">
+                                        <div className="font-bold text-sm text-slate-800">Load Project</div>
+                                        <div className="text-xs text-slate-400">Open a saved .json project file</div>
+                                    </div>
+                                </button>
+
+                                {/* Export PNG */}
+                                <button onClick={() => { downloadPNG(); setMobileMenuOpen(false); }} className="w-full flex items-center gap-4 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-4 hover:bg-slate-100 transition-colors">
+                                    <div className="w-9 h-9 bg-slate-100 rounded-xl flex items-center justify-center">
+                                        <Icon name="Download" className="w-5 h-5 text-slate-500" />
+                                    </div>
+                                    <div className="text-left">
+                                        <div className="font-bold text-sm text-slate-800">Export PNG</div>
+                                        <div className="text-xs text-slate-400">Download all frames as a sprite sheet</div>
+                                    </div>
+                                </button>
+
+                                {/* Export GIF */}
+                                <button onClick={() => { downloadGIF(); setMobileMenuOpen(false); }} disabled={isExporting} className="w-full flex items-center gap-4 bg-orange-500 disabled:bg-orange-300 rounded-2xl px-5 py-4 hover:bg-orange-600 transition-colors">
+                                    <div className="w-9 h-9 bg-orange-400 rounded-xl flex items-center justify-center">
+                                        <Icon name="Download" className="w-5 h-5 text-white" />
+                                    </div>
+                                    <div className="text-left">
+                                        <div className="font-bold text-sm text-white">Export GIF</div>
+                                        <div className="text-xs text-orange-100">{isExporting ? "Exporting, please wait..." : "Download animated GIF"}</div>
+                                    </div>
                                 </button>
                             </div>
                         </div>
-                    </header>
+                    )}
+
+                    {/* Load error banner */}
+                    {loadError && (
+                        <div className="bg-red-50 border-b border-red-200 px-6 py-3 flex items-center justify-between">
+                            <span className="text-red-600 text-sm font-medium">{loadError}</span>
+                            <button onClick={() => setLoadError('')} className="text-red-400 hover:text-red-600 text-xs font-bold uppercase">Dismiss</button>
+                        </div>
+                    )}
 
                     <main className="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
-                        <div className="space-y-6 min-w-100">
+                        <div className="space-y-6 min-w-0">
                             {/* Editor */}
                             <div className="flex flex-col items-center justify-center bg-white border border-slate-200 rounded-3xl p-8 min-h-[500px] shadow-xl relative">
                                 <div
                                     className="grid gap-0 border border-slate-200 shadow-2xl"
                                     style={{
                                         gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
-                                        width: 'min(80vw, 800px)',
+                                        width: 'min(80vw, 600px)',
                                         aspectRatio: '1/1',
                                         backgroundColor: canvasBgColor
                                     }}
@@ -329,7 +486,7 @@
                                             key={i}
                                             onMouseDown={() => updatePixel(i)}
                                             onMouseEnter={() => isMouseDown && updatePixel(i)}
-                                            className="w-full h-full border-[0.5px] border-slate-200/50 cursor-crosshair"
+                                            className="w-full h-full border-[0.5px] border-slate-200 cursor-crosshair"
                                             style={{ backgroundColor: color }}
                                         />
                                     ))}
@@ -417,7 +574,7 @@
                                             <span>Playback Speed</span>
                                             <span className="text-orange-500">{fps} FPS</span>
                                         </div>
-                                        <input type="range" min="1" max="24" value={fps} onChange={(e) => setFps(parseInt(e.target.value))} className="w-full h-2 rounded-lg appearance-none cursor-pointer" />
+                                        <input type="range" min="1" max="24" value={fps} onChange={(e) => setFps(parseInt(e.target.value))} className="w-full h-2 rounded-lg cursor-pointer" />
                                     </div>
                                 </div>
                             </div>
