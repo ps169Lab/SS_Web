@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Divided New York: Patriots vs. Loyalists</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">A City Divided</h1>
+            <p class="subtitle">Patriots, Loyalists, and the Hard Choice of 1776</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Patriot:</strong> A colonist who wanted to break away from British rule and start a new country.</li>
+                    <li><strong>Loyalist:</strong> A colonist who wanted to stay loyal to the King and remain part of Great Britain.</li>
+                    <li><strong>Neutral:</strong> Not choosing a side in an argument or war.</li>
+                </ul>
+            </div>
+
+            <h2>Who were the Patriots?</h2>
+            <p>
+                <span class="standard-reading">The <strong>Patriots</strong> were colonists who believed that the British government had become a "tyrant." In New York, this group was often led by people like Alexander Hamilton or the "Sons of Liberty." Many Patriots were workers, like sailors and blacksmiths, who felt the King’s taxes made it impossible to earn a living. They wanted the freedom to trade with any country they chose and to make their own laws in New York without a King 3,000 miles away.</span>
+                <span class="easy-reading"><strong>Patriots</strong> were people who wanted to start a new country. They thought the King’s rules were unfair. Many Patriots in New York were workers, like sailors or shop owners. They wanted to make their own laws and be free from the King.</span>
+            </p>
+            
+
+            <h2>Who were the Loyalists?</h2>
+            <p>
+                <span class="standard-reading">The <strong>Loyalists</strong> (sometimes called Tories) wanted to remain British subjects. In New York, this group often included wealthy landowners who owned thousands of acres of land and officials who worked for the King. They believed that Great Britain was the strongest nation in the world and that leaving would lead to chaos. For many wealthy New Yorkers, the King represented "law and order," and they feared that a revolution would take away their property and money.</span>
+                <span class="easy-reading"><strong>Loyalists</strong> wanted to stay with Great Britain. In New York, many wealthy people and landowners were Loyalists. They thought the King was strong and could keep them safe. They were afraid that a war would ruin their homes and businesses.</span>
+            </p>
+             <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️
+            </p>
+
+            <div class="side-by-side" style="display: flex; gap: 20px;">
+                <div style="flex: 1; background-color: #f9ebea; padding: 15px; border-top: 5px solid #c0392b;">
+                    <h3>Patriot Groups</h3>
+                    <p><strong>Common Jobs:</strong> Sailors, artisans (like blacksmiths), and some frustrated merchants.</p>
+                    <p><strong>Goal:</strong> Independence and "No Taxation Without Representation."</p>
+                </div>
+                <div style="flex: 1; background-color: #ebf5fb; padding: 15px; border-top: 5px solid #2e86c1;">
+                    <h3>Loyalist Groups</h3>
+                    <p><strong>Common Jobs:</strong> Wealthy landowners, church leaders, and government workers.</p>
+                    <p><strong>Goal:</strong> Staying part of the British Empire for safety and trade.</p>
+                </div>
+            </div>
+
+            <h2>The Hard Choice for Neutrals</h2>
+            <p>
+                <span class="standard-reading">Not everyone chose a side immediately. Many New Yorkers were <strong>neutral</strong>. These were often farmers in places like Westchester or Long Island who just wanted to stay out of the fight. However, as the war moved into New York, being neutral became almost impossible. Both the British and American armies would often march through farms and take food or supplies, leaving the families with nothing.</span>
+                <span class="easy-reading">Some people did not pick a side. They were <strong>neutral</strong>. Many were farmers who just wanted to grow their food and stay safe. But when the armies marched past their farms, the soldiers often took their crops and animals. It was very hard to stay out of the war.</span>
+            </p>
+             <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️
+            </p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>The Class Divide:</strong> Why might a wealthy landowner who has a lot to lose feel differently about a revolution than a sailor who doesn't own any land?</li>
+                <li><strong>New York's Dilemma:</strong> If New York City was the "Loyalist Capital," but the countryside had many Patriots, how do you think people felt when they had to travel between the city and the farms?</li>
+            </ul>
+        </article>
+    </main>
+    <script src="../reading-level-toggle.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

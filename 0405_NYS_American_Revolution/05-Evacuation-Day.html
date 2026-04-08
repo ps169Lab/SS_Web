@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evacuation Day: The British Leave New York</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">The British Leave at Last</h1>
+            <p class="subtitle">Evacuation Day: November 25, 1783</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Evacuation:</strong> The act of moving people or troops away from a place.</li>
+                    <li><strong>Occupation:</strong> When a foreign army takes control of a city or country and stays there.</li>
+                    <li><strong>Symbol:</strong> An object or action that stands for an idea, like a flag standing for freedom.</li>
+                </ul>
+            </div>
+
+            <h2>The Long Wait is Over</h2>
+            <p>
+                <span class="standard-reading">After seven long years of British <strong>occupation</strong>, the Revolutionary War finally came to an end. On November 25, 1783, the last British soldiers boarded their ships in New York Harbor to sail back to England. This event is known as <strong>Evacuation Day</strong>. For the people who had lived through the war, seeing the British fleet depart was a moment of pure joy and relief. The city they loved was finally back in American hands.</span>
+                <span class="easy-reading">The war was finally over! The British soldiers had lived in New York City for seven years. On November 25, 1783, they got on their ships and left. This was called <strong>Evacuation Day</strong>. The people in the city were very happy to be free.</span>
+            </p>
+             <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️
+            </p>
+            
+
+            <h2>The Mystery of the Greased Flagpole</h2>
+            <p>
+                <span class="standard-reading">As the British were leaving, they tried to play one last trick on the Americans. They nailed a British flag to the top of a flagpole at Fort George (near Battery Park) and greased the pole with oil so no one could climb it. They wanted the Americans to watch the British flag fly as the ships sailed away. However, a brave American soldier named <strong>John Van Arsdale</strong> used iron cleats to climb the slippery pole. He ripped down the British flag and raised the American stars and stripes while the crowd cheered!</span>
+                <span class="easy-reading">The British tried to play a trick before they left. They put their flag at the top of a very slippery, oily pole. They thought no one could climb it. But a brave soldier used special shoes to climb up. He took down the British flag and put up the American flag!</span>
+            </p>
+            
+
+            <h2>A Hero's Welcome</h2>
+            <p>
+                <span class="standard-reading">Later that day, General George Washington led a grand parade from Harlem all the way down to the Battery. The streets were filled with New Yorkers who had stayed through the hard years of the war. That evening, Washington joined other leaders for a victory dinner at <strong>Fraunces Tavern</strong> in lower Manhattan. For the next 100 years, Evacuation Day was celebrated in New York City with more parades and fireworks than any other holiday!</span>
+                <span class="easy-reading">George Washington led a big parade through the streets of New York. Everyone came out to cheer for him. That night, they had a big dinner at <strong>Fraunces Tavern</strong> to celebrate. For a long time, this was the most famous holiday in New York City.</span>
+            </p>
+             <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️
+            </p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>A Forgotten Holiday:</strong> Why do you think New Yorkers eventually stopped celebrating Evacuation Day and started celebrating Thanksgiving and the Fourth of July instead?</li>
+                <li><strong>The Flagpole Trick:</strong> Why do you think the British went to the trouble of greasing the flagpole? What were they trying to show the Americans?</li>
+            </ul>
+        </article>
+    </main>
+    <script src="../reading-level-toggle.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

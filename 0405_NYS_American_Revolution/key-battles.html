@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New York: The Battlefield of the Revolution</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">New York at War</h1>
+            <p class="subtitle">From the Streets of Brooklyn to the Forests of Saratoga</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Campaign:</strong> A series of military battles or operations moved toward a single goal.</li>
+                    <li><strong>Intelligence:</strong> Secret information collected about an enemy.</li>
+                    <li><strong>Turning Point:</strong> An event that causes a significant change in the course of a war.</li>
+                </ul>
+            </div>
+
+            <h2>The Battle for the City (1776)</h2>
+            <p>
+                <span class="standard-reading">In the summer of 1776, the largest British fleet ever seen arrived in New York Harbor. The British goal was to capture New York City and use it as their headquarters. At the <strong>Battle of Brooklyn</strong> (also called the Battle of Long Island), George Washington’s army was badly defeated and forced to retreat across the East River under the cover of night. By September, the British had occupied Manhattan, a control they would keep for the next seven years.</span>
+                <span class="easy-reading">In 1776, a huge British navy arrived in New York City. They fought George Washington at the <strong>Battle of Brooklyn</strong>. Washington lost the battle and had to lead his soldiers away in the middle of the night. The British took over New York City and stayed there until the war ended.</span>
+            </p>
+             <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️
+            </p>
+            
+
+            <h2>The Turning Point at Saratoga (1777)</h2>
+            <p>
+                <span class="standard-reading">While the British held the city, they wanted to control the entire Hudson River to split the colonies in two. However, in October 1777, American forces won a massive victory at the <strong>Battle of Saratoga</strong> in upstate New York. This was the <strong>turning point</strong> of the war because it convinced France that the Americans could actually win. France joined the war as an ally, sending ships and soldiers to help.</span>
+                <span class="easy-reading">The British wanted to control the Hudson River. But in 1777, the Americans won a big battle at <strong>Saratoga</strong>. This was the most important win of the war. After this battle, the country of France decided to help the Americans fight.</span>
+            </p>
+            
+
+            <h2>The Secret War: The Culper Spy Ring</h2>
+            <p>
+                <span class="standard-reading">Because the British occupied New York City, Washington needed <strong>intelligence</strong> on what they were planning. He helped create the <strong>Culper Spy Ring</strong>, a group of regular people on Long Island and in the city who gathered secrets. They used "invisible ink" and secret codes to communicate. One famous member, <strong>Anna Strong</strong>, reportedly used her laundry line as a signal. By hanging a black petticoat or specific numbers of handkerchiefs, she told other spies where to meet or if a message was ready to be picked up.</span>
+                <span class="easy-reading">George Washington needed to know the British secrets. He used a group of spies called the <strong>Culper Spy Ring</strong>. These spies used secret codes and invisible ink. A woman named <strong>Anna Strong</strong> used her laundry to send signals! She would hang up a black petticoat to tell other spies that it was safe to talk.</span>
+            </p>
+             <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️
+            </p>
+            
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Strategic Geography:</strong> Look at a map of New York. Why would controlling the Hudson River "split" the 13 colonies?</li>
+                <li><strong>The Power of Ordinary People:</strong> Anna Strong wasn't a soldier, but her laundry helped win the war. What does this tell us about how a revolution is fought?</li>
+            </ul>
+        </article>
+    </main>
+    <script src="../reading-level-toggle.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
