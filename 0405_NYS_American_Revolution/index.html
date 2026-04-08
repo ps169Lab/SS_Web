@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The American Revolution in New York</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">
+                The American Revolution in New York State
+            </h1>
+
+            <p class="subtitle">
+                The Battle for the Heart of a New Nation
+            </p>
+
+            <h2>
+                Welcome to the Revolution!
+            </h2>
+
+            <p>
+                Imagine a time when the streets of Manhattan were filled with British soldiers, secret messages were hidden in laundry lines on Long Island, and the fate of a whole continent was decided in the woods near Saratoga. For seven long years during the American Revolution, New York State was the most important "square" on the chessboard of war.
+            </p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Pulling_down_the_statue_of_King_George_III.jpg/1200px-Pulling_down_the_statue_of_King_George_III.jpg" alt="Patriots in NYC pulling down the statue of King George" style="max-width: 100%;" /><br /></p>
+
+            <h2>What You'll Discover</h2>
+
+            <p>
+                <span class="standard-reading">In this unit, you will explore six key subtopics that reveal why New York was central to winning American independence. These lessons will help you build a mental model of how a group of colonies turned into a unified country:</span>
+                <span class="easy-reading">In this unit, you will learn about six important parts of the war in New York. These stories will show you how America became its own country:</span>
+            </p>
+
+            <ul>
+                <li><strong>The Battle of Brooklyn</strong> - See how the largest battle of the entire war happened right in our backyard and how Washington narrowly escaped.</li>
+                <li><strong>The British Occupation</strong> - Discover what life was like in New York City when the British King’s army was in charge for seven years.</li>
+                <li><strong>The Culper Spy Ring</strong> - Go undercover with the secret agents of Long Island who used codes and invisible ink to help George Washington.</li>
+                <li><strong>The Battle of Saratoga</strong> - Learn why this victory in Upstate New York is called the "Turning Point" that changed the world.</li>
+                <li><strong>The Sullivan Expedition</strong> - Understand how the war affected the Native Americans living in New York and the difficult choices they had to make.</li>
+                <li><strong>The New Nation</strong> - Follow the story to Federal Hall in NYC, where the war ended and our first government began.</li>
+            </ul>
+
+            <h2>The Strategic Prize</h2>
+
+            <p>
+                Why did so many battles happen here? It all comes down to **Geography**. The British believed that if they could control the Hudson River, they could "cut off" the colonies like a pair of scissors, separating New England from the rest of the country.
+            </p>
+            <p><img src="https://www.nps.gov/sara/learn/historyculture/images/Saratoga_Map_1.jpg" alt="Map of New York's strategic waterways" style="max-width: 100%;" /><br /></p>
+
+            <p>
+                <span class="standard-reading">Because of our deep-water harbor and the long Hudson River, New York was the prize that both sides wanted most. From the fortresses in the Highlands to the busy docks of Manhattan, every corner of our state played a role in the struggle for liberty.</span>
+                <span class="easy-reading">Both sides wanted to control New York because of the Hudson River. They knew that whoever controlled the water could win the war. This made New York the most important place to fight.</span>
+            </p>
+
+            <h2>Humanizing the History</h2>
+
+            <p>
+                History isn't just about dates; it's about the people. You will meet brave soldiers, clever spies like Anna Smith Strong, and leaders like Alexander Hamilton who called New York home. 
+            </p>
+            <p><img src="https://www.mountvernon.org/site/assets/files/11558/spy_letter.jpg" alt="A secret spy letter from the Revolution" style="max-width: 100%;" /><br /></p>
+
+            <p>
+                <span class="standard-reading">As you move through these pages, you'll be acting as a historian. You'll look for evidence, decode secrets, and see how the choices made by New Yorkers over 250 years ago still affect the way we live in our state today.</span>
+                <span class="easy-reading">You will learn about the real people who lived through the war. Some were brave soldiers, and some were secret spies! Their choices helped make New York what it is today.</span>
+            </p>
+
+            <h2>Your Mission Starts Now</h2>
+
+            <p>
+                <span class="standard-reading">Click on the first lesson, "The Battle of Brooklyn," to see how the war arrived in New York. Make sure to keep your **Digital Field Journal** open to record your schema-building notes as you go!</span>
+                <span class="easy-reading">Click on the first lesson, "The Battle of Brooklyn," to start your journey. Get your Digital Field Journal ready to write down what you learn!</span>
+            </p>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+
+</body>
+
+</html>
