@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rights and Freedom: Connecting the Movements</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+    <main>
+        <article>
+            <h1 class="section-title">Suffrage + Abolitionists</h1>
+            <p class="subtitle">Two Movements, One Goal: Equality for All</p>
+
+            <div class="vocabulary">
+                <h3>Connecting Vocabulary</h3>
+                <ul>
+                    <li><strong>Intersectional:</strong> When different causes (like race and gender) overlap and affect people at the same time.</li>
+                    <li><strong>Justice:</strong> The quality of being fair and reasonable in how people are treated.</li>
+                    <li><strong>Discrimination:</strong> Unfair treatment of a person or group based on who they are.</li>
+                </ul>
+            </div>
+
+            <h2>Sojourner Truth: A Voice for Everyone</h2>
+            <p>
+                <span class="standard-reading">Sojourner Truth was born into slavery in Ulster County, New York. After gaining her freedom, she realized she had to fight two battles at once. In 1851, she gave a famous speech called "Ain't I a Woman?" She pointed out that while men argued women were "too delicate" for rights, she had worked just as hard as any man while enslaved. She proved that you couldn't talk about women's rights without also talking about the rights of Black Americans.</span>
+                <span class="easy-reading">Sojourner Truth was born in New York. She escaped slavery and then fought for both Black people and women. She gave a famous speech saying that women were just as strong as men and deserved the same rights.</span>
+            </p>
+            
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause: How did Sojourner Truth bridge these two movements? ⏸️</p>
+
+            <h2>One Movement Becomes Two</h2>
+            <p>
+                <span class="standard-reading">Many women's rights leaders, like Lucretia Mott and Susan B. Anthony, started as <strong>Abolitionists</strong>. They learned how to organize and give speeches while fighting to end slavery. However, after the Civil War, the groups faced a difficult choice. When the <strong>15th Amendment</strong> gave Black men the right to vote, it did not include any women. This caused a big disagreement: should they support progress for some, or demand equality for everyone all at once?</span>
+                <span class="easy-reading">Most leaders for women's rights were also fighting to end slavery. After the Civil War, Black men were given the right to vote, but women were not. This made the leaders argue about what to do next.</span>
+            </p>
+            [Image showing the 15th Amendment document]
+
+            <div class="info-box" style="background-color: #e8f8f5; border-left: 5px solid #16a085; padding: 15px; margin: 20px 0;">
+                <h3>The Power of "Multiple Perspectives"</h3>
+                <p>History isn't just one story; it's many subtopics that build on each other. Sojourner Truth and Matilda Joslyn Gage argued that <strong>Justice</strong> isn't a pie with limited slices—giving rights to one group doesn't take them away from another.</p>
+            </div>
+
+            <h2>Conclusion: Building a Fairer Future</h2>
+            <p>
+                <span class="standard-reading">The stories of the Underground Railroad, the Seneca Falls Convention, and the fight for Suffrage show us that change is a slow process. It requires "schema building"—taking old ideas about freedom and expanding them to include more people. In New York, brave individuals proved that laws can be changed when people organize, write declarations, and speak up for those who are being treated unfairly.</span>
+                <span class="easy-reading">Changing the world takes a long time. People in New York worked together for many years to end slavery and win the right to vote. Their work shows us that if we keep trying, we can make things fair for everyone.</span>
+            </p>
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Jot: What is one "lesson of freedom" you will take away from this unit? ⏸️</p>
+
+            <hr />
+
+            <h2>Final Unit Discussion</h2>
+            <ul>
+                <li><strong>The Connection:</strong> Why do you think people who fought to end slavery were often the first ones to fight for women’s rights?</li>
+                <li><strong>The Process:</strong> Looking back at our unit, did equality happen all at once, or in small "mental boxes" over time?</li>
+            </ul>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>

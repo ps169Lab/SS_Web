@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Underground Railroad</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+    <main>
+        <article>
+            <h1 class="section-title">The Underground Railroad</h1>
+            <p class="subtitle">New York's Secret Network to Freedom</p>
+
+            <div class="vocabulary">
+                <h3>The Secret Code Schema</h3>
+                <ul>
+                    <li><strong>Conductor:</strong> A guide who helped people move between safe places.</li>
+                    <li><strong>Station:</strong> A safe house (home, barn, or church) used for hiding.</li>
+                    <li><strong>Passenger:</strong> An enslaved person traveling toward freedom.</li>
+                </ul>
+            </div>
+
+            <h2>A Network, Not a Train</h2>
+            <p>
+                <span class="standard-reading">The Underground Railroad was a secret network of brave people—Black and White—who helped enslaved people escape to the North. Because helping escapees was illegal, they used "railroad" code words to hide their plans. Most travel happened at night, using the <strong>North Star</strong> as a natural compass.</span>
+                <span class="easy-reading">The Underground Railroad was not a real train. It was a secret group of people who helped enslaved people escape. They traveled at night and used secret codes to stay safe from the law.</span>
+            </p>
+            <img src="https://res.cloudinary.com/aenetworks/image/upload/c_fill,ar_2,w_3840,h_1920,g_auto/dpr_auto/f_auto/q_auto:eco/v1/underground-railroad-gettyimages-645161544" alt="Enslaved people escaping at night" style="max-width: 100%;" />
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause: Why did they use railroad words as codes? ⏸️</p>
+
+            <h2>New York: The Road to Canada</h2>
+            <p>
+                <span class="standard-reading">New York was a vital hub. Routes (called "lines") ran through NYC, up the Hudson River, and west toward Canada. After the <strong>Fugitive Slave Act of 1850</strong>, reaching a free state like New York wasn't enough. Slave catchers could legally kidnap people back to the South, so many "passengers" had to continue all the way to Canada to be truly safe.</span>
+                <span class="easy-reading">New York was a very important place for the Underground Railroad. Travelers would go through New York City and up the Hudson River. They often had to go all the way to Canada to be truly safe.</span>
+            </p>
+            
+            <img src="https://iiseagrant.org/wp-content/uploads/2021/02/1100x642-Great-Lakes-Underground-Railroad-map-2-01-1100x642.png" alt="Map of Underground Railroad routes" style="max-width: 100%;" />
+
+            <h2>Hidden Signals: Freedom Quilts</h2>
+            <p>
+                <span class="standard-reading">Since many enslaved people were forbidden from learning to read, they used visual codes. One strategy was "Freedom Quilts." Patterns like the "Log Cabin" or "North Star" were sewn into blankets and hung on fences to signal safe houses or directions to travelers.</span>
+                <span class="easy-reading">Enslaved people used secret patterns in quilts to talk to each other. A "North Star" pattern told people which way to walk. These quilts looked like regular blankets to people who didn't know the secret.</span>
+            </p>
+            <img src="https://trc-leiden.nl/trc-needles/media/k2/items/cache/e957ef539752eb4135feefc10395f43e_XL.jpg" alt="Freedom Quilt patterns" style="max-width: 100%;" />
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause: How is a quilt a "weapon" for freedom? ⏸️</p>
+
+            <hr />
+
+            <h2>Discussion Questions</h2>
+            <ul>
+                <li><strong>Geography:</strong> Why did the North Star matter so much to someone traveling through the New York woods?</li>
+                <li><strong>Risk:</strong> Conductors like Harriet Tubman risked jail or death. Why do you think they chose to help anyway?</li>
+            </ul>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>

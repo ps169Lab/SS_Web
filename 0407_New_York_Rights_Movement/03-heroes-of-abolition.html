@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abolitionist Heroes: Action and Words</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        .abolitionist-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+        .abolitionist-table th, .abolitionist-table td {
+            border: 1px solid #2c3e50;
+            padding: 12px;
+            text-align: left;
+        }
+        .abolitionist-table th {
+            background-color: #2c3e50;
+            color: white;
+        }
+        .abolitionist-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+    <main>
+        <article>
+            <h1 class="section-title">Heroes of the Abolitionist Movement</h1>
+            <p class="subtitle">Fighting Slavery with Action, Words, and Education</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Abolitionist:</strong> Someone who worked to end (abolish) slavery completely.</li>
+                    <li><strong>Orator:</strong> A powerful public speaker who uses words to persuade others.</li>
+                    <li><strong>Journalist:</strong> A person who writes for newspapers to share important news and ideas.</li>
+                    <li><strong>Agitate:</strong> To stir people up and demand change for something that is unfair.</li>
+                </ul>
+            </div>
+
+            <section id="tubman">
+                <h2>The Leader of Action: Harriet Tubman</h2>
+                <p>
+                    <span class="standard-reading">Harriet Tubman is perhaps the most famous "conductor" in history. Born into slavery in Maryland, she escaped to freedom in 1849. However, she famously said she could not enjoy her freedom while others were still enslaved. She returned to the South 13 times, risking her life to lead over 70 people to the North and eventually to Canada.</span>
+                    <span class="easy-reading">Harriet Tubman was a hero who escaped slavery. She was called "Moses" because she went back into the South 13 times to lead other people to freedom. She never lost a single person on her "train."</span>
+                </p>
+                <img src="https://www.nps.gov/common/uploads/people/nri/20190709/people/70A8AE31-C040-9D69-7CB06EDF2006F8E1/70A8AE31-C040-9D69-7CB06EDF2006F8E1.jpg" alt="Portrait of Harriet Tubman" style="max-width: 100%;" />
+
+                <h3>Smart Strategy and Bravery</h3>
+                <p>
+                    <span class="standard-reading">Harriet was a master of strategy. She used the <strong>North Star</strong> to find her way at night and often traveled on Saturdays, because newspaper notices about runaway slaves couldn't be printed until Monday morning! During the Civil War, she even served as a spy and scout for the Union Army in New York and South Carolina.</span>
+                    <span class="easy-reading">Harriet was very smart. she traveled at night and used the North Star to stay on track. She even worked as a spy during the Civil War to help the North win.</span>
+                </p>
+                <img src="https://phillyjazz.us/wp-content/uploads/2023/09/international-underground-railroad-month.jpg?w=672&amp;h=372&amp;crop=1" alt="Illustration of the Underground Railroad" style="max-width: 100%;" />
+                <p style="text-align: center; font-size: 1.5rem;">⏸️ Record Tubman's "Action" in your Field Journal ⏸️</p>
+            </section>
+
+            <hr />
+
+            <section id="words-and-education">
+                <h2>The Leaders of Words and Education</h2>
+                <p>
+                    <span class="standard-reading">While Harriet Tubman used action on the trails, other New Yorkers used the power of the printing press and the classroom. They believed that by educating the public and "agitating" for change, they could convince the world that slavery was a moral evil.</span>
+                    <span class="easy-reading">Other heroes used books, newspapers, and speeches to fight slavery. They wanted to teach people why slavery was wrong and change the laws of the country.</span>
+                </p>
+
+                <table class="abolitionist-table">
+                    <thead>
+                        <tr>
+                            <th>Hero</th>
+                            <th>Their "Weapon"</th>
+                            <th>Their Contribution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Frederick Douglass</strong></td>
+                            <td>Speeches &amp; <i>The North Star</i> Newspaper</td>
+                            <td>Escaped slavery and became the most famous speaker in the world against it. His motto: "Agitate! Agitate! Agitate!"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Samuel Cornish</strong></td>
+                            <td><i>Freedom’s Journal</i></td>
+                            <td>Started the first Black-owned newspaper in America right here in New York City.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Charles Reason</strong></td>
+                            <td>Education &amp; Poetry</td>
+                            <td>A brilliant teacher and principal in NYC who believed schools were the key to equality.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>William Lloyd Garrison</strong></td>
+                            <td><i>The Liberator</i> Newspaper</td>
+                            <td>A white journalist who spent 34 years writing every week to demand an end to slavery.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Albro Lyons</strong></td>
+                            <td>Safe Houses</td>
+                            <td>Ran a boarding house in NYC that served as a secret station for the Underground Railroad.</td>
+                        </tr>
+                    </tbody>
+                </tbody></table>
+                <p style="text-align: center; font-size: 1.5rem;">⏸️ Pick one leader from the table for your notes ⏸️</p>
+            </section>
+
+            <div class="info-box" style="background-color: #f4f6f7; border-left: 5px solid #2c3e50; padding: 15px; margin-top: 30px;">
+                <h3>Humanizing the History: Who would you be?</h3>
+                <p>Not every hero carried a gun or led a raid. Some heroes wrote poems, some taught children how to read, and some just provided a warm meal and a bed for a traveler. Which "mental box" do you think your skills would fit into best: <strong>Action</strong> or <strong>Words</strong>?</p>
+            </div>
+
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>

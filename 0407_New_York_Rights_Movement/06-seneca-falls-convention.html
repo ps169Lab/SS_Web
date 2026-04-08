@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Seneca Falls Convention</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+    <main>
+        <article>
+            <h1 class="section-title">The Seneca Falls Convention</h1>
+            <p class="subtitle">The Birth of a Movement in New York</p>
+
+            <div class="vocabulary">
+                <h3>Meeting Vocabulary</h3>
+                <ul>
+                    <li><strong>Convention:</strong> A large meeting held to discuss specific ideas or goals.</li>
+                    <li><strong>Declaration:</strong> An official, public statement of beliefs or facts.</li>
+                    <li><strong>Resolution:</strong> A formal decision made by a group to take action.</li>
+                    <li><strong>Sentiments:</strong> A person's feelings or opinions about a situation.</li>
+                </ul>
+            </div>
+
+            <h2>A Historic Meeting in New York</h2>
+            <p>
+                <span class="standard-reading">In July 1848, about 300 people gathered at the Wesleyan Chapel in Seneca Falls, New York. Organized by <strong>Elizabeth Cady Stanton</strong> and <strong>Lucretia Mott</strong>, this was the first convention in the United States dedicated to women's rights. The two women had met years earlier at an anti-slavery meeting where they were forced to sit behind a curtain and forbidden from speaking. This unfair treatment made them realize that they needed to organize a movement for their own equality as well as the equality of others.</span>
+                <span class="easy-reading">In 1848, 300 people met in Seneca Falls, New York. This was the first big meeting for women's rights. The leaders were Elizabeth Cady Stanton and Lucretia Mott. They wanted to make life fair for all women.</span>
+            </p>
+            <img src="https://miro.medium.com/v2/resize:fit:1400/0*99NaeGDb3giWWrnP" alt="Illustration of the Seneca Falls Convention" style="max-width: 100%;" />
+
+            <h2>The Declaration of Sentiments</h2>
+            <p>
+                <span class="standard-reading">At the center of the meeting was a document called the <strong>Declaration of Sentiments</strong>. Elizabeth Cady Stanton cleverly modeled it after the Declaration of Independence. While the 1776 version said "all men are created equal," Stanton’s version famously added two words: <strong>"all men and women are created equal."</strong> The document listed 18 ways that society treated women unfairly, including the fact that they couldn't own property or go to college. By using the same format as the country's founding document, Stanton was showing that women's rights were a basic American value.</span>
+                <span class="easy-reading">Stanton wrote a paper called the Declaration of Sentiments. It was based on the Declaration of Independence. It said that men and women should be equal. It listed many ways that laws were unfair to women.</span>
+            </p>
+            
+            <img src="https://miro.medium.com/v2/resize:fit:800/1*l37Rg1XE4SP8GJssnoQAJw.jpeg" alt="The Declaration of Sentiments" style="max-width: 100%;" />
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause: Why did Stanton copy the format of the Declaration of Independence? ⏸️</p>
+
+            <h2>The Controversy of the Vote</h2>
+            <p>
+                <span class="standard-reading">The convention included several <strong>resolutions</strong>, or goals. The most controversial one was the demand for <strong>Suffrage</strong> (the right to vote). Even some supporters at the meeting thought this was going too far. However, <strong>Frederick Douglass</strong>, the famous abolitionist speaker, stood up to support the women. He argued that if women could not vote, they would never have the power to change the other 17 unfair things on their list. His powerful speech convinced the audience, and the resolution passed.</span>
+                <span class="easy-reading">The group argued about the right to vote. Some thought it was too big of a change. But Frederick Douglass spoke up and said women must have the vote to make things fair. Because of him, the group voted "Yes."</span>
+            </p>
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Jot: How did the Abolitionist movement help the Women’s movement at this meeting? ⏸️</p>
+
+            <h2>The Legacy of Seneca Falls</h2>
+            <p>
+                <span class="standard-reading">The convention sparked a wave of similar meetings across the North. Two weeks later, a meeting in Rochester, New York, became the first to be led by a woman. It would take 72 more years for women to win the right to vote nationwide in 1920, but the "mental model" for equality was built in that small New York town. Every victory that followed—women attending college, owning businesses, and serving on juries—can be traced back to the brave people who met in Seneca Falls.</span>
+                <span class="easy-reading">It took a long time to win the right to vote. But it all started in a small town in New York. Each victory built on the brave work of the people at Seneca Falls.</span>
+            </p>
+            <img src="https://cityclub.imgix.net/files/blog/page/suffrage.jpg" alt="Women protesting for the right to vote" style="max-width: 100%;" />
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Allies:</strong> Why was Frederick Douglass’s support so important for the women at the convention?</li>
+                <li><strong>Building Schema:</strong> How does the Declaration of Sentiments connect to the "Rights Denied" lesson we did earlier?</li>
+            </ul>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>

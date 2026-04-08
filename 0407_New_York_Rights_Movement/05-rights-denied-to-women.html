@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rights Denied to Women</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+    <main>
+        <article>
+            <h1 class="section-title">Rights Denied to Women</h1>
+            <p class="subtitle">The Legal Barriers of the 1800s</p>
+
+            <div class="vocabulary">
+                <h3>Key Schema Terms</h3>
+                <ul>
+                    <li><strong>Coverture:</strong> A law where a husband legally "covered" his wife, meaning she had no rights of her own.</li>
+                    <li><strong>Suffrage:</strong> The right to vote.</li>
+                    <li><strong>Civilly Dead:</strong> How the law treated married women—as if they didn't exist in court.</li>
+                </ul>
+            </div>
+
+            <h2>The "Invisible" Person</h2>
+            <p>
+                <span class="standard-reading">In the 1800s, New York laws followed a rule called <strong>Coverture</strong>. When a woman married, she and her husband became "one person" in the eyes of the law—and that person was the husband. A married woman was considered "civilly dead." She could not own property, sign a contract, or even keep the money she earned at a job.</span>
+                <span class="easy-reading">Long ago, a law called "coverture" took away a woman's rights when she got married. The law said the husband owned everything. A married woman could not own a house or keep the money she earned.</span>
+            </p>
+            <img src="https://moar-prod.imgix.net/0470c64a-addf-4b74-b6cc-5764f570f142/IM.320.jpg?auto=compress%2Cformat&amp;fit=min&amp;fm=jpg&amp;rect=3666%2C1630%2C2808%2C1979" alt="A wedding in the 1800s" style="max-width: 100%;" />
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause: Define "Coverture" in your own words ⏸️</p>
+
+            <h2>Locked Doors: Education and Voting</h2>
+            <p>
+                <span class="standard-reading">Equality was also blocked in public life. Women were denied <strong>Suffrage</strong>, meaning they had no say in the laws that governed them. Most colleges were for men only, which prevented women from becoming doctors or lawyers. If a woman did find work, she was often paid half of what a man made for the same task.</span>
+                <span class="easy-reading">Women were not allowed to vote. Most big schools were for men only, so women could not be doctors or lawyers. Even when women worked, they were paid much less than men.</span>
+            </p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <img src="https://www.facinghistory.org/sites/default/files/styles/standard_hero_article_460_361_2x/public/2022-06/Schoolhouse1870_Cropped.webp" alt="Old schoolhouse" style="width: 48%;" />
+                <img src="https://www.brownstonedetectives.com/wp-content/uploads/2016/08/886497109.jpg" alt="Women in the 1800s" style="width: 48%;" />
+            </div>
+
+            <h2>Cracks in the Wall</h2>
+            <p>
+                <span class="standard-reading">Change began slowly in New York. In 1848, the <strong>Married Women's Property Act</strong> allowed women to finally keep property they owned before marriage. While it didn't give women the vote, it was the first time the law recognized a married woman as an individual. This small victory gave a spark to the movement for full equality.</span>
+                <span class="easy-reading">New York began to change in 1848. A new law said women could finally keep their own property. It was a small step, but it gave women hope for more freedom.</span>
+            </p>
+            <img src="https://intriguing-history.com/wp-content/uploads/2012/01/victorian-women-in-court-Google-Search.png" alt="Women in court" style="max-width: 100%;" />
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause: Why is owning property a "big deal"? ⏸️</p>
+
+            <hr />
+
+            <h2>Discussion Questions</h2>
+            <ul>
+                <li><strong>The Vote:</strong> If you can't vote, how do you change a law you don't like?</li>
+                <li><strong>Connections:</strong> How does "Coverture" remind you of the lack of rights we saw in our unit on Slavery?</li>
+            </ul>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>

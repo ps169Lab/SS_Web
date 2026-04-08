@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suffrage Leaders</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        .leaders-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+        }
+        .leaders-table th, .leaders-table td {
+            border: 1px solid #2c3e50;
+            padding: 12px;
+            text-align: left;
+        }
+        .leaders-table th {
+            background-color: #8e44ad;
+            color: white;
+        }
+        .leaders-table tr:nth-child(even) {
+            background-color: #f9f4fd;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+    <main>
+        <article>
+            <h1 class="section-title">Suffrage Leaders</h1>
+            <p class="subtitle">The Brave Women Who Fought for the Right to Vote</p>
+
+            <div class="vocabulary">
+                <h3>Movement Vocabulary</h3>
+                <ul>
+                    <li><strong>Suffrage:</strong> The legal right to vote in elections.</li>
+                    <li><strong>Petition:</strong> A formal written request, signed by many people, to a government.</li>
+                    <li><strong>Amendment:</strong> An official change or addition to the Constitution.</li>
+                </ul>
+            </div>
+
+            <h2>The Great Partnership</h2>
+            <p>
+                <span class="standard-reading">The fight for women's suffrage was led by a "dynamic duo" in New York: <strong>Elizabeth Cady Stanton</strong> and <strong>Susan B. Anthony</strong>. They met in 1851 and became lifelong friends. Elizabeth was the "writer"—she stayed home with her seven children and wrote powerful speeches. Susan was the "traveler"—she spent 50 years traveling across the country giving those speeches. Together, they proved that women could organize powerful political movements even without the vote.</span>
+                <span class="easy-reading">Elizabeth Cady Stanton and Susan B. Anthony were a great team. Elizabeth wrote the speeches, and Susan traveled the country to give them. They worked for over 50 years to win the right to vote.</span>
+            </p>
+            
+
+            <h2>Diverse Leaders, One Goal</h2>
+            <p>
+                <span class="standard-reading">While Stanton and Anthony were the most famous, many other New York women provided the "words" and "action" needed to change the laws. They used newspapers, fashion, and even public speaking to challenge the idea that women were not equal to men.</span>
+                <span class="easy-reading">Many different women helped the movement. Some used newspapers and some used speeches. They all wanted to show that women were equal to men.</span>
+            </p>
+
+            <table class="leaders-table">
+                <thead>
+                    <tr>
+                        <th>Leader</th>
+                        <th>Their "Mental Box"</th>
+                        <th>Contribution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Lucretia Mott</strong></td>
+                        <td>The Wise Mentor</td>
+                        <td>A Quaker minister who was a famous public speaker long before the movement started.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Amelia Bloomer</strong></td>
+                        <td>The Reformer</td>
+                        <td>Published the newspaper <i>The Lily</i> and promoted "bloomers" (pants) so women could move more freely.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Matilda Joslyn Gage</strong></td>
+                        <td>The Historian</td>
+                        <td>Researched and wrote the history of the movement so future generations wouldn't forget their work.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Jot: Which leader's "contribution" interests you most? ⏸️</p>
+
+            <h2>Connecting the Fights</h2>
+            <p>
+                <span class="standard-reading">These leaders didn't just fight for themselves. Many were <strong>Abolitionists</strong> first. For example, during the Civil War, Susan B. Anthony organized a petition with 400,000 signatures to end slavery. These women believed that equality was a single "mental box"—if one group was denied freedom, everyone's freedom was at risk. They faced decades of ridicule, but their partnership proved that organized "agitation" could eventually change the world.</span>
+                <span class="easy-reading">These women also worked to end slavery. They believed that everyone deserved to be free and equal. Even when people were mean to them, they never gave up.</span>
+            </p>
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause: How are these leaders like the Abolitionists we studied? ⏸️</p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Teamwork:</strong> Why did the Stanton/Anthony partnership work so well? What happens when one person writes and another person speaks?</li>
+                <li><strong>Beyond the Vote:</strong> Why would Amelia Bloomer think that <i>clothing</i> was part of the fight for women's rights?</li>
+            </ul>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>
