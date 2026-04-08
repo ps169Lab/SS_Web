@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Causes of the American Revolution</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">The Path to Revolution</h1>
+            <p class="subtitle">How a Business Argument Turned Into a New Country</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Taxation:</strong> Money collected by a government to pay for things like roads or wars.</li>
+                    <li><strong>Parliament:</strong> The group of people in Great Britain who made the laws.</li>
+                    <li><strong>Boycott:</strong> When people refuse to buy something as a way to protest.</li>
+                    <li><strong>Patriot:</strong> A colonist who wanted to fight for independence from Britain.</li>
+                </ul>
+            </div>
+
+            <h2>A Very Expensive War</h2>
+            <p>
+                <span class="standard-reading">Before the Revolution, Great Britain fought the <strong>French and Indian War</strong>. Britain won and gained a massive amount of land, but the war was incredibly expensive. To pay back the money they borrowed, King George III and <strong>Parliament</strong> decided the colonists should pay more taxes. After all, the British army had protected them! The colonists, however, felt it was unfair to pay for a war they didn't choose to start.</span>
+                <span class="easy-reading">Britain fought a big war called the <strong>French and Indian War</strong>. Britain won, but the war cost a lot of money. The King thought the colonists should help pay for it. He started to charge them new taxes. This made the colonists very unhappy.</span>
+            </p>
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/French_and_indian_war_map.svg/1200px-French_and_indian_war_map.svg.png" alt="Map of the French and Indian War" style="max-width: 100%;" /></p>
+            <p><img src="https://org-dcmp-staticassets.s3.us-east-1.amazonaws.com/posterimages/20385_1.jpg" alt="British soldiers in the war" style="max-width: 100%;" /></p>
+
+            <h2>Stamps, Sugar, and Tea</h2>
+            <p>
+                <span class="standard-reading">The British government passed several laws, like the <strong>Stamp Act</strong>. Imagine having to pay extra money just to get a deck of playing cards or a newspaper! Every paper had to have a thick, blue ink stamp on it to prove the tax was paid. The colonists were furious because they had no "representation"—meaning no one in the British government was there to speak for them. They began to <strong>boycott</strong> British goods, leaving tea to rot in warehouses rather than pay the tax.</span>
+                <span class="easy-reading">The King made many new tax rules. There was a tax on sugar and even on paper. If you bought a newspaper, you had to pay for a special blue stamp. The colonists said, "No taxation without representation!" This meant they wanted a say in the laws. They stopped buying things from Britain to show they were angry.</span>
+            </p>
+            <p><img src="https://www.battlefields.org/sites/default/files/styles/resource_hero/public/thumbnails/image/colonist-American-concern-colonies-tea-tax-proclamation-1767%20Landscape.jpg?h=4537bda6&amp;itok=tNYXwSuv" alt="Colonists protesting tea taxes" style="max-width: 100%;" /></p>
+            <p><img src="https://i1.wp.com/imagesofoldhawaii.com/wp-content/uploads/No-taxation.jpeg?ssl=1" alt="No Taxation Without Representation sign" style="max-width: 100%;" /></p>
+
+            <h2>The Breaking Point</h2>
+            <p>
+                <span class="standard-reading">In 1773, <strong>Patriots</strong> in Boston took a stand. They climbed onto British ships and dumped hundreds of chests of tea into the cold, salty water of the harbor. This "Boston Tea Party" made the King so angry that he passed the Intolerable Acts. He closed the harbor and sent soldiers to live in the colonists' homes. The air in the colonies grew tense. People began hiding gunpowder and practicing with their muskets. When the British tried to seize these weapons in April 1775, the first shots were fired, and the war began.</span>
+                <span class="easy-reading">Colonists in Boston dumped British tea into the ocean. This was called the Boston Tea Party. The King was very angry. He sent more soldiers to the colonies. The colonists started to get ready to fight back. In 1775, the first battle happened. The <strong>Patriots</strong> decided they would fight until they were free.</span>
+            </p>
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+            <p><img src="https://bri-wp-images.s3.amazonaws.com/wp-content/uploads/BRI_APUSH_03_03_BostonTea.jpg" alt="The Boston Tea Party" style="max-width: 100%;" /></p>
+            <p><img src="https://cdn.britannica.com/73/163173-050-E00D6CF1/ships-British-Boston-Harbor-1774-intolerable-acts.jpg" alt="British ships in Boston Harbor" style="max-width: 100%;" /></p>
+            <p><img src="https://www.battlefields.org/sites/default/files/styles/hero_large/public/Stand-Your-Ground-By-Don-Troiani.jpg?h=016726c1&amp;itok=TKNYinqN" alt="The start of the war" style="max-width: 100%;" /></p>
+            <p><img src="https://cdn.britannica.com/23/143623-050-3708C6A4/Surrender-of-Lord-Cornwallis-canvas-John-Laurens-1820.jpg" alt="The end of the revolution" style="max-width: 100%;" /></p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Fair or Unfair?</strong> Great Britain spent a lot of money to protect the colonies during the war. Do you think it was fair for them to ask the colonists to pay it back? Why or why not?</li>
+                <li><strong>The Silent Protest:</strong> Why is a <strong>boycott</strong> (refusing to buy things) a powerful way to change a government's mind? How would you feel if you had to give up your favorite snack to prove a point?</li>
+            </ul>
+        </article>
+    </main>
+    <script src="../reading-level-toggle.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Reconstruction Era</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">Rebuilding the Nation</h1>
+            <p class="subtitle">The Hopes and Hardships of the Reconstruction Era</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Reconstruction:</strong> The 12-year period after the Civil War spent rebuilding the South and the government.</li>
+                    <li><strong>Amendment:</strong> An official change or addition made to the U.S. Constitution.</li>
+                    <li><strong>Freedmen:</strong> Men, women, and children who had been enslaved but were now free.</li>
+                    <li><strong>Segregation:</strong> The forced separation of people based on the color of their skin.</li>
+                </ul>
+            </div>
+
+            <h2>A New Foundation: The Three Amendments</h2>
+            <p>
+                <span class="standard-reading">After the war, the U.S. government had to decide how to bring the Southern states back into the Union. They passed three "Reconstruction Amendments" to change the country's laws forever. The 13th Amendment ended slavery everywhere. The 14th Amendment promised that anyone born in the U.S. was a full citizen with "equal protection" under the law. Finally, the 15th Amendment gave African American men the right to vote. For the first time, <strong>freedmen</strong> were opening schools, starting businesses, and even being elected to Congress.</span>
+                <span class="easy-reading">After the war, the government had to fix the South. They made three new laws called <strong>amendments</strong>. The first law ended slavery. The second law said that everyone born in the U.S. is a citizen. The third law gave Black men the right to vote. Many <strong>freedmen</strong> started going to school and voting for the very first time.</span>
+            </p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/The_First_Vote.jpg" alt="A drawing of African American men voting for the first time" style="max-width: 100%;" /></p>
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <h2>Helping Hands and Hard Resistance</h2>
+            <p>
+                <span class="standard-reading">Rebuilding wasn't just about laws; it was about helping people survive. The government created the <strong>Freedmen’s Bureau</strong> to build schools and hospitals in the South. However, many white Southerners were angry that their "way of life" had changed. They formed secret groups to scare Black families and stop them from using their new rights. To keep the peace, the Union army stayed in the South for years, making sure the new laws were followed and protecting people at the voting booths.</span>
+                <span class="easy-reading">The government built new schools and hospitals to help people. This was a busy time! But some people in the South were angry. They did not want things to change. They tried to scare Black families so they wouldn't vote. The Union army had to stay in the South to keep everyone safe and make sure people followed the new laws.</span>
+            </p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/The_Freedman%27s_Bureau_by_A.R._Waud.jpg" alt="The Freedmen's Bureau helping families" style="max-width: 100%;" /></p>
+
+            <h2>An Unfinished Story</h2>
+            <p>
+                <span class="standard-reading">In 1877, Reconstruction officially ended. The Union army left the South, and federal oversight disappeared. Almost immediately, Southern leaders began passing "Jim Crow" laws. These rules created <strong>segregation</strong>, forcing Black and white Americans to use different schools, parks, and restaurants. It would take nearly 100 more years of protesting and bravery during the Civil Rights Movement to finally finish the work that Reconstruction started. Even though the era ended with many broken promises, the three <strong>amendments</strong> remained as a legal foundation for future freedom.</span>
+                <span class="easy-reading">In 1877, the Union army left the South. When they left, new leaders made unfair rules called "Jim Crow" laws. These laws started <strong>segregation</strong>, which kept Black and white people separate. It was a very difficult time. It would take a long time and many brave people to fix these unfair rules later in history.</span>
+            </p>
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/African_American_School_during_Reconstruction.jpg" alt="A small schoolhouse during the Reconstruction era" style="max-width: 100%;" /></p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Building Schema:</strong> We call this era "Reconstruction." Usually, we reconstruct buildings. What "invisible" things (like laws or feelings) were the people trying to reconstruct?</li>
+                <li><strong>The Army's Role:</strong> Why do you think things changed so quickly when the Union army left the South in 1877? What does that tell you about how hard it is to change people's minds with only laws?</li>
+            </ul>
+        </article>
+    </main>
+    <script src="../reading-level-toggle.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

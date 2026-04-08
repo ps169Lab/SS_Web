@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regions of the United States</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">One Nation, Many Parts</h1>
+            <p class="subtitle">Exploring the Four Regions of the United States</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Region:</strong> An area of land that has common features like weather, history, or landforms.</li>
+                    <li><strong>Climate:</strong> The type of weather a place has over a long period of time.</li>
+                    <li><strong>Landscape:</strong> The visible features of an area, such as mountains, plains, or coastlines.</li>
+                </ul>
+            </div>
+
+            <h2>The Northeast and The South</h2>
+            <p>
+                <span class="standard-reading">The <strong>Northeast</strong> is known for its rocky coastlines, colorful autumn leaves, and bustling cities like New York. It has four distinct seasons, with freezing snowy winters and warm summers. Moving down the coast, <strong>The South</strong> feels very different. It is famous for its humid heat and long growing seasons. Instead of rocky cliffs, you find sandy beaches and wide, slow-moving rivers. The air often smells like damp earth and blooming flowers.</span>
+                <span class="easy-reading">The <strong>Northeast</strong> has big cities and cold, snowy winters. It has rocky land near the ocean. <strong>The South</strong> is much warmer. It has long summers and lots of rain. The land is flatter with many sandy beaches and big rivers.</span>
+            </p>
+             <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️
+            </p>
+            <p><img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?q=80&w=1000"
+                    alt="The New York City skyline representing the Northeast" style="max-width: 100%;" /></p>
+            <p></p>
+
+            <h2>The Midwest: The Heartland</h2>
+            <p>
+                <span class="standard-reading">In the middle of the country lies <strong>The Midwest</strong>. This region is mostly flat land called plains. Because the soil is so rich and deep, it is often called "America’s Breadbasket." You can stand in a field and see the horizon for miles in every direction. The weather can be extreme, with very hot summers and howling wind during the winter. It is also home to the Great Lakes, which look like giant blue oceans in the middle of the land.</span>
+                <span class="easy-reading"><strong>The Midwest</strong> is in the middle of the country. The land is very flat. It has great soil for farming corn and wheat. There are also huge lakes called the Great Lakes. The summers are hot and the winters are very windy.</span>
+            </p>
+            <p></p>
+            <p><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1000"
+                    alt="A wide open farm field in the Midwest" style="max-width: 100%;" /></p>
+            <p></p>
+
+            <h2>The West: Mountains and Deserts</h2>
+            <p>
+                <span class="standard-reading"><strong>The West</strong> is the largest and most diverse region. It contains the jagged, snow-capped peaks of the Rocky Mountains and the dry, red sands of the desert. On the Pacific coast, you can see massive redwood trees that touch the clouds. Because it is so big, the weather changes quickly. You might find a rainforest in Washington state and a scorching desert in Arizona. It is a place of giant spaces and amazing natural wonders.</span>
+                <span class="easy-reading"><strong>The West</strong> is a very big area. It has tall mountains with snow on top. It also has dry deserts with red sand. Near the ocean, there are giant trees. Some parts are very wet, and other parts are very dry.</span>
+            </p>
+             <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️
+            </p>
+            <p><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000"
+                    alt="Snowy mountain peaks in the West" style="max-width: 100%;" /></p>
+            <p></p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Regional Match:</strong> Look at the map again. If you wanted to start a large farm that grows wheat, which region would you choose? Why?</li>
+                <li><strong>Sensory Details:</strong> If you closed your eyes in the <strong>South</strong>, what might you hear or feel compared to closing your eyes in the <strong>West</strong>?</li>
+            </ul>
+        </article>
+    </main>
+    <script src="../reading-level-toggle.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

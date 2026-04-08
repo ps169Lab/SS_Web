@@ -81,6 +81,10 @@ main {
         border-bottom: 1pt solid #000 !important;
     }
     
+    .section-title h1 {
+        margin-top: 0.8em;
+    }
+    
     .subtitle {
         font-size: 14pt !important;
         margin-bottom: 0.8em !important;

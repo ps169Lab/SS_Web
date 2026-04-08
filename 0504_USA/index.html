@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to American Studies</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">The Story of America</h1>
+            <p class="subtitle">Exploring our Land, our Past, and our Government</p>
+
+            <div class="vocabulary">
+                <h3>The Big Three Concepts</h3>
+                <ul>
+                    <li><strong>Geography:</strong> The study of the Earth's surface, climate, and how people use the land.</li>
+                    <li><strong>History:</strong> The study of past events and the people who shaped our world.</li>
+                    <li><strong>Civics:</strong> The study of how our government works and our rights as citizens.</li>
+                </ul>
+            </div>
+
+            <h2>Pillar 1: The Land (Geography)</h2>
+            <p>
+                <span class="standard-reading">Before we can understand history, we have to look at the stage where it happens! You will learn how the <strong>geography</strong> of North America shaped how people lived. From the salty spray of the Atlantic Coast to the towering, snow-capped Rocky Mountains, the land tells a story. We will explore how landforms like the Mississippi River acted as "highways" for trade and how the climate of different regions decided what kind of homes people built and what food they ate.</span>
+                <span class="easy-reading">First, we will look at the land. This is called <strong>geography</strong>. You will learn about big mountains, long rivers, and flat plains. The land is important because it changes how people live. People in the cold North live differently than people in the sunny South. The land is the "stage" where all of history happens!</span>
+            </p>
+            <p><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop" alt="The Rocky Mountains" style="max-width: 100%;" /></p>
+
+            <h2>Pillar 2: The People (History)</h2>
+            <p>
+                <span class="standard-reading">Next, we dive into the <strong>history</strong> of the United States. We will travel through time, starting with the diverse cultures of Indigenous peoples. We'll witness the tension of the American Revolution, the dusty trails of Westward Expansion, and the difficult days of the Civil War. History isn't just about dates; it's about human-centered stories—the bravery of explorers, the hard work of immigrants building railroads, and the struggle for freedom during Reconstruction.</span>
+                <span class="easy-reading">Next, we will learn about the people from the past. This is <strong>history</strong>. We will learn about the first people who lived here and the brave people who fought for freedom. We will see how our country grew bigger and how people worked together to build railroads and new cities. History is the story of how we became the country we are today.</span>
+            </p>
+            <p><img src="https://images.unsplash.com/photo-1501139083538-0139583c060f?q=80&w=2070&auto=format&fit=crop" alt="Pocket watch representing history" style="max-width: 100%;" /></p>
+
+            <h2>Pillar 3: The Rules (Civics & Government)</h2>
+            <p>
+                <span class="standard-reading">Finally, we look at how we stay organized through <strong>civics</strong>. A big country needs a plan, and ours is found in the Constitution. You will learn about the Three Branches of Government: the Legislative (who make the laws), the Executive (who lead the country), and the Judicial (who decide if laws are fair). Understanding these "mental boxes" helps you see how power is shared so that no one person has too much control.</span>
+                <span class="easy-reading">Last, we will learn about our government. Our country has rules to keep things fair. You will learn about the three parts of our government. One part makes the laws, one part leads the country, and one part decides if the laws are fair. This helps us understand our rights and how we can help our community.</span>
+            </p>
+            <p><img src="https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?q=80&w=2070&auto=format&fit=crop" alt="The U.S. Capitol Building" style="max-width: 100%;" /></p>
+
+            <hr />
+
+            <h2>Are You Ready to Explore?</h2>
+            <p>Use the navigation menu at the top to choose your first topic. Remember to use the <strong>Reading Level Toggle</strong> if you want to see the "Expert" or "Easy" version of the text!</p>
+        </article>
+    </main>
+    <script src="../reading-level-toggle.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

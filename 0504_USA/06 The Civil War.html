@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Civil War</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">A Nation Divided</h1>
+            <p class="subtitle">The Causes and Conflicts of the American Civil War</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Secession:</strong> When a part of a country officially breaks away to start its own government.</li>
+                    <li><strong>Confederacy:</strong> The 11 Southern states that seceded from the United States.</li>
+                    <li><strong>Emancipation:</strong> The act of setting people free from slavery.</li>
+                    <li><strong>Federal:</strong> The central government that makes laws for the whole country.</li>
+                </ul>
+            </div>
+
+            <h2>The Great Disagreement</h2>
+            <p>
+                <span class="standard-reading">By 1861, the North and South felt like two different countries. The North was full of humming factories and busy railroads. Many Northerners believed slavery was a moral evil that should end. The South was a land of wide-open plantations that grew cotton using the forced labor of enslaved people. They believed in "States' Rights," or the idea that each state should make its own rules about slavery. When Abraham Lincoln was elected President, the South feared he would take away their way of life, and eleven states decided on <strong>secession</strong>.</span>
+                <span class="easy-reading">The North and South had a big fight. The North had many factories. Many people there wanted to end slavery. The South had big farms. They used enslaved people to work the land. The South wanted to make their own rules. When Abraham Lincoln became President, the South was worried. Eleven states left the U.S. to start their own group. This was called <strong>secession</strong>.</span>
+            </p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Abraham_Lincoln_November_1863.jpg" alt="President Abraham Lincoln" style="max-width: 100%;" /></p>
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <h2>Two Armies, One Land</h2>
+            <p>
+                <span class="standard-reading">The war began with a bang at Fort Sumter. The North (The Union) fought to keep the country together, while the South (The <strong>Confederacy</strong>) fought to be independent. For four years, the air was filled with the smell of gunpowder and the sound of marching boots. The Union had more soldiers and better supplies, but the Confederacy had many talented generals. Massive battles like Gettysburg and Vicksburg turned beautiful green fields into muddy battlegrounds. It was the deadliest war in American history because families were often fighting against each other.</span>
+                <span class="easy-reading">The war started at a fort. The North wanted to keep the country together. The South wanted to be its own country. They called themselves the <strong>Confederacy</strong>. Many soldiers fought in big battles. The North had more food and tools, but the South had strong leaders. It was a very sad war because many Americans died fighting each other.</span>
+            </p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Battle_of_Gettysburg.jpg" alt="A painting of the Battle of Gettysburg" style="max-width: 100%;" /></p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Civil_War_Soldiers_Union_and_Confederate.jpg/1200px-Civil_War_Soldiers_Union_and_Confederate.jpg" alt="Union and Confederate soldiers" style="max-width: 100%;" /></p>
+
+            <h2>Victory and Freedom</h2>
+            <p>
+                <span class="standard-reading">In 1863, President Lincoln issued the Emancipation Proclamation, declaring that enslaved people in the South were free. This changed the purpose of the war to a fight for human liberty. By 1865, the Confederate army was exhausted and out of food. General Robert E. Lee surrendered to General Ulysses S. Grant at a small house in Virginia. The war was over, the Union was saved, and slavery was abolished. However, the South was in ruins, and the country faced a long, difficult path to becoming "one nation" again.</span>
+                <span class="easy-reading">In the middle of the war, Lincoln said all enslaved people should be free. This is called <strong>emancipation</strong>. In 1865, the South ran out of food and supplies. They had to stop fighting. The North won the war. The country stayed together and slavery ended. But the South was very broken, and it would take a long time to fix the country.</span>
+            </p>
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Ulysses_S._Grant_1870-1880.jpg" alt="General Ulysses S. Grant" style="max-width: 100%;" /></p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Appomattox_Court_House_National_Historical_Park.jpg" alt="Appomattox Court House where the war ended" style="max-width: 100%;" /></p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>The Cost of War:</strong> The Civil War was fought on American soil, meaning farms and towns were destroyed. Why does this make it harder for a country to "get back to normal" after the war ends?</li>
+                <li><strong>Defining Freedom:</strong> After the war, millions of people were finally free from slavery. What are some things they might have needed (like jobs or schools) to truly start their new lives?</li>
+            </ul>
+        </article>
+    </main>
+    <script src="../reading-level-toggle.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>
