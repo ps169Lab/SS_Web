@@ -250,47 +250,47 @@ main {
 }
 
 .nav-links li:nth-child(1) {
-  background-color: #e0f2f7; /* Light blue */
+  background-color: #FF946A; /* No Way Rosé */
 }
 
 .nav-links li:nth-child(2) {
-  background-color: #b3f0a8; /* Light green */
+  background-color: #F67280; /* Momo Peach */
 }
 
 .nav-links li:nth-child(3) {
-  background-color: #fff59d; /* Light yellow */
+  background-color: #C06C84; /* Briar Rose */
 }
 
 .nav-links li:nth-child(4) {
-  background-color: #ffd699; /* Light orange */
+  background-color: #6C5B7B; /* Princely Violet */
 }
 
 .nav-links li:nth-child(5) {
-  background-color: #ffcce6; /* Light pink */
+  background-color: #355C7D; /* Matisse */
 }
 
 .nav-links li:nth-child(6) {
-  background-color: #d9c3e6; /* Light lavender */
+  background-color: #FF946A; /* No Way Rosé - cycling back */
 }
 
 .nav-links li:nth-child(7) {
-  background-color: #a8e6cf; /* Light mint */
+  background-color: #F67280; /* Momo Peach - cycling back */
 }
 
 .nav-links li:nth-child(8) {
-  background-color: #ffb3b3; /* Light coral */
+  background-color: #C06C84; /* Briar Rose - cycling back */
 }
 
 .nav-links li:nth-child(9) {
-  background-color: #c7ceea; /* Light periwinkle */
+  background-color: #6C5B7B; /* Princely Violet - cycling back */
 }
 
 .nav-links li:nth-child(10) {
-  background-color: #b5ead7; /* Light seafoam */
+  background-color: #355C7D; /* Matisse - cycling back */
 }
 
 .nav-links a {
-  color: #333;
+  color: #ffffff;
   text-decoration: none;
   border: none;
   padding: 1rem;
@@ -301,10 +301,14 @@ main {
   overflow-wrap: break-word;
   line-height: 1.4;
   font-size:1.1rem;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
 }
 
 .nav-links a:hover {
-  opacity: 0.8;
+  opacity: 0.9;
+  transform: translateX(5px);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 /* Hamburger menu */
@@ -549,22 +553,6 @@ li {
   
   .author-image {
     margin-bottom: 10px;
-  }
-}
-
-/* Google Translate Widget Styling */
-#google_translate_element {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 900;
-}
-
-/* Responsive styling for Google Translate Widget */
-@media (max-width: 768px) {
-  #google_translate_element {
-    top: 80px;
-    right: 15px;
   }
 }
 
