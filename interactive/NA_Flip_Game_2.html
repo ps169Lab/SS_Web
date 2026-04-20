@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Amsterdam — Cause & Effect Game</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f0e8;
+    --surface: #fffef9;
+    --border: #d6cdb8;
+    --text: #2a2218;
+    --muted: #7a6e5f;
+    --accent: #4a3b8c;
+    --accent-light: #ede9f8;
+    --wrong-bg: #fce8e8;
+    --wrong-border: #c94040;
+    --card-back: #3d2f6e;
+    --card-back-2: #4a3b8c;
+    --gold: #c8922a;
+  }
+
+  /* 14 distinct pair colors — bg, border, text */
+  .pair-0  { background: #e8f0fb; border-color: #5b8dd9; } .pair-0  .card-text { color: #1d4a8a; }
+  .pair-1  { background: #fef3e2; border-color: #d4901a; } .pair-1  .card-text { color: #7a4f08; }
+  .pair-2  { background: #e9f7ee; border-color: #4a9e60; } .pair-2  .card-text { color: #1d5e30; }
+  .pair-3  { background: #fde8f5; border-color: #c056a0; } .pair-3  .card-text { color: #6e1f5a; }
+  .pair-4  { background: #e8f5fd; border-color: #2d9fc4; } .pair-4  .card-text { color: #0d5570; }
+  .pair-5  { background: #fdf3e8; border-color: #c47a30; } .pair-5  .card-text { color: #6b3e0e; }
+  .pair-6  { background: #eef0fd; border-color: #6070d4; } .pair-6  .card-text { color: #2a3880; }
+  .pair-7  { background: #f0fbe8; border-color: #68b030; } .pair-7  .card-text { color: #2e5a10; }
+  .pair-8  { background: #fde8e8; border-color: #d04040; } .pair-8  .card-text { color: #6e1a1a; }
+  .pair-9  { background: #e8faf5; border-color: #30b08a; } .pair-9  .card-text { color: #0e5a40; }
+  .pair-10 { background: #fdf0e8; border-color: #d07030; } .pair-10 .card-text { color: #6a3010; }
+  .pair-11 { background: #f5e8fd; border-color: #9050d0; } .pair-11 .card-text { color: #4a1870; }
+  .pair-12 { background: #e8fde8; border-color: #40b040; } .pair-12 .card-text { color: #1a5a1a; }
+  .pair-13 { background: #fdeee8; border-color: #d05838; } .pair-13 .card-text { color: #6a2010; }
+
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(74,59,140,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(200,146,42,0.08) 0%, transparent 50%);
+    min-height: 100vh;
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text);
+    padding: 2rem 1rem 4rem;
+  }
+
+  header { text-align: center; margin-bottom: 2rem; }
+
+  .title-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .level-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+    position: relative;
+    top: -3px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 5vw, 38px);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .stats {
+    display: inline-flex;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    padding: 7px 18px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .stats span { font-weight: 600; color: var(--text); }
+  .stat-divider { color: var(--border); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .card {
+    min-height: 100px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 10px 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+    user-select: none;
+  }
+
+  .card:hover:not(.face-down):not(.matched) { transform: scale(1.02); }
+
+  .card.face-down {
+    background: linear-gradient(145deg, var(--card-back), var(--card-back-2));
+    border-color: var(--card-back);
+    overflow: hidden;
+  }
+
+  .card.face-down::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 7px;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .card.face-down::after {
+    content: '?';
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: rgba(255,255,255,0.18);
+  }
+
+  .card.face-down:hover {
+    transform: scale(1.04) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(74,59,140,0.25);
+  }
+
+  .card.face-down .card-text,
+  .card.face-down .card-type-label { opacity: 0; pointer-events: none; }
+
+  .card.flipped {
+    background: var(--accent-light);
+    border-color: var(--accent);
+  }
+
+  .card.matched {
+    cursor: default;
+    transform: none !important;
+    border-width: 2px;
+  }
+
+  .card.wrong {
+    background: var(--wrong-bg);
+    border-color: var(--wrong-border);
+    animation: shake 0.4s ease;
+  }
+
+  .card-type-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    opacity: 0.6;
+  }
+
+  .card.cause .card-type-label { color: #5b4fa0; }
+  .card.effect .card-type-label { color: #5b4fa0; }
+  .card.flipped.cause .card-type-label { color: var(--accent); opacity: 1; }
+  .card.flipped.effect .card-type-label { color: var(--accent); opacity: 1; }
+
+  .card.matched .card-type-label { opacity: 0.7; }
+
+  .card-text {
+    font-size: 12.5px;
+    color: var(--text);
+    line-height: 1.45;
+  }
+
+  .card.cause .card-text { font-weight: 600; }
+  .card.effect .card-text { font-style: italic; }
+
+  .card.flipped .card-text { color: var(--accent); }
+
+  .match-badge {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: -6px;
+    background: #fff;
+    border: 1.5px solid currentColor;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    letter-spacing: 0.04em;
+  }
+
+  .card.matched .match-badge { display: block; }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-7px); }
+    60% { transform: translateX(7px); }
+    80% { transform: translateX(-4px); }
+  }
+
+  @keyframes matchPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.07); }
+    100% { transform: scale(1); }
+  }
+
+  .card.pop { animation: matchPop 0.35s ease; }
+
+  .progress-bar-wrap {
+    max-width: 300px;
+    margin: 0 auto 1rem;
+    height: 4px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+    border-radius: 4px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 1.25rem;
+    font-size: 12px;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+
+  .restart-top {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+    border-radius: 8px;
+    padding: 7px 18px;
+    font-size: 13px;
+    font-family: 'Source Sans 3', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+    margin-top: 8px;
+  }
+  .restart-top:hover { border-color: var(--accent); color: var(--accent); }
+
+  .win-screen {
+    display: none;
+    text-align: center;
+    padding: 3rem 1rem;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .win-screen.visible { display: block; }
+
+  .trophy {
+    font-size: 56px;
+    margin-bottom: 1rem;
+    animation: bounceIn 0.6s cubic-bezier(.36,.07,.19,.97);
+  }
+
+  @keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    60% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .win-screen h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .win-screen p {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Source Sans 3', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn:hover { background: #3d2f6e; }
+  .btn:active { transform: scale(0.97); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="title-label">Social Studies Unit <span class="level-badge">Level 2</span></div>
+  <h1>New Amsterdam</h1>
+  <p class="subtitle">Match each cause to its effect. Find all 14 pairs!</p>
+  <div class="stats">
+    <span id="matches">0</span> / 14 matched
+    <span class="stat-divider">·</span>
+    <span id="tries">0</span> tries
+  </div>
+  <br>
+  <button class="restart-top" onclick="init()">↺ New game</button>
+</header>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progress"></div>
+</div>
+
+<div class="legend">
+  <span style="font-weight:600; color: #4a3b8c;">CAUSE</span> cards are bold &nbsp;·&nbsp;
+  <span style="font-style:italic; color: #4a3b8c;">Effect</span> cards are italic &nbsp;·&nbsp;
+  Matched pairs share a color
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="win-screen" id="win">
+  <div class="trophy">🏆</div>
+  <h2>You matched them all!</h2>
+  <p id="win-msg"></p>
+  <button class="btn" onclick="init()">Play again</button>
+</div>
+
+<script>
+const pairs = [
+  { cause: "Europeans wanted spices from Asia",                                         effect: "The search for the Northwest Passage brought explorers to New York" },
+  { cause: "Verrazzano explored New York Harbor",                                       effect: "Verrazzano's voyage told Europe that New York existed" },
+  { cause: "Hudson sailed up the Hudson River",                                         effect: "The Dutch used the Hudson River to settle New Netherland" },
+  { cause: "Champlain made friends with Native American tribes",                        effect: "Champlain's friendships gave France influence in northern New York" },
+  { cause: "Block mapped the Hudson River and Long Island",                             effect: "Block's maps helped the Dutch understand and settle New York" },
+  { cause: "People in Europe loved beaver fur hats",                                    effect: "Europeans stayed in New York to hunt and sell beavers" },
+  { cause: "Europeans and Native Americans needed a place to trade",                    effect: "Trading posts were built so Europeans and Native Americans could meet and exchange goods" },
+  { cause: "Some Europeans wanted to spread Christianity",                              effect: "Missions were built to teach Native Americans about Christianity" },
+  { cause: "The Dutch allowed all religions and cultures in New Amsterdam",             effect: "People from all over the world moved to New Amsterdam" },
+  { cause: "The Dutch West India Company gave settlers homes, food, and tools",        effect: "Settlers gave the Dutch West India Company fur in return" },
+  { cause: "The British had colonies north AND south of New Netherland",               effect: "The British wanted to take over New Netherland so they could trade freely" },
+  { cause: "Keift's War damaged and weakened the colony",                              effect: "The colonists refused to fight when the British arrived in 1664" },
+  { cause: "The British promised the Dutch could keep their laws and their trade",     effect: "The Dutch handed the colony over to the British without a fight" },
+  { cause: "The British took over New Netherland in 1664",                             effect: "The British renamed New Netherland \"New York\"" },
+];
+
+let flipped = [], waiting = [], matchCount = 0, tries = 0;
+const grid = document.getElementById('grid');
+const TOTAL = pairs.length;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function init() {
+  flipped = []; waiting = []; matchCount = 0; tries = 0;
+  document.getElementById('matches').textContent = 0;
+  document.getElementById('tries').textContent = 0;
+  document.getElementById('progress').style.width = '0%';
+  document.getElementById('win').classList.remove('visible');
+  grid.style.display = 'grid';
+  grid.innerHTML = '';
+
+  const cards = [];
+  pairs.forEach((p, i) => {
+    cards.push({ id: i, type: 'cause',  text: p.cause  });
+    cards.push({ id: i, type: 'effect', text: p.effect });
+  });
+
+  shuffle(cards).forEach(c => {
+    const el = document.createElement('div');
+    el.className = `card face-down ${c.type}`;
+    el.dataset.id = c.id;
+    el.innerHTML = `
+      <span class="card-type-label">${c.type === 'cause' ? '⚡ Cause' : '➜ Effect'}</span>
+      <span class="card-text">${c.text}</span>
+      <span class="match-badge">✓ matched</span>
+    `;
+    el.addEventListener('click', () => flip(el, c));
+    grid.appendChild(el);
+  });
+}
+
+function clearWaiting() {
+  waiting.forEach(el => {
+    el.classList.remove('flipped', 'wrong');
+    el.classList.add('face-down');
+  });
+  waiting = [];
+}
+
+function flip(el, c) {
+  if (flipped.includes(el) || el.classList.contains('matched')) return;
+  if (waiting.length > 0) clearWaiting();
+
+  el.classList.remove('face-down');
+  el.classList.add('flipped');
+  flipped.push(el);
+
+  if (flipped.length === 2) {
+    tries++;
+    document.getElementById('tries').textContent = tries;
+
+    const [a, b] = flipped;
+    flipped = [];
+
+    if (a.dataset.id === b.dataset.id && a !== b) {
+      const pairIdx = parseInt(a.dataset.id);
+      setTimeout(() => {
+        [a, b].forEach(el => {
+          el.classList.remove('flipped');
+          el.classList.add('matched', 'pop', `pair-${pairIdx}`);
+        });
+        matchCount++;
+        document.getElementById('matches').textContent = matchCount;
+        document.getElementById('progress').style.width = (matchCount / TOTAL * 100) + '%';
+        if (matchCount === TOTAL) setTimeout(showWin, 500);
+      }, 300);
+    } else {
+      [a, b].forEach(el => el.classList.add('wrong'));
+      waiting = [a, b];
+    }
+  }
+}
+
+function showWin() {
+  grid.style.display = 'none';
+  const win = document.getElementById('win');
+  win.classList.add('visible');
+  const efficiency = Math.round((TOTAL / tries) * 100);
+  document.getElementById('win-msg').textContent =
+    `You finished in ${tries} tr${tries === 1 ? 'y' : 'ies'} — ${efficiency}% efficiency!`;
+}
+
+init();
+</script>
+</body>
+</html>
