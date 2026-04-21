@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China — Matching Game</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f2f5f0;
+    --surface: #fafcf8;
+    --border: #c8d4c0;
+    --text: #2c3328;
+    --muted: #6b7a62;
+    --accent: #5a7a4a;
+    --accent-light: #eaf2e5;
+    --match-bg: #e8f0e2;
+    --match-border: #7aaa60;
+    --match-text: #2e5520;
+    --wrong-bg: #fce8e8;
+    --wrong-border: #c08080;
+    --card-back: #6a8a7a;
+    --card-back-2: #7da090;
+    --gold: #8a9e6a;
+  }
+
+  body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(90,122,74,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(125,160,144,0.08) 0%, transparent 50%);
+    min-height: 100vh;
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text);
+    padding: 2rem 1rem 4rem;
+  }
+
+  header { text-align: center; margin-bottom: 2rem; }
+
+  .title-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 5vw, 38px);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .stats {
+    display: inline-flex;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    padding: 7px 18px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .stats span { font-weight: 600; color: var(--text); }
+  .stat-divider { color: var(--border); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+    gap: 10px;
+    max-width: 920px;
+    margin: 0 auto;
+  }
+
+  .card {
+    min-height: 96px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 13px;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+    user-select: none;
+  }
+
+  .card:hover:not(.face-down):not(.matched) { transform: scale(1.02); }
+
+  .card.face-down {
+    background: linear-gradient(145deg, var(--card-back), var(--card-back-2));
+    border-color: var(--card-back);
+    overflow: hidden;
+  }
+
+  .card.face-down::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 7px;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .card.face-down::after {
+    content: '?';
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: rgba(255,255,255,0.18);
+  }
+
+  .card.face-down:hover {
+    transform: scale(1.04) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(90,122,74,0.2);
+  }
+
+  .card.face-down .card-text { opacity: 0; pointer-events: none; }
+
+  .card.flipped {
+    background: var(--accent-light);
+    border-color: var(--accent);
+  }
+
+  .card.matched {
+    background: var(--match-bg);
+    border-color: var(--match-border);
+    cursor: default;
+    transform: none !important;
+  }
+
+  .card.matched .card-text { color: var(--match-text) !important; }
+
+  .card.wrong {
+    background: var(--wrong-bg);
+    border-color: var(--wrong-border);
+    animation: shake 0.4s ease;
+  }
+
+  .card.word .card-text {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .card.def .card-text {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .card.flipped.word .card-text { color: var(--accent); }
+  .card.flipped.def .card-text { color: var(--accent); }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-7px); }
+    60% { transform: translateX(7px); }
+    80% { transform: translateX(-4px); }
+  }
+
+  @keyframes matchPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+    100% { transform: scale(1); }
+  }
+
+  .card.pop { animation: matchPop 0.3s ease; }
+
+  .progress-bar-wrap {
+    max-width: 300px;
+    margin: 0 auto 1.5rem;
+    height: 4px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+    border-radius: 4px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 1.25rem;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .legend-dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+
+  .restart-top {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+    border-radius: 8px;
+    padding: 7px 18px;
+    font-size: 13px;
+    font-family: 'Source Sans 3', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+    margin-top: 8px;
+  }
+  .restart-top:hover { border-color: var(--accent); color: var(--accent); }
+
+  .win-screen {
+    display: none;
+    text-align: center;
+    padding: 3rem 1rem;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .win-screen.visible { display: block; }
+
+  .trophy {
+    font-size: 56px;
+    margin-bottom: 1rem;
+    animation: bounceIn 0.6s cubic-bezier(.36,.07,.19,.97);
+  }
+
+  @keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    60% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .win-screen h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .win-screen p {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 28px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Source Sans 3', sans-serif;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.02em;
+  }
+
+  .btn:hover { background: #456038; }
+  .btn:active { transform: scale(0.97); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="title-label">Social Studies Unit</div>
+  <h1>China</h1>
+  <p class="subtitle">Match each word to what it means. Find all 14 pairs!</p>
+  <div class="stats">
+    <span id="matches">0</span> / 14 matched
+    <span class="stat-divider">·</span>
+    <span id="tries">0</span> tries
+  </div>
+  <br>
+  <button class="restart-top" onclick="init()">↺ New game</button>
+</header>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progress"></div>
+</div>
+
+<div class="legend">
+  <span><span class="legend-dot" style="background:#5a7a4a"></span>Vocabulary word</span>
+  <span><span class="legend-dot" style="background:#7a6e5f"></span>What it means</span>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="win-screen" id="win">
+  <div class="trophy">🏆</div>
+  <h2>You matched them all!</h2>
+  <p id="win-msg"></p>
+  <button class="btn" onclick="init()">Play again</button>
+</div>
+
+<script>
+const pairs = [
+  { word: "Inner China",        def: "The part of China with warm weather, rain, farms, and most of the people" },
+  { word: "Outer China",        def: "The dry part of China made up of deserts and mountains" },
+  { word: "Yangtze River",      def: "A major river in China where farmers grow rice in the wetlands" },
+  { word: "Yellow River",       def: "A river that floods and helps farmers grow wheat — named for its yellow color" },
+  { word: "Basin",              def: "A wet, low area of land next to a river — good for growing rice" },
+  { word: "The Great Wall",     def: "A giant stone wall along China's northern border, built to protect the country" },
+  { word: "The Forbidden City", def: "A special group of buildings where the Emperor lived — most people were not allowed in" },
+  { word: "Emperor",            def: "The leader in charge of all of China" },
+  { word: "Dynasty",            def: "A ruling family where power is passed from parent to child" },
+  { word: "Mandate of Heaven",  def: "The belief that the Emperor was chosen by Heaven to be in charge" },
+  { word: "Confucius",          def: "A teacher who said people should be good, respect others, and keep learning" },
+  { word: "Warring States",     def: "A time in history when many small Chinese kingdoms fought each other" },
+  { word: "Legalism",           def: "The idea that everyone in China must follow the same rules" },
+  { word: "The Silk Road",      def: "A trade route that connected China to other cultures around the world" },
+];
+
+let flipped = [], waiting = [], matchCount = 0, tries = 0;
+const grid = document.getElementById('grid');
+const TOTAL = pairs.length;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function init() {
+  flipped = []; waiting = []; matchCount = 0; tries = 0;
+  document.getElementById('matches').textContent = 0;
+  document.getElementById('tries').textContent = 0;
+  document.getElementById('progress').style.width = '0%';
+  document.getElementById('win').classList.remove('visible');
+  grid.style.display = 'grid';
+  grid.innerHTML = '';
+
+  const cards = [];
+  pairs.forEach((p, i) => {
+    cards.push({ id: i, type: 'word', text: p.word });
+    cards.push({ id: i, type: 'def',  text: p.def  });
+  });
+
+  shuffle(cards).forEach(c => {
+    const el = document.createElement('div');
+    el.className = `card face-down ${c.type}`;
+    el.dataset.id = c.id;
+    el.innerHTML = `<span class="card-text">${c.text}</span>`;
+    el.addEventListener('click', () => flip(el, c));
+    grid.appendChild(el);
+  });
+}
+
+function clearWaiting() {
+  waiting.forEach(el => {
+    el.classList.remove('flipped', 'wrong');
+    el.classList.add('face-down');
+  });
+  waiting = [];
+}
+
+function flip(el, c) {
+  if (flipped.includes(el) || el.classList.contains('matched')) return;
+  if (waiting.length > 0) clearWaiting();
+
+  el.classList.remove('face-down');
+  el.classList.add('flipped');
+  flipped.push(el);
+
+  if (flipped.length === 2) {
+    tries++;
+    document.getElementById('tries').textContent = tries;
+
+    const [a, b] = flipped;
+    flipped = [];
+
+    if (a.dataset.id === b.dataset.id && a !== b) {
+      setTimeout(() => {
+        [a, b].forEach(el => {
+          el.classList.remove('flipped');
+          el.classList.add('matched', 'pop');
+        });
+        matchCount++;
+        document.getElementById('matches').textContent = matchCount;
+        document.getElementById('progress').style.width = (matchCount / TOTAL * 100) + '%';
+        if (matchCount === TOTAL) setTimeout(showWin, 400);
+      }, 300);
+    } else {
+      [a, b].forEach(el => el.classList.add('wrong'));
+      waiting = [a, b];
+    }
+  }
+}
+
+function showWin() {
+  grid.style.display = 'none';
+  const win = document.getElementById('win');
+  win.classList.add('visible');
+  const efficiency = Math.round((TOTAL / tries) * 100);
+  document.getElementById('win-msg').textContent =
+    `You finished in ${tries} tr${tries === 1 ? 'y' : 'ies'} — ${efficiency}% efficiency!`;
+}
+
+init();
+</script>
+</body>
+</html>
