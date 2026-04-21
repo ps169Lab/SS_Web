@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>China Word Search</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .grid-cell {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #c8d4c0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 18px;
+            user-select: none;
+            cursor: pointer;
+            background: white;
+            transition: all 0.1s ease;
+        }
+        .grid-cell:hover {
+            background: #f0f5ee;
+        }
+        .grid-cell.selected {
+            background: #d8ecd0;
+            border-color: #6aaa50;
+        }
+        .grid-cell.found {
+            background: #b8ddb0;
+            border-color: #4a8a38;
+            color: #1e4a14;
+        }
+        .hint-item {
+            transition: all 0.3s ease;
+        }
+        .hint-item.completed {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+        .hint-item.completed::before {
+            content: '✓ ';
+            color: #4a8a38;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4" style="background: linear-gradient(135deg, #f2f5f0 0%, #e8f0e2 100%);">
+    <div class="max-w-7xl mx-auto">
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6" style="border-top: 4px solid #5a7a4a;">
+            <h1 class="text-3xl font-bold mb-2" style="color: #2c4a20;">🐉 China Word Search</h1>
+            <p class="text-gray-600 mb-4">
+                Read the hints and find the words in the grid! <strong>Click and drag</strong> to highlight words (horizontal, vertical, or diagonal). Words can go forwards or backwards!
+            </p>
+            <div class="flex items-center gap-4 flex-wrap">
+                <div class="text-lg font-semibold" style="color: #4a8a38;">
+                    Found: <span id="found-count">0</span> / <span id="total-count">14</span>
+                </div>
+                <button onclick="resetGame()" class="px-4 py-2 text-white rounded-lg transition" style="background:#5a7a4a;" onmouseover="this.style.background='#456038'" onmouseout="this.style.background='#5a7a4a'">
+                    ↺ New game
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-xl font-bold mb-4" style="color: #2c4a20;">Word Grid</h2>
+                    <div id="word-grid" class="inline-block rounded-lg overflow-hidden" style="border: 3px solid #5a7a4a;"></div>
+                    <div id="success-message" class="hidden mt-4 p-4 rounded-lg text-center" style="background:#e8f0e2; border: 2px solid #5a7a4a;">
+                        <p class="text-xl font-bold" style="color:#2c4a20;">🎉 You found them all!</p>
+                        <p style="color:#4a8a38;">Great work — you know your China vocabulary!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-xl font-bold mb-4" style="color: #2c4a20;">🔍 Word Hints</h2>
+                    <div id="hints-list" class="space-y-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const words = [
+            { word: 'CHINA',      hint: 'The country we are studying — got its name from the Chin dynasty' },
+            { word: 'EMPEROR',    hint: 'The ruler who was in charge of all of China' },
+            { word: 'DYNASTY',    hint: 'A ruling family that passes power from parent to child' },
+            { word: 'SILKROAD',   hint: 'The trade route that connected China to other cultures' },
+            { word: 'SILK',       hint: 'A soft fabric made in China and traded along the famous road' },
+            { word: 'YANGTZE',    hint: 'The major river where farmers grow rice in the wetlands' },
+            { word: 'WHEAT',      hint: 'The crop farmers grew near the Yellow River' },
+            { word: 'RICE',       hint: 'The crop farmers grew near the Yangtze River' },
+            { word: 'BASIN',      hint: 'A wet, low area of land next to a river — good for farming' },
+            { word: 'CONFUCIUS',  hint: 'A famous teacher who said people should be kind and keep learning' },
+            { word: 'LEGALISM',   hint: 'The idea that everyone in China must follow the same rules' },
+            { word: 'MANDATE',    hint: 'The _______ of Heaven said the Emperor was chosen to rule' },
+            { word: 'REPUBLIC',   hint: 'A type of government where a group of people make decisions together' },
+            { word: 'FORBIDDEN',  hint: 'The _______ City was where the Emperor lived — no one else allowed!' },
+        ];
+
+        const gridSize = 16;
+        let grid = [];
+        let selectedCells = [];
+        let foundWords = new Set();
+        let isDragging = false;
+        let wordPositions = [];
+
+        function createEmptyGrid() {
+            return Array(gridSize).fill(null).map(() => Array(gridSize).fill(''));
+        }
+
+        function placeWord(word, startRow, startCol, direction) {
+            const [dRow, dCol] = direction;
+            for (let i = 0; i < word.length; i++) {
+                grid[startRow + i * dRow][startCol + i * dCol] = word[i];
+            }
+        }
+
+        function canPlaceWord(word, startRow, startCol, direction) {
+            const [dRow, dCol] = direction;
+            for (let i = 0; i < word.length; i++) {
+                const row = startRow + i * dRow;
+                const col = startCol + i * dCol;
+                if (row < 0 || row >= gridSize || col < 0 || col >= gridSize) return false;
+                if (grid[row][col] !== '' && grid[row][col] !== word[i]) return false;
+            }
+            return true;
+        }
+
+        function generateGrid() {
+            grid = createEmptyGrid();
+            wordPositions = [];
+            const directions = [[0,1],[0,-1],[1,0],[-1,0],[1,1],[-1,-1],[1,-1],[-1,1]];
+
+            // Sort longest words first for better placement
+            const sorted = [...words].sort((a, b) => b.word.length - a.word.length);
+
+            sorted.forEach(wordObj => {
+                const word = wordObj.word;
+                let placed = false;
+                let attempts = 0;
+                while (!placed && attempts < 200) {
+                    const dir = directions[Math.floor(Math.random() * directions.length)];
+                    const r = Math.floor(Math.random() * gridSize);
+                    const c = Math.floor(Math.random() * gridSize);
+                    if (canPlaceWord(word, r, c, dir)) {
+                        placeWord(word, r, c, dir);
+                        wordPositions.push({ word, start: [r, c], direction: dir });
+                        placed = true;
+                    }
+                    attempts++;
+                }
+            });
+
+            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
+                    if (grid[i][j] === '') grid[i][j] = letters[Math.floor(Math.random() * letters.length)];
+                }
+            }
+        }
+
+        function renderGrid() {
+            const container = document.getElementById('word-grid');
+            let html = `<div class="grid gap-0" style="grid-template-columns: repeat(${gridSize}, 40px);">`;
+            for (let i = 0; i < gridSize; i++) {
+                for (let j = 0; j < gridSize; j++) {
+                    html += `<div class="grid-cell" id="cell-${i}-${j}" data-row="${i}" data-col="${j}">${grid[i][j]}</div>`;
+                }
+            }
+            html += '</div>';
+            container.innerHTML = html;
+            attachGridListeners();
+        }
+
+        function attachGridListeners() {
+            const cells = document.querySelectorAll('.grid-cell');
+            cells.forEach(cell => {
+                cell.addEventListener('mousedown', handleInteractionStart);
+                cell.addEventListener('mouseenter', handleInteractionMove);
+            });
+            window.addEventListener('mouseup', handleInteractionEnd);
+        }
+
+        function handleInteractionStart(e) {
+            const row = parseInt(e.target.dataset.row);
+            const col = parseInt(e.target.dataset.col);
+            const existingIdx = selectedCells.findIndex(pos => pos[0] === row && pos[1] === col);
+            if (existingIdx !== -1) {
+                const removed = selectedCells.splice(existingIdx);
+                removed.forEach(([r, c]) => {
+                    const el = document.getElementById(`cell-${r}-${c}`);
+                    if (!el.classList.contains('found')) el.classList.remove('selected');
+                });
+            } else {
+                if (isValidMove(row, col)) {
+                    selectedCells.push([row, col]);
+                    e.target.classList.add('selected');
+                    checkWord();
+                } else {
+                    clearSelectionUI();
+                    selectedCells = [[row, col]];
+                    e.target.classList.add('selected');
+                }
+            }
+            isDragging = true;
+        }
+
+        function handleInteractionMove(e) {
+            if (!isDragging) return;
+            const row = parseInt(e.target.dataset.row);
+            const col = parseInt(e.target.dataset.col);
+            const isLast = selectedCells.length > 0 &&
+                           selectedCells[selectedCells.length-1][0] === row &&
+                           selectedCells[selectedCells.length-1][1] === col;
+            if (!isLast && isValidMove(row, col)) {
+                selectedCells.push([row, col]);
+                e.target.classList.add('selected');
+                checkWord();
+            }
+        }
+
+        function handleInteractionEnd() {
+            isDragging = false;
+        }
+
+        function isValidMove(row, col) {
+            if (selectedCells.length === 0) return true;
+            const [lastRow, lastCol] = selectedCells[selectedCells.length - 1];
+            const isAdjacent = Math.abs(row - lastRow) <= 1 && Math.abs(col - lastCol) <= 1;
+            if (!isAdjacent) return false;
+            if (selectedCells.length >= 2) {
+                const [firstR, firstC] = selectedCells[0];
+                const [secondR, secondC] = selectedCells[1];
+                const dRow = secondR - firstR;
+                const dCol = secondC - firstC;
+                return (row - lastRow === dRow) && (col - lastCol === dCol);
+            }
+            return true;
+        }
+
+        function clearSelectionUI() {
+            document.querySelectorAll('.grid-cell.selected').forEach(el => el.classList.remove('selected'));
+            selectedCells = [];
+        }
+
+        function checkWord() {
+            const selectedWord = selectedCells.map(([r, c]) => grid[r][c]).join('');
+            const reversedWord = selectedWord.split('').reverse().join('');
+            let foundWord = words.find(w => w.word === selectedWord || w.word === reversedWord);
+            if (foundWord && !foundWords.has(foundWord.word)) {
+                foundWords.add(foundWord.word);
+                selectedCells.forEach(([r, c]) => {
+                    const el = document.getElementById(`cell-${r}-${c}`);
+                    el.classList.add('found');
+                    el.classList.remove('selected');
+                });
+                selectedCells = [];
+                updateHints();
+                updateScore();
+            }
+        }
+
+        function renderHints() {
+            const container = document.getElementById('hints-list');
+            container.innerHTML = words.map(wordObj => {
+                const isFound = foundWords.has(wordObj.word);
+                return `
+                    <div class="hint-item p-3 rounded-lg border-2 ${isFound ? 'completed' : ''}" style="background:#f2f5f0; border-color:#c8d4c0;">
+                        <p class="text-sm font-medium text-gray-700">${wordObj.hint}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateHints() { renderHints(); }
+
+        function updateScore() {
+            document.getElementById('found-count').textContent = foundWords.size;
+            document.getElementById('total-count').textContent = words.length;
+            if (foundWords.size === words.length) {
+                document.getElementById('success-message').classList.remove('hidden');
+            }
+        }
+
+        function resetGame() {
+            foundWords = new Set();
+            clearSelectionUI();
+            document.getElementById('success-message').classList.add('hidden');
+            generateGrid();
+            renderGrid();
+            renderHints();
+            updateScore();
+        }
+
+        generateGrid();
+        renderGrid();
+        renderHints();
+        updateScore();
+    </script>
+</body>
+</html>
