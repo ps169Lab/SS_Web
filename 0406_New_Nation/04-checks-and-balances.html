@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The System of Checks and Balances</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-family: 'Spectral', serif;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e8f8f5;
+            color: #117a65;
+        }
+
+        .scenario-box {
+            border: 2px solid #117a65;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            background-color: #f4fbf9;
+        }
+
+        .example-card {
+            background-color: #ffffff;
+            border-left: 4px solid #117a65;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+
+    <main>
+        <article>
+            <h1 class="section-title">The Three-Way Tug-of-War</h1>
+            <p class="subtitle">How Checks and Balances Keep Our Government Fair</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Checks and Balances:</strong> A system that gives each branch of government ways to stop or limit the other two branches.</li>
+                    <li><strong>Veto:</strong> When the President refuses to sign a bill, saying "no" to Congress.</li>
+                    <li><strong>Override:</strong> When Congress votes to pass a law anyway, even after the President vetoed it.</li>
+                    <li><strong>Unconstitutional:</strong> A ruling by the Supreme Court stating a law violates the rules of the Constitution and must be cancelled.</li>
+                    <li><strong>Impeach:</strong> When Congress charges a government leader with a serious crime to decide if they should be removed from office.</li>
+                </ul>
+            </div>
+
+            <h2>What is a "Check"?</h2>
+            <p>
+                <span class="standard-reading">Imagine playing a giant game of Rock, Paper, Scissors where no single choice can win forever because every move has a counter-move. That is exactly how <strong>Checks and Balances</strong> work. A "check" is a legal power that one branch has to block or change the actions of another branch. This ensures that the Legislative, Executive, and Judicial branches stay perfectly balanced, preventing any leader from acting like a king.</span>
+                <span class="easy-reading">Think of a three-way tug-of-war where nobody wins. A "check" is a special power to stop another branch from doing something bad. We have this system so that the three parts of government stay equal. It keeps our country fair and free.</span>
+            </p>
+            <img src="https://cdn.kastatic.org/ka-perseus-images/7ab8dc376edee8a1836bafdb0ba477ef226175d7.png" alt="Checks and Balances Diagram showing the three branches" style="max-width: 100%;" />
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <h2>The Master Summary Table</h2>
+            <p>
+                <span class="standard-reading">Each branch has specific tools to watch over the other two. The table below shows exactly who holds the power and who they are checking.</span>
+                <span class="easy-reading">This table shows how each branch can use its power to block the other branches.</span>
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>This Branch...</th>
+                        <th>Can "Check" This Branch...</th>
+                        <th>By Using This Tool:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Legislative</strong> (Congress)</td>
+                        <td>The Executive (President)</td>
+                        <td>Can <strong>override</strong> a President's veto OR <strong>impeach</strong> a leader.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Legislative</strong> (Congress)</td>
+                        <td>The Judicial (Courts)</td>
+                        <td>Must approve the judges the President picks.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Executive</strong> (President)</td>
+                        <td>The Legislative (Congress)</td>
+                        <td>Can <strong>veto</strong> a bill passed by Congress.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Executive</strong> (President)</td>
+                        <td>The Judicial (Courts)</td>
+                        <td>Gets to choose or appoint new Supreme Court judges.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Judicial</strong> (Supreme Court)</td>
+                        <td>The Legislative (Congress)</td>
+                        <td>Can declare a law <strong>unconstitutional</strong>.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Judicial</strong> (Supreme Court)</td>
+                        <td>The Executive (President)</td>
+                        <td>Can declare the President's actions illegal.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="scenario-box">
+                <h2>Real-World Action Files: Checks in Motion</h2>
+                <p>
+                    <span class="standard-reading">How do these powers work on a regular day in Washington, D.C.? Look at these five realistic examples to see how one branch can step in and put the brakes on another.</span>
+                    <span class="easy-reading">How do these rules work in real life? Read these five examples to see how the branches stop each other.</span>
+                </p>
+                
+                <div class="example-card">
+                    <h3>Example 1: The President uses a Veto</h3>
+                    <p>
+                        <span class="standard-reading"><strong>The Situation:</strong> Congress passes a bill to spend billions of dollars on building a giant space base on the Moon. The President thinks this is way too expensive and bad for the budget.<br />
+                        <strong>The Check:</strong> The President refuses to sign the paper and uses a <strong>veto</strong>. The bill is blocked and sent back.</span>
+                        <span class="easy-reading"><strong>The Situation:</strong> Congress makes a bill to build a giant space base on the Moon. The President thinks it costs too much money.<br />
+                        <strong>The Check:</strong> The President uses a <strong>veto</strong> to say "no." The bill is stopped.</span>
+                    </p>
+                </div>
+
+                <div class="example-card">
+                    <h3>Example 2: Congress Overrides a Veto</h3>
+                    <p>
+                        <span class="standard-reading"><strong>The Situation:</strong> Congress passes a popular law providing free school lunches to every child in America. The President vetoes it. However, almost every member of Congress agrees the law is needed.<br />
+                        <strong>The Check:</strong> Congress holds a new vote. Because more than two-thirds of the members vote "yes," they <strong>override</strong> the veto. The bill becomes a law anyway, ignoring the President's "no."</span>
+                        <span class="easy-reading"><strong>The Situation:</strong> Congress passes a popular law for free school lunches. The President vetoes it.<br />
+                        <strong>The Check:</strong> Congress votes again. Since almost everyone votes "yes," they <strong>override</strong> the veto. The bill becomes a law anyway!</span>
+                    </p>
+                </div>
+
+                <div class="example-card">
+                    <h3>Example 3: Appointing and Approving Judges</h3>
+                    <p>
+                        <span class="standard-reading"><strong>The Situation:</strong> A Supreme Court judge retires, leaving an empty seat. The President wants to choose their best friend, who has never been a judge before, to fill the spot.<br />
+                        <strong>The Check:</strong> The Executive branch cannot just hand out the job. The President must <strong>appoint</strong> the person, but Congress (the Senate) holds interviews. If Congress thinks the person is not qualified, they vote "no" and the President must pick someone else.</span>
+                        <span class="easy-reading"><strong>The Situation:</strong> A Supreme Court judge leaves. The President wants to pick their best friend to be the new judge.<br />
+                        <strong>The Check:</strong> The President can only suggest the person. Congress holds a vote. If Congress says "no," the friend does not get the job.</span>
+                    </p>
+                </div>
+
+                <div class="example-card">
+                    <h3>Example 4: Declaring a Law Unconstitutional</h3>
+                    <p>
+                        <span class="standard-reading"><strong>The Situation:</strong> Congress passes a law, and the President signs it, stating that newspapers are no longer allowed to print bad stories about the government.<br />
+                        <strong>The Check:</strong> A newspaper company sues the government. The Supreme Court looks at the First Amendment of the Constitution (which protects free speech). The judges declare the law <strong>unconstitutional</strong>, which immediately deletes the law.</span>
+                        <span class="easy-reading"><strong>The Situation:</strong> Congress and the President make a law saying newspapers cannot write bad things about the government.<br />
+                        <strong>The Check:</strong> The Supreme Court looks at the rulebook. They see that free speech is protected. The judges cancel the bad law.</span>
+                    </p>
+                </div>
+
+                <div class="example-card">
+                    <h3>Example 5: Congress Uses Impeachment</h3>
+                    <p>
+                        <span class="standard-reading"><strong>The Situation:</strong> A high-ranking government leader or judge is caught stealing money from the public tax funds.<br />
+                        <strong>The Check:</strong> The President cannot fire a federal judge, and judges cannot fire the President. Instead, Congress uses the power to <strong>impeach</strong>. They hold a special trial to investigate the crimes, and if found guilty, Congress removes the leader from their job.</span>
+                        <span class="easy-reading"><strong>The Situation:</strong> A high-ranking government leader is caught breaking a serious law.<br />
+                        <strong>The Check:</strong> Congress holds a special trial called <strong>impeachment</strong>. If the leader is guilty, Congress kicks them out of office.</span>
+                    </p>
+                </div>
+            </div>
+            
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <h2>Why It Matters</h2>
+            <p>
+                <span class="standard-reading">This system can make running the country slow and difficult. Sometimes, lawmakers and the President argue for months! However, this slowness is intentional. The system is designed to force our leaders to talk, compromise, and think deeply before creating rules that affect millions of citizens.</span>
+                <span class="easy-reading">This system makes making new laws very slow. The branches argue a lot! But that is a good thing. It forces our leaders to slow down, talk to each other, and make sure they are doing what is best for the people.</span>
+            </p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>The Safest Check:</strong> Look through our five Action Files. Which check do you think is the most powerful weapon for protecting ordinary citizens? Why?</li>
+                <li><strong>Too Slow or Just Right?</strong> Because of checks and balances, it is very hard to pass laws quickly in America. Do you think it is better for a government to work quickly, or to work slowly and carefully? Explain your thinking!</li>
+            </ul>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>
+
