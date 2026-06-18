@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Template</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="google_translate_element"></div>
+
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
+
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <!-- Page title -->
+            <h1 class="section-title">
+                <!-- Your page title here -->
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle">
+                <!-- Your subtitle here -->
+            </p>
+        
+            
+            <!-- Section heading -->
+            <h2>
+                <!-- Your section heading here -->
+            </h2>
+            
+            <!-- Main content paragraphs -->
+            <p>
+                <!-- Your paragraph content here -->
+            </p>
+            
+            <!-- Image placeholder -->
+            <img src="" alt="Article image">
+            
+            <!-- Additional section heading -->
+            <h2>
+                <!-- Your section heading here -->
+            </h2>
+            
+            <!-- Subsection heading -->
+            <h3>
+                <!-- Your subsection heading here -->
+            </h3>
+            
+            <!-- List example -->
+            <ul>
+                <li><!-- List item here --></li>
+                <li><!-- List item here --></li>
+                <li><!-- List item here --></li>
+            </ul>
+            
+            <!-- Additional content paragraphs -->
+            <p>
+                <!-- Your paragraph content here -->
+            </p>
+            
+            <!-- Paragraph with Chinese characters example -->
+            <p>
+                <!-- Your paragraph content here -->
+                <!-- For Chinese characters use: <span class="chinese-text">中文</span> -->
+            </p>
+        </article>
+    </main>
+</body>
+</html>
