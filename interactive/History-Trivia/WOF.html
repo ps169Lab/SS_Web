@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trivia Reveal</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f4f0;
+      color: #1a1a18;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2.5rem 1rem 4rem;
+    }
+
+    #app {
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .app-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+    .app-title {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #1a1a18;
+    }
+    .app-title span {
+      color: #378ADD;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid #e2e0da;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #888780;
+      margin-bottom: 0.5rem;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: #5f5e5a;
+      margin-bottom: 5px;
+    }
+    input[type="text"], textarea, select {
+      width: 100%;
+      font-family: inherit;
+      font-size: 15px;
+      color: #1a1a18;
+      background: #faf9f6;
+      border: 1px solid #d3d1c7;
+      border-radius: 8px;
+      padding: 8px 12px;
+      outline: none;
+      transition: border-color 0.15s;
+      appearance: none;
+    }
+    input[type="text"]:focus, textarea:focus, select:focus {
+      border-color: #378ADD;
+      background: #fff;
+    }
+    textarea { resize: vertical; line-height: 1.5; }
+    select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888780' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a18;
+      background: #fff;
+      border: 1px solid #c4c2b8;
+      border-radius: 8px;
+      padding: 7px 16px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s, opacity 0.2s;
+      white-space: nowrap;
+    }
+    button:hover { background: #f5f4f0; border-color: #a0a09a; }
+    button:active { transform: scale(0.97); }
+    button:disabled { opacity: 0.3; cursor: default; transform: none; }
+    button.primary {
+      background: #1a1a18;
+      color: #fff;
+      border-color: #1a1a18;
+    }
+    button.primary:hover { background: #333; border-color: #333; }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 1.25rem 0;
+      color: #b4b2a9;
+      font-size: 12px;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e2e0da;
+    }
+
+    .set-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #e6f1fb;
+      color: #185fa5;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    .question-card {
+      background: #f5f4f0;
+      border-radius: 12px;
+      border: 1px solid #e2e0da;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .question-card .q-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .question-card .q-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #888780;
+    }
+    .question-card .q-counter {
+      font-size: 12px;
+      color: #888780;
+      font-weight: 500;
+    }
+    .question-text {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: #1a1a18;
+    }
+
+    #puzzle-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+      margin-bottom: 2rem;
+      min-height: 80px;
+    }
+    .word-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .word-row { display: flex; gap: 5px; }
+    .word-underline {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: #d3d1c7;
+      border-radius: 1px;
+      margin-top: 4px;
+    }
+
+    .letter-box {
+      width: 50px;
+      height: 58px;
+      border: 2px solid #d3d1c7;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #eceae4;
+      user-select: none;
+      color: transparent;
+      transition: color 0.3s, background 0.3s, border-color 0.2s, transform 0.15s;
+    }
+    .letter-box:hover:not(.revealed) {
+      border-color: #378ADD;
+      background: #dde8f5;
+      transform: translateY(-3px);
+    }
+    .letter-box.revealed {
+      color: #1a1a18;
+      background: #fff;
+      border-color: #e2e0da;
+      cursor: default;
+      transform: none;
+    }
+
+    .punct-char {
+      display: flex;
+      align-items: flex-end;
+      font-size: 24px;
+      font-weight: 700;
+      padding-bottom: 6px;
+      color: #1a1a18;
+    }
+
+    .controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 1rem;
+      border-top: 1px solid #e2e0da;
+      margin-top: 1rem;
+    }
+    .controls-bar .btn-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    #counter {
+      font-size: 13px;
+      color: #888780;
+      font-weight: 500;
+    }
+
+    .letter-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin: 1rem 0 0;
+    }
+    .letter-btn {
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .letter-btn.used {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .err { font-size: 13px; color: #a32d2d; display: none; }
+    .field-row { margin-bottom: 1rem; }
+    .btn-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 1.25rem; }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <div class="app-header">
+    <div class="app-title">Trivia <span>Reveal</span></div>
+  </div>
+
+  <div id="setup-screen">
+    <div class="card">
+      <div class="card-label">Load a question set</div>
+      <p style="font-size:13px; color:#5f5e5a; margin-bottom:1rem; line-height:1.6;">Upload a JSON file to load a premade set of questions, or download the sample to see the expected format.</p>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="primary" onclick="document.getElementById('file-input').click()">&#8593; Load JSON file</button>
+        <button onclick="downloadSample()">&#8595; Download sample JSON</button>
+        <input type="file" id="file-input" accept=".json" style="display:none;" onchange="loadFile(event)" />
+      </div>
+
+      <div id="set-picker" style="display:none; margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid #e2e0da;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem; flex-wrap:wrap; gap:8px;">
+          <span class="set-badge">&#128196; <span id="set-name-text"></span></span>
+          <span id="set-q-count" style="font-size:13px; color:#888780;"></span>
+        </div>
+        <div class="field-row">
+          <label for="question-select">Select a question</label>
+          <select id="question-select"></select>
+        </div>
+        <button class="primary" onclick="startFromPicker()">Start this question &rarr;</button>
+      </div>
+    </div>
+
+    <div class="divider">or enter manually</div>
+
+    <div class="card">
+      <div class="card-label">Manual entry</div>
+      <div class="field-row">
+        <label for="question-input">Trivia question</label>
+        <textarea id="question-input" rows="2" placeholder="e.g. Who wrote the Declaration of Independence?"></textarea>
+      </div>
+      <div class="field-row">
+        <label for="answer-input">Answer phrase</label>
+        <input type="text" id="answer-input" placeholder="e.g. Thomas Jefferson" />
+      </div>
+      <div class="btn-row">
+        <button class="primary" onclick="startManual()">Generate board &rarr;</button>
+        <span class="err" id="setup-err">Please enter an answer.</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="game-screen" style="display:none;">
+    <div class="question-card">
+      <div class="q-meta">
+        <span class="q-label">Question</span>
+        <span class="q-counter" id="game-q-counter" style="display:none;"></span>
+      </div>
+      <p class="question-text" id="question-display"></p>
+    </div>
+
+    <div id="puzzle-area"></div>
+
+    <div id="letter-menu" class="letter-menu"></div>
+
+    <div class="controls-bar">
+      <span id="counter"></span>
+      <div class="btn-group">
+        <button id="prev-btn" onclick="goTo(currentIndex - 1)" title="Previous question" style="display:none;">&#8592;</button>
+        <button onclick="revealOne()">Reveal one</button>
+        <button onclick="revealAll()">Reveal all</button>
+        <button id="next-btn" onclick="goTo(currentIndex + 1)" title="Next question" style="display:none;">&#8594;</button>
+        <button onclick="newGame()">&#8962; Setup</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let totalLetters = 0, revealedCount = 0;
+  let currentSet = [];
+  let currentIndex = -1;
+
+  const SAMPLE = {
+    title: "American Revolution",
+    questions: [
+      { question: "What document declared the colonies' independence from Britain?", answer: "Declaration of Independence" },
+      { question: "Who was the commander of the Continental Army?", answer: "George Washington" },
+      { question: "What year did the Revolutionary War begin?", answer: "1775" },
+      { question: "What was the name of the famous midnight ride?", answer: "Paul Revere's Ride" },
+      { question: "What treaty ended the Revolutionary War?", answer: "Treaty of Paris" }
+    ]
+  };
+
+  function downloadSample() {
+    const blob = new Blob([JSON.stringify(SAMPLE, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'trivia-sample.json';
+    a.click();
+  }
+
+  function loadFile(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      try {
+        let data = JSON.parse(e.target.result);
+        if (Array.isArray(data)) data = { title: file.name.replace('.json', ''), questions: data };
+        if (!data.questions || !Array.isArray(data.questions)) throw new Error('Bad format');
+        currentSet = data.questions;
+        document.getElementById('set-name-text').textContent = data.title || 'Untitled set';
+        document.getElementById('set-q-count').textContent = currentSet.length + ' questions';
+        const sel = document.getElementById('question-select');
+        sel.innerHTML = '';
+        currentSet.forEach((q, i) => {
+          const opt = document.createElement('option');
+          opt.value = i;
+          opt.textContent = (i + 1) + '. ' + q.question;
+          sel.appendChild(opt);
+        });
+        document.getElementById('set-picker').style.display = 'block';
+      } catch (err) {
+        alert('Could not read file. Make sure it matches the expected JSON format — download the sample to see the structure.');
+      }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+  }
+
+  function startFromPicker() {
+    const idx = parseInt(document.getElementById('question-select').value);
+    buildBoard(currentSet[idx].question, currentSet[idx].answer, idx);
+  }
+
+  function startManual() {
+    const q = document.getElementById('question-input').value.trim();
+    const a = document.getElementById('answer-input').value.trim();
+    if (!a) { document.getElementById('setup-err').style.display = 'inline'; return; }
+    document.getElementById('setup-err').style.display = 'none';
+    currentSet = [];
+    currentIndex = -1;
+    buildBoard(q || '(No question entered)', a, -1);
+  }
+
+  function buildBoard(question, answer, idx) {
+    currentIndex = idx;
+    totalLetters = 0;
+    revealedCount = 0;
+
+    document.getElementById('question-display').textContent = question;
+
+    const counter = document.getElementById('game-q-counter');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    if (currentSet.length > 1) {
+      counter.textContent = 'Question ' + (idx + 1) + ' of ' + currentSet.length;
+      counter.style.display = 'inline';
+      prevBtn.style.display = 'inline-block';
+      nextBtn.style.display = 'inline-block';
+      prevBtn.disabled = (idx <= 0);
+      nextBtn.disabled = (idx >= currentSet.length - 1);
+    } else {
+      counter.style.display = 'none';
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+    }
+
+    const puzzleArea = document.getElementById('puzzle-area');
+    puzzleArea.innerHTML = '';
+
+    answer.split(' ').forEach(word => {
+      if (!word) return;
+      const wordGroup = document.createElement('div');
+      wordGroup.className = 'word-group';
+      const rowEl = document.createElement('div');
+      rowEl.className = 'word-row';
+
+      [...word].forEach(char => {
+        if (/[a-zA-Z0-9]/.test(char)) {
+          const box = document.createElement('div');
+          box.className = 'letter-box';
+          box.textContent = '_';
+          box.title = 'Click a letter to reveal matching letters';
+          box.dataset.char = char.toLowerCase();
+          box.addEventListener('click', function () {
+            revealMatchingLetters(this.dataset.char);
+          });
+          rowEl.appendChild(box);
+          totalLetters++;
+        } else {
+          const p = document.createElement('div');
+          p.className = 'punct-char';
+          p.textContent = char;
+          rowEl.appendChild(p);
+        }
+      });
+
+      const ul = document.createElement('span');
+      ul.className = 'word-underline';
+      wordGroup.appendChild(rowEl);
+      wordGroup.appendChild(ul);
+      puzzleArea.appendChild(wordGroup);
+    });
+
+    renderLetterMenu();
+    updateCounter();
+    document.getElementById('setup-screen').style.display = 'none';
+    document.getElementById('game-screen').style.display = 'block';
+  }
+
+  function renderLetterMenu() {
+    const menu = document.getElementById('letter-menu');
+    menu.innerHTML = '';
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(letter => {
+      const btn = document.createElement('button');
+      btn.className = 'letter-btn';
+      btn.textContent = letter;
+      btn.dataset.char = letter.toLowerCase();
+      btn.addEventListener('click', () => revealMatchingLetters(btn.dataset.char, btn));
+      menu.appendChild(btn);
+    });
+  }
+
+  function revealMatchingLetters(letter, menuBtn) {
+    const boxes = Array.from(document.querySelectorAll('.letter-box'));
+    let changed = 0;
+
+    boxes.forEach(box => {
+      if (!box.classList.contains('revealed') && box.dataset.char === letter) {
+        box.classList.add('revealed');
+        box.textContent = box.dataset.char.toUpperCase();
+        box.title = '';
+        revealedCount++;
+        changed++;
+      }
+    });
+
+    if (menuBtn) menuBtn.classList.add('used');
+    const menuButton = document.querySelector('.letter-btn[data-char="' + letter + '"]');
+    if (menuButton) menuButton.classList.add('used');
+
+    if (changed) updateCounter();
+  }
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= currentSet.length) return;
+    buildBoard(currentSet[idx].question, currentSet[idx].answer, idx);
+  }
+
+  function updateCounter() {
+    const rem = totalLetters - revealedCount;
+    document.getElementById('counter').textContent = revealedCount === totalLetters
+      ? '✓ All letters revealed'
+      : revealedCount + ' of ' + totalLetters + ' revealed — ' + rem + ' remaining';
+  }
+
+  function revealOne() {
+    const hidden = Array.from(document.querySelectorAll('.letter-box:not(.revealed)'));
+    if (!hidden.length) return;
+    const pick = hidden[Math.floor(Math.random() * hidden.length)];
+    revealMatchingLetters(pick.dataset.char);
+  }
+
+  function revealAll() {
+    const boxes = Array.from(document.querySelectorAll('.letter-box:not(.revealed)'));
+    boxes.forEach(b => {
+      b.classList.add('revealed');
+      b.textContent = b.dataset.char.toUpperCase();
+      b.title = '';
+    });
+    revealedCount = totalLetters;
+    document.querySelectorAll('.letter-btn').forEach(b => b.classList.add('used'));
+    updateCounter();
+  }
+
+  function newGame() {
+    document.getElementById('setup-screen').style.display = 'block';
+    document.getElementById('game-screen').style.display = 'none';
+  }
+
+  document.getElementById('answer-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') startManual();
+  });
+</script>
+</body>
+</html>
