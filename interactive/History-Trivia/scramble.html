@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Unscramble</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f4f0;
+      color: #1a1a18;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2.5rem 1rem 4rem;
+    }
+
+    #app { width: 100%; max-width: 700px; }
+
+    .app-title { font-size: 20px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 2rem; }
+    .app-title span { color: #d4851e; }
+
+    /* Cards */
+    .card { background: #fff; border-radius: 14px; border: 1px solid #e2e0da; padding: 1.5rem; margin-bottom: 1rem; }
+    .card-label { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #888780; margin-bottom: 0.5rem; }
+
+    /* Inputs */
+    label { display: block; font-size: 13px; color: #5f5e5a; margin-bottom: 5px; }
+    input[type="text"], textarea, select {
+      width: 100%; font-family: inherit; font-size: 15px; color: #1a1a18;
+      background: #faf9f6; border: 1px solid #d3d1c7; border-radius: 8px;
+      padding: 8px 12px; outline: none; transition: border-color 0.15s; appearance: none;
+    }
+    input[type="text"]:focus, textarea:focus, select:focus { border-color: #d4851e; background: #fff; }
+    textarea { resize: vertical; line-height: 1.5; }
+    select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888780' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px;
+    }
+
+    /* Buttons */
+    button {
+      font-family: inherit; font-size: 14px; font-weight: 500; color: #1a1a18;
+      background: #fff; border: 1px solid #c4c2b8; border-radius: 8px;
+      padding: 7px 16px; cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s, opacity 0.2s;
+      white-space: nowrap;
+    }
+    button:hover { background: #f5f4f0; border-color: #a0a09a; }
+    button:active { transform: scale(0.97); }
+    button:disabled { opacity: 0.3; cursor: default; transform: none; }
+    button.primary { background: #1a1a18; color: #fff; border-color: #1a1a18; }
+    button.primary:hover { background: #333; border-color: #333; }
+
+    .divider { display: flex; align-items: center; gap: 10px; margin: 1.25rem 0; color: #b4b2a9; font-size: 12px; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #e2e0da; }
+
+    .set-badge { display: inline-flex; align-items: center; gap: 5px; background: #fdf0dc; color: #8a5010; font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 6px; }
+
+    /* Question card */
+    .question-card { background: #f5f4f0; border-radius: 12px; border: 1px solid #e2e0da; padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+    .question-card .q-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; flex-wrap: wrap; gap: 6px; }
+    .question-card .q-label { font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #888780; }
+    .question-card .q-counter { font-size: 12px; color: #888780; font-weight: 500; }
+    .question-text { font-size: 20px; font-weight: 600; line-height: 1.4; color: #1a1a18; }
+
+    /* Puzzle area */
+    #puzzle-area {
+      display: flex; flex-wrap: wrap; gap: 20px;
+      justify-content: center; margin-bottom: 2rem; min-height: 80px;
+    }
+
+    .word-group {
+      display: flex; flex-direction: column; align-items: center;
+      cursor: pointer;
+    }
+    .word-group.revealed { cursor: default; }
+
+    .word-row { display: flex; gap: 5px; }
+
+    .word-underline {
+      display: block; width: 100%; height: 2px;
+      background: #e8962a; border-radius: 1px; margin-top: 4px;
+      transition: background 0.4s;
+    }
+    .word-group.revealed .word-underline { background: #d3d1c7; }
+
+    /* Letter boxes — scrambled state is warm amber */
+    .letter-box {
+      width: 50px; height: 58px;
+      background: #e8962a;
+      color: #fff;
+      border: 2px solid #c97d1e;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 700;
+      user-select: none;
+      transition: transform 0.18s ease, background 0.28s, color 0.28s, border-color 0.28s;
+    }
+
+    /* Hover on unrevealed word */
+    .word-group:not(.revealed):hover .letter-box {
+      border-color: #378ADD;
+      background: #d4851e;
+    }
+
+    /* Mid-flip: letters hidden */
+    .letter-box.flipping { transform: scaleY(0); }
+
+    /* Revealed: clean white like the original game */
+    .letter-box.revealed {
+      background: #fff;
+      color: #1a1a18;
+      border-color: #e2e0da;
+    }
+
+    /* Always-visible punctuation */
+    .punct-char {
+      display: flex; align-items: flex-end;
+      font-size: 24px; font-weight: 700;
+      padding-bottom: 6px; color: #1a1a18;
+    }
+
+    /* Hint label beneath scrambled word */
+    .word-hint {
+      font-size: 10px; color: #b4b2a9; margin-top: 6px;
+      letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500;
+    }
+
+    /* Controls */
+    .controls-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px; padding-top: 1rem;
+      border-top: 1px solid #e2e0da;
+    }
+    .controls-bar .btn-group { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+    #counter { font-size: 13px; color: #888780; font-weight: 500; }
+
+    .field-row { margin-bottom: 1rem; }
+    .btn-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 1.25rem; }
+    .err { font-size: 13px; color: #a32d2d; display: none; }
+
+    /* Legend */
+    .legend {
+      display: flex; gap: 16px; align-items: center;
+      font-size: 12px; color: #888780; margin-bottom: 1.5rem; flex-wrap: wrap;
+    }
+    .legend-dot { width: 12px; height: 12px; border-radius: 3px; display: inline-block; margin-right: 5px; vertical-align: -1px; }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <div class="app-title">Word <span>Unscramble</span></div>
+
+  <!-- SETUP SCREEN -->
+  <div id="setup-screen">
+
+    <div class="card">
+      <div class="card-label">Load a question set</div>
+      <p style="font-size:13px; color:#5f5e5a; margin-bottom:1rem; line-height:1.6;">Upload a JSON file to load a premade set, or download the sample to see the expected format.</p>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="primary" onclick="document.getElementById('file-input').click()">&#8593; Load JSON file</button>
+        <button onclick="downloadSample()">&#8595; Download sample JSON</button>
+        <input type="file" id="file-input" accept=".json" style="display:none;" onchange="loadFile(event)" />
+      </div>
+
+      <div id="set-picker" style="display:none; margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid #e2e0da;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem; flex-wrap:wrap; gap:8px;">
+          <span class="set-badge">&#128196; <span id="set-name-text"></span></span>
+          <span id="set-q-count" style="font-size:13px; color:#888780;"></span>
+        </div>
+        <div class="field-row">
+          <label for="question-select">Select a question</label>
+          <select id="question-select"></select>
+        </div>
+        <button class="primary" onclick="startFromPicker()">Start this question &rarr;</button>
+      </div>
+    </div>
+
+    <div class="divider">or enter manually</div>
+
+    <div class="card">
+      <div class="card-label">Manual entry</div>
+      <div class="field-row">
+        <label for="question-input">Trivia question</label>
+        <textarea id="question-input" rows="2" placeholder="e.g. Who wrote the Declaration of Independence?"></textarea>
+      </div>
+      <div class="field-row">
+        <label for="answer-input">Answer phrase</label>
+        <input type="text" id="answer-input" placeholder="e.g. Thomas Jefferson" />
+      </div>
+      <div class="btn-row">
+        <button class="primary" onclick="startManual()">Generate board &rarr;</button>
+        <span class="err" id="setup-err">Please enter an answer.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div id="game-screen" style="display:none;">
+
+    <div class="question-card">
+      <div class="q-meta">
+        <span class="q-label">Question</span>
+        <span class="q-counter" id="game-q-counter" style="display:none;"></span>
+      </div>
+      <p class="question-text" id="question-display"></p>
+    </div>
+
+    <div class="legend">
+      <span><span class="legend-dot" style="background:#e8962a;"></span>Scrambled — click to reveal</span>
+      <span><span class="legend-dot" style="background:#fff; border:1px solid #d3d1c7;"></span>Revealed</span>
+    </div>
+
+    <div id="puzzle-area"></div>
+
+    <div class="controls-bar">
+      <span id="counter"></span>
+      <div class="btn-group">
+        <button id="prev-btn" onclick="goTo(currentIndex - 1)" title="Previous question" style="display:none;">&#8592;</button>
+        <button onclick="revealOne()">Reveal one word</button>
+        <button onclick="revealAll()">Reveal all</button>
+        <button id="next-btn" onclick="goTo(currentIndex + 1)" title="Next question" style="display:none;">&#8594;</button>
+        <button onclick="newGame()">&#8962; Setup</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  let totalWords = 0, revealedWords = 0;
+  let currentSet = [], currentIndex = -1;
+
+  const SAMPLE = {
+    title: "American Revolution",
+    questions: [
+      { question: "What document declared the colonies' independence from Britain?", answer: "Declaration of Independence" },
+      { question: "Who was the commander of the Continental Army?", answer: "George Washington" },
+      { question: "What year did the Revolutionary War begin?", answer: "1775" },
+      { question: "What was the name of the famous midnight ride?", answer: "Paul Revere's Ride" },
+      { question: "What treaty ended the Revolutionary War?", answer: "Treaty of Paris" }
+    ]
+  };
+
+  function scramble(word) {
+    if (word.length <= 1) return word;
+    const letters = word.split('');
+    let shuffled;
+    let attempts = 0;
+    do {
+      shuffled = [...letters];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      attempts++;
+    } while (shuffled.join('') === word && attempts < 20);
+    return shuffled.join('');
+  }
+
+  function downloadSample() {
+    const blob = new Blob([JSON.stringify(SAMPLE, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'trivia-sample.json';
+    a.click();
+  }
+
+  function loadFile(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      try {
+        let data = JSON.parse(e.target.result);
+        if (Array.isArray(data)) data = { title: file.name.replace('.json', ''), questions: data };
+        if (!data.questions || !Array.isArray(data.questions)) throw new Error('Bad format');
+        currentSet = data.questions;
+        document.getElementById('set-name-text').textContent = data.title || 'Untitled set';
+        document.getElementById('set-q-count').textContent = currentSet.length + ' questions';
+        const sel = document.getElementById('question-select');
+        sel.innerHTML = '';
+        currentSet.forEach((q, i) => {
+          const opt = document.createElement('option');
+          opt.value = i;
+          opt.textContent = (i + 1) + '. ' + q.question;
+          sel.appendChild(opt);
+        });
+        document.getElementById('set-picker').style.display = 'block';
+      } catch (err) {
+        alert('Could not read file. Make sure it matches the expected JSON format — download the sample to see the structure.');
+      }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+  }
+
+  function startFromPicker() {
+    const idx = parseInt(document.getElementById('question-select').value);
+    buildBoard(currentSet[idx].question, currentSet[idx].answer, idx);
+  }
+
+  function startManual() {
+    const q = document.getElementById('question-input').value.trim();
+    const a = document.getElementById('answer-input').value.trim();
+    if (!a) { document.getElementById('setup-err').style.display = 'inline'; return; }
+    document.getElementById('setup-err').style.display = 'none';
+    currentSet = []; currentIndex = -1;
+    buildBoard(q || '(No question entered)', a, -1);
+  }
+
+  function buildBoard(question, answer, idx) {
+    currentIndex = idx;
+    totalWords = 0; revealedWords = 0;
+
+    document.getElementById('question-display').textContent = question;
+
+    const counter = document.getElementById('game-q-counter');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    if (currentSet.length > 1) {
+      counter.textContent = 'Question ' + (idx + 1) + ' of ' + currentSet.length;
+      counter.style.display = 'inline';
+      prevBtn.style.display = 'inline-block';
+      nextBtn.style.display = 'inline-block';
+      prevBtn.disabled = (idx <= 0);
+      nextBtn.disabled = (idx >= currentSet.length - 1);
+    } else {
+      counter.style.display = 'none';
+      prevBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+    }
+
+    const puzzleArea = document.getElementById('puzzle-area');
+    puzzleArea.innerHTML = '';
+
+    answer.split(' ').forEach(word => {
+      if (!word) return;
+
+      // Separate letters from punctuation
+      const letterChars = [...word].filter(c => /[a-zA-Z0-9]/.test(c));
+      if (letterChars.length === 0) return;
+
+      // Scramble just the letter characters
+      const scrambledLetters = scramble(letterChars.join('')).split('');
+      let scrambledIdx = 0;
+
+      const wordGroup = document.createElement('div');
+      wordGroup.className = 'word-group';
+      wordGroup.dataset.wordIndex = totalWords;
+
+      const rowEl = document.createElement('div');
+      rowEl.className = 'word-row';
+
+      [...word].forEach(char => {
+        if (/[a-zA-Z0-9]/.test(char)) {
+          const box = document.createElement('div');
+          box.className = 'letter-box';
+          box.dataset.correct = char.toUpperCase();
+          box.textContent = scrambledLetters[scrambledIdx++].toUpperCase();
+          rowEl.appendChild(box);
+        } else {
+          const p = document.createElement('div');
+          p.className = 'punct-char';
+          p.textContent = char;
+          rowEl.appendChild(p);
+        }
+      });
+
+      const ul = document.createElement('span');
+      ul.className = 'word-underline';
+
+      const hint = document.createElement('div');
+      hint.className = 'word-hint';
+      hint.textContent = letterChars.length + ' letters';
+
+      wordGroup.appendChild(rowEl);
+      wordGroup.appendChild(ul);
+      wordGroup.appendChild(hint);
+      wordGroup.addEventListener('click', () => revealWordGroup(wordGroup));
+
+      puzzleArea.appendChild(wordGroup);
+      totalWords++;
+    });
+
+    updateCounter();
+    document.getElementById('setup-screen').style.display = 'none';
+    document.getElementById('game-screen').style.display = 'block';
+  }
+
+  function revealWordGroup(wordGroup) {
+    if (wordGroup.classList.contains('revealed') || wordGroup.classList.contains('revealing')) return;
+    wordGroup.classList.add('revealing');
+
+    const boxes = wordGroup.querySelectorAll('.letter-box');
+
+    // Phase 1: flip all boxes down
+    boxes.forEach(box => box.classList.add('flipping'));
+
+    setTimeout(() => {
+      // Phase 2: swap to correct letters and flip back up
+      boxes.forEach(box => {
+        box.textContent = box.dataset.correct;
+        box.classList.remove('flipping');
+        box.classList.add('revealed');
+      });
+
+      const hint = wordGroup.querySelector('.word-hint');
+      if (hint) hint.style.visibility = 'hidden';
+
+      wordGroup.classList.add('revealed');
+      wordGroup.classList.remove('revealing');
+      revealedWords++;
+      updateCounter();
+    }, 200);
+  }
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= currentSet.length) return;
+    buildBoard(currentSet[idx].question, currentSet[idx].answer, idx);
+  }
+
+  function updateCounter() {
+    const rem = totalWords - revealedWords;
+    document.getElementById('counter').textContent = revealedWords === totalWords
+      ? '✓ All words revealed'
+      : revealedWords + ' of ' + totalWords + ' words revealed — ' + rem + ' remaining';
+  }
+
+  function revealOne() {
+    const unrevealed = Array.from(document.querySelectorAll('.word-group:not(.revealed):not(.revealing)'));
+    if (!unrevealed.length) return;
+    const pick = unrevealed[Math.floor(Math.random() * unrevealed.length)];
+    revealWordGroup(pick);
+  }
+
+  function revealAll() {
+    document.querySelectorAll('.word-group:not(.revealed):not(.revealing)').forEach(wg => {
+      revealWordGroup(wg);
+    });
+  }
+
+  function newGame() {
+    document.getElementById('setup-screen').style.display = 'block';
+    document.getElementById('game-screen').style.display = 'none';
+  }
+
+  document.getElementById('answer-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') startManual();
+  });
+</script>
+</body>
+</html>
