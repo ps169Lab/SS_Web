@@ -1,0 +1,164 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Geography of Peru</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-family: 'Spectral', serif;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e9f7ef;
+            color: #1e8449;
+        }
+
+        /* Replaces the hardcoded <strong> that used to wrap the first
+           cell of each comparison row */
+        td:first-child {
+            font-weight: bold;
+        }
+
+        /* Replaces the hardcoded <strong> that used to wrap each
+           vocabulary term */
+        dt {
+            font-weight: bold;
+        }
+
+        .region-card {
+            border-left: 5px solid #1e8449;
+            padding: 15px;
+            background-color: #f4faf6;
+            margin: 20px 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+
+    <main>
+        <article>
+            <h1 class="section-title" data-key="title"></h1>
+            <p class="subtitle" data-key="subtitle"></p>
+
+            <div class="vocabulary-section">
+                <h2>Expert Vocabulary</h2>
+                <dl data-key="vocabulary-list"></dl>
+            </div>
+
+            <h2 data-key="location-heading"></h2>
+            <img data-key="location-map" src="" alt="" />
+
+            <p>
+                <span class="standard-reading" data-key="location-intro" data-level="standard"></span>
+                <span class="easy-reading" data-key="location-intro" data-level="easy"></span>
+            </p>
+
+            <img data-key="huascaran-img" src="" alt="" />
+
+            <div class="region-card">
+                <h2 data-key="regions-heading"></h2>
+                <p>
+                    <span class="standard-reading" data-key="regions-intro" data-level="standard"></span>
+                    <span class="easy-reading" data-key="regions-intro" data-level="easy"></span>
+                </p>
+                <p><img data-key="regions-map" src="" alt="" style="max-width: 100%;" /></p>
+            </div>
+
+            <h3 data-key="comparison-heading"></h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Region Name</th>
+                        <th>What it Looks Like</th>
+                        <th>The Climate (Weather)</th>
+                    </tr>
+                </thead>
+                <tbody data-key="region-table-body"></tbody>
+            </table>
+
+            <h3 data-key="coast-heading"></h3>
+            <img data-key="coast-img" src="" alt="" />
+            <p>
+                <span class="standard-reading" data-key="coast-text" data-level="standard"></span>
+                <span class="easy-reading" data-key="coast-text" data-level="easy"></span>
+            </p>
+
+            <h3 data-key="highlands-heading"></h3>
+            <img data-key="highlands-img" src="" alt="" />
+            <p>
+                <span class="standard-reading" data-key="highlands-text" data-level="standard"></span>
+                <span class="easy-reading" data-key="highlands-text" data-level="easy"></span>
+            </p>
+
+            <h3 data-key="jungle-heading"></h3>
+            <img data-key="jungle-img" src="" alt="" />
+            <p>
+                <span class="standard-reading" data-key="jungle-text" data-level="standard"></span>
+                <span class="easy-reading" data-key="jungle-text" data-level="easy"></span>
+            </p>
+
+            <h2 data-key="resources-heading"></h2>
+            <img data-key="population-img" src="" alt="" />
+            <p>
+                <span class="standard-reading" data-key="resources-text" data-level="standard"></span>
+                <span class="easy-reading" data-key="resources-text" data-level="easy"></span>
+            </p>
+
+            <img data-key="terrace-img" src="" alt="" />
+
+            <div class="fun-facts">
+                <h3 data-key="funfacts-heading"></h3>
+                <ul data-key="fun-facts-list"></ul>
+            </div>
+
+            <hr />
+
+            <h2 data-key="discussion-heading"></h2>
+            <ul data-key="discussion-questions-list"></ul>
+        </article>
+    </main>
+
+    <script src="../reading-level-toggle.js"></script>
+
+    <!-- Sheet-driven content loader -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script>const PAGE_KEY = "geography";</script>
+    <script src="unit-content-loader.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body></html>
