@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheet Gallery</title>
+    <link rel="stylesheet" href="img.css">
+</head>
+
+<body>
+
+    <h1>Grade 5 Image Feed</h1>
+
+    <div id="gallery" class="gallery">
+        <p>Loading gallery...</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+    <script>
+        const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSxiggNASJSi8t8_MfvGS8m6gFsTzp0t_N9njZ8NbVHuYRCE4BdSQaGGGq9dNYkH1bK5hPWr-H4jy0D/pub?output=csv";
+
+        Papa.parse(SHEET_URL, {
+            download: true,
+            header: true,
+            complete: function (results) {
+
+                const gallery = document.getElementById("gallery");
+                gallery.innerHTML = "";
+
+                results.data.forEach(row => {
+
+                    const imageUrl = row["Image URL"];
+                    const caption = row["Caption"];
+
+                    if (!imageUrl) return;
+
+                    const item = document.createElement("div");
+                    item.className = "gallery-item";
+
+                    item.innerHTML = `
+                <img src="${imageUrl}" alt="${caption}">
+                <p>${caption || ""}</p>
+            `;
+
+                    gallery.appendChild(item);
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
