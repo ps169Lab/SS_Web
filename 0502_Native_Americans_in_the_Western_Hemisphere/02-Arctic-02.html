@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inuit Community and Culture</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">Inuit Community and Culture</h1>
+            <p class="subtitle">Sharing, Stories, and a Way of Life That Continues Today</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Elder:</strong> <span class="standard-reading">An older person who is respected for their knowledge and wisdom.</span><span class="easy-reading">A respected older person.</span></li>
+                    <li><strong>Inuktitut:</strong> <span class="standard-reading">The language spoken by many Inuit in Canada.</span><span class="easy-reading">The Inuit language.</span></li>
+                    <li><strong>Inuksuk:</strong> <span class="standard-reading">A stone figure built as a landmark or message for travelers. The plural is inuksuit.</span><span class="easy-reading">A stone landmark. More than one are called inuksuit.</span></li>
+                    <li><strong>Nunavut:</strong> <span class="standard-reading">A territory in northern Canada, created in 1999, where most people are Inuit. Its name means "our land."</span><span class="easy-reading">A part of Canada where most people are Inuit. It means "our land."</span></li>
+                </ul>
+            </div>
+
+            <h2>Families and Community</h2>
+            <p>
+                <span class="standard-reading">Inuit families lived and worked together in small camps. Survival in the Arctic depended on sharing, so a successful hunter shared meat with the whole camp, not only with his own family. Elders were respected for their knowledge about weather, animals, and travel. There were no kings. Leaders were people with skill and experience, and the group made decisions by talking together.</span>
+                <span class="easy-reading">Inuit families lived and worked together in small camps. They shared food with everyone. Elders were respected for their knowledge. The group made decisions by talking together.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Jobs were divided in ways that helped everyone survive. Men usually hunted, while women usually sewed clothing, prepared food, cared for children, and tended the seal-oil lamp. But the jobs were flexible, and both mattered. Hunters could not survive in the cold without the warm clothing that women made, and many women also fished and hunted small animals.</span>
+                <span class="easy-reading">Men usually hunted. Women usually sewed warm clothes, prepared food, and cared for children. Both jobs were needed to survive. Many women also fished.</span>
+            </p>
+            <!-- Image idea: photo of an Inuit family or community from an Inuit organization or museum -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <h2>Language, Stories, and Inuksuit</h2>
+            <p>
+                <span class="standard-reading">The Inuit speak Inuktitut. Before books, knowledge was passed down through spoken stories, songs, and games. During the long, dark winter, elders told stories that taught children about their history and how to stay safe in the Arctic.</span>
+                <span class="easy-reading">The Inuit speak Inuktitut. Elders told stories during the long winter. The stories taught children about history and how to stay safe.</span>
+            </p>
+            <p>
+                <span class="standard-reading">The Inuit also built inuksuit, which are stone figures that act as landmarks. Some pointed the way for travelers, and others marked good hunting spots or places where food was stored. In a land with almost no trees or signs, inuksuit helped people find their way.</span>
+                <span class="easy-reading">The Inuit built inuksuit from stones. They helped travelers find their way. Some marked places to hunt or store food.</span>
+            </p>
+            <!-- Image idea: inuksuk photo (Inuit-authored source preferred) -->
+
+            <h2>The Inuit Today</h2>
+            <p>
+                <span class="standard-reading">The Inuit are still here. Today, Inuit live in Alaska, Canada, and Greenland. In 1999, Canada created Nunavut, which means "our land" in Inuktitut. Most people in Nunavut are Inuit, and Inuit leaders help run its government. Inuktitut is one of its official languages and is taught in schools.</span>
+                <span class="easy-reading">The Inuit are still here. They live in Alaska, Canada, and Greenland. In 1999, Canada created Nunavut. Most people there are Inuit, and Inuit leaders help run it. Children learn Inuktitut in school.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Many Inuit families still hunt, fish, and share food. Today they also use snowmobiles, modern tools, and the internet. The Inuit keep their traditions while living in the modern world.</span>
+                <span class="easy-reading">Many Inuit still hunt and fish. They also use snowmobiles and the internet. They keep their traditions today.</span>
+            </p>
+            <!-- Image idea: Nunavut flag or Iqaluit community photo -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Why Share?</strong> Why do you think sharing food was so important in the Arctic? What might happen to a camp if hunters kept all the food for themselves?</li>
+                <li><strong>Then and Now:</strong> Name one thing about Inuit life that has changed and one thing that has stayed the same.</li>
+            </ul>
+        </article>
+    </main>
+    <script src="../reading-level-toggle.js"></script>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+       <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

@@ -81,10 +81,6 @@ main {
         border-bottom: 1pt solid #000 !important;
     }
     
-    .section-title h1 {
-        margin-top: 0.8em;
-    }
-    
     .subtitle {
         font-size: 14pt !important;
         margin-bottom: 0.8em !important;
@@ -149,38 +145,6 @@ main {
     a[href^="#"]:after,
     a[href^="/"]:after {
         content: "";
-    }
-    
-    /* Optimize vocabulary sections for print */
-    .vocabulary-section {
-        background-color: transparent !important;
-        border: 1pt solid #000 !important;
-        border-radius: 0 !important;
-        padding: 1em !important;
-        margin-bottom: 1em !important;
-        page-break-inside: avoid;
-    }
-    
-    .vocabulary-section h3 {
-        color: #000 !important;
-        margin-bottom: 0.5em !important;
-        font-size: 14pt !important;
-    }
-    
-    .vocabulary-list {
-        list-style: none;
-        padding-left: 0;
-    }
-    
-    .vocabulary-list li {
-        margin-bottom: 0.5em !important;
-        font-size: 12pt !important;
-        line-height: 1.4 !important;
-    }
-    
-    .vocabulary-list strong {
-        color: #000 !important;
-        font-weight: bold;
     }
     
     /* Page break controls */
@@ -522,37 +486,6 @@ li {
   font-weight: normal;
 }
 
-/* Vocabulary section styling */
-.vocabulary-section {
-  background-color: #f8f9fa;
-  border: 2px solid #e9ecef;
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.vocabulary-section h3 {
-  color: #495057;
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-}
-
-.vocabulary-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.vocabulary-list li {
-  margin-bottom: 0.8rem;
-  font-size: 1.2rem;
-  line-height: 1.4;
-}
-
-.vocabulary-list strong {
-  color: #007bff;
-  font-weight: 600;
-}
-
 /* Responsive styles */
 @media (max-width: 768px) {
   body {
@@ -616,6 +549,22 @@ li {
   
   .author-image {
     margin-bottom: 10px;
+  }
+}
+
+/* Google Translate Widget Styling */
+#google_translate_element {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 900;
+}
+
+/* Responsive styling for Google Translate Widget */
+@media (max-width: 768px) {
+  #google_translate_element {
+    top: 80px;
+    right: 15px;
   }
 }
 

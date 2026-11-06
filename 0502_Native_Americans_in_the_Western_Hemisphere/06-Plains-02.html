@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lakota Community and Culture</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">Lakota Community and Culture</h1>
+            <p class="subtitle">Family Bands, Art, Winter Counts, and a Strong Nation Today</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Tiyospaye:</strong> <span class="standard-reading">An extended family group or band that lived, hunted, and traveled together.</span><span class="easy-reading">A large extended family group that lived and worked together.</span></li>
+                    <li><strong>Winter Count:</strong> <span class="standard-reading">A calendar record painted on an animal hide showing one major event for each year to keep history.</span><span class="easy-reading">A history picture painted on a hide that showed one big event for each year.</span></li>
+                    <li><strong>Quillwork:</strong> <span class="standard-reading">A traditional art form using softened, dyed porcupine quills to decorate clothes and bags.</span><span class="easy-reading">Decorating clothes using colored porcupine quills.</span></li>
+                    <li><strong>Powwow:</strong> <span class="standard-reading">A modern Native American gathering featuring traditional dancing, drumming, singing, and honoring heritage.</span><span class="easy-reading">A gathering with music, traditional dancing, and food to celebrate culture.</span></li>
+                </ul>
+            </div>
+
+            <h2>Bands and Family Leadership</h2>
+            <p>
+                <span class="standard-reading">Lakota society was organized into extended family groups called tiyospaye. A tiyospaye included grandparents, parents, aunts, uncles, and cousins who shared work and cared for children together. Because survival on the plains required cooperation, generosity was considered one of the highest virtues. A respected leader was not someone with the most possessions, but someone who shared food and helped others in need.</span>
+                <span class="easy-reading">Lakota families lived in big extended groups called tiyospaye. Grandparents, parents, and cousins worked together. Sharing was very important. A good leader was someone who shared food and helped everyone in the group.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Decisions were made by councils of respected elders and leaders. Men were responsible for hunting and defending the camp, while women managed the camp, built and owned the tipis, and prepared food and clothing. Both roles were vital, and women held great influence in family and village life.</span>
+                <span class="easy-reading">Leaders and elders met in councils to make rules. Men hunted and protected the camp. Women owned the tipis, cooked food, and made clothes. Both jobs were important to the group.</span>
+            </p>
+            <!-- Image idea: Photo or painting of a historic Lakota family gathering outside a tipi -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <h2>Storytelling, Art, and Winter Counts</h2>
+            <p>
+                <span class="standard-reading">Before the Lakota wrote books in English, tribal historians kept track of important events using a Winter Count. A Winter Count was a large buffalo hide painted with special symbols. Each year, elders selected one important event—like a harsh winter, a famous hunt, or a meteor shower—and drew a picture to record it. The hide served as a visual calendar to teach young people their history.</span>
+                <span class="easy-reading">The Lakota tracked their history using a Winter Count. An elder painted one picture on a buffalo hide for each year to show a major event. The painted hide helped elders tell stories about the past to children.</span>
+            </p>
+            <p>
+                <span class="standard-reading">The Lakota created beautiful artwork from natural materials. Women mastered porcupine quillwork, carefully softening, dyeing, and flattening sharp quills to embroider intricate patterns onto moccasins, dresses, and bags. Later, when European traders introduced small glass beads, Lakota artists created stunning beadwork designs that are still famous today.</span>
+                <span class="easy-reading">Lakota artists made beautiful art. Women dyed porcupine quills to sew colorful patterns on shoes and clothes. Later, they used colorful glass beads to make detailed designs.</span>
+            </p>
+            <!-- Image idea: Photo of a traditional Lakota painted Winter Count hide or detailed beadwork -->
+
+            <h2>The Lakota Today</h2>
+            <p>
+                <span class="standard-reading">During the late 1800s, the U.S. government forced the Lakota onto reservations and killed off the wild buffalo herds. Despite these enormous hardships, the Lakota nation survived and continues to protect its land, sovereignty, and culture today. Major Lakota reservations, such as Pine Ridge and Rosebud, are located in South Dakota.</span>
+                <span class="easy-reading">In the late 1800s, the U.S. government forced the Lakota onto lands called reservations. Life became very hard, but the Lakota kept their culture alive. Today, many Lakota live in South Dakota.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Today, Lakota people live and work in many different professions while keeping their traditions strong. Schools on reservations teach the Lakota language to young students. Across the country, Lakota families gather at celebrations called powwows to sing, play traditional drums, dance in colorful regalia, and honor their ancestors.</span>
+                <span class="easy-reading">Today, Lakota children learn their native language in school. Families gather at celebrations called powwows to dance, play drums, wear traditional clothes, and honor their culture.</span>
+            </p>
+            <!-- Image idea: Photo of modern Lakota dancers at a powwow or a school in South Dakota -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Recording History:</strong> How is keeping history with a Winter Count (one picture per year) different from how we record history today in books or websites? Why was this a smart way to keep history for a mobile group?</li>
+                <li><strong>Then and Now:</strong> What is one traditional Lakota custom or art form from the past that Lakota people still practice and celebrate today?</li>
+            </ul>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>

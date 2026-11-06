@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pueblo Community and Culture</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">Pueblo Community and Culture</h1>
+            <p class="subtitle">Kivas, Pottery, Spiritual Traditions, and Living Communities Today</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Kiva:</strong> <span class="standard-reading">A round, underground room used by Pueblo communities for religious ceremonies and council meetings.</span><span class="easy-reading">An underground room used for meetings and special ceremonies.</span></li>
+                    <li><strong>Kachina:</strong> <span class="standard-reading">Ancestral spirit figures in Hopi and Pueblo belief that bring rain, good crops, and protection.</span><span class="easy-reading">Spirits that bring rain, good crops, and protection.</span></li>
+                    <li><strong>Coil Pottery:</strong> <span class="standard-reading">A traditional method of shaping clay pots by stacking long ropes of clay and smoothing them by hand.</span><span class="easy-reading">Making clay pots by stacking ropes of mud and smoothing them out.</span></li>
+                    <li><strong>Sovereignty:</strong> <span class="standard-reading">The right of a tribe to govern itself, make its own rules, and preserve its culture.</span><span class="easy-reading">The power of a group to rule itself and make its own laws.</span></li>
+                </ul>
+            </div>
+
+            <h2>Village Life and Community Leadership</h2>
+            <p>
+                <span class="standard-reading">Pueblo society was built around close-knit village communities. Because everyone lived together in large adobe apartment complexes, cooperation was essential. Daily tasks like repairing adobe walls, harvesting corn, and preparing meals were done as a group. Clans and family lineages held great importance, and traditions were passed down through mothers and grandmothers.</span>
+                <span class="easy-reading">Pueblo families lived close together in big villages. Working together was very important. People fixed mud walls, farmed corn, and cooked food together as a group.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Important community decisions and spiritual gatherings took place in a kiva. A kiva is a large, circular underground chamber entered by climbing down a ladder through the roof. Inside the kiva, leaders discussed village laws, shared traditional stories, and performed ceremonies to ask for rain, bountiful harvests, and peace for all people.</span>
+                <span class="easy-reading">Important meetings and ceremonies took place in an underground room called a kiva. Leaders climbed down a ladder into the kiva to make village rules and pray for rain and good crops.</span>
+            </p>
+            <!-- Image idea: Photo or diagram of a traditional underground Pueblo kiva -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <h2>Pottery, Weaving, and Spiritual Beliefs</h2>
+            <p>
+                <span class="standard-reading">Pueblo artists are world-famous for their incredible craft traditions. Without using a potter's wheel, women created beautiful pottery using the coil method, shaping local clay into water jars and bowls. They painted intricate geometric designs and natural symbols using brushes made from yucca plant leaves and natural earth dyes.</span>
+                <span class="easy-reading">Pueblo artists made famous pottery. Women stacked ropes of clay to form bowls and jars. They painted designs on the pots using brushes made from desert plants.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Spiritual life centered around respect for nature and rain. In Hopi and Zuni traditions, kachina spirits represented aspects of the natural world, such as rain clouds, sun, animals, and ancestors. During seasonal ceremonies, dancers wore detailed masks and regalia to honor these spirits. Carved wooden kachina dolls were given to children to teach them about their culture and spiritual beliefs.</span>
+                <span class="easy-reading">Nature and rain were sacred to the Pueblo people. They believed in kachina spirits that represented rain, plants, and animals. Carved wooden kachina dolls were given to children to teach them about their traditions.</span>
+            </p>
+            <!-- Image idea: Photo of traditional painted Pueblo pottery or a carved Hopi kachina doll -->
+
+            <h2>Pueblo Communities Today</h2>
+            <p>
+                <span class="standard-reading">Over 400 years ago, Spanish explorers and settlers arrived in the Southwest, attempting to force the Pueblo people to abandon their customs. In 1680, the Pueblo tribes united in the successful Pueblo Revolt, driving the Spanish out and protecting their land and culture. Today, there are 19 historic Pueblo communities in New Mexico, along with Hopi villages in Arizona.</span>
+                <span class="easy-reading">A long time ago, Spanish settlers tried to make the Pueblo people change their way of life. The Pueblo tribes fought back together in 1680 to protect their land and traditions. Today, there are 19 Pueblo villages in New Mexico and Hopi villages in Arizona.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Today, Pueblo nations exercise tribal sovereignty, governing their own lands while maintaining centuries-old villages like Taos Pueblo—which has been continuously inhabited for over 1,000 years! Modern Pueblo people are teachers, doctors, artists, and leaders who celebrate annual feast days with traditional dances, bread baking in outdoor clay ovens (hornos), and song.</span>
+                <span class="easy-reading">Pueblo communities govern their own lands today. Some villages, like Taos Pueblo, have had people living in them for over 1,000 years! Families celebrate feast days with traditional dances, music, and baking bread in outdoor ovens.</span>
+            </p>
+            <!-- Image idea: Photo of a traditional outdoor horno oven or a modern Pueblo feast day celebration -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Built to Last:</strong> Taos Pueblo has been lived in continuously for over 1,000 years. What about Pueblo homes, community organization, and geography helped these villages last so long?</li>
+                <li><strong>Then and Now:</strong> Name one craft or cultural tradition from ancient Pueblo life that Pueblo artists and families still practice today.</li>
+            </ul>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taíno Community and Culture</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">Taíno Community and Culture</h1>
+            <p class="subtitle">Leaders, Art, Words, and a Living Heritage Today</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Cacique:</strong> <span class="standard-reading">A respected village chief or leader who organized work and ceremonies.</span><span class="easy-reading">A village chief or leader.</span></li>
+                    <li><strong>Cemí:</strong> <span class="standard-reading">A sacred object or carved stone representing spirits, ancestors, and natural forces.</span><span class="easy-reading">A carved stone or wooden spirit sculpture.</span></li>
+                    <li><strong>Batéy:</strong> <span class="standard-reading">A central plaza in a village used for public meetings, dances, and ball games.</span><span class="easy-reading">A central village square for games and meetings.</span></li>
+                    <li><strong>Heritage:</strong> <span class="standard-reading">Traditions, language, and culture passed down from ancestors to people living today.</span><span class="easy-reading">Traditions passed down from ancestors.</span></li>
+                </ul>
+            </div>
+
+            <h2>Villages and Leadership</h2>
+            <p>
+                <span class="standard-reading">Taíno society was organized into peaceful villages across the islands. Each village was led by a chief called a cacique. Chiefs could be men or women. The cacique organized daily farming work, helped settle arguments, and led village celebrations. Leaders were respected for their ability to guide the community, but everyone worked together to build homes and harvest crops.</span>
+                <span class="easy-reading">Taíno villages were led by chiefs called caciques. Chiefs could be men or women. They helped plan work and solve problems. Everyone worked together in the village.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Life in the village centered around a open public plaza called a batéy. People gathered in the batéy to celebrate harvest festivals with music and dancing. They also played a popular ball game called batéy, using a heavy rubber ball made from tree sap. Players bounced the ball back and forth without using their hands or feet!</span>
+                <span class="easy-reading">Villages had a large open plaza called a batéy. People met there to dance, celebrate, and play a fun ball game using a rubber ball without using their hands.</span>
+            </p>
+            <!-- Image idea: Photo of a preserved Taíno ceremonial ball court (batéy) site in Puerto Rico -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <h2>Carvings, Beliefs, and Words</h2>
+            <p>
+                <span class="standard-reading">The Taíno believed that spirits of nature and ancestors lived around them. Artisans carved sacred figures called cemís out of stone, wood, and clay. Cemís represented forces like rain, ocean waves, and healthy crops. People placed cemís in their homes and gardens to bring good fortune and protection.</span>
+                <span class="easy-reading">The Taíno carved spirit figures called cemís out of stone and wood. People kept cemís in homes and gardens to ask for rain and good crops.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Even though Spanish colonization brought hardship and changes to the islands over 500 years ago, many Taíno words entered the Spanish and English languages. Words we use today—such as canoe, hammock, hurricane, barbecue, and iguana—come directly from the Taíno language!</span>
+                <span class="easy-reading">Many Taíno words are still used in English today! Words like canoe, hammock, hurricane, barbecue, and iguana came from the Taíno language.</span>
+            </p>
+            <!-- Image idea: Photo of a carved stone Taíno cemí from a museum collection -->
+
+            <h2>Taíno Culture Today</h2>
+            <p>
+                <span class="standard-reading">For many years, history books incorrectly claimed the Taíno people had vanished. Today, thousands of people in Puerto Rico, the Dominican Republic, Cuba, and across the United States proudly identify as Taíno descendants. Genetic studies show that many people in the Caribbean share DNA connections to ancient Taíno ancestors.</span>
+                <span class="easy-reading">History books used to say the Taíno disappeared, but that is not true! Today, thousands of people in the Caribbean and the U.S. carry on Taíno heritage and family history.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Modern Taíno groups work to preserve their culture. They teach ancient art styles, tell traditional stories, honor traditional foods like cassava bread, and protect sacred historical sites across the islands. Taíno traditions remain a living part of Caribbean culture.</span>
+                <span class="easy-reading">Today, Taíno groups teach traditional art, share ancient stories, and protect historical sites. Taíno culture is still alive today.</span>
+            </p>
+            <!-- Image idea: Photo of modern Caribbean cultural performance or art honoring Taíno heritage -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Words We Use:</strong> Look at the list of Taíno words (canoe, hammock, hurricane, barbecue). How do these words reflect the environment and lifestyle of the Taíno islands?</li>
+                <li><strong>Then and Now:</strong> Name one custom or object from ancient Taíno life that is still part of Caribbean life or global culture today.</li>
+            </ul>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Surviving the Arctic: The Inuit</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">Surviving the Arctic</h1>
+            <p class="subtitle">How the Inuit Used the Land, Sea, and Ice to Meet Their Needs</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Blubber:</strong> <span class="standard-reading">The thick fat of sea animals, used for food and as fuel for lamps.</span><span class="easy-reading">Animal fat used for food and fuel.</span></li>
+                    <li><strong>Kayak:</strong> <span class="standard-reading">A narrow, one-person boat covered in waterproof sealskin.</span><span class="easy-reading">A small boat for one person.</span></li>
+                    <li><strong>Umiaq:</strong> <span class="standard-reading">A large, open boat covered in animal skins that carried many people and was used for whale hunting.</span><span class="easy-reading">A large skin boat for many people.</span></li>
+                    <li><strong>Qarmaq:</strong> <span class="standard-reading">A winter house built partly underground from sod, stones, and whale bones.</span><span class="easy-reading">A warm winter house built partly underground.</span></li>
+                </ul>
+            </div>
+
+            <h2>The Inuit Homeland</h2>
+            <p>
+                <span class="standard-reading">The Arctic is the far northern part of our world, and it includes parts of Alaska, Canada, and Greenland. It is one of the coldest places on Earth, though Antarctica at the South Pole is colder. In winter, the sun barely rises and the land is dark and frozen for months. In summer, the sun shines almost all day and night, and the snow melts. There are almost no trees, and the ground underneath stays frozen all year.</span>
+                <span class="easy-reading">The Arctic is the far north. It includes parts of Alaska, Canada, and Greenland. Winters are dark and very cold. Summers are short, and the sun shines almost all day. There are almost no trees.</span>
+            </p>
+            <p>
+                <span class="standard-reading">The Inuit have lived in the Arctic for more than a thousand years. Their name means "the people" in their language, Inuktitut. The Aleut and Yupik are different peoples with their own languages and traditions. This page is about the Inuit.</span>
+                <span class="easy-reading">The Inuit have lived here for more than a thousand years. Inuit means "the people." The Aleut and Yupik are different peoples. This page is about the Inuit.</span>
+            </p>
+
+            <h2>Hunting and Fishing for Food</h2>
+            <p>
+                <span class="standard-reading">Crops cannot grow in frozen ground, so the Inuit got their food from animals. They hunted seals, walruses, whales, and caribou, and they fished in rivers, lakes, and the sea. In winter, a hunter waited quietly beside a seal's breathing hole in the ice. When the seal came up for air, the hunter used a harpoon.</span>
+                <span class="easy-reading">Crops could not grow in the frozen ground. The Inuit hunted seals, whales, and caribou, and they caught fish. Hunters waited by breathing holes in the ice to harpoon seals.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Boats were important tools. Hunters paddled kayaks to hunt seals and to catch caribou crossing rivers. Whales were hunted from the umiaq, a large boat that carried many people. Nothing was wasted. Meat was food, blubber fueled lamps, and skins became clothing and boat covers.</span>
+                <span class="easy-reading">Hunters used kayaks to hunt seals. Whale hunters used the large umiaq. Nothing was wasted. Meat was food, blubber fueled lamps, and skins became clothes and boats.</span>
+            </p>
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <h2>Homes and Clothing</h2>
+            <p>
+                <span class="standard-reading">Homes changed with the seasons. In summer, families lived in tents made of animal skins that were easy to move. In winter, many families lived in qarmait, warm houses built partly underground from sod, stones, and whale bones. Igloos, which are houses made of snow blocks, were used mainly by Inuit in parts of central Canada and by hunters who needed quick shelter on a trip. Body heat and a seal-oil lamp kept an igloo surprisingly warm inside.</span>
+                <span class="easy-reading">Homes changed with the seasons. Summer homes were skin tents. Many winter homes were qarmait, built partly underground. Some Inuit built igloos from snow. Body heat and a lamp kept them warm.</span>
+            </p>
+            <p>
+                <span class="standard-reading">To stay warm, the Inuit wore layers of clothing made from caribou fur and sealskin, with the fur turned toward the body to trap heat. Boots made of sealskin, called kamiit, kept feet warm and dry.</span>
+                <span class="easy-reading">The Inuit wore layers of fur clothing. Sealskin boots called kamiit kept their feet dry.</span>
+            </p>
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Using Everything:</strong> The Inuit used almost every part of the animals they hunted. Why was this so important in the Arctic? What would you have trouble finding if you lived there?</li>
+                <li><strong>Matching the Land:</strong> Choose one tool, home, or piece of clothing. How did it help the Inuit meet a need in the Arctic environment?</li>
+            </ul>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>

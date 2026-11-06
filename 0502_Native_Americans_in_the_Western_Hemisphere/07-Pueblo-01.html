@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Surviving the Desert: The Pueblo People</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">Surviving the Desert</h1>
+            <p class="subtitle">How the Pueblo People Used Adobe, Irrigation, and Dry Farming to Meet Their Needs</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Adobe:</strong> <span class="standard-reading">A strong building material made from sun-dried clay, mud, and straw.</span><span class="easy-reading">Sun-dried mud and straw used to build sturdy walls.</span></li>
+                    <li><strong>Pueblo:</strong> <span class="standard-reading">A Spanish word meaning "town" or "village," describing multi-story stone and adobe apartment buildings.</span><span class="easy-reading">A village of stone and mud homes stacked on top of each other.</span></li>
+                    <li><strong>Dry Farming:</strong> <span class="standard-reading">Special agricultural methods used to grow crops in dry climates with very little rain.</span><span class="easy-reading">Farming methods used to grow plants in dry places with little rain.</span></li>
+                    <li><strong>Mesa:</strong> <span class="standard-reading">A flat-topped hill or mountain with steep sides, common in the Southwest desert.</span><span class="easy-reading">A high flat hill with steep sides.</span></li>
+                </ul>
+            </div>
+
+            <h2>The Southwest Desert Homeland</h2>
+            <p>
+                <span class="standard-reading">The Pueblo people live in the Southwest region of North America, in what is now New Mexico and Arizona. This environment features high desert plateaus, deep canyons, and flat-topped mountains called mesas. The climate is very hot and dry during the day, cold at night, and receives very little rain throughout the year.</span>
+                <span class="easy-reading">The Pueblo people live in the dry Southwest desert in New Mexico and Arizona. The land has flat hills called mesas and deep canyons. It is hot during the day, cold at night, and gets very little rain.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Pueblo communities—such as the Hopi, Zuni, Taos, and Acoma—have lived in this region for thousands of years. Their ancestors, the Ancestral Puebloans, built incredible villages into canyon walls and cliffs. Unlike nomadic hunters, the Pueblo people built permanent towns and stayed in one place to farm.</span>
+                <span class="easy-reading">The Pueblo people have lived in the desert for thousands of years. Their ancestors built towns into cliff walls. Unlike groups that moved to follow animals, the Pueblo people stayed in one place to farm.</span>
+            </p>
+            <!-- Image idea: Map of the U.S. Southwest showing Pueblo lands and mesa landscapes -->
+
+            <h2>Mastering Desert Farming</h2>
+            <p>
+                <span class="standard-reading">Because the desert gets very little rain, growing crops required expert knowledge. The Pueblo people developed clever dry farming techniques. They planted crops near the bases of mesas where rainwater naturally trickled down from rock walls after sudden rainstorms. They also built small earthen dams and irrigation canals to route river water directly into their fields.</span>
+                <span class="easy-reading">Farming in the dry desert was hard work. The Pueblo people built water ditches and small dams to guide river water to their crops. They also planted crops where rain ran off the side of high hills.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Their main crops were the "Three Sisters"—corn, beans, and squash—which grew together and protected the soil. Blue corn was especially important, used to make cornbread and porridge. Farmers also grew cotton to weave into light clothing, along with wild plants, pine nuts, and small desert game.</span>
+                <span class="easy-reading">Their main crops were corn, beans, and squash. Blue corn was very important for making food. They also grew cotton to weave into light clothes.</span>
+            </p>
+            <!-- Image idea: Photo or drawing of traditional Pueblo corn fields and irrigation ditches -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <h2>Multi-Story Adobe Homes</h2>
+            <p>
+                <span class="standard-reading">Pueblo villages were architectural marvels. People constructed multi-story apartment buildings using stone blocks and adobe, a mixture of mud, water, and straw baked hard by the hot desert sun. The thick adobe walls acted like natural insulation, keeping the rooms cool during scorching hot days and trapping warmth inside during freezing desert nights.</span>
+                <span class="easy-reading">Pueblo homes were stacked like big apartment buildings. They were built from stone and adobe mud. The thick mud walls kept the inside cool during hot days and warm during cold nights.</span>
+            </p>
+            <p>
+                <span class="standard-reading">To protect themselves from heat and unwanted intruders, the ground floor of a pueblo often had no doors or windows. Residents used wooden ladders to climb up to the roof and lower themselves inside through openings in the ceiling. If danger approached, families simply pulled the ladders up onto the roof to stay safe!</span>
+                <span class="easy-reading">The bottom floors did not have doors on the ground. People used wooden ladders to climb up to the roof to get inside. If there was danger, they pulled the ladders up to stay safe!</span>
+            </p>
+            <!-- Image idea: Photo of historic Taos Pueblo multi-story adobe village with wooden ladders -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Beating the Desert:</strong> Living in a dry desert presents big challenges. How did adobe mud and irrigation canals help the Pueblo people solve environmental problems?</li>
+                <li><strong>Staying Safe:</strong> Why did the Pueblo people build homes without ground-floor doors and use ladders instead? How did this design protect the community?</li>
+            </ul>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>

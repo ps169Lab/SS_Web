@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Surviving the Grasslands: The Lakota</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">Surviving the Grasslands</h1>
+            <p class="subtitle">How the Lakota Used the Great Plains and the Buffalo to Meet Their Needs</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Great Plains:</strong> <span class="standard-reading">A vast, mostly flat grassland region in the central part of North America.</span><span class="easy-reading">A huge, flat grassland in the middle of America.</span></li>
+                    <li><strong>Tipi:</strong> <span class="standard-reading">A cone-shaped tent made of long wooden poles wrapped in buffalo hides that is easy to pack up and move.</span><span class="easy-reading">A tall, cone-shaped tent that is easy to move.</span></li>
+                    <li><strong>Pemmican:</strong> <span class="standard-reading">A high-energy food made from dried buffalo meat mixed with fat and crushed berries.</span><span class="easy-reading">A travel food made from dried meat, berries, and fat.</span></li>
+                    <li><strong>Travois:</strong> <span class="standard-reading">A wooden sled frame pulled by dogs or horses used to haul heavy loads across the plains.</span><span class="easy-reading">A wooden sled pulled by dogs or horses to carry heavy things.</span></li>
+                </ul>
+            </div>
+
+            <h2>The Great Plains Homeland</h2>
+            <p>
+                <span class="standard-reading">The Great Plains stretch across the middle of North America from Canada down to Texas. This land is famous for wide-open grasslands, rolling hills, and very few trees. The weather on the plains brings big extremes: scorching hot summers, freezing winter blizzards, and powerful prairie winds.</span>
+                <span class="easy-reading">The Great Plains are huge flat grasslands in the middle of America. There are very few trees. Summers are very hot, and winters bring cold snowstorms and strong winds.</span>
+            </p>
+            <p>
+                <span class="standard-reading">The Lakota people are one of the major groups of the Plains nation. For centuries, they adapted to life on the open prairie. Because huge herds of wild buffalo roamed across the grasslands in search of fresh grass, the Lakota lived a nomadic lifestyle, moving their camps to follow the herds.</span>
+                <span class="easy-reading">The Lakota lived on the grasslands for a long time. Large herds of buffalo moved across the grass to eat. The Lakota moved their camps to follow the buffalo.</span>
+            </p>
+            <!-- Image idea: Map of the Great Plains region showing historic Lakota territory -->
+
+            <h2>Hunting the Buffalo</h2>
+            <p>
+                <span class="standard-reading">The buffalo (also called bison) was the most important resource on the plains. Lakota hunters worked together in organized groups to track and hunt buffalo. Before horses arrived in North America, hunters used camouflage and clever group strategies to guide buffalo herds toward low cliffs or natural traps. Later, when Spanish horses spread across the plains, Lakota hunters became expert riders, using bows and arrows while riding at full speed.</span>
+                <span class="easy-reading">The buffalo was the most important animal on the plains. Hunters worked together to hunt buffalo. Later, when horses arrived, Lakota hunters became expert horseback riders.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Nothing was wasted. Meat was eaten fresh or dried into jerky. Women mixed dried meat with fat and wild chokecherries to make pemmican, a high-protein food that stayed good for months on long trips. Bones were carved into needles and scrapers, horns became spoons and cups, and hides were tanned to make warm blankets, clothes, and shelter.</span>
+                <span class="easy-reading">Nothing was wasted. Meat was eaten fresh or dried into jerky. Meat was also mixed with berries to make a travel food called pemmican. Bones became tools, and skins became clothes and tent covers.</span>
+            </p>
+            <!-- Image idea: Historic drawing or photo of a buffalo herd on the Great Plains -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <h2>Homes on the Move</h2>
+            <p>
+                <span class="standard-reading">Because the Lakota moved frequently to follow the buffalo, they needed homes that could be built quickly and carried easily. They invented the tipi, a tall cone-shaped tent built from strong pine poles and covered with 10 to 20 sewn buffalo hides. The slanted, circular shape allowed strong prairie winds to pass right over without blowing the tipi down. Smoke flaps at the top let out smoke from a cooking fire inside.</span>
+                <span class="easy-reading">Because they moved often, the Lakota needed homes that were easy to carry. They built tall tents called tipis out of wooden poles and buffalo hides. Strong winds could not knock down the round shape.</span>
+            </p>
+            <p>
+                <span class="standard-reading">When it was time to move camp, women could take down a tipi in under an hour. The long wooden poles were tied together to form a V-shaped sled frame called a travois. Dogs, and later horses, pulled the travois to carry heavy hides, supplies, and young children across the open grassland to the next campsite.</span>
+                <span class="easy-reading">When it was time to move, women took down the tipis quickly. Long poles were tied to dogs or horses to make a sled called a travois. The travois carried heavy hides and tools across the grass.</span>
+            </p>
+            <!-- Image idea: Historic photo or illustration of a Lakota tipi camp and a travois frame -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>The Ultimate Resource:</strong> The Lakota used almost every single part of the buffalo. Why was using every part of the animal essential for survival on the treeless plains?</li>
+                <li><strong>Designed for the Plains:</strong> Choose one adaptation (the tipi or the travois). How did its design solve a specific challenge of living on open, windy grasslands?</li>
+            </ul>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>
