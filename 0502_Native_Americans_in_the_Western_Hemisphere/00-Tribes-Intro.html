@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Native American Regions and Natural Resources</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../reading-level-toggle.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;700&amp;display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="navbar-container"></div>
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+            });
+    </script>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+    <main>
+        <article>
+            <h1 class="section-title">The Peoples of the Western Hemisphere</h1>
+            <p class="subtitle">How Different Environments and Natural Resources Shaped Native American Cultures</p>
+
+            <div class="vocabulary">
+                <h3>Expert Vocabulary</h3>
+                <ul>
+                    <li><strong>Natural Resources:</strong> <span class="standard-reading">Materials found in nature—like water, wood, animals, and soil—that people use to survive.</span><span class="easy-reading">Useful things found in nature, like water, wood, and animals.</span></li>
+                    <li><strong>Environment:</strong> <span class="standard-reading">The natural surroundings of a place, including its climate, land, and plants.</span><span class="easy-reading">The weather, land, and plants of a place.</span></li>
+                    <li><strong>Adapt:</strong> <span class="standard-reading">To change how you live to fit the challenges of your environment.</span><span class="easy-reading">To change how you live to match where you live.</span></li>
+                    <li><strong>Culture:</strong> <span class="standard-reading">The shared beliefs, art, language, and way of life of a group of people.</span><span class="easy-reading">The shared traditions, art, and way of life of a group.</span></li>
+                </ul>
+            </div>
+
+            <h2>Different Lands, Different Resources</h2>
+            <p>
+                <span class="standard-reading">Long before Europeans arrived in the Americas, hundreds of Native American nations lived across North, Central, and South America. Because the Western Hemisphere is so large, it has many different environments—from icy northern tundras and windy grasslands to hot deserts and thick tropical rainforests.</span>
+                <span class="easy-reading">Long ago, hundreds of Native American nations lived across North, Central, and South America. The Americas have many different lands, like icy northlands, grassy plains, hot deserts, and rainforests.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Each environment offered a unique set of <strong>natural resources</strong>. Tribes did not choose their surroundings; instead, they had to <strong>adapt</strong> to what nature provided. Because the resources in an icy Arctic were completely different from the resources in a desert or a forest, different tribes developed completely different ways of life, homes, and tools. This is how diverse native cultures were born.</span>
+                <span class="easy-reading">Each place gave people different natural resources. Tribes had to adapt to what was around them. Because an icy land is different from a hot desert, tribes built different homes, made different tools, and lived in different ways.</span>
+            </p>
+            <!-- Image idea: Map showing diverse geographic regions of the Americas -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <h2>Matching Life to the Land</h2>
+            <p>
+                <span class="standard-reading">When we study Native American history, we can see a clear rule: <em>culture matches the environment</em>. If a tribe lived near roaring rivers and coastal oceans, their daily life centered around fishing and building canoes. If a tribe lived on wide, flat grasslands with massive herds of roaming animals, their culture centered around hunting and tracking wildlife.</span>
+                <span class="easy-reading">When we study history, we see a clear rule: how people lived matched their land. Tribes near oceans fished and built boats. Tribes on flat grasslands hunted roaming animals.</span>
+            </p>
+            <p>
+                <span class="standard-reading">Every invention, from underground adobe homes in the hot desert to warm fur parkas in the frozen north, was a brilliant solution to an environmental puzzle. By looking closely at the natural resources of a region, we can understand why each tribe developed its unique traditions.</span>
+                <span class="easy-reading">Every invention, like desert mud homes or northern fur coats, solved a puzzle about their land. By looking at natural resources, we can understand why each tribe lived the way they did.</span>
+            </p>
+            <!-- Image idea: Collage showing different Native American environments and homes -->
+            <p style="text-align: center; font-size: 1.5rem;">⏸️ Pause here to answer the next question in your notes ⏸️</p>
+
+            <hr />
+
+            <h2>Class Discussion Questions</h2>
+            <ul>
+                <li><strong>Using Your Surroundings:</strong> If you woke up tomorrow in a thick forest with no modern stores, what natural resources would you look for first to keep yourself safe and warm?</li>
+                <li><strong>The Power of Nature:</strong> Why do you think tribes living in different environments developed such different cultures instead of living the exact same way?</li>
+            </ul>
+        </article>
+    </main>
+
+    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script src="../reading-level-toggle.js"></script>
+</body>
+
+</html>
